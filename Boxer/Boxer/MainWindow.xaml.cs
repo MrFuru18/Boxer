@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ApiLibrary;
+using ApiLibrary.Model;
+using ApiLibrary.Repo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +26,17 @@ namespace Boxer
         public MainWindow()
         {
             InitializeComponent();
+            ClientHttp.InitializeClient();
+        }
+
+        private async void EmployeesButton_Click(object sender, RoutedEventArgs e)
+        {
+            List<Employee> employeesList = await EmployeeProcessor.getAllEmployees();
+
+            if (employeesList.Count != 0)
+            {
+                Console.WriteLine(employeesList[0].name);
+            }
         }
     }
 }

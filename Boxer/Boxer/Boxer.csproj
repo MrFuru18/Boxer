@@ -94,5 +94,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ApiLibrary\ApiLibrary.csproj">
+      <Project>{63166933-B558-4A8D-85A2-0EBBB3D2EE20}</Project>
+      <Name>ApiLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
