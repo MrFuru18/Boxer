@@ -14,6 +14,7 @@
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="EmployeesButton" Padding="15" Margin="15" Click="EmployeesButton_Click">Load Data</Button>
+            <Button x:Name="EmployeesButton1" Padding="15" Margin="15" Click="EmployeesButton1_Click">Add Data</Button>
         </StackPanel>
 
         <TextBlock Grid.Row="1" HorizontalAlignment="Center" x:Name="Name"/>

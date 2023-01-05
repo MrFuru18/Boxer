@@ -29,5 +29,27 @@ namespace ApiLibrary.Repo
                 }
             }
         }
+
+        public static async Task<Employee> addEmployee(Employee employee)
+        {
+            string url = "http://localhost:4000/employee/add";
+            Employee result = null;
+            string serializedEmployee = JsonConvert.SerializeObject(employee);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedEmployee, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonResult = await response.Content.ReadAsStringAsync();
+                    result = JsonConvert.DeserializeObject<Employee>(jsonResult);
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
     }
 }

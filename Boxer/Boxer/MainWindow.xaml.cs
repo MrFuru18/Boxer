@@ -33,10 +33,26 @@ namespace Boxer
         {
             List<Employee> employeesList = await EmployeeProcessor.getAllEmployees();
 
-            if (employeesList.Count != 0)
+            foreach (var item in employeesList)
             {
-                Console.WriteLine(employeesList[0].name);
+                Console.WriteLine($"{item.name} {item.surname}");
             }
+        }
+
+        private async void EmployeesButton1_Click(object sender, RoutedEventArgs e)
+        {
+            Employee employee = new Employee();
+
+            employee.name = "Stanisław";
+            employee.surname = "Zalewski";
+            employee.email = "szalewski@mag.pl";
+            employee.phone = "+48123123421";
+            employee.permissions = "worker";
+            employee.uid = "123421";
+            employee.password = "qwerty123";
+            employee.state = "unavailable";
+
+            //Console.WriteLine(EmployeeProcessor.addEmployee(employee));
         }
     }
 }
