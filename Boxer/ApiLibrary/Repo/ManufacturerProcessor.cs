@@ -29,5 +29,86 @@ namespace ApiLibrary.Repo
                 }
             }
         }
+
+        public static async Task<Manufacturer> getManufacturer(int id)
+        {
+            string url = "http://localhost:3000/manufacturer/" + id;
+            Manufacturer manufacturer = new Manufacturer();
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonResult = await response.Content.ReadAsStringAsync();
+                    manufacturer = JsonConvert.DeserializeObject<Manufacturer>(jsonResult);
+                    return manufacturer;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<string> addManufacturer(Manufacturer manufacturer)
+        {
+            string url = "http://localhost:3000/manufacturer/add";
+            string result;
+            string serializedManufacturer = JsonConvert.SerializeObject(manufacturer);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedManufacturer, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    result = await response.Content.ReadAsStringAsync();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<string> updateManufacturer(Manufacturer manufacturer)
+        {
+            string url = "http://localhost:3000/manufacturer/edit/" + manufacturer.id;
+            string result;
+            string serializedManufacturer = JsonConvert.SerializeObject(manufacturer);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PutAsync(url, new StringContent(serializedManufacturer, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    result = await response.Content.ReadAsStringAsync();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<string> deleteManufacturer(int id)
+        {
+            string url = "http://localhost:3000/manufacturer/delete/" + id;
+            string result;
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient.DeleteAsync(url).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    result = await response.Content.ReadAsStringAsync();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
     }
 }

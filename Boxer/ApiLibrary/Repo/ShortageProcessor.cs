@@ -29,5 +29,86 @@ namespace ApiLibrary.Repo
                 }
             }
         }
+
+        public static async Task<Shortage> getShortage(int id)
+        {
+            string url = "http://localhost:3000/shortage/" + id;
+            Shortage shortage = new Shortage();
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonResult = await response.Content.ReadAsStringAsync();
+                    shortage = JsonConvert.DeserializeObject<Shortage>(jsonResult);
+                    return shortage;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<string> addShortage(Shortage shortage)
+        {
+            string url = "http://localhost:3000/shortage/add";
+            string result;
+            string serializedShortage = JsonConvert.SerializeObject(shortage);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedShortage, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    result = await response.Content.ReadAsStringAsync();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<string> updateShortage(Shortage shortage)
+        {
+            string url = "http://localhost:3000/shortage/edit/" + shortage.id;
+            string result;
+            string serializedShortage = JsonConvert.SerializeObject(shortage);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PutAsync(url, new StringContent(serializedShortage, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    result = await response.Content.ReadAsStringAsync();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<string> deleteShortage(int id)
+        {
+            string url = "http://localhost:3000/shortage/delete/" + id;
+            string result;
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient.DeleteAsync(url).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    result = await response.Content.ReadAsStringAsync();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
     }
 }

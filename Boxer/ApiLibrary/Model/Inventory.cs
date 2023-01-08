@@ -6,6 +6,7 @@ namespace ApiLibrary.Model
 {
     class Inventory
     {
+        public Guid id { get; set; }
         public Guid location_id { get; set; }
         public Guid product_id { get; set; }
         public Guid pallet_id { get; set; }

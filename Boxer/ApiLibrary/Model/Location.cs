@@ -6,6 +6,7 @@ namespace ApiLibrary.Model
 {
     class Location
     {
+        public Guid id { get; set; }
         public string sector { get; set; }
         public string aisle { get; set; }
         public string unit { get; set; }

@@ -6,6 +6,7 @@ namespace ApiLibrary.Model
 {
     class Product
     {
+        public Guid id { get; set; }
         public string sku { get; set; }
         public string name { get; set; }
         public Guid manufacturer_id { get; set; }
