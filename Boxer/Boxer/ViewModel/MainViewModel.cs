@@ -16,6 +16,8 @@ namespace Boxer.ViewModel
     {
         private readonly NavigationStore _navigationStore;
 
+        public BaseViewModel CurrentPage => _navigationStore.CurrentPage;
+
         public MainViewModel(NavigationStore navigationStore)
         {
             _navigationStore = navigationStore;
@@ -28,7 +30,6 @@ namespace Boxer.ViewModel
             onPropertyChanged(nameof(CurrentPage));
         }
 
-        public BaseViewModel CurrentPage => _navigationStore.CurrentPage;
         private ICommand _loadData;
         public ICommand LoadData
         {

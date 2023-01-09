@@ -27,7 +27,7 @@ namespace Boxer
         {
             ClientHttp.InitializeClient();
 
-            INavigationService navigationService = CreateUserControl1NavigationService();
+            INavigationService navigationService = CreateMainMenuNavigationService();
             navigationService.Navigate();
 
             MainWindow = new MainWindow()
@@ -37,6 +37,15 @@ namespace Boxer
 
             MainWindow.Show();
             base.OnStartup(e);
+        }
+
+        private INavigationService CreateMainMenuNavigationService()
+        {
+            return new NavigationService<MainMenuViewModel>(_navigationStore, CreateMainMenuViewModel);
+        }
+        private MainMenuViewModel CreateMainMenuViewModel()
+        {
+            return new MainMenuViewModel(CreateUserControl1NavigationService(), CreateUserControl2NavigationService());
         }
 
         private INavigationService CreateUserControl1NavigationService()
