@@ -23,65 +23,65 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Orientation="Horizontal">
-            <!-- Employee Button -->
-            <Button x:Name="Employees_button"
+            <!-- Search Button -->
+            <Button x:Name="Search_button"
                     Background="Transparent"
-                    Width="100"
-                    Height="100"
-                    Command="{Binding NavigateEmployeesPageCommand}" CommandParameter="Employees">
+                    Width="150"
+                    Height="150"
+                    Command="{Binding NavigateSearchPageCommand}" CommandParameter="Search">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
                             Stretch="None"/>
-                    <TextBlock  x:Name="Employees_textblock"
-                                Text="Pracownicy"
+                    <TextBlock  x:Name="Search_textblock"
+                                Text="Wyszukiwanie"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>
             </Button>
 
-            <!-- Locations Button -->
-            <Button x:Name="Locations_button"
+            <!-- Tasks Pannel Button -->
+            <Button x:Name="TasksPannel_button"
                     Background="Transparent"
-                    Width="100"
-                    Height="100"
-                    Command="{Binding NavigateLocationsPageCommand}" CommandParameter="Employees">
+                    Width="150"
+                    Height="150"
+                    Command="{Binding NavigateTasksPannelPageCommand}" CommandParameter="TasksPannel">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
                             Stretch="None"/>
-                    <TextBlock  x:Name="Locations_textblock"
-                                Text="Lokalizacje"
+                    <TextBlock  x:Name="TasksPannel_textblock"
+                                Text="Panel Zadań"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>
             </Button>
 
-            <!-- Inventory Button -->
+            <!-- Warehouse Button -->
             <Button x:Name="Inventory_button"
                     Background="Transparent"
-                    Width="100"
-                    Height="100"
-                    Command="{Binding NavigateInventoryPageCommand}" CommandParameter="Employees">
+                    Width="150"
+                    Height="150"
+                    Command="{Binding NavigateWarehousePageCommand}" CommandParameter="Warehouse">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
                             Stretch="None"/>
-                    <TextBlock  x:Name="Inventory_textblock"
-                                Text="Inwentarz"
+                    <TextBlock  x:Name="Warehouse_textblock"
+                                Text="Magazyn"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>
             </Button>
             
-            <!-- Products Button -->
-            <Button x:Name="Products_button"
+            <!-- Admin Button -->
+            <Button x:Name="Admin_button"
                     Background="Transparent"
-                    Width="100"
-                    Height="100"
-                    Command="{Binding NavigateProductsPageCommand}" CommandParameter="Employees">
+                    Width="150"
+                    Height="150"
+                    Command="{Binding NavigateProductsPageCommand}" CommandParameter="Admin">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
                             Stretch="None"/>
-                    <TextBlock  x:Name="Products_textblock"
-                                Text="Produkty"
+                    <TextBlock  x:Name="Admin_textblock"
+                                Text="Panel Admina"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>

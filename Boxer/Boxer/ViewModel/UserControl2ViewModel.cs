@@ -15,9 +15,9 @@ namespace Boxer.ViewModel
     {
         public ICommand NavigateUserControl1Command { get; }
 
-        public UserControl2ViewModel(INavigationService userControl1NavigationService)
+        public UserControl2ViewModel(INavigationService mainMenuPageNavigationService)
         {
-            NavigateUserControl1Command = new NavigateCommand(userControl1NavigationService);
+            NavigateUserControl1Command = new NavigateCommand(mainMenuPageNavigationService);
         }
     }
 }

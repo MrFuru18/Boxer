@@ -63,7 +63,7 @@ namespace Boxer
         }
         private UserControl2ViewModel CreateUserControl2ViewModel()
         {
-            return new UserControl2ViewModel(CreateUserControl1NavigationService());
+            return new UserControl2ViewModel(CreateMainMenuNavigationService());
         }
     }
 }

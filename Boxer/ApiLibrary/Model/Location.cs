@@ -14,6 +14,6 @@ namespace ApiLibrary.Model
         public string position { get; set; }
         public string size { get; set; }
         public string availability { get; set; }
-        public Boolean palletSpace { get; set; }
+        public Boolean pallet_space { get; set; }
     }
 }
