@@ -10,9 +10,25 @@ using System.Windows.Input;
 namespace Boxer.ViewModel
 {
     using BaseClass;
+    using Boxer.Navigation;
 
     class MainViewModel : BaseViewModel
     {
+        private readonly Navigate _navigate;
+
+        public MainViewModel(Navigate navigate)
+        {
+            _navigate = navigate;
+
+            _navigate.CurrentPageChanged += OnCurrentPageChanged;
+        }
+
+        private void OnCurrentPageChanged()
+        {
+            onPropertyChanged(nameof(CurrentPage));
+        }
+
+        public BaseViewModel CurrentPage => _navigate.CurrentPage;
         private ICommand _loadData;
         public ICommand LoadData
         {

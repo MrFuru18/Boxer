@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using ApiLibrary;
+using Boxer.Navigation;
 using Boxer.ViewModel;
 
 namespace Boxer
@@ -19,9 +20,13 @@ namespace Boxer
         {
             ClientHttp.InitializeClient();
 
+            Navigate navigate = new Navigate();
+
+            navigate.CurrentPage = new UserControl1ViewModel(navigate);
+
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel()
+                DataContext = new MainViewModel(navigate)
             };
 
             MainWindow.Show();

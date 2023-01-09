@@ -5,6 +5,12 @@
              xmlns:views="clr-namespace:Boxer.View.Views"
              xmlns:vm="clr-namespace:Boxer.ViewModel">
     <Application.Resources>
+        <DataTemplate DataType="{x:Type vm:UserControl1ViewModel}">
+            <views:UserControl1/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:UserControl2ViewModel}">
+            <views:UserControl2/>
+        </DataTemplate>
          
     </Application.Resources>
 </Application>

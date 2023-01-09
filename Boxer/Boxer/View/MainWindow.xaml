@@ -20,5 +20,7 @@
             <Button x:Name="EmployeesButton" Padding="15" Margin="15" Command="{Binding LoadData}">Load Data</Button>
         </StackPanel>
 
+        <ContentControl Grid.Row="1" Content="{Binding CurrentPage}"/>
+
     </Grid>
 </Window>
