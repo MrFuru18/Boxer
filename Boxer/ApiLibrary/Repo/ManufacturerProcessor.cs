@@ -15,7 +15,7 @@ namespace ApiLibrary.Repo
             string url = "http://localhost:3000/manufacturers";
             List<Manufacturer> manufacturersList = new List<Manufacturer>();
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {
@@ -35,7 +35,7 @@ namespace ApiLibrary.Repo
             string url = "http://localhost:3000/manufacturer/" + id;
             Manufacturer manufacturer = new Manufacturer();
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {
