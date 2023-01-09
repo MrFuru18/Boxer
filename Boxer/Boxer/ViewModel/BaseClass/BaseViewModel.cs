@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Boxer.ViewModel.BaseClass
 {
-    class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

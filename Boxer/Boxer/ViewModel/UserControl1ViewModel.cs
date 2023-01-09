@@ -3,33 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Boxer.Navigation;
+using Boxer.Commands;
 
 namespace Boxer.ViewModel
 {
     using BaseClass;
-    using Boxer.Navigation;
-    using System.Windows.Input;
 
     class UserControl1ViewModel : BaseViewModel
     {
-        Navigate _navigate;
+        public ICommand NavigateUserControl2Command { get; }
 
-        public UserControl1ViewModel(Navigate navigate)
+        public UserControl1ViewModel(INavigationService userControl2NavigationService)
         {
-            _navigate = navigate;
-        }
-
-        private ICommand _navigateToUserControl2;
-        public ICommand NavigateToUserControl2
-        {
-            get
-            {
-                return _navigateToUserControl2 ?? (_navigateToUserControl2 = new RelayCommand((p) =>
-                {
-                    _navigate.CurrentPage = new UserControl2ViewModel(_navigate);
-                }, p => true));
-            }
-        }
-        
+            NavigateUserControl2Command = new NavigateCommand(userControl2NavigationService);
+        }        
     }
 }

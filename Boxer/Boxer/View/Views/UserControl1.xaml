@@ -11,6 +11,6 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Button Content="UserControl1" Command="{Binding NavigateToUserControl2}"/>
+        <Button Content="UserControl1" Command="{Binding NavigateUserControl2Command}"/>
     </Grid>
 </UserControl>

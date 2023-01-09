@@ -14,13 +14,13 @@ namespace Boxer.ViewModel
 
     class MainViewModel : BaseViewModel
     {
-        private readonly Navigate _navigate;
+        private readonly NavigationStore _navigationStore;
 
-        public MainViewModel(Navigate navigate)
+        public MainViewModel(NavigationStore navigationStore)
         {
-            _navigate = navigate;
+            _navigationStore = navigationStore;
 
-            _navigate.CurrentPageChanged += OnCurrentPageChanged;
+            _navigationStore.CurrentPageChanged += OnCurrentPageChanged;
         }
 
         private void OnCurrentPageChanged()
@@ -28,7 +28,7 @@ namespace Boxer.ViewModel
             onPropertyChanged(nameof(CurrentPage));
         }
 
-        public BaseViewModel CurrentPage => _navigate.CurrentPage;
+        public BaseViewModel CurrentPage => _navigationStore.CurrentPage;
         private ICommand _loadData;
         public ICommand LoadData
         {

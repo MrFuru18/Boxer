@@ -16,21 +16,45 @@ namespace Boxer
     /// </summary>
     public partial class App : Application
     {
+        private readonly NavigationStore _navigationStore;
+
+        public App()
+        {
+            _navigationStore = new NavigationStore();
+        }
+
         protected override void OnStartup(StartupEventArgs e)
         {
             ClientHttp.InitializeClient();
 
-            Navigate navigate = new Navigate();
-
-            navigate.CurrentPage = new UserControl1ViewModel(navigate);
+            INavigationService navigationService = CreateUserControl1NavigationService();
+            navigationService.Navigate();
 
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel(navigate)
+                DataContext = new MainViewModel(_navigationStore)
             };
 
             MainWindow.Show();
             base.OnStartup(e);
+        }
+
+        private INavigationService CreateUserControl1NavigationService()
+        {
+            return new NavigationService<UserControl1ViewModel>(_navigationStore, CreateUserControl1ViewModel);
+        }
+        private UserControl1ViewModel CreateUserControl1ViewModel()
+        {
+            return new UserControl1ViewModel(CreateUserControl2NavigationService());
+        }
+        
+        private INavigationService CreateUserControl2NavigationService()
+        {
+            return new NavigationService<UserControl2ViewModel>(_navigationStore, CreateUserControl2ViewModel);
+        }
+        private UserControl2ViewModel CreateUserControl2ViewModel()
+        {
+            return new UserControl2ViewModel(CreateUserControl1NavigationService());
         }
     }
 }

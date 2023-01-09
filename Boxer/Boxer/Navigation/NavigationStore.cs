@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Boxer.Navigation
 {
-    class Navigate
+    public class NavigationStore : INavigationStore
     {
         public event Action CurrentPageChanged;
 
