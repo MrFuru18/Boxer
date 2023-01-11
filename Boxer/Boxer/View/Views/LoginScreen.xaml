@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="Boxer.View.Views.LoginScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Boxer.View.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="300">
+    <Grid>
+        <StackPanel Width="300" VerticalAlignment="Center">
+
+            <TextBlock Text="Zaloguj"
+                       VerticalAlignment="Center"
+                       FontSize="30"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,40"/>
+            
+
+            <!-- Uid TextBox -->
+            <TextBlock Text="Uid"
+                       VerticalAlignment="Center"
+                       FontSize="20"
+                       Margin="0,0,0,5"/>
+
+            <TextBox x:Name="Uid_textbox"
+                     Padding="5"
+                     FontSize="20"
+                     Width="300"
+                     VerticalAlignment="Center"
+                     Text="{Binding Uid}"/>
+
+            <!-- Password PasswordBox -->
+            <TextBlock Text="Hasło"
+                       VerticalAlignment="Center"
+                       FontSize="20"
+                       Margin="0,30,0,5"/>
+
+            <PasswordBox x:Name="Password_passwordbox"
+                         Padding="5"
+                         FontSize="20"
+                         Width="300"
+                         VerticalAlignment="Center"
+                         PasswordChanged="PasswordBox_PasswordChanged"/>
+
+            <!-- Login Button -->
+            <Button HorizontalAlignment="Center"
+                    Content="Zaloguj się"
+                    FontSize="20"
+                    Margin="0,50,0,0"
+                    Command="{Binding Login}"/>
+
+        </StackPanel>
+
+    </Grid>
+    
+    
+</UserControl>

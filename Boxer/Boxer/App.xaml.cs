@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using ApiLibrary;
+using Boxer.Model;
 using Boxer.Navigation;
 using Boxer.ViewModel;
 
@@ -16,10 +17,13 @@ namespace Boxer
     /// </summary>
     public partial class App : Application
     {
-        private readonly NavigationStore _navigationStore;
+        private readonly AccountStore _accountStore;
 
+        private readonly NavigationStore _navigationStore;
+        
         public App()
         {
+            _accountStore = new AccountStore();
             _navigationStore = new NavigationStore();
         }
 
@@ -27,7 +31,7 @@ namespace Boxer
         {
             ClientHttp.InitializeClient();
 
-            INavigationService navigationService = CreateMainMenuNavigationService();
+            INavigationService navigationService = CreateLoginNavigationService();
             navigationService.Navigate();
 
             MainWindow = new MainWindow()
@@ -39,13 +43,22 @@ namespace Boxer
             base.OnStartup(e);
         }
 
+        private INavigationService CreateLoginNavigationService()
+        {
+            return new NavigationService<LoginViewModel>(_navigationStore, CreateLoginViewModel);
+        }
+        private LoginViewModel CreateLoginViewModel()
+        {
+            return new LoginViewModel(_accountStore, CreateMainMenuNavigationService());
+        }
+
         private INavigationService CreateMainMenuNavigationService()
         {
             return new NavigationService<MainMenuViewModel>(_navigationStore, CreateMainMenuViewModel);
         }
         private MainMenuViewModel CreateMainMenuViewModel()
         {
-            return new MainMenuViewModel(CreateUserControl1NavigationService(), CreateUserControl2NavigationService());
+            return new MainMenuViewModel(_accountStore, CreateUserControl1NavigationService(), CreateUserControl2NavigationService(), CreateLoginNavigationService());
         }
 
         private INavigationService CreateUserControl1NavigationService()

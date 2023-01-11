@@ -73,7 +73,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\LoginCommand.cs" />
+    <Compile Include="Commands\LogoutCommand.cs" />
     <Compile Include="Commands\NavigateCommand.cs" />
+    <Compile Include="Model\Account.cs" />
+    <Compile Include="Model\AccountStore.cs" />
     <Compile Include="Navigation\CompositeNavigationService.cs" />
     <Compile Include="Navigation\CreateViewModel.cs" />
     <Compile Include="Navigation\ParameterNavigationService.cs" />
@@ -81,9 +85,13 @@
     <Compile Include="Navigation\INavigationStore.cs" />
     <Compile Include="Navigation\NavigationService.cs" />
     <Compile Include="Navigation\NavigationStore.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
     <Compile Include="ViewModel\UserControl1ViewModel.cs" />
     <Compile Include="ViewModel\UserControl2ViewModel.cs" />
+    <Compile Include="View\Views\LoginScreen.xaml.cs">
+      <DependentUpon>LoginScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Views\MainMenuPage.xaml.cs">
       <DependentUpon>MainMenuPage.xaml</DependentUpon>
     </Compile>
@@ -108,6 +116,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Views\LoginScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Views\MainMenuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -154,9 +166,7 @@
       <Name>ApiLibrary</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="View\Images\Icon1.png" />
   </ItemGroup>

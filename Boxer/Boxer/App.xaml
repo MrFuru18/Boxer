@@ -8,6 +8,9 @@
         <DataTemplate DataType="{x:Type vm:MainMenuViewModel}">
             <views:MainMenuPage/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:LoginViewModel}">
+            <views:LoginScreen/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type vm:UserControl1ViewModel}">
             <views:UserControl1/>
         </DataTemplate>
