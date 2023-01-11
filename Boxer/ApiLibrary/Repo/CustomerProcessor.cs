@@ -15,7 +15,7 @@ namespace ApiLibrary.Repo
             string url = "http://localhost:3000/customers";
             List<Customer> customersList = new List<Customer>();
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {
@@ -35,7 +35,7 @@ namespace ApiLibrary.Repo
             string url = "http://localhost:3000/customer/" + id;
             Customer customer = new Customer();
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {

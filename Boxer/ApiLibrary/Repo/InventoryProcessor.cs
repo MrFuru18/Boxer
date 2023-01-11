@@ -15,7 +15,7 @@ namespace ApiLibrary.Repo
             string url = "http://localhost:3000/inventory";
             List<Inventory> inventoryList = new List<Inventory>();
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {
@@ -35,7 +35,7 @@ namespace ApiLibrary.Repo
             string url = "http://localhost:3000/inventory/" + id;
             Inventory inventory = new Inventory();
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {

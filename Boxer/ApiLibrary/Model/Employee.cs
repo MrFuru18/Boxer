@@ -12,7 +12,6 @@ namespace ApiLibrary.Model
         public string phone { get; set; }
         public string permissions { get; set; }
         public string uid { get; set; }
-        public string password { get; set; }
         public string state { get; set; }
     }
 }

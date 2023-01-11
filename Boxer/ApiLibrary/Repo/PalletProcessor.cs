@@ -15,7 +15,7 @@ namespace ApiLibrary.Repo
             string url = "http://localhost:3000/pallets";
             List<Pallet> palletsList = new List<Pallet>();
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {
@@ -35,7 +35,7 @@ namespace ApiLibrary.Repo
             string url = "http://localhost:3000/pallet/" + id;
             Pallet pallet = new Pallet();
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {

@@ -15,7 +15,7 @@ namespace ApiLibrary.Repo
             string url = "http://localhost:3000/locations";
             List<Location> locationsList = new List<Location>();
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {
@@ -35,7 +35,7 @@ namespace ApiLibrary.Repo
             string url = "http://localhost:3000/locations/available";
             List<Location> locationsList = new List<Location>();
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {
@@ -55,7 +55,7 @@ namespace ApiLibrary.Repo
             string url = "http://localhost:3000/location/" + id;
             Location location = new Location();
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {
