@@ -8,17 +8,17 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <StackPanel Orientation="Horizontal">
-            <!--  Add Employee Button -->
-            <Button x:Name="AddEmployee_button"
+            <!--  Employees Button -->
+            <Button x:Name="Employees_button"
                         Background="Transparent"
                         Width="150"
                         Height="150"
-                        Command="{Binding NavigateAddEmployeeCommand}" CommandParameter="AddEmployee">
+                        Command="{Binding NavigateEmployeesCommand}" CommandParameter="Employees">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
                                 Stretch="None"/>
-                    <TextBlock  x:Name="AddEmployee_textblock"
-                                    Text="Dodaj Pracownika"
+                    <TextBlock  x:Name="Employees_textblock"
+                                    Text="Przeglądaj Pracowników"
                                     HorizontalAlignment="Center"
                                     FontSize="20"/>
                 </StackPanel>

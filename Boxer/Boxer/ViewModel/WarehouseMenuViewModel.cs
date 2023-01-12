@@ -11,10 +11,10 @@ namespace Boxer.ViewModel
 
     class WarehouseMenuViewModel : BaseViewModel
     {
-        public ICommand NavigateAddProductToLocationCommand { get; }
-        public ICommand NavigateAddProductToPalletCommand { get; }
-        public ICommand NavigateAddPalletCommand { get; }
-        public ICommand NavigateAddLocationCommand { get; }
+        public ICommand NavigateInventoryCommand { get; }
+        public ICommand NavigatePalletesCommand { get; }
+        public ICommand NavigateShortagesCommand { get; }
+        public ICommand NavigateLocationsCommand { get; }
 
         public WarehouseMenuViewModel()
         {

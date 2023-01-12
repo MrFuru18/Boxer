@@ -7,73 +7,67 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-        </Grid.ColumnDefinitions>
 
         <StackPanel Orientation="Horizontal">
-            <!--  Add Product To Location Button -->
-            <Button x:Name="AddProductToLocation_button"
+            <!--  Inventory Button -->
+            <Button x:Name="Inventory_button"
                     Background="Transparent"
                     Width="150"
                     Height="150"
-                    Command="{Binding NavigateAddProductToLocationCommand}" CommandParameter="AddProductToLocation">
+                    Command="{Binding NavigateInventoryCommand}" CommandParameter="Inventory">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
                             Stretch="None"/>
-                    <TextBlock  x:Name="AddProductToLocationLocation_textblock"
-                                Text="Przypisz Lokalizację"
+                    <TextBlock  x:Name="Inventory_textblock"
+                                Text="Przeglądaj Inwentarz"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>
             </Button>
 
-            <!--  Add Product To Pallet Button -->
-            <Button x:Name="AddProductToPallet_button"
+            <!--  Palletes Button -->
+            <Button x:Name="Palletes_button"
                     Background="Transparent"
                     Width="150"
                     Height="150"
-                    Command="{Binding NavigateAddProductToPalletCommand}" CommandParameter="AddProductToPallet">
+                    Command="{Binding NavigatePalletesCommand}" CommandParameter="Palletes">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
                             Stretch="None"/>
-                    <TextBlock  x:Name="AddProductToPallet_textblock"
-                                Text="Przypisz Do Palety"
+                    <TextBlock  x:Name="Palletes_textblock"
+                                Text="Przeglądaj Palety"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>
             </Button>
 
-            <!--  Add Pallet Button -->
-            <Button x:Name="AddPallet_button"
+            <!--  Shortages Button -->
+            <Button x:Name="Shortages_button"
                     Background="Transparent"
                     Width="150"
                     Height="150"
-                    Command="{Binding NavigateAddPalletCommand}" CommandParameter="AddPallet">
+                    Command="{Binding NavigateShortagesCommand}" CommandParameter="Shortages">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
                             Stretch="None"/>
-                    <TextBlock  x:Name="AddPallet_textblock"
-                                Text="Dodaj Paletę"
+                    <TextBlock  x:Name="Shortages_textblock"
+                                Text="Przeglądaj Braki"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>
             </Button>
             
-            <!--  Add Location Button -->
-            <Button x:Name="AddLocation_button"
+            <!--  Locations Button -->
+            <Button x:Name="Locations_button"
                     Background="Transparent"
                     Width="150"
                     Height="150"
-                    Command="{Binding NavigateAddLocationCommand}" CommandParameter="AddLocation">
+                    Command="{Binding NavigateLocationsCommand}" CommandParameter="Locations">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
                             Stretch="None"/>
-                    <TextBlock  x:Name="AddLocation_textblock"
-                                Text="Dodaj Lokalizację"
+                    <TextBlock  x:Name="Locations_textblock"
+                                Text="Przeglądaj Lokalizacje"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>

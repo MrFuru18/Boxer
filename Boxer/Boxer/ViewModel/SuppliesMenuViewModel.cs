@@ -8,12 +8,13 @@ using System.Windows.Input;
 
 namespace Boxer.ViewModel
 {
-    class TasksMenuViewModel : BaseViewModel
+    class SuppliesMenuViewModel : BaseViewModel
     {
-        ICommand NavigateAddTaskCommand { get; }
-        ICommand NavigateTasksCommand { get; }
+        ICommand NavigateProductsCommand { get; }
+        ICommand NavigateManufacturersCommand { get; }
+        ICommand NavigateSuppliesCommand { get; }
 
-        public TasksMenuViewModel()
+        public SuppliesMenuViewModel()
         {
 
         }

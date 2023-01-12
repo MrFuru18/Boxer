@@ -88,6 +88,8 @@
     <Compile Include="ViewModel\AdminMenuViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
+    <Compile Include="ViewModel\OrdersMenuViewModel.cs" />
+    <Compile Include="ViewModel\SuppliesMenuViewModel.cs" />
     <Compile Include="ViewModel\TasksMenuViewModel.cs" />
     <Compile Include="ViewModel\WarehouseMenuViewModel.cs" />
     <Compile Include="View\Views\AdminMenuPage.xaml.cs">
@@ -98,6 +100,12 @@
     </Compile>
     <Compile Include="View\Views\MainMenuPage.xaml.cs">
       <DependentUpon>MainMenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Views\OrdersMenuPage.xaml.cs">
+      <DependentUpon>OrdersMenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Views\SuppliesMenuPage.xaml.cs">
+      <DependentUpon>SuppliesMenuPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Views\TasksMenuPage.xaml.cs">
       <DependentUpon>TasksMenuPage.xaml</DependentUpon>
@@ -129,6 +137,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Views\MainMenuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Views\OrdersMenuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Views\SuppliesMenuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

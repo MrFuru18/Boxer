@@ -16,22 +16,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Orientation="Horizontal">
-            <!-- Search Button -->
-            <Button x:Name="Search_button"
-                    Background="Transparent"
-                    Width="150"
-                    Height="150"
-                    Command="{Binding NavigateSearchPageCommand}" CommandParameter="Search">
-                <StackPanel>
-                    <Image  Source="/View/Images/Icon1.png"
-                            Stretch="None"/>
-                    <TextBlock  x:Name="Search_textblock"
-                                Text="Wyszukiwanie"
-                                HorizontalAlignment="Center"
-                                FontSize="20"/>
-                </StackPanel>
-            </Button>
-
+            
             <!-- Tasks Pannel Button -->
             <Button x:Name="TasksPannel_button"
                     Background="Transparent"
@@ -42,12 +27,12 @@
                     <Image  Source="/View/Images/Icon1.png"
                             Stretch="None"/>
                     <TextBlock  x:Name="TasksPannel_textblock"
-                                Text="Panel Zadaniami"
+                                Text="Panel Zadań"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>
             </Button>
-
+            
             <!-- Warehouse Pannel Button -->
             <Button x:Name="WarehousePannel_button"
                     Background="Transparent"
@@ -59,6 +44,40 @@
                             Stretch="None"/>
                     <TextBlock  x:Name="WarehousePannel_textblock"
                                 Text="Panel magazynu"
+                                HorizontalAlignment="Center"
+                                FontSize="20"/>
+                </StackPanel>
+            </Button>
+
+
+            <!-- Orders Pannel Button -->
+            <Button x:Name="OrdersPannel_button"
+                    Background="Transparent"
+                    Width="150"
+                    Height="150"
+                    Command="{Binding NavigateOrdersPannelPageCommand}" CommandParameter="OrdersPannel">
+                <StackPanel>
+                    <Image  Source="/View/Images/Icon1.png"
+                            Stretch="None"/>
+                    <TextBlock  x:Name="OrdersPannel_textblock"
+                                Text="Panel Zamówień"
+                                HorizontalAlignment="Center"
+                                FontSize="20"/>
+                </StackPanel>
+            </Button>
+
+
+            <!-- Supplies Pannel Button -->
+            <Button x:Name="SuppliesPannel_button"
+                    Background="Transparent"
+                    Width="150"
+                    Height="150"
+                    Command="{Binding NavigateSuppliesPannelPageCommand}" CommandParameter="SuppliesPannel">
+                <StackPanel>
+                    <Image  Source="/View/Images/Icon1.png"
+                            Stretch="None"/>
+                    <TextBlock  x:Name="SuppliesPannel_textblock"
+                                Text="Panel Zaopatrzeń"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>
