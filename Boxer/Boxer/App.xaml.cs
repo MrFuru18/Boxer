@@ -58,25 +58,35 @@ namespace Boxer
         }
         private MainMenuViewModel CreateMainMenuViewModel()
         {
-            return new MainMenuViewModel(_accountStore, CreateUserControl1NavigationService(), CreateUserControl2NavigationService(), CreateLoginNavigationService());
+            return new MainMenuViewModel(_accountStore, CreateWarehouseMenuNavigationService(), CreateAdminMenuNavigationService(), CreateLoginNavigationService());
         }
 
-        private INavigationService CreateUserControl1NavigationService()
+        private INavigationService CreateTasksMenuNavigationService()
         {
-            return new NavigationService<UserControl1ViewModel>(_navigationStore, CreateUserControl1ViewModel);
+            return new NavigationService<TasksMenuViewModel>(_navigationStore, CreateTasksMenuViewModel);
         }
-        private UserControl1ViewModel CreateUserControl1ViewModel()
+        private TasksMenuViewModel CreateTasksMenuViewModel()
         {
-            return new UserControl1ViewModel(CreateUserControl2NavigationService());
+            return new TasksMenuViewModel();
         }
-        
-        private INavigationService CreateUserControl2NavigationService()
+
+        private INavigationService CreateWarehouseMenuNavigationService()
         {
-            return new NavigationService<UserControl2ViewModel>(_navigationStore, CreateUserControl2ViewModel);
+            return new NavigationService<WarehouseMenuViewModel>(_navigationStore, CreateWarehouseMenuViewModel);
         }
-        private UserControl2ViewModel CreateUserControl2ViewModel()
+        private WarehouseMenuViewModel CreateWarehouseMenuViewModel()
         {
-            return new UserControl2ViewModel(CreateMainMenuNavigationService());
+            return new WarehouseMenuViewModel();
         }
+
+        private INavigationService CreateAdminMenuNavigationService()
+        {
+            return new NavigationService<AdminMenuViewModel>(_navigationStore, CreateAdminMenuViewModel);
+        }
+        private AdminMenuViewModel CreateAdminMenuViewModel()
+        {
+            return new AdminMenuViewModel();
+        }
+
     }
 }

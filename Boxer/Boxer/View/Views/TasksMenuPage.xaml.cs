@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Boxer.View.Views
 {
     /// <summary>
-    /// Logika interakcji dla klasy UserControl1.xaml
+    /// Logika interakcji dla klasy TasksMenuPage.xaml
     /// </summary>
-    public partial class UserControl1 : UserControl
+    public partial class TasksMenuPage : UserControl
     {
-        public UserControl1()
+        public TasksMenuPage()
         {
             InitializeComponent();
         }

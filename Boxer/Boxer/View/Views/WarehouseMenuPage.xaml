@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Boxer.View.Views.MainMenuPage"
+﻿<UserControl x:Class="Boxer.View.Views.WarehouseMenuPage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:Boxer.View.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -16,89 +15,72 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Orientation="Horizontal">
-            <!-- Search Button -->
-            <Button x:Name="Search_button"
+            <!--  Add Product To Location Button -->
+            <Button x:Name="AddProductToLocation_button"
                     Background="Transparent"
                     Width="150"
                     Height="150"
-                    Command="{Binding NavigateSearchPageCommand}" CommandParameter="Search">
+                    Command="{Binding NavigateAddProductToLocationCommand}" CommandParameter="AddProductToLocation">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
                             Stretch="None"/>
-                    <TextBlock  x:Name="Search_textblock"
-                                Text="Wyszukiwanie"
+                    <TextBlock  x:Name="AddProductToLocationLocation_textblock"
+                                Text="Przypisz Lokalizację"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>
             </Button>
 
-            <!-- Tasks Pannel Button -->
-            <Button x:Name="TasksPannel_button"
+            <!--  Add Product To Pallet Button -->
+            <Button x:Name="AddProductToPallet_button"
                     Background="Transparent"
                     Width="150"
                     Height="150"
-                    Command="{Binding NavigateTasksPannelPageCommand}" CommandParameter="TasksPannel">
+                    Command="{Binding NavigateAddProductToPalletCommand}" CommandParameter="AddProductToPallet">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
                             Stretch="None"/>
-                    <TextBlock  x:Name="TasksPannel_textblock"
-                                Text="Panel Zadaniami"
+                    <TextBlock  x:Name="AddProductToPallet_textblock"
+                                Text="Przypisz Do Palety"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>
             </Button>
 
-            <!-- Warehouse Pannel Button -->
-            <Button x:Name="WarehousePannel_button"
+            <!--  Add Pallet Button -->
+            <Button x:Name="AddPallet_button"
                     Background="Transparent"
                     Width="150"
                     Height="150"
-                    Command="{Binding NavigateWarehousePannelPageCommand}" CommandParameter="WarehousePannel">
+                    Command="{Binding NavigateAddPalletCommand}" CommandParameter="AddPallet">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
                             Stretch="None"/>
-                    <TextBlock  x:Name="WarehousePannel_textblock"
-                                Text="Panel magazynu"
+                    <TextBlock  x:Name="AddPallet_textblock"
+                                Text="Dodaj Paletę"
+                                HorizontalAlignment="Center"
+                                FontSize="20"/>
+                </StackPanel>
+            </Button>
+            
+            <!--  Add Location Button -->
+            <Button x:Name="AddLocation_button"
+                    Background="Transparent"
+                    Width="150"
+                    Height="150"
+                    Command="{Binding NavigateAddLocationCommand}" CommandParameter="AddLocation">
+                <StackPanel>
+                    <Image  Source="/View/Images/Icon1.png"
+                            Stretch="None"/>
+                    <TextBlock  x:Name="AddLocation_textblock"
+                                Text="Dodaj Lokalizację"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>
             </Button>
 
-            <!-- Admin Button -->
-            <Button x:Name="AdminPannel_button"
-                    Background="Transparent"
-                    Width="150"
-                    Height="150"
-                    Command="{Binding NavigateAdminPannelPageCommand}" CommandParameter="AdminPannel">
-                <StackPanel>
-                    <Image  Source="/View/Images/Icon1.png"
-                            Stretch="None"/>
-                    <TextBlock  x:Name="AdminPannel_textblock"
-                                Text="Panel Administratora"
-                                HorizontalAlignment="Center"
-                                FontSize="20"/>
-                </StackPanel>
-            </Button>
-
-            <!-- Logout Button -->
-            <Button x:Name="Logout_button"
-                    Background="Transparent"
-                    Width="150"
-                    Height="150"
-                    Command="{Binding Logout}" CommandParameter="Logout">
-                <StackPanel>
-                    <Image  Source="/View/Images/Icon1.png"
-                            Stretch="None"/>
-                    <TextBlock  x:Name="Logout_textblock"
-                                Text="Wyloguj"
-                                HorizontalAlignment="Center"
-                                FontSize="20"/>
-                </StackPanel>
-            </Button>
         </StackPanel>
-        
+
     </Grid>
 
-    
-    
 </UserControl>
