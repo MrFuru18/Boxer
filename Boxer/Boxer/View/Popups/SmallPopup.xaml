@@ -1,0 +1,26 @@
+﻿<Window x:Class="Boxer.View.Popups.SmallPopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Boxer.View.Popups"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Title="Popup" Height="160" Width="320">
+    <Border>
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="10" ShadowDepth="3" Opacity="0.8" 
+                Color="Gray" />
+        </Border.Effect>
+        <Grid Background="White" Margin="8">
+            <Border>
+                <Border BorderThickness="1" BorderBrush="Gray" CornerRadius="5" UseLayoutRounding="True">
+                    <ContentControl x:Name="ContentPresenter" Content="{Binding}"/>
+                </Border>
+            </Border>
+        </Grid>
+    </Border>
+</Window>

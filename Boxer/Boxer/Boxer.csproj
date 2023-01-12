@@ -89,9 +89,16 @@
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
     <Compile Include="ViewModel\OrdersMenuViewModel.cs" />
+    <Compile Include="ViewModel\PopupVM\AlertDialogViewModel.cs" />
     <Compile Include="ViewModel\SuppliesMenuViewModel.cs" />
     <Compile Include="ViewModel\TasksMenuViewModel.cs" />
     <Compile Include="ViewModel\WarehouseMenuViewModel.cs" />
+    <Compile Include="View\Popups\AlertDialogView.xaml.cs">
+      <DependentUpon>AlertDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Popups\SmallPopup.xaml.cs">
+      <DependentUpon>SmallPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Views\AdminMenuPage.xaml.cs">
       <DependentUpon>AdminMenuPage.xaml</DependentUpon>
     </Compile>
@@ -128,6 +135,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Popups\AlertDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Popups\SmallPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Views\AdminMenuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -9,7 +9,9 @@
         xmlns:vm="clr-namespace:Boxer.ViewModel"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="900" Width="1200">
+        Title="MainWindow" Height="900" Width="1200"
+        WindowState="Maximized"
+        WindowStyle="None">
 
     <Window.Resources>
         <Style TargetType="Button">
