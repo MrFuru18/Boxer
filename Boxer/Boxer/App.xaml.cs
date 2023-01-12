@@ -69,7 +69,7 @@ namespace Boxer
         }
         private TasksMenuViewModel CreateTasksMenuViewModel()
         {
-            return new TasksMenuViewModel();
+            return new TasksMenuViewModel(CreateMainMenuNavigationService());
         }
 
         private INavigationService CreateWarehouseMenuNavigationService()
@@ -78,7 +78,7 @@ namespace Boxer
         }
         private WarehouseMenuViewModel CreateWarehouseMenuViewModel()
         {
-            return new WarehouseMenuViewModel();
+            return new WarehouseMenuViewModel(CreateMainMenuNavigationService());
         }
 
         private INavigationService CreateOrdersMenuNavigationService()
@@ -87,7 +87,7 @@ namespace Boxer
         }
         private OrdersMenuViewModel CreateOrdersMenuViewModel()
         {
-            return new OrdersMenuViewModel();
+            return new OrdersMenuViewModel(CreateMainMenuNavigationService());
         }
         private INavigationService CreateSuppliesMenuNavigationService()
         {
@@ -95,7 +95,7 @@ namespace Boxer
         }
         private SuppliesMenuViewModel CreateSuppliesMenuViewModel()
         {
-            return new SuppliesMenuViewModel();
+            return new SuppliesMenuViewModel(CreateMainMenuNavigationService());
         }
 
         private INavigationService CreateAdminMenuNavigationService()
@@ -104,7 +104,7 @@ namespace Boxer
         }
         private AdminMenuViewModel CreateAdminMenuViewModel()
         {
-            return new AdminMenuViewModel();
+            return new AdminMenuViewModel(CreateMainMenuNavigationService());
         }
 
     }

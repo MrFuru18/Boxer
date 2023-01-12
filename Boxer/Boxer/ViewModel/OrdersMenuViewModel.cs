@@ -1,4 +1,6 @@
-﻿using Boxer.ViewModel.BaseClass;
+﻿using Boxer.Commands;
+using Boxer.Navigation;
+using Boxer.ViewModel.BaseClass;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +12,13 @@ namespace Boxer.ViewModel
 {
     class OrdersMenuViewModel : BaseViewModel
     {
-        ICommand NavigateOrdersCommand { get; }
-        ICommand NavigateClientsCommand { get; }
+        public ICommand NavigateBackCommand { get; }
+        public ICommand NavigateOrdersCommand { get; }
+        public ICommand NavigateClientsCommand { get; }
+
+        public OrdersMenuViewModel(INavigationService mainMenuNavigationService)
+        {
+            NavigateBackCommand = new NavigateCommand(mainMenuNavigationService);
+        }
     }
 }
