@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boxer", "Boxer\Boxer.csproj", "{BC359449-8277-498A-9530-94585B08F9C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiLibrary", "ApiLibrary\ApiLibrary.csproj", "{63166933-B558-4A8D-85A2-0EBBB3D2EE20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiLibrary", "ApiLibrary\ApiLibrary.csproj", "{63166933-B558-4A8D-85A2-0EBBB3D2EE20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModalControl", "ModalControl\ModalControl.csproj", "{0562369C-856E-425A-92BB-351E979D0F81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{63166933-B558-4A8D-85A2-0EBBB3D2EE20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63166933-B558-4A8D-85A2-0EBBB3D2EE20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63166933-B558-4A8D-85A2-0EBBB3D2EE20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0562369C-856E-425A-92BB-351E979D0F81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0562369C-856E-425A-92BB-351E979D0F81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0562369C-856E-425A-92BB-351E979D0F81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0562369C-856E-425A-92BB-351E979D0F81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

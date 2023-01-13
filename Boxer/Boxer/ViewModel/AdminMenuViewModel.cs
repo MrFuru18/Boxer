@@ -15,7 +15,7 @@ namespace Boxer.ViewModel
     class AdminMenuViewModel : BaseViewModel
     {
         public ICommand NavigateBackCommand { get; }
-        public ICommand NavigateAddEmployeeCommand { get; }
+        public ICommand NavigateEmployeesCommand { get; }
 
         public AdminMenuViewModel(INavigationService mainMenuNavigationService)
         {

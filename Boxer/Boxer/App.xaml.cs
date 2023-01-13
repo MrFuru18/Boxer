@@ -20,11 +20,13 @@ namespace Boxer
         private readonly AccountStore _accountStore;
 
         private readonly NavigationStore _navigationStore;
+        private readonly ModalNavigationStore _modalNavigationStore;
         
         public App()
         {
             _accountStore = new AccountStore();
             _navigationStore = new NavigationStore();
+            _modalNavigationStore = new ModalNavigationStore();
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -36,7 +38,7 @@ namespace Boxer
 
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel(_navigationStore)
+                DataContext = new MainViewModel(_navigationStore, _modalNavigationStore)
             };
 
             MainWindow.Show();
@@ -101,10 +103,13 @@ namespace Boxer
         private INavigationService CreateAdminMenuNavigationService()
         {
             return new NavigationService<AdminMenuViewModel>(_navigationStore, CreateAdminMenuViewModel);
+            //test modali (zamknij modal popup i przekieruj do suppliesMenu)
+            //return new ModalNavigationService<AdminMenuViewModel>(_modalNavigationStore, CreateAdminMenuViewModel);
         }
         private AdminMenuViewModel CreateAdminMenuViewModel()
         {
             return new AdminMenuViewModel(CreateMainMenuNavigationService());
+            //return new AdminMenuViewModel(new CompositeNavigationService(new CloseModalNavigationService(_modalNavigationStore), CreateSuppliesMenuNavigationService()));
         }
 
     }

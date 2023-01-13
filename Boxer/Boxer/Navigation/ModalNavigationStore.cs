@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Boxer.Navigation
 {
-    public class NavigationStore : INavigationStore
+    public class ModalNavigationStore : INavigationStore
     {
-        public event Action CurrentPageChanged;
+        public event Action CurrentViewModelChanged;
 
         private BaseViewModel _currentViewModel;
         public BaseViewModel CurrentViewModel
@@ -19,13 +19,20 @@ namespace Boxer.Navigation
             {
                 _currentViewModel?.Dispose();
                 _currentViewModel = value;
-                OnCurrentPageChanged();
+                OnCurrentViewModelChanged();
             }
         }
 
-        private void OnCurrentPageChanged()
+        public bool IsOpen => CurrentViewModel != null;
+
+        public void Close()
         {
-            CurrentPageChanged?.Invoke();
+            CurrentViewModel = null;
+        }
+
+        private void OnCurrentViewModelChanged()
+        {
+            CurrentViewModelChanged?.Invoke();
         }
     }
 }

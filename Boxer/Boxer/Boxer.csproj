@@ -78,8 +78,11 @@
     <Compile Include="Commands\NavigateCommand.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\AccountStore.cs" />
+    <Compile Include="Navigation\CloseModalNavigatonService.cs" />
     <Compile Include="Navigation\CompositeNavigationService.cs" />
     <Compile Include="Navigation\CreateViewModel.cs" />
+    <Compile Include="Navigation\ModalNavigationService.cs" />
+    <Compile Include="Navigation\ModalNavigationStore.cs" />
     <Compile Include="Navigation\ParameterNavigationService.cs" />
     <Compile Include="Navigation\INavigationService.cs" />
     <Compile Include="Navigation\INavigationStore.cs" />
@@ -189,8 +192,14 @@
       <Project>{63166933-B558-4A8D-85A2-0EBBB3D2EE20}</Project>
       <Name>ApiLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ModalControl\ModalControl.csproj">
+      <Project>{0562369c-856e-425a-92bb-351e979d0f81}</Project>
+      <Name>ModalControl</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModel\PopupVM\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Images\Icon1.png" />
   </ItemGroup>
