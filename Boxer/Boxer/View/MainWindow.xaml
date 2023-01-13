@@ -6,7 +6,8 @@
         
         xmlns:local="clr-namespace:Boxer"
         xmlns:views="clr-namespace:Boxer.View.Views"
-        xmlns:vm="clr-namespace:Boxer.ViewModel" xmlns:modalcontrol="clr-namespace:ModalControl;assembly=ModalControl"
+        xmlns:vm="clr-namespace:Boxer.ViewModel" 
+        xmlns:modalcontrol="clr-namespace:ModalControl;assembly=ModalControl"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="900" Width="1200"
@@ -38,8 +39,8 @@
                    FontSize="60"
                    Text="Boxer"/>
 
-        <modalcontrol:Modal Grid.Column="1" Grid.Row="2" Panel.ZIndex="1">
-            <views:LoginScreen/>
+        <modalcontrol:Modal Grid.Column="1" Grid.Row="2" Panel.ZIndex="1" IsOpen="{Binding IsModalOpen}">
+            <ContentControl Content="{Binding CurrentModalViewModel}"/>
         </modalcontrol:Modal>
 
         <ContentControl Grid.Column="1" Grid.Row="2" Content="{Binding CurrentPage}"/>

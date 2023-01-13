@@ -15,19 +15,29 @@ namespace Boxer.ViewModel
     class MainViewModel : BaseViewModel
     {
         private readonly NavigationStore _navigationStore;
+        private readonly ModalNavigtionStore _modalNavigationStore;
 
         public BaseViewModel CurrentPage => _navigationStore.CurrentPage;
+        public BaseViewModel CurrentModalViewModel => _modalNavigationStore.CurrentViewModel;
+        public bool IsModalOpen => _modalNavigationStore.IsOpen;
 
-        public MainViewModel(NavigationStore navigationStore)
+        public MainViewModel(NavigationStore navigationStore, ModalNavigtionStore modalNavigationStore)
         {
             _navigationStore = navigationStore;
+            _modalNavigationStore = modalNavigationStore;
 
             _navigationStore.CurrentPageChanged += OnCurrentPageChanged;
+            _modalNavigationStore.CurrentViewModelChanged += OnCurrentModalViewModelChanged;
         }
 
         private void OnCurrentPageChanged()
         {
             onPropertyChanged(nameof(CurrentPage));
+        }
+        private void OnCurrentModalViewModelChanged()
+        {
+            onPropertyChanged(nameof(CurrentModalViewModel));
+            onPropertyChanged(nameof(IsModalOpen));
         }
 
         private ICommand _loadData;
