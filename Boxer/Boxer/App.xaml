@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:Boxer"
              xmlns:views="clr-namespace:Boxer.View.Views"
              xmlns:vm="clr-namespace:Boxer.ViewModel">
+    
     <Application.Resources>
         <DataTemplate DataType="{x:Type vm:MainMenuViewModel}">
             <views:MainMenuPage/>

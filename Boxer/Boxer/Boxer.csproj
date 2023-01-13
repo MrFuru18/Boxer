@@ -80,6 +80,7 @@
     <Compile Include="Model\AccountStore.cs" />
     <Compile Include="Navigation\CompositeNavigationService.cs" />
     <Compile Include="Navigation\CreateViewModel.cs" />
+    <Compile Include="Navigation\ModalNavigtionStore.cs" />
     <Compile Include="Navigation\ParameterNavigationService.cs" />
     <Compile Include="Navigation\INavigationService.cs" />
     <Compile Include="Navigation\INavigationStore.cs" />
@@ -89,16 +90,9 @@
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
     <Compile Include="ViewModel\OrdersMenuViewModel.cs" />
-    <Compile Include="ViewModel\PopupVM\AlertDialogViewModel.cs" />
     <Compile Include="ViewModel\SuppliesMenuViewModel.cs" />
     <Compile Include="ViewModel\TasksMenuViewModel.cs" />
     <Compile Include="ViewModel\WarehouseMenuViewModel.cs" />
-    <Compile Include="View\Popups\AlertDialogView.xaml.cs">
-      <DependentUpon>AlertDialogView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Popups\SmallPopup.xaml.cs">
-      <DependentUpon>SmallPopup.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Views\AdminMenuPage.xaml.cs">
       <DependentUpon>AdminMenuPage.xaml</DependentUpon>
     </Compile>
@@ -135,14 +129,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\Popups\AlertDialogView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Popups\SmallPopup.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\Views\AdminMenuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -204,8 +190,14 @@
       <Project>{63166933-B558-4A8D-85A2-0EBBB3D2EE20}</Project>
       <Name>ApiLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ModalControl\ModalControl.csproj">
+      <Project>{0562369c-856e-425a-92bb-351e979d0f81}</Project>
+      <Name>ModalControl</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModel\PopupVM\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Images\Icon1.png" />
   </ItemGroup>
