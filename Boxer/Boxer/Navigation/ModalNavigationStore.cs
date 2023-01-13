@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Boxer.Navigation
 {
-    public class ModalNavigtionStore
+    public class ModalNavigationStore : INavigationStore
     {
         public event Action CurrentViewModelChanged;
 

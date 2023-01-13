@@ -9,6 +9,6 @@ namespace Boxer.Navigation
 {
     public interface INavigationStore
     {
-        BaseViewModel CurrentPage { set; }
+        BaseViewModel CurrentViewModel { set; }
     }
 }

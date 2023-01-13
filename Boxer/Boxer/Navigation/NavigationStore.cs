@@ -11,14 +11,14 @@ namespace Boxer.Navigation
     {
         public event Action CurrentPageChanged;
 
-        private BaseViewModel _currentPage;
-        public BaseViewModel CurrentPage
+        private BaseViewModel _currentViewModel;
+        public BaseViewModel CurrentViewModel
         {
-            get => _currentPage;
+            get => _currentViewModel;
             set
             {
-                _currentPage?.Dispose();
-                _currentPage = value;
+                _currentViewModel?.Dispose();
+                _currentViewModel = value;
                 OnCurrentPageChanged();
             }
         }

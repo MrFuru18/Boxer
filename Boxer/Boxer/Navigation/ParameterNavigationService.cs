@@ -21,7 +21,7 @@ namespace Boxer.Navigation
 
         public void Navigate(TParameter parameter)
         {
-            _navigationStore.CurrentPage = _createViewModel(parameter);
+            _navigationStore.CurrentViewModel = _createViewModel(parameter);
         }
     }
 }

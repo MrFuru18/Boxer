@@ -20,7 +20,7 @@ namespace Boxer.Navigation
 
         public void Navigate()
         {
-            _navigationStore.CurrentPage = _createViewModel();
+            _navigationStore.CurrentViewModel = _createViewModel();
         }
     }
 }
