@@ -39,6 +39,7 @@
             <!-- Tasks Pannel Button -->
             <Button x:Name="TasksPannel_button"
                     Background="Transparent"
+                    Margin="15,0,15,0"
                     Width="150"
                     Height="150"
                     Command="{Binding NavigateTasksPannelPageCommand}" CommandParameter="TasksPannel">
@@ -55,6 +56,7 @@
             <!-- Warehouse Pannel Button -->
             <Button x:Name="WarehousePannel_button"
                     Background="Transparent"
+                    Margin="15,0,15,0"
                     Width="150"
                     Height="150"
                     Command="{Binding NavigateWarehousePannelPageCommand}" CommandParameter="WarehousePannel">
@@ -72,6 +74,7 @@
             <!-- Orders Pannel Button -->
             <Button x:Name="OrdersPannel_button"
                     Background="Transparent"
+                    Margin="15,0,15,0"
                     Width="150"
                     Height="150"
                     Command="{Binding NavigateOrdersPannelPageCommand}" CommandParameter="OrdersPannel">
@@ -89,6 +92,7 @@
             <!-- Supplies Pannel Button -->
             <Button x:Name="SuppliesPannel_button"
                     Background="Transparent"
+                    Margin="15,0,15,0"
                     Width="150"
                     Height="150"
                     Command="{Binding NavigateSuppliesPannelPageCommand}" CommandParameter="SuppliesPannel">
@@ -105,6 +109,7 @@
             <!-- Admin Button -->
             <Button x:Name="AdminPannel_button"
                     Background="Transparent"
+                    Margin="15,0,15,0"
                     Width="150"
                     Height="150"
                     Command="{Binding NavigateAdminPannelPageCommand}" CommandParameter="AdminPannel">

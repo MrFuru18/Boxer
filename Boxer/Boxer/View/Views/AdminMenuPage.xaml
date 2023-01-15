@@ -35,10 +35,11 @@
                     Orientation="Horizontal">
             <!--  Employees Button -->
             <Button x:Name="Employees_button"
-                        Background="Transparent"
-                        Width="150"
-                        Height="150"
-                        Command="{Binding NavigateEmployeesCommand}" CommandParameter="Employees">
+                    Background="Transparent"
+                    Margin="15,0,15,0"
+                    Width="150"
+                    Height="150"
+                    Command="{Binding NavigateEmployeesCommand}" CommandParameter="Employees">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
                                 Stretch="None"/>

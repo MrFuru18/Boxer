@@ -35,10 +35,11 @@
                     Orientation="Horizontal">
             <!--  Add Task Button -->
             <Button x:Name="AddTask_button"
-                        Background="Transparent"
-                        Width="150"
-                        Height="150"
-                        Command="{Binding NavigateAddTaskCommand}" CommandParameter="AddTask">
+                    Background="Transparent"
+                    Margin="15,0,15,0"
+                    Width="150"
+                    Height="150"
+                    Command="{Binding NavigateAddTaskCommand}" CommandParameter="AddTask">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
                                 Stretch="None"/>
@@ -51,10 +52,11 @@
 
             <!--  Tasks Button -->
             <Button x:Name="Tasks_button"
-                        Background="Transparent"
-                        Width="150"
-                        Height="150"
-                        Command="{Binding NavigateTasksCommand}" CommandParameter="Tasks">
+                    Background="Transparent"
+                    Margin="15,0,15,0"
+                    Width="150"
+                    Height="150"
+                    Command="{Binding NavigateTasksCommand}" CommandParameter="Tasks">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
                                 Stretch="None"/>

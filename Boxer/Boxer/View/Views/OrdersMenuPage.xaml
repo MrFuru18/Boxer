@@ -35,10 +35,11 @@
                     Orientation="Horizontal">
             <!--  Orders Button -->
             <Button x:Name="Orders_button"
-                        Background="Transparent"
-                        Width="150"
-                        Height="150"
-                        Command="{Binding NavigateOrdersCommand}" CommandParameter="Orders">
+                    Background="Transparent"
+                    Margin="15,0,15,0"
+                    Width="150"
+                    Height="150"
+                    Command="{Binding NavigateOrdersCommand}" CommandParameter="Orders">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
                                 Stretch="None"/>
@@ -51,10 +52,11 @@
 
             <!--  Klienci Button -->
             <Button x:Name="Clients_button"
-                        Background="Transparent"
-                        Width="150"
-                        Height="150"
-                        Command="{Binding NavigateClientsCommand}" CommandParameter="Clients">
+                    Background="Transparent"
+                    Margin="15,0,15,0"
+                    Width="150"
+                    Height="150"
+                    Command="{Binding NavigateClientsCommand}" CommandParameter="Clients">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
                                 Stretch="None"/>

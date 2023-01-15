@@ -36,6 +36,7 @@
             <!--  Inventory Button -->
             <Button x:Name="Inventory_button"
                     Background="Transparent"
+                    Margin="15,0,15,0"
                     Width="150"
                     Height="150"
                     Command="{Binding NavigateInventoryCommand}" CommandParameter="Inventory">
@@ -52,6 +53,7 @@
             <!--  Palletes Button -->
             <Button x:Name="Palletes_button"
                     Background="Transparent"
+                    Margin="15,0,15,0"
                     Width="150"
                     Height="150"
                     Command="{Binding NavigatePalletesCommand}" CommandParameter="Palletes">
@@ -68,6 +70,7 @@
             <!--  Shortages Button -->
             <Button x:Name="Shortages_button"
                     Background="Transparent"
+                    Margin="15,0,15,0"
                     Width="150"
                     Height="150"
                     Command="{Binding NavigateShortagesCommand}" CommandParameter="Shortages">
@@ -84,6 +87,7 @@
             <!--  Locations Button -->
             <Button x:Name="Locations_button"
                     Background="Transparent"
+                    Margin="15,0,15,0"
                     Width="150"
                     Height="150"
                     Command="{Binding NavigateLocationsCommand}" CommandParameter="Locations">
