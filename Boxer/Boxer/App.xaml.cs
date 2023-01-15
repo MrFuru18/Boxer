@@ -103,13 +103,19 @@ namespace Boxer
         private INavigationService CreateAdminMenuNavigationService()
         {
             return new NavigationService<AdminMenuViewModel>(_navigationStore, CreateAdminMenuViewModel);
-            //test modali (zamknij modal popup i przekieruj do suppliesMenu)
-            //return new ModalNavigationService<AdminMenuViewModel>(_modalNavigationStore, CreateAdminMenuViewModel);
         }
         private AdminMenuViewModel CreateAdminMenuViewModel()
         {
             return new AdminMenuViewModel(CreateMainMenuNavigationService());
-            //return new AdminMenuViewModel(new CompositeNavigationService(new CloseModalNavigationService(_modalNavigationStore), CreateSuppliesMenuNavigationService()));
+        }
+
+        private INavigationService CreateAddEmployeeNavigationService()
+        {
+            return new ModalNavigationService<AddEmployeeViewModel>(_modalNavigationStore, CreateAddEmployeeViewModel);
+        }
+        private AddEmployeeViewModel CreateAddEmployeeViewModel()
+        {
+            return new AddEmployeeViewModel(new CloseModalNavigationService(_modalNavigationStore));
         }
 
     }

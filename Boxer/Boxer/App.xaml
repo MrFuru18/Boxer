@@ -9,6 +9,9 @@
         <DataTemplate DataType="{x:Type vm:MainMenuViewModel}">
             <views:MainMenuPage/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:LoginViewModel}">
+            <views:LoginScreen/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type vm:TasksMenuViewModel}">
             <views:TasksMenuPage/>
         </DataTemplate>
@@ -24,8 +27,8 @@
         <DataTemplate DataType="{x:Type vm:AdminMenuViewModel}">
             <views:AdminMenuPage/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:LoginViewModel}">
-            <views:LoginScreen/>
+        <DataTemplate DataType="{x:Type vm:AddEmployeeViewModel}">
+            <views:AddEmployeeView/>
         </DataTemplate>
 
     </Application.Resources>

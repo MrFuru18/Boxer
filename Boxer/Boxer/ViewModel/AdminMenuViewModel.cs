@@ -11,7 +11,6 @@ using System.Windows.Input;
 namespace Boxer.ViewModel
 {
     
-
     class AdminMenuViewModel : BaseViewModel
     {
         public ICommand NavigateBackCommand { get; }
@@ -20,6 +19,7 @@ namespace Boxer.ViewModel
         public AdminMenuViewModel(INavigationService mainMenuNavigationService)
         {
             NavigateBackCommand = new NavigateCommand(mainMenuNavigationService);
+            //NavigateEmployeesCommand = new NavigateCommand(addEmployeeNavigationService);
         }
     }
 }
