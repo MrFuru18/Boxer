@@ -109,6 +109,15 @@ namespace Boxer
             return new AdminMenuViewModel(CreateMainMenuNavigationService());
         }
 
+        private INavigationService CreateAddCustomerNavigationService()
+        {
+            return new ModalNavigationService<AddCustomerViewModel>(_modalNavigationStore, CreateAddCustomerViewModel);
+        }
+        private AddCustomerViewModel CreateAddCustomerViewModel()
+        {
+            return new AddCustomerViewModel(new CloseModalNavigationService(_modalNavigationStore));
+        }
+
         private INavigationService CreateAddEmployeeNavigationService()
         {
             return new ModalNavigationService<AddEmployeeViewModel>(_modalNavigationStore, CreateAddEmployeeViewModel);

@@ -27,8 +27,14 @@
         <DataTemplate DataType="{x:Type vm:AdminMenuViewModel}">
             <views:AdminMenuPage/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AddCustomerViewModel}">
+            <views:AddCustomerView/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type vm:AddEmployeeViewModel}">
             <views:AddEmployeeView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AddManufacturerViewModel}">
+            <views:AddManufacturerView/>
         </DataTemplate>
 
     </Application.Resources>
