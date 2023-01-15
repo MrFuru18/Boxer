@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Boxer.ViewModel
@@ -17,7 +18,7 @@ namespace Boxer.ViewModel
     {
         INavigationService _navigationService;
         ModalNavigationStore _modalNavigationStore;
-        private BindingList<Employee> employees { get; set; }
+        public BindingList<Employee> employees { get; set; }
         private List<Employee> _employees { get; set; }
         private Employee employee = null;
 
@@ -31,12 +32,25 @@ namespace Boxer.ViewModel
             {
                 return _editEmployee ?? (_editEmployee= new RelayCommand((p) =>
                 {
-                    _modalNavigationStore.CurrentViewModel = new AddEmployeeViewModel(_navigationService, employee);
+                    //_modalNavigationStore.CurrentViewModel = new AddEmployeeViewModel(_navigationService, employee);
+                    //MessageBox.Show(SelectedEmployee);
 
                 }, p => true));
 
             }
         }
+
+        /*private string _selectedEmployee;
+        public string SelectedEmployee
+        {
+            get { return _selectedEmployee; }
+            set
+            {
+                _selectedEmployee = value;
+                onPropertyChanged(nameof(SelectedEmployee));
+            }
+        }*/
+
 
         public EmployeesViewModel(INavigationService adminMenuNavigationService, INavigationService addEmployeeNavigationService, ModalNavigationStore modalNavigationStore)
         {

@@ -92,13 +92,22 @@
     <Compile Include="ViewModel\AddEmployeeViewModel.cs" />
     <Compile Include="ViewModel\AddLocationViewModel.cs" />
     <Compile Include="ViewModel\AddManufacturerViewModel.cs" />
+    <Compile Include="ViewModel\AddOrderViewModel.cs" />
+    <Compile Include="ViewModel\AddProductViewModel.cs" />
+    <Compile Include="ViewModel\AddSupplyViewModel.cs" />
+    <Compile Include="ViewModel\AddTaskViewModel.cs" />
     <Compile Include="ViewModel\AdminMenuViewModel.cs" />
+    <Compile Include="ViewModel\CustomersViewModel.cs" />
     <Compile Include="ViewModel\EmployeesViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
     <Compile Include="ViewModel\OrdersMenuViewModel.cs" />
+    <Compile Include="ViewModel\OrdersViewModel.cs" />
+    <Compile Include="ViewModel\ProductsViewModel.cs" />
     <Compile Include="ViewModel\SuppliesMenuViewModel.cs" />
+    <Compile Include="ViewModel\SuppliesViewModel.cs" />
     <Compile Include="ViewModel\TasksMenuViewModel.cs" />
+    <Compile Include="ViewModel\TasksViewModel.cs" />
     <Compile Include="ViewModel\WarehouseMenuViewModel.cs" />
     <Compile Include="View\Views\AddCustomerView.xaml.cs">
       <DependentUpon>AddCustomerView.xaml</DependentUpon>
@@ -112,8 +121,23 @@
     <Compile Include="View\Views\AddManufacturerView.xaml.cs">
       <DependentUpon>AddManufacturerView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Views\AddOrderView.xaml.cs">
+      <DependentUpon>AddOrderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Views\AddProductView.xaml.cs">
+      <DependentUpon>AddProductView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Views\AddSupplyView.xaml.cs">
+      <DependentUpon>AddSupplyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Views\AddTaskView.xaml.cs">
+      <DependentUpon>AddTaskView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Views\AdminMenuPage.xaml.cs">
       <DependentUpon>AdminMenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Views\CustomersView.xaml.cs">
+      <DependentUpon>CustomersView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Views\EmployeesView.xaml.cs">
       <DependentUpon>EmployeesView.xaml</DependentUpon>
@@ -127,11 +151,23 @@
     <Compile Include="View\Views\OrdersMenuPage.xaml.cs">
       <DependentUpon>OrdersMenuPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Views\OrdersView.xaml.cs">
+      <DependentUpon>OrdersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Views\ProductsView.xaml.cs">
+      <DependentUpon>ProductsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Views\SuppliesMenuPage.xaml.cs">
       <DependentUpon>SuppliesMenuPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Views\SuppliesView.xaml.cs">
+      <DependentUpon>SuppliesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Views\TasksMenuPage.xaml.cs">
       <DependentUpon>TasksMenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Views\TasksView.xaml.cs">
+      <DependentUpon>TasksView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Views\WarehouseMenuPage.xaml.cs">
       <DependentUpon>WarehouseMenuPage.xaml</DependentUpon>
@@ -167,7 +203,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Views\AddOrderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Views\AddProductView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Views\AddSupplyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Views\AddTaskView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Views\AdminMenuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Views\CustomersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -187,11 +243,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Views\OrdersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Views\ProductsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Views\SuppliesMenuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Views\SuppliesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Views\TasksMenuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Views\TasksView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

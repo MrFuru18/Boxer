@@ -27,9 +27,26 @@
         <DataTemplate DataType="{x:Type vm:AdminMenuViewModel}">
             <views:AdminMenuPage/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:CustomersViewModel}">
+            <views:CustomersView/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type vm:EmployeesViewModel}">
             <views:EmployeesView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:OrdersViewModel}">
+            <views:OrdersView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ProductsViewModel}">
+            <views:ProductsView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SuppliesViewModel}">
+            <views:SuppliesView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:TasksViewModel}">
+            <views:TasksView/>
+        </DataTemplate>
+        
         <DataTemplate DataType="{x:Type vm:AddCustomerViewModel}">
             <views:AddCustomerView/>
         </DataTemplate>
@@ -42,6 +59,18 @@
         <DataTemplate DataType="{x:Type vm:AddManufacturerViewModel}">
             <views:AddManufacturerView/>
         </DataTemplate>
-
+        <DataTemplate DataType="{x:Type vm:AddOrderViewModel}">
+            <views:AddOrderView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AddProductViewModel}">
+            <views:AddProductView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AddSupplyViewModel}">
+            <views:AddSupplyView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AddTaskViewModel}">
+            <views:AddTaskView/>
+        </DataTemplate>
+        
     </Application.Resources>
 </Application>

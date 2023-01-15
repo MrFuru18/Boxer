@@ -16,9 +16,11 @@ namespace Boxer.ViewModel
         public ICommand NavigateOrdersCommand { get; }
         public ICommand NavigateClientsCommand { get; }
 
-        public OrdersMenuViewModel(INavigationService mainMenuNavigationService)
+        public OrdersMenuViewModel(INavigationService mainMenuNavigationService, INavigationService ordersNavigationService, INavigationService customersNavigationService)
         {
             NavigateBackCommand = new NavigateCommand(mainMenuNavigationService);
+            NavigateOrdersCommand = new NavigateCommand(ordersNavigationService);
+            NavigateClientsCommand = new NavigateCommand(customersNavigationService);
         }
     }
 }

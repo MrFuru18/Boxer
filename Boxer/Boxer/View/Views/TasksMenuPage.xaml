@@ -33,39 +33,57 @@
         <StackPanel Grid.Row="1" 
                     HorizontalAlignment="Center"
                     Orientation="Horizontal">
-            <!--  Add Task Button -->
-            <Button x:Name="AddTask_button"
+            <!--  Tasks Orders Button -->
+            <Button x:Name="TasksOrders_button"
                     Background="Transparent"
                     Margin="15,0,15,0"
                     Width="150"
                     Height="150"
-                    Command="{Binding NavigateAddTaskCommand}" CommandParameter="AddTask">
+                    Command="{Binding NavigateTasksOrdersCommand}" CommandParameter="AddTask">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
                                 Stretch="None"/>
-                    <TextBlock  x:Name="AddTask_textblock"
-                                    Text="Dodaj Zadanie"
+                    <TextBlock  x:Name="TasksOrders_textblock"
+                                    Text="Zlecenia Zamówienia"
                                     HorizontalAlignment="Center"
                                     FontSize="20"/>
                 </StackPanel>
             </Button>
 
-            <!--  Tasks Button -->
-            <Button x:Name="Tasks_button"
+            <!--  Tasks Supplies Button -->
+            <Button x:Name="TasksSupplies_button"
                     Background="Transparent"
                     Margin="15,0,15,0"
                     Width="150"
                     Height="150"
-                    Command="{Binding NavigateTasksCommand}" CommandParameter="Tasks">
+                    Command="{Binding NavigateTasksSuppliesCommand}" CommandParameter="Tasks">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
                                 Stretch="None"/>
-                    <TextBlock  x:Name="Tasks_textblock"
-                                    Text="Przeglądaj Zadania"
+                    <TextBlock  x:Name="TasksSupplies_textblock"
+                                    Text="Zlecenia Dostawy"
                                     HorizontalAlignment="Center"
                                     FontSize="20"/>
                 </StackPanel>
             </Button>
+
+            <!--  Tasks Relocations Button -->
+            <Button x:Name="TasksRelocations_button"
+                    Background="Transparent"
+                    Margin="15,0,15,0"
+                    Width="150"
+                    Height="150"
+                    Command="{Binding NavigateTasksRelocationsCommand}" CommandParameter="Tasks">
+                <StackPanel>
+                    <Image  Source="/View/Images/Icon1.png"
+                                Stretch="None"/>
+                    <TextBlock  x:Name="TasksRelocations_textblock"
+                                    Text="Zlecenia Relokacje"
+                                    HorizontalAlignment="Center"
+                                    FontSize="20"/>
+                </StackPanel>
+            </Button>
+            
         </StackPanel>
     </Grid>
 </UserControl>

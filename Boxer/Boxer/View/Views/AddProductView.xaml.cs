@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 namespace Boxer.View.Views
 {
     /// <summary>
-    /// Logika interakcji dla klasy EmployeesView.xaml
+    /// Logika interakcji dla klasy AddProductView.xaml
     /// </summary>
-    public partial class EmployeesView : UserControl
+    public partial class AddProductView : UserControl
     {
-        public EmployeesView()
+        public AddProductView()
         {
             InitializeComponent();
         }
-
     }
 }

@@ -33,6 +33,24 @@
         <StackPanel Grid.Row="1" 
                     HorizontalAlignment="Center"
                     Orientation="Horizontal">
+
+            <!--  Supplies Button -->
+            <Button x:Name="Supplies_button"
+                    Background="Transparent"
+                    Margin="15,0,15,0"
+                    Width="150"
+                    Height="150"
+                    Command="{Binding NavigateSuppliesCommand}" CommandParameter="Supplies">
+                <StackPanel>
+                    <Image  Source="/View/Images/Icon1.png"
+                                Stretch="None"/>
+                    <TextBlock  x:Name="Supplies_textblock"
+                                    Text="Przeglądaj Dostawy"
+                                    HorizontalAlignment="Center"
+                                    FontSize="20"/>
+                </StackPanel>
+            </Button>
+            
             <!--  Products Button -->
             <Button x:Name="Products_button"
                     Background="Transparent"
@@ -67,22 +85,7 @@
                 </StackPanel>
             </Button>
 
-            <!--  Supplies Button -->
-            <Button x:Name="Supplies_button"
-                    Background="Transparent"
-                    Margin="15,0,15,0"
-                    Width="150"
-                    Height="150"
-                    Command="{Binding NavigateSuppliesCommand}" CommandParameter="Supplies">
-                <StackPanel>
-                    <Image  Source="/View/Images/Icon1.png"
-                                Stretch="None"/>
-                    <TextBlock  x:Name="Supplies_textblock"
-                                    Text="Przeglądaj Dostawy"
-                                    HorizontalAlignment="Center"
-                                    FontSize="20"/>
-                </StackPanel>
-            </Button>
+           
         </StackPanel>
     </Grid>
 </UserControl>
