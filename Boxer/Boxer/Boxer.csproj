@@ -90,6 +90,7 @@
     <Compile Include="Navigation\NavigationStore.cs" />
     <Compile Include="ViewModel\AddCustomerViewModel.cs" />
     <Compile Include="ViewModel\AddEmployeeViewModel.cs" />
+    <Compile Include="ViewModel\AddLocationViewModel.cs" />
     <Compile Include="ViewModel\AddManufacturerViewModel.cs" />
     <Compile Include="ViewModel\AdminMenuViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
@@ -103,6 +104,9 @@
     </Compile>
     <Compile Include="View\Views\AddEmployeeView.xaml.cs">
       <DependentUpon>AddEmployeeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Views\AddLocationView.xaml.cs">
+      <DependentUpon>AddLocationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Views\AddManufacturerView.xaml.cs">
       <DependentUpon>AddManufacturerView.xaml</DependentUpon>
@@ -148,6 +152,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Views\AddEmployeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Views\AddLocationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

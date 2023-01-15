@@ -127,6 +127,15 @@ namespace Boxer
             return new AddEmployeeViewModel(new CloseModalNavigationService(_modalNavigationStore));
         }
 
+        private INavigationService CreateAddLocationNavigationService()
+        {
+            return new ModalNavigationService<AddLocationViewModel>(_modalNavigationStore, CreateAddLocationViewModel);
+        }
+        private AddLocationViewModel CreateAddLocationViewModel()
+        {
+            return new AddLocationViewModel(new CloseModalNavigationService(_modalNavigationStore));
+        }
+
         private INavigationService CreateAddManufacturerNavigationService()
         {
             return new ModalNavigationService<AddManufacturerViewModel>(_modalNavigationStore, CreateAddManufacturerViewModel);

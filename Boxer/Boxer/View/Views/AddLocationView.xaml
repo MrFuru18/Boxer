@@ -1,74 +1,88 @@
-﻿<UserControl x:Class="Boxer.View.Views.AddEmployeeView"
+﻿<UserControl x:Class="Boxer.View.Views.AddLocationView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Boxer.View.Views"
-             mc:Ignorable="d">
+             mc:Ignorable="d" >
     
     <Grid Background="White">
         <StackPanel Width="300" VerticalAlignment="Center">
 
-            <TextBlock Text="Dodaj Pracownika"
+            <TextBlock Text="Dodaj Lokalizację"
                        VerticalAlignment="Center"
                        FontSize="30"
                        HorizontalAlignment="Center"
                        Margin="0,0,0,40"/>
 
-            <!-- Name TextBox -->
-            <TextBlock Text="Imię"
+            <!-- Sector TextBox -->
+            <TextBlock Text="Sektor"
                        VerticalAlignment="Center"
                        FontSize="20"
                        Margin="0,0,0,5"/>
 
-            <TextBox x:Name="Name_textbox"
+            <TextBox x:Name="Sector_textbox"
                      Padding="5"
                      FontSize="20"
                      Width="300"
                      VerticalAlignment="Center"
-                     Text="{Binding Name}"/>
+                     Text="{Binding Sector}"/>
 
-            <!-- Surrname TextBox -->
-            <TextBlock Text="Nazwisko"
+            <!-- Aisle TextBox -->
+            <TextBlock Text="Alejka"
                        VerticalAlignment="Center"
                        FontSize="20"
                        Margin="0,30,0,5"/>
 
-            <TextBox x:Name="Surnameame_textbox"
+            <TextBox x:Name="Aisle_textbox"
                      Padding="5"
                      FontSize="20"
                      Width="300"
                      VerticalAlignment="Center"
-                     Text="{Binding Surname}"/>
+                     Text="{Binding Aisle}"/>
 
-            <!-- Email TextBox -->
-            <TextBlock Text="Email"
+            <!-- Unit TextBox -->
+            <TextBlock Text="Regał"
                        VerticalAlignment="Center"
                        FontSize="20"
                        Margin="0,30,0,5"/>
 
-            <TextBox x:Name="Email_textbox"
+            <TextBox x:Name="Unit_textbox"
                      Padding="5"
                      FontSize="20"
                      Width="300"
                      VerticalAlignment="Center"
-                     Text="{Binding Email}"/>
+                     Text="{Binding Unit}"/>
 
-            <!-- Phone TextBox -->
-            <TextBlock Text="Numer Telefonu"
+
+            <!-- Level TextBox -->
+            <TextBlock Text="Poziom"
                        VerticalAlignment="Center"
                        FontSize="20"
                        Margin="0,30,0,5"/>
 
-            <TextBox x:Name="Phone_textbox"
+            <TextBox x:Name="Level_textbox"
                      Padding="5"
                      FontSize="20"
                      Width="300"
                      VerticalAlignment="Center"
-                     Text="{Binding Phone}"/>
-            
-            <!-- Permissions ComboBox -->
-            <TextBlock Text="Uprawnienia"
+                     Text="{Binding Level}"/>
+
+            <!-- Position TextBox -->
+            <TextBlock Text="Miejsce"
+                       VerticalAlignment="Center"
+                       FontSize="20"
+                       Margin="0,30,0,5"/>
+
+            <TextBox x:Name="Position_textbox"
+                     Padding="5"
+                     FontSize="20"
+                     Width="300"
+                     VerticalAlignment="Center"
+                     Text="{Binding Position}"/>
+
+            <!-- Size ComboBox -->
+            <TextBlock Text="Rozmiar"
                        VerticalAlignment="Center"
                        FontSize="20"
                        Margin="0,30,0,5"/>
@@ -78,45 +92,20 @@
                       FontSize="20"
                       Width="300"
                       VerticalAlignment="Center"
-                      SelectedItem="{Binding Permissions}"
+                      SelectedItem="{Binding Size}"
                       >
-                <ComboBoxItem Tag="worker" IsSelected="True">pracownik</ComboBoxItem>
-                <ComboBoxItem Tag="management">kierownictwo</ComboBoxItem>
-                <ComboBoxItem Tag="admin">admin</ComboBoxItem>
+                <ComboBoxItem Tag="S" IsSelected="True">S</ComboBoxItem>
+                <ComboBoxItem Tag="M">M</ComboBoxItem>
+                <ComboBoxItem Tag="L">L</ComboBoxItem>
+                <ComboBoxItem Tag="unassigned" IsSelected="True">Nieprzydzielony</ComboBoxItem>
             </ComboBox>
-
-            <!-- Uid TextBox -->
-            <TextBlock Text="Uid"
-                       VerticalAlignment="Center"
-                       FontSize="20"
-                       Margin="0,30,0,5"/>
-
-            <TextBox x:Name="Uid_textbox"
-                     Padding="5"
-                     FontSize="20"
-                     Width="300"
-                     VerticalAlignment="Center"
-                     Text="{Binding Uid}"/>
-
-            <!-- Password PasswordBox -->
-            <TextBlock Text="Hasło"
-                       VerticalAlignment="Center"
-                       FontSize="20"
-                       Margin="0,30,0,5"/>
-
-            <PasswordBox x:Name="Password_passwordbox"
-                         Padding="5"
-                         FontSize="20"
-                         Width="300"
-                         VerticalAlignment="Center"
-                         PasswordChanged="PasswordBox_PasswordChanged"/>
 
             <!-- Add Button -->
             <Button HorizontalAlignment="Center"
                     Content="Dodaj"
                     FontSize="20"
                     Margin="0,30,0,0"
-                    Command="{Binding AddEmployee}"/>
+                    Command="{Binding AddLocation}"/>
 
         </StackPanel>
     </Grid>

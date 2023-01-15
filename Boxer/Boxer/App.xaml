@@ -33,6 +33,9 @@
         <DataTemplate DataType="{x:Type vm:AddEmployeeViewModel}">
             <views:AddEmployeeView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AddLocationViewModel}">
+            <views:AddLocationView/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type vm:AddManufacturerViewModel}">
             <views:AddManufacturerView/>
         </DataTemplate>

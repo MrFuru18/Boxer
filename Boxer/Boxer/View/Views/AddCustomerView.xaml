@@ -9,7 +9,7 @@
     <Grid Background="White">
         <StackPanel Width="300" VerticalAlignment="Center">
 
-            <TextBlock Text="Dodaj Producenta"
+            <TextBlock Text="Dodaj Klienta"
                        VerticalAlignment="Center"
                        FontSize="30"
                        HorizontalAlignment="Center"
