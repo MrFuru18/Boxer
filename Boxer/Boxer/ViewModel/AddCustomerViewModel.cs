@@ -12,6 +12,7 @@ namespace Boxer.ViewModel
 {
     class AddCustomerViewModel : BaseViewModel
     {
+        public string HeaderText { get; set; }
         public ICommand CancelCommand { get; }
         public ICommand AddCustomer { get; }
 
@@ -19,6 +20,8 @@ namespace Boxer.ViewModel
         {
             CancelCommand = new NavigateCommand(navigationService);
             AddCustomer = new NavigateCommand(navigationService);
+
+            HeaderText = "Dodaj Klienta";
         }
     }
 }

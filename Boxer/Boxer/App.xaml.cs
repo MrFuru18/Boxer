@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using ApiLibrary;
+using ApiLibrary.Model;
 using Boxer.Model;
 using Boxer.Navigation;
 using Boxer.ViewModel;
@@ -115,7 +116,7 @@ namespace Boxer
         }
         private EmployeesViewModel CreateEmployeesViewModel()
         {
-            return new EmployeesViewModel(CreateAdminMenuNavigationService(), CreateAddEmployeeNavigationService());
+            return new EmployeesViewModel(CreateAdminMenuNavigationService(), CreateAddEmployeeNavigationService(), _modalNavigationStore);
         }
 
         private INavigationService CreateAddCustomerNavigationService()
@@ -133,7 +134,7 @@ namespace Boxer
         }
         private AddEmployeeViewModel CreateAddEmployeeViewModel()
         {
-            return new AddEmployeeViewModel(new CloseModalNavigationService(_modalNavigationStore));
+            return new AddEmployeeViewModel(new CloseModalNavigationService(_modalNavigationStore), null);
         }
 
         private INavigationService CreateAddLocationNavigationService()

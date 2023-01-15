@@ -15,16 +15,34 @@ namespace Boxer.ViewModel
 {
     class EmployeesViewModel : BaseViewModel
     {
-        public BindingList<Employee> employees { get; set; }
-        public List<Employee> _employees { get; set; }
+        INavigationService _navigationService;
+        ModalNavigationStore _modalNavigationStore;
+        private BindingList<Employee> employees { get; set; }
+        private List<Employee> _employees { get; set; }
+        private Employee employee = null;
 
         public ICommand NavigateBackCommand { get; }
         public ICommand NewEmployee { get; }
 
-
-
-        public EmployeesViewModel(INavigationService adminMenuNavigationService, INavigationService addEmployeeNavigationService)
+        private ICommand _editEmployee;
+        public ICommand EditEmployee 
         {
+            get
+            {
+                return _editEmployee ?? (_editEmployee= new RelayCommand((p) =>
+                {
+                    _modalNavigationStore.CurrentViewModel = new AddEmployeeViewModel(_navigationService, employee);
+
+                }, p => true));
+
+            }
+        }
+
+        public EmployeesViewModel(INavigationService adminMenuNavigationService, INavigationService addEmployeeNavigationService, ModalNavigationStore modalNavigationStore)
+        {
+            _navigationService = addEmployeeNavigationService;
+            _modalNavigationStore = modalNavigationStore;
+
             NavigateBackCommand = new NavigateCommand(adminMenuNavigationService);
             NewEmployee = new NavigateCommand(addEmployeeNavigationService);
 

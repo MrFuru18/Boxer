@@ -11,6 +11,10 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
         <!-- Back Button -->
         <Button x:Name="Back_button"
@@ -30,17 +34,27 @@
             </StackPanel>
         </Button>
 
-        <Button Grid.Row="1" 
-                Margin="0,0,0,0" 
-                Height="30" 
-                Width="100"
-                FontSize="20" 
-                VerticalAlignment="Top" 
-                Content="Dodaj" 
-                Command="{Binding NewEmployee}"/>
+        <!-- Add Edit Buttons-->
+        <StackPanel Grid.Row="1" 
+                    Grid.Column="1">
+            <Button Margin="0,30,0,0" 
+                    Height="30" 
+                    Width="100"
+                    FontSize="20" 
+                    VerticalAlignment="Top" 
+                    Content="Dodaj" 
+                    Command="{Binding NewEmployee}"/>
+            <Button Margin="0,30,0,0" 
+                    Height="30" 
+                    Width="100"
+                    FontSize="20" 
+                    VerticalAlignment="Top" 
+                    Content="Edytuj" 
+                    Command="{Binding EditEmployee}"/>
+        </StackPanel>
 
 
-        <ListView Grid.Row="1" Width="1260" Margin="0,30,0,0"  ItemsSource="{Binding employees}" SelectionChanged="ListView_SelectionChanged">
+        <ListView Grid.Row="1" Grid.Column="0" Width="1260" Margin="0,30,0,0"  ItemsSource="{Binding employees}" SelectionChanged="ListView_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="60" DisplayMemberBinding="{Binding uid}">

@@ -12,6 +12,7 @@ namespace Boxer.ViewModel
 {
     class AddLocationViewModel : BaseViewModel
     {
+        public string HeaderText { get; set; }
         public ICommand CancelCommand { get; }
         public ICommand AddLocation { get; }
 
@@ -19,6 +20,8 @@ namespace Boxer.ViewModel
         {
             CancelCommand = new NavigateCommand(navigationService);
             AddLocation = new NavigateCommand(navigationService);
+
+            HeaderText = "Dodaj Lokalizację";
         }
     }
 }

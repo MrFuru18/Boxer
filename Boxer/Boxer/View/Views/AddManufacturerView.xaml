@@ -22,7 +22,7 @@
                 </StackPanel>
             </Button>
             
-            <TextBlock Text="Dodaj Producenta"
+            <TextBlock Text="{Binding HeaderText}"
                        VerticalAlignment="Center"
                        FontSize="30"
                        HorizontalAlignment="Center"
@@ -84,7 +84,7 @@
 
             <!-- Add Button -->
             <Button HorizontalAlignment="Center"
-                    Content="Dodaj"
+                    Content="Potwierdź"
                     FontSize="20"
                     Margin="0,30,0,0"
                     Command="{Binding AddManufacturer}"/>

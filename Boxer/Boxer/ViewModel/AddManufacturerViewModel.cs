@@ -12,6 +12,7 @@ namespace Boxer.ViewModel
 {
     class AddManufacturerViewModel : BaseViewModel
     {
+        public string HeaderText { get; set; }
         public ICommand CancelCommand { get; }
         public ICommand AddManufacturer { get; }
 
@@ -19,6 +20,8 @@ namespace Boxer.ViewModel
         {
             CancelCommand = new NavigateCommand(navigationService);
             AddManufacturer = new NavigateCommand(navigationService);
+
+            HeaderText = "Dodaj Producenta";
         }
     }
 }
