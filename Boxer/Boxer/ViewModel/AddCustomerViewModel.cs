@@ -15,11 +15,13 @@ namespace Boxer.ViewModel
         public string HeaderText { get; set; }
         public ICommand CancelCommand { get; }
         public ICommand AddCustomer { get; }
+        public ICommand EditCustomer { get; }
 
         public AddCustomerViewModel(INavigationService navigationService)
         {
             CancelCommand = new NavigateCommand(navigationService);
             AddCustomer = new NavigateCommand(navigationService);
+            EditCustomer = new NavigateCommand(navigationService);
 
             HeaderText = "Dodaj Klienta";
         }
