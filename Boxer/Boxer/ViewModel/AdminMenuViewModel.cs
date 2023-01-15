@@ -16,10 +16,10 @@ namespace Boxer.ViewModel
         public ICommand NavigateBackCommand { get; }
         public ICommand NavigateEmployeesCommand { get; }
 
-        public AdminMenuViewModel(INavigationService mainMenuNavigationService)
+        public AdminMenuViewModel(INavigationService mainMenuNavigationService, INavigationService employeeNavigationService)
         {
             NavigateBackCommand = new NavigateCommand(mainMenuNavigationService);
-            //NavigateEmployeesCommand = new NavigateCommand(addEmployeeNavigationService);
+            NavigateEmployeesCommand = new NavigateCommand(employeeNavigationService);
         }
     }
 }

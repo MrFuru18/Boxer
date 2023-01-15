@@ -12,10 +12,12 @@ namespace Boxer.ViewModel
 {
     class AddLocationViewModel : BaseViewModel
     {
+        public ICommand CancelCommand { get; }
         public ICommand AddLocation { get; }
 
         public AddLocationViewModel(INavigationService navigationService)
         {
+            CancelCommand = new NavigateCommand(navigationService);
             AddLocation = new NavigateCommand(navigationService);
         }
     }

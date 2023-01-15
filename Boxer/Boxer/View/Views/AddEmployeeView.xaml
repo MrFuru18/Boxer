@@ -9,6 +9,19 @@
     <Grid Background="White">
         <StackPanel Width="300" VerticalAlignment="Center">
 
+            <!-- Cancel Button-->
+            <Button x:Name="Cancel_button"
+                    HorizontalAlignment="Right"
+                    Background="Transparent"
+                    Width="40"
+                    Height="40"
+                    Command="{Binding CancelCommand}" CommandParameter="Cancel">
+                <StackPanel>
+                    <Image Source="/View/Images/Icon1.png" 
+                       Stretch="None"/>
+                </StackPanel>
+            </Button>
+
             <TextBlock Text="Dodaj Pracownika"
                        VerticalAlignment="Center"
                        FontSize="30"

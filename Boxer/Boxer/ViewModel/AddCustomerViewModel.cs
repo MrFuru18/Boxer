@@ -12,10 +12,12 @@ namespace Boxer.ViewModel
 {
     class AddCustomerViewModel : BaseViewModel
     {
+        public ICommand CancelCommand { get; }
         public ICommand AddCustomer { get; }
 
         public AddCustomerViewModel(INavigationService navigationService)
         {
+            CancelCommand = new NavigateCommand(navigationService);
             AddCustomer = new NavigateCommand(navigationService);
         }
     }

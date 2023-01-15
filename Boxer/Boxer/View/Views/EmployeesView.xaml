@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="Boxer.View.Views.EmployeesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Boxer.View.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1200">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!-- Back Button -->
+        <Button x:Name="Back_button"
+                Grid.Row="0"
+                HorizontalAlignment="Left"
+                Background="Transparent"
+                Width="100"
+                Height="100"
+                Command="{Binding NavigateBackCommand}" CommandParameter="Back">
+            <StackPanel>
+                <Image  Source="/View/Images/Icon1.png"
+                                Stretch="None"/>
+                <TextBlock  x:Name="Back_textblock"
+                                    Text="Wróć"
+                                    HorizontalAlignment="Center"
+                                    FontSize="20"/>
+            </StackPanel>
+        </Button>
+
+        <Button Grid.Row="1" 
+                Margin="0,0,0,0" 
+                Height="30" 
+                Width="100"
+                FontSize="20" 
+                VerticalAlignment="Top" 
+                Content="Dodaj" 
+                Command="{Binding NewEmployee}"/>
+
+
+        <ListView Grid.Row="1" Width="1260" Margin="0,30,0,0"  ItemsSource="{Binding employees}" SelectionChanged="ListView_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="60" DisplayMemberBinding="{Binding uid}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Uid" Command="{Binding SortCommand}" CommandParameter="uid"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding name}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Imię" Command="{Binding SortCommand}" CommandParameter="name"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding surname}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Nazwisko" Command="{Binding SortCommand}" CommandParameter="surname"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding email}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Email" Command="{Binding SortCommand}" CommandParameter="email"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding phone}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Numer Telofonu" Command="{Binding SortCommand}" CommandParameter="number"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding permissions}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Uprawnienia" Command="{Binding SortCommand}" CommandParameter="permissions"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding state}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Stan" Command="{Binding SortCommand}" CommandParameter="state"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

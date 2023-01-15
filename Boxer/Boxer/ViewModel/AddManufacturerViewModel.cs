@@ -12,10 +12,12 @@ namespace Boxer.ViewModel
 {
     class AddManufacturerViewModel : BaseViewModel
     {
+        public ICommand CancelCommand { get; }
         public ICommand AddManufacturer { get; }
 
         public AddManufacturerViewModel(INavigationService navigationService)
         {
+            CancelCommand = new NavigateCommand(navigationService);
             AddManufacturer = new NavigateCommand(navigationService);
         }
     }

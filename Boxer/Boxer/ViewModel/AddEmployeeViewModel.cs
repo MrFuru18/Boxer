@@ -16,10 +16,12 @@ namespace Boxer.ViewModel
     {
         public string Password { get; set; }
 
+        public ICommand CancelCommand { get; }
         public ICommand AddEmployee { get; }
 
         public AddEmployeeViewModel(INavigationService navigationService)
         {
+            CancelCommand = new NavigateCommand(navigationService);
             AddEmployee = new NavigateCommand(navigationService);
         }
     }
