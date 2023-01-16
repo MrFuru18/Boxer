@@ -54,10 +54,15 @@
         </StackPanel>
 
 
-        <ListView Grid.Row="1" Grid.Column="0" Width="1260" Margin="0,30,0,0"  ItemsSource="{Binding employees}">
+        <ListView Grid.Row="1" Grid.Column="0" Width="1300" Margin="0,30,0,0" HorizontalAlignment="Center" ItemsSource="{Binding employees}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="60" DisplayMemberBinding="{Binding uid}">
+                    <GridViewColumn Width="50" DisplayMemberBinding="{Binding id}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="id" CommandParameter="id"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="50" DisplayMemberBinding="{Binding uid}">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Uid" CommandParameter="uid"/>
                         </GridViewColumn.Header>

@@ -4,10 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Boxer.View.Views"
-             mc:Ignorable="d" 
-                          d:DesignHeight="450" d:DesignWidth="1200">
+             mc:Ignorable="d" >
     <Grid Background="White">
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -54,42 +54,54 @@
         </StackPanel>
 
 
-        <ListView Grid.Row="1" Grid.Column="0" Width="1260" Margin="0,30,0,0"  ItemsSource="{Binding employees}">
+        <ListView Grid.Row="1" Grid.Column="0" Width="900" Height="400" Margin="0,30,40,0"  ItemsSource="{Binding orders}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="60" DisplayMemberBinding="{Binding uid}">
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Uid" CommandParameter="uid"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding name}">
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding customer_address_id}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Imię" CommandParameter="name"/>
+                            <GridViewColumnHeader Content="Adres id" CommandParameter="name"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding surname}">
+                    <GridViewColumn Width="500" DisplayMemberBinding="{Binding remarks}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Nazwisko" CommandParameter="surname"/>
+                            <GridViewColumnHeader Content="Uwagi" CommandParameter="surname"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding email}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding time}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Email" CommandParameter="email"/>
+                            <GridViewColumnHeader Content="Kiedy" CommandParameter="time"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding phone}">
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="400" Margin="0,30,0,0"  ItemsSource="{Binding orders_items}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Numer Telofonu" CommandParameter="number"/>
+                            <GridViewColumnHeader Content="id" CommandParameter="id"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding permissions}">
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding order_id}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Uprawnienia" CommandParameter="permissions"/>
+                            <GridViewColumnHeader Content="id Zamówienia" CommandParameter="order_id"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding state}">
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding product_id}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Stan" CommandParameter="state"/>
+                            <GridViewColumnHeader Content="id Produktu" CommandParameter="product_id"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding quantity}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Ilość" CommandParameter="quantity"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                 </GridView>

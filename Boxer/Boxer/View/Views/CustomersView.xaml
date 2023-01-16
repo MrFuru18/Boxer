@@ -4,10 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Boxer.View.Views"
-             mc:Ignorable="d" 
-                          d:DesignHeight="450" d:DesignWidth="1200">
+             mc:Ignorable="d" >
     <Grid Background="White">
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -51,15 +51,17 @@
                     VerticalAlignment="Top" 
                     Content="Edytuj" 
                     Command="{Binding EditCustomer}"/>
+
+
         </StackPanel>
 
 
-        <ListView Grid.Row="1" Grid.Column="0" Width="1260" Margin="0,30,0,0"  ItemsSource="{Binding employees}">
+        <ListView Grid.Row="1" Grid.Column="0" Width="900" Height="400" Margin="0,30,40,0" ItemsSource="{Binding customers}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="60" DisplayMemberBinding="{Binding uid}">
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Uid" CommandParameter="uid"/>
+                            <GridViewColumnHeader Content="id" CommandParameter="id"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn Width="200" DisplayMemberBinding="{Binding name}">
@@ -82,14 +84,52 @@
                             <GridViewColumnHeader Content="Numer Telofonu" CommandParameter="number"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding permissions}">
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+        <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="1400" Margin="0,30,0,0"  ItemsSource="{Binding customers_addresses}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Uprawnienia" CommandParameter="permissions"/>
+                            <GridViewColumnHeader Content="id" CommandParameter="id"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding state}">
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding customer_id}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Stan" CommandParameter="state"/>
+                            <GridViewColumnHeader Content="id Klienta" CommandParameter="customer_id"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding address_line_1}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Linia Adresowa 1" CommandParameter="address_line_1"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding address_line_2}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Linia Adresowa 2" CommandParameter="address_line_2"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding city}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Miasto" CommandParameter="city"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding region}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Region" CommandParameter="region"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding postal_Code}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Kod Pocztowy" CommandParameter="postal_code"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding country}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Kraj" CommandParameter="country"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                 </GridView>

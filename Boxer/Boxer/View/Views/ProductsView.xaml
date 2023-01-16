@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Boxer.View.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="1200">
+             mc:Ignorable="d" >
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -54,42 +53,52 @@
         </StackPanel>
 
 
-        <ListView Grid.Row="1" Grid.Column="0" Width="1260" Margin="0,30,0,0"  ItemsSource="{Binding employees}">
+        <ListView Grid.Row="1" Grid.Column="0" Width="1300" Margin="0,30,0,0"  ItemsSource="{Binding products}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="60" DisplayMemberBinding="{Binding uid}">
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Uid" CommandParameter="uid"/>
+                            <GridViewColumnHeader Content="id" CommandParameter="id"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding sku}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="SKU" CommandParameter="sku"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn Width="200" DisplayMemberBinding="{Binding name}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Imię" CommandParameter="name"/>
+                            <GridViewColumnHeader Content="Nazwa" CommandParameter="name"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding surname}">
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding manufacturer_id}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Nazwisko" CommandParameter="surname"/>
+                            <GridViewColumnHeader Content="id Producenta" CommandParameter="manufacturer_id"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding email}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding category}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Email" CommandParameter="email"/>
+                            <GridViewColumnHeader Content="Kategoria" CommandParameter="category"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding phone}">
+                    <GridViewColumn Width="350" DisplayMemberBinding="{Binding description}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Numer Telofonu" CommandParameter="number"/>
+                            <GridViewColumnHeader Content="Opis" CommandParameter="description"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding permissions}">
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding weight}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Uprawnienia" CommandParameter="permissions"/>
+                            <GridViewColumnHeader Content="Waga (kg)" CommandParameter="weight"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding state}">
+                    <GridViewColumn Width="50" DisplayMemberBinding="{Binding size}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Stan" CommandParameter="state"/>
+                            <GridViewColumnHeader Content="Rozmiar" CommandParameter="size"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding value}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Cena (PLN)" CommandParameter="value"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                 </GridView>

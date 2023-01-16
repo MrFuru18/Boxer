@@ -54,42 +54,37 @@
         </StackPanel>
 
 
-        <ListView Grid.Row="1" Grid.Column="0" Width="1260" Margin="0,30,0,0"  ItemsSource="{Binding employees}">
+        <ListView Grid.Row="1" Grid.Column="0" Width="1100" Margin="0,30,0,0"  ItemsSource="{Binding tasks}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="60" DisplayMemberBinding="{Binding uid}">
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Uid" CommandParameter="uid"/>
+                            <GridViewColumnHeader Content="id" CommandParameter="id"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding name}">
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding employee_id}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Imię" CommandParameter="name"/>
+                            <GridViewColumnHeader Content="id Pracownika" CommandParameter="employee_id"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding surname}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding type}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Nazwisko" CommandParameter="surname"/>
+                            <GridViewColumnHeader Content="Typ" CommandParameter="type"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding email}">
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding order_id}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Email" CommandParameter="email"/>
+                            <GridViewColumnHeader Content="id Zamówienia" CommandParameter="order_id"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding phone}">
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding supply_id}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Numer Telofonu" CommandParameter="number"/>
+                            <GridViewColumnHeader Content="id Dostawy" CommandParameter="supply_id"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding permissions}">
+                    <GridViewColumn Width="500" DisplayMemberBinding="{Binding remarks}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Uprawnienia" CommandParameter="permissions"/>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding state}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Stan" CommandParameter="state"/>
+                            <GridViewColumnHeader Content="Uwagi" CommandParameter="remarks"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                 </GridView>
