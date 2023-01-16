@@ -8,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace ApiLibrary.Repo
 {
-    class ManufacturerProcessor
+    public class ManufacturerProcessor
     {
-        public static async Task<List<Manufacturer>> getAllManufacturers()
+        public static async Task<List<Manufacturer>> getAllManufacturers(Manufacturer manufacturer)
         {
-            string url = "http://localhost:3000/manufacturers";
+            string url = "http://localhost:3000/manufaturers";
             List<Manufacturer> manufacturersList = new List<Manufacturer>();
+            string serializedManufacturer = JsonConvert.SerializeObject(manufacturer);
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedManufacturer, Encoding.UTF8, "application/json")).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {
@@ -30,12 +32,13 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<Manufacturer> getManufacturer(int id)
+        public static async Task<Manufacturer> getManufacturer(Manufacturer manufacturer)
         {
-            string url = "http://localhost:3000/manufacturer/" + id;
-            Manufacturer manufacturer = new Manufacturer();
+            string url = "http://localhost:3000/manufacturer/get/" + manufacturer.id;
+            string serializedManufacturer = JsonConvert.SerializeObject(manufacturer);
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedManufacturer, Encoding.UTF8, "application/json")).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {

@@ -103,7 +103,7 @@ namespace Boxer
         private SuppliesMenuViewModel CreateSuppliesMenuViewModel()
         {
             return new SuppliesMenuViewModel(CreateMainMenuNavigationService(), CreateSuppliesNavigationService(), CreateProductsNavigationService(), 
-                CreateAddManufacturerNavigationService());
+                CreateManufacturersNavigationService());
         }
 
         private INavigationService CreateAdminMenuNavigationService()
@@ -133,6 +133,15 @@ namespace Boxer
         private CustomersViewModel CreateCustomersViewModel()
         {
             return new CustomersViewModel(CreateOrdersMenuNavigationService(), CreateAddCustomerNavigationService(), _modalNavigationStore);
+        }
+
+        private INavigationService CreateManufacturersNavigationService()
+        {
+            return new NavigationService<ManufacturersViewModel>(_navigationStore, CreateManufacturersViewModel);
+        }
+        private ManufacturersViewModel CreateManufacturersViewModel()
+        {
+            return new ManufacturersViewModel(CreateSuppliesMenuNavigationService(), CreateAddManufacturerNavigationService(), _modalNavigationStore);
         }
 
         private INavigationService CreateOrdersNavigationService()

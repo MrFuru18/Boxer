@@ -24,7 +24,7 @@ namespace Boxer.ViewModel
             NavigateBackCommand = new NavigateCommand(mainMenuNavigationService);
             NavigateSuppliesCommand = new NavigateCommand(suppliesNavigationService);
             NavigateProductsCommand = new NavigateCommand(productsNavigationService);
-            //NavigateManufacturerCommand = new NavigateCommand(manufacturersNavigationService);
+            NavigateManufacturersCommand = new NavigateCommand(manufacturersNavigationService);
         }
     }
 }

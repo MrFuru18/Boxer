@@ -4,9 +4,9 @@ using System.Text;
 
 namespace ApiLibrary.Model
 {
-    class CustomerAddress
+    public class CustomerAddress
     {
-        public Guid customer_id { get; set; }
+        public int customer_id { get; set; }
         public string address_line_1 { get; set; }
         public string address_line_2 { get; set; }
         public string city { get; set; }

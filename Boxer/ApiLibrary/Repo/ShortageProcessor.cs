@@ -8,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace ApiLibrary.Repo
 {
-    class ShortageProcessor
+    public class ShortageProcessor
     {
-        public static async Task<List<Shortage>> getAllShortages()
+        public static async Task<List<Shortage>> getAllShortages(Shortage shortage)
         {
             string url = "http://localhost:3000/shortages";
             List<Shortage> shortagesList = new List<Shortage>();
+            string serializedShortage = JsonConvert.SerializeObject(shortage);
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedShortage, Encoding.UTF8, "application/json")).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {
@@ -30,12 +32,13 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<Shortage> getShortage(int id)
+        public static async Task<Shortage> getShortage(Shortage shortage)
         {
-            string url = "http://localhost:3000/shortage/" + id;
-            Shortage shortage = new Shortage();
+            string url = "http://localhost:3000/shortage/get/" + shortage.id;
+            string serializedShortage = JsonConvert.SerializeObject(shortage);
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedShortage, Encoding.UTF8, "application/json")).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {

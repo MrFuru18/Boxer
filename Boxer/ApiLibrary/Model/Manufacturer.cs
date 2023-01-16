@@ -4,9 +4,9 @@ using System.Text;
 
 namespace ApiLibrary.Model
 {
-    class Manufacturer
+    public class Manufacturer
     {
-        public Guid id { get; set; }
+        public int id { get; set; }
         public string name { get; set; }
         public string country { get; set; }
         public string phone { get; set; }

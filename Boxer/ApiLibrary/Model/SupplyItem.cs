@@ -4,11 +4,11 @@ using System.Text;
 
 namespace ApiLibrary.Model
 {
-    class SupplyItem
+    public class SupplyItem
     {
-        public Guid supply_id { get; set; }
-        public Guid product_id { get; set; }
+        public int supply_id { get; set; }
+        public int product_id { get; set; }
         public int quantity { get; set; }
-        public Guid location_id { get; set; }
+        public int location_id { get; set; }
     }
 }

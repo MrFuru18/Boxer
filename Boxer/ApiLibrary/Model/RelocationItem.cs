@@ -4,11 +4,11 @@ using System.Text;
 
 namespace ApiLibrary.Model
 {
-    class RelocationItem
+    public class RelocationItem
     {
-        public Guid task_id { get; set; }
-        public Guid inventory_id { get; set; }
-        public Guid location_id { get; set; }
+        public int task_id { get; set; }
+        public int inventory_id { get; set; }
+        public int location_id { get; set; }
         public int quantity { get; set; }
     }
 }

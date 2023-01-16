@@ -4,15 +4,15 @@ using System.Text;
 
 namespace ApiLibrary.Model
 {
-    class Inventory
+    public class Inventory
     {
-        public Guid id { get; set; }
-        public Guid location_id { get; set; }
-        public Guid product_id { get; set; }
-        public Guid pallet_id { get; set; }
+        public int id { get; set; }
+        public int location_id { get; set; }
+        public int product_id { get; set; }
+        public int pallet_id { get; set; }
         public int quantity { get; set; }
         public string remarks { get; set; }
         public DateTime time { get; set; }
-        public Guid employee_id { get; set; }
+        public int employee_id { get; set; }
     }
 }

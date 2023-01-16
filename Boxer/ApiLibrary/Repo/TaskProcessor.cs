@@ -8,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace ApiLibrary.Repo
 {
-    class TaskProcessor
+    public class TaskProcessor
     {
-        public static async Task<List<Tasks>> getAllTasks()
+        public static async Task<List<Tasks>> getAllTasks(Tasks task)
         {
             string url = "http://localhost:3000/tasks/all";
             List<Tasks> tasksList = new List<Tasks>();
-            
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
+            string serializedTask = JsonConvert.SerializeObject(task);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedTask, Encoding.UTF8, "application/json")).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {
@@ -30,12 +32,13 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<Tasks> getTasks(int id)
+        public static async Task<Tasks> getTasks(Tasks task)
         {
-            string url = "http://localhost:3000/task/" + id;
-            Tasks task = new Tasks();
+            string url = "http://localhost:3000/task/get/" + task.id;
+            string serializedTask = JsonConvert.SerializeObject(task);
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedTask, Encoding.UTF8, "application/json")).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {

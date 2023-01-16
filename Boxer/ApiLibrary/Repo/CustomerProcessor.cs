@@ -8,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace ApiLibrary.Repo
 {
-    class CustomerProcessor
+    public class CustomerProcessor
     {
-        public static async Task<List<Customer>> getAllCustomers()
+        public static async Task<List<Customer>> getAllCustomers(Customer customer)
         {
             string url = "http://localhost:3000/customers";
             List<Customer> customersList = new List<Customer>();
+            string serializedCustomer = JsonConvert.SerializeObject(customer);
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedCustomer, Encoding.UTF8, "application/json")).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {
@@ -29,13 +31,14 @@ namespace ApiLibrary.Repo
                 }
             }
         }
-
-        public static async Task<Customer> getCustomer(int id)
+        
+        public static async Task<Customer> getCustomer(Customer customer)
         {
-            string url = "http://localhost:3000/customer/" + id;
-            Customer customer = new Customer();
+            string url = "http://localhost:3000/customer/get/" + customer.id;
+            string serializedCustomer = JsonConvert.SerializeObject(customer);
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedCustomer, Encoding.UTF8, "application/json")).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {

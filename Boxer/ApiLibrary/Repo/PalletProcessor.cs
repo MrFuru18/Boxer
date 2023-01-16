@@ -8,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace ApiLibrary.Repo
 {
-    class PalletProcessor
+    public class PalletProcessor
     {
-        public static async Task<List<Pallet>> getAllPallets()
+        public static async Task<List<Pallet>> getAllPallets(Pallet pallet)
         {
             string url = "http://localhost:3000/pallets";
             List<Pallet> palletsList = new List<Pallet>();
+            string serializedPallet = JsonConvert.SerializeObject(pallet);
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedPallet, Encoding.UTF8, "application/json")).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {
@@ -30,12 +32,13 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<Pallet> getPallet(int id)
+        public static async Task<Pallet> getPallet(Pallet pallet)
         {
-            string url = "http://localhost:3000/pallet/" + id;
-            Pallet pallet = new Pallet();
+            string url = "http://localhost:3000/pallet/get/" + pallet.id;
+            string serializedPallet = JsonConvert.SerializeObject(pallet);
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedPallet, Encoding.UTF8, "application/json")).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {

@@ -8,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace ApiLibrary.Repo
 {
-    class OrderProcessor
+    public class OrderProcessor
     {
-        public static async Task<List<Order>> getAllOrders()
+        public static async Task<List<Order>> getAllOrders(Order order)
         {
             string url = "http://localhost:3000/orders";
             List<Order> ordersList = new List<Order>();
+            string serializedOrder = JsonConvert.SerializeObject(order);
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedOrder, Encoding.UTF8, "application/json")).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {
@@ -30,12 +32,13 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<Order> getOrder(int id)
+        public static async Task<Order> getOrder(Order order)
         {
-            string url = "http://localhost:3000/order/" + id;
-            Order order = new Order();
+            string url = "http://localhost:3000/order/get/" + order.id;
+            string serializedOrder = JsonConvert.SerializeObject(order);
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedOrder, Encoding.UTF8, "application/json")).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {

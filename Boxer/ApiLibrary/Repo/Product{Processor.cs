@@ -8,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace ApiLibrary.Repo
 {
-    class Product_Processor
+    public class Product_Processor
     {
-        public static async Task<List<Product>> getAllProducts()
+        public static async Task<List<Product>> getAllProducts(Product product)
         {
             string url = "http://localhost:3000/products";
             List<Product> productsList = new List<Product>();
+            string serializedProduct = JsonConvert.SerializeObject(product);
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedProduct, Encoding.UTF8, "application/json")).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {
@@ -30,12 +32,13 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<Product> getProduct(int id)
+        public static async Task<Product> getProduct(Product product)
         {
-            string url = "http://localhost:3000/product/" + id;
-            Product product = new Product();
+            string url = "http://localhost:3000/product/get/" + product.id;
+            string serializedProduct = JsonConvert.SerializeObject(product);
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedProduct, Encoding.UTF8, "application/json")).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {
