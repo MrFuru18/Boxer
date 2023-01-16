@@ -24,5 +24,6 @@ namespace Boxer.View.Views
         {
             InitializeComponent();
         }
+
     }
 }
