@@ -8,6 +8,7 @@
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -55,7 +56,7 @@
         </StackPanel>
 
 
-        <ListView Grid.Row="1" Grid.Column="0" Width="1000" Margin="0,30,40,0" ItemsSource="{Binding inventoryList}">
+        <ListView Grid.Row="1" Grid.Column="0" Width="1300" Height="500" Margin="0,30,40,0" ItemsSource="{Binding inventoryList}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">
@@ -63,44 +64,92 @@
                             <GridViewColumnHeader Content="id" CommandParameter="id"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding sector}">
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding location_id}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Sektor" CommandParameter="sector"/>
+                            <GridViewColumnHeader Content="Lokalizacja id" CommandParameter="location_id"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding aisle}">
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding product_id}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Alejka" CommandParameter="aisle"/>
+                            <GridViewColumnHeader Content="Produkt id" CommandParameter="product_id"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding unit}">
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding pallet_id}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Regał" CommandParameter="unit"/>
+                            <GridViewColumnHeader Content="Paleta id" CommandParameter="pallet_id"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding level}">
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding quantity}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Poziom" CommandParameter="level"/>
+                            <GridViewColumnHeader Content="Ilość" CommandParameter="quantity"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding position}">
+                    <GridViewColumn Width="500" DisplayMemberBinding="{Binding remarks}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Miejsce" CommandParameter="position"/>
+                            <GridViewColumnHeader Content="Uwagi" CommandParameter="remarks"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding size}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding time}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Kiedy" CommandParameter="time"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding employee_id}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Pracownik id" CommandParameter="employee_id"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+        <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="1300" Margin="0,30,0,0"  ItemsSource="{Binding products}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="id" CommandParameter="id"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding sku}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="SKU" CommandParameter="sku"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding name}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Nazwa" CommandParameter="name"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding manufacturer_id}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="id Producenta" CommandParameter="manufacturer_id"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding category}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Kategoria" CommandParameter="category"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="350" DisplayMemberBinding="{Binding description}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Opis" CommandParameter="description"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding weight}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Waga (kg)" CommandParameter="weight"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="50" DisplayMemberBinding="{Binding size}">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Rozmiar" CommandParameter="size"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding availability}">
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding value}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Dostępność" CommandParameter="availability"/>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding pallet_space}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Miejce Paletowe" CommandParameter="pallet_space"/>
+                            <GridViewColumnHeader Content="Cena (PLN)" CommandParameter="value"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                 </GridView>

@@ -35,27 +35,8 @@
             </StackPanel>
         </Button>
 
-        <!-- Add Edit Buttons-->
-        <StackPanel Grid.Row="1" 
-                    Grid.Column="1">
-            <Button Margin="0,30,0,0" 
-                    Height="30" 
-                    Width="100"
-                    FontSize="20" 
-                    VerticalAlignment="Top" 
-                    Content="Dodaj" 
-                    Command="{Binding NewSupply}"/>
-            <Button Margin="0,30,0,0" 
-                    Height="30" 
-                    Width="100"
-                    FontSize="20" 
-                    VerticalAlignment="Top" 
-                    Content="Edytuj" 
-                    Command="{Binding EditSupply}"/>
-        </StackPanel>
 
-
-        <ListView Grid.Row="1" Grid.Column="0" Width="800" Height="400" Margin="0,30,0,0"  ItemsSource="{Binding supplies}">
+        <ListView Grid.Row="1" Grid.Column="0" Width="800" Height="500" Margin="0,30,0,0"  ItemsSource="{Binding supplies}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">
@@ -76,38 +57,57 @@
                 </GridView>
             </ListView.View>
         </ListView>
+
+
+        <!-- Add Edit Buttons-->
+        <StackPanel Grid.Row="1" 
+                    Grid.Column="1">
+            <Button Margin="0,30,0,0" 
+                    Height="30" 
+                    Width="100"
+                    FontSize="20" 
+                    VerticalAlignment="Top" 
+                    Content="Dodaj" 
+                    Command="{Binding NewSupply}"/>
+            <Button Margin="0,30,0,0" 
+                    Height="30" 
+                    Width="100"
+                    FontSize="20" 
+                    VerticalAlignment="Top" 
+                    Content="Edytuj" 
+                    Command="{Binding EditSupply}"/>
+            <ListView Width="550" Margin="0,30,0,0" HorizontalAlignment="Center" ItemsSource="{Binding supplies}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Content="id" CommandParameter="id"/>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding supply_id}">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Content="id Dostawy" CommandParameter="supply_id"/>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding product_id}">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Content="id Produktu" CommandParameter="product_id"/>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding quantity}">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Content="Ilość" CommandParameter="quantity"/>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding location_id}">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Content="Docelowa lokalizacja" CommandParameter="location_id"/>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
         
-        
-        <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="550" Margin="0,30,0,0" HorizontalAlignment="Center" ItemsSource="{Binding supplies}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="id" CommandParameter="id"/>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding supply_id}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="id Dostawy" CommandParameter="supply_id"/>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding product_id}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="id Produktu" CommandParameter="product_id"/>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding quantity}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Ilość" CommandParameter="quantity"/>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn Width="150" DisplayMemberBinding="{Binding location_id}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Docelowa lokalizacja" CommandParameter="location_id"/>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
     </Grid>
 </UserControl>

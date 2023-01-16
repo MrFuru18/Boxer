@@ -8,7 +8,6 @@
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -34,27 +33,8 @@
             </StackPanel>
         </Button>
 
-        <!-- Add Edit Buttons-->
-        <StackPanel Grid.Row="1" 
-                    Grid.Column="1">
-            <Button Margin="0,30,0,0" 
-                    Height="30" 
-                    Width="100"
-                    FontSize="20" 
-                    VerticalAlignment="Top" 
-                    Content="Dodaj" 
-                    Command="{Binding NewOrder}"/>
-            <Button Margin="0,30,0,0" 
-                    Height="30" 
-                    Width="100"
-                    FontSize="20" 
-                    VerticalAlignment="Top" 
-                    Content="Edytuj" 
-                    Command="{Binding EditOrders}"/>
-        </StackPanel>
 
-
-        <ListView Grid.Row="1" Grid.Column="0" Width="900" Height="400" Margin="0,30,40,0"  ItemsSource="{Binding orders}">
+        <ListView Grid.Row="1" Grid.Column="0" Width="900" Margin="0,30,40,0"  ItemsSource="{Binding orders}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">
@@ -81,31 +61,52 @@
             </ListView.View>
         </ListView>
 
-        <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="400" Margin="0,30,0,0"  ItemsSource="{Binding orders_items}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="id" CommandParameter="id"/>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding order_id}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="id Zamówienia" CommandParameter="order_id"/>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding product_id}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="id Produktu" CommandParameter="product_id"/>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding quantity}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Ilość" CommandParameter="quantity"/>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+
+
+        <!-- Add Edit Buttons-->
+        <StackPanel Grid.Row="1" 
+                    Grid.Column="1">
+            <Button Margin="0,30,0,0" 
+                    Height="30" 
+                    Width="100"
+                    FontSize="20" 
+                    VerticalAlignment="Top" 
+                    Content="Dodaj" 
+                    Command="{Binding NewOrder}"/>
+            <Button Margin="0,30,0,0" 
+                    Height="30" 
+                    Width="100"
+                    FontSize="20" 
+                    VerticalAlignment="Top" 
+                    Content="Edytuj" 
+                    Command="{Binding EditOrders}"/>
+
+            <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="400" Margin="0,30,0,0"  ItemsSource="{Binding orders_items}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Content="id" CommandParameter="id"/>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding order_id}">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Content="id Zamówienia" CommandParameter="order_id"/>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding product_id}">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Content="id Produktu" CommandParameter="product_id"/>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding quantity}">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Content="Ilość" CommandParameter="quantity"/>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
     </Grid>
 </UserControl>
