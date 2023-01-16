@@ -7,7 +7,7 @@
              mc:Ignorable="d">
     
     <Grid Background="White">
-        <StackPanel Width="300" VerticalAlignment="Center">
+        <StackPanel VerticalAlignment="Center">
 
             <!-- Cancel Button-->
             <Button x:Name="Cancel_button"
@@ -28,101 +28,111 @@
                        HorizontalAlignment="Center"
                        Margin="0,0,0,40"/>
 
-            <!-- Name TextBox -->
-            <TextBlock Text="Imię"
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <!-- Name TextBox -->
+                    <TextBlock Text="Imię"
                        VerticalAlignment="Center"
                        FontSize="20"
                        Margin="0,0,0,5"/>
 
-            <TextBox x:Name="Name_textbox"
+                    <TextBox x:Name="Name_textbox"
                      Padding="5"
                      FontSize="20"
                      Width="300"
                      VerticalAlignment="Center"
                      Text="{Binding Name}"/>
 
-            <!-- Surrname TextBox -->
-            <TextBlock Text="Nazwisko"
+                    <!-- Surrname TextBox -->
+                    <TextBlock Text="Nazwisko"
                        VerticalAlignment="Center"
                        FontSize="20"
                        Margin="0,30,0,5"/>
 
-            <TextBox x:Name="Surnameame_textbox"
+                    <TextBox x:Name="Surnameame_textbox"
                      Padding="5"
                      FontSize="20"
                      Width="300"
                      VerticalAlignment="Center"
                      Text="{Binding Surname}"/>
 
-            <!-- Email TextBox -->
-            <TextBlock Text="Email"
+                    <!-- Email TextBox -->
+                    <TextBlock Text="Email"
                        VerticalAlignment="Center"
                        FontSize="20"
                        Margin="0,30,0,5"/>
 
-            <TextBox x:Name="Email_textbox"
+                    <TextBox x:Name="Email_textbox"
                      Padding="5"
                      FontSize="20"
                      Width="300"
                      VerticalAlignment="Center"
                      Text="{Binding Email}"/>
 
-            <!-- Phone TextBox -->
-            <TextBlock Text="Numer Telefonu"
+                    <!-- Phone TextBox -->
+                    <TextBlock Text="Numer Telefonu"
                        VerticalAlignment="Center"
                        FontSize="20"
                        Margin="0,30,0,5"/>
 
-            <TextBox x:Name="Phone_textbox"
+                    <TextBox x:Name="Phone_textbox"
                      Padding="5"
                      FontSize="20"
                      Width="300"
                      VerticalAlignment="Center"
                      Text="{Binding Phone}"/>
-            
-            <!-- Permissions ComboBox -->
-            <TextBlock Text="Uprawnienia"
+                </StackPanel>
+
+                <StackPanel Margin="30,0,0,0">
+                    <!-- Permissions ComboBox -->
+                    <TextBlock Text="Uprawnienia"
                        VerticalAlignment="Center"
                        FontSize="20"
-                       Margin="0,30,0,5"/>
+                       Margin="0,0,0,5"/>
 
-            <ComboBox x:Name="Permissons_combobox"
+                    <ComboBox x:Name="Permissons_combobox"
                       Padding="5"
                       FontSize="20"
                       Width="300"
                       VerticalAlignment="Center"
                       SelectedItem="{Binding Permissions}"
                       >
-                <ComboBoxItem Tag="worker" IsSelected="True">pracownik</ComboBoxItem>
-                <ComboBoxItem Tag="management">kierownictwo</ComboBoxItem>
-                <ComboBoxItem Tag="admin">admin</ComboBoxItem>
-            </ComboBox>
+                        <ComboBoxItem Tag="worker" IsSelected="True">pracownik</ComboBoxItem>
+                        <ComboBoxItem Tag="management">kierownictwo</ComboBoxItem>
+                        <ComboBoxItem Tag="admin">admin</ComboBoxItem>
+                    </ComboBox>
 
-            <!-- Uid TextBox -->
-            <TextBlock Text="Uid"
+                    <!-- Uid TextBox -->
+                    <TextBlock Text="Uid"
                        VerticalAlignment="Center"
                        FontSize="20"
                        Margin="0,30,0,5"/>
 
-            <TextBox x:Name="Uid_textbox"
+                    <TextBox x:Name="Uid_textbox"
                      Padding="5"
                      FontSize="20"
                      Width="300"
                      VerticalAlignment="Center"
                      Text="{Binding Uid}"/>
 
-            <!-- Password PasswordBox -->
-            <TextBlock Text="Hasło"
+                    <!-- Password PasswordBox -->
+                    <TextBlock Text="Hasło"
                        VerticalAlignment="Center"
                        FontSize="20"
                        Margin="0,30,0,5"/>
 
-            <PasswordBox x:Name="Password_passwordbox"
+                    <PasswordBox x:Name="Password_passwordbox"
                          Padding="5"
                          FontSize="20"
                          Width="300"
                          VerticalAlignment="Center"
                          PasswordChanged="PasswordBox_PasswordChanged"/>
+                </StackPanel>
+            </StackPanel>
+
+           
+            
+            
 
             <!-- Add Button -->
             <Button HorizontalAlignment="Center"

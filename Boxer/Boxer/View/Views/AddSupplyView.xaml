@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Boxer.View.Views"
              mc:Ignorable="d" >
     <Grid Background="White">
-        <StackPanel Width="300" VerticalAlignment="Center">
+        <StackPanel  VerticalAlignment="Center">
 
             <!-- Cancel Button-->
             <Button x:Name="Cancel_button"
@@ -103,7 +103,14 @@
                         FontSize="20"
                         Width="40"
                         Height="40"
-                        Margin="30,0,0,0"/>
+                        Margin="10,0,0,0"/>
+                <Button Content="-"
+                        VerticalAlignment="Bottom"
+                        Padding="5"
+                        FontSize="20"
+                        Width="40"
+                        Height="40"
+                        Margin="10,0,0,0"/>
             </StackPanel>
 
 

@@ -7,7 +7,7 @@
              mc:Ignorable="d" >
     
     <Grid Background="White">
-        <StackPanel Width="300" VerticalAlignment="Center">
+        <StackPanel VerticalAlignment="Center">
 
             <!-- Cancel Button-->
             <Button x:Name="Cancel_button"
@@ -28,90 +28,96 @@
                        HorizontalAlignment="Center"
                        Margin="0,0,0,40"/>
 
-            <!-- Sector TextBox -->
-            <TextBlock Text="Sektor"
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <!-- Sector TextBox -->
+                    <TextBlock Text="Sektor"
                        VerticalAlignment="Center"
                        FontSize="20"
                        Margin="0,0,0,5"/>
 
-            <TextBox x:Name="Sector_textbox"
+                    <TextBox x:Name="Sector_textbox"
                      Padding="5"
                      FontSize="20"
                      Width="300"
                      VerticalAlignment="Center"
                      Text="{Binding Sector}"/>
 
-            <!-- Aisle TextBox -->
-            <TextBlock Text="Alejka"
+                    <!-- Aisle TextBox -->
+                    <TextBlock Text="Alejka"
                        VerticalAlignment="Center"
                        FontSize="20"
                        Margin="0,30,0,5"/>
 
-            <TextBox x:Name="Aisle_textbox"
+                    <TextBox x:Name="Aisle_textbox"
                      Padding="5"
                      FontSize="20"
                      Width="300"
                      VerticalAlignment="Center"
                      Text="{Binding Aisle}"/>
 
-            <!-- Unit TextBox -->
-            <TextBlock Text="Regał"
+                    <!-- Unit TextBox -->
+                    <TextBlock Text="Regał"
                        VerticalAlignment="Center"
                        FontSize="20"
                        Margin="0,30,0,5"/>
 
-            <TextBox x:Name="Unit_textbox"
+                    <TextBox x:Name="Unit_textbox"
                      Padding="5"
                      FontSize="20"
                      Width="300"
                      VerticalAlignment="Center"
                      Text="{Binding Unit}"/>
-
-
-            <!-- Level TextBox -->
-            <TextBlock Text="Poziom"
+                </StackPanel>
+                
+                <StackPanel Margin="30,0,0,0">
+                    <!-- Level TextBox -->
+                    <TextBlock Text="Poziom"
                        VerticalAlignment="Center"
                        FontSize="20"
-                       Margin="0,30,0,5"/>
+                       Margin="0,0,0,5"/>
 
-            <TextBox x:Name="Level_textbox"
+                    <TextBox x:Name="Level_textbox"
                      Padding="5"
                      FontSize="20"
                      Width="300"
                      VerticalAlignment="Center"
                      Text="{Binding Level}"/>
 
-            <!-- Position TextBox -->
-            <TextBlock Text="Miejsce"
+                    <!-- Position TextBox -->
+                    <TextBlock Text="Miejsce"
                        VerticalAlignment="Center"
                        FontSize="20"
                        Margin="0,30,0,5"/>
 
-            <TextBox x:Name="Position_textbox"
+                    <TextBox x:Name="Position_textbox"
                      Padding="5"
                      FontSize="20"
                      Width="300"
                      VerticalAlignment="Center"
                      Text="{Binding Position}"/>
 
-            <!-- Size ComboBox -->
-            <TextBlock Text="Rozmiar"
+                    <!-- Size ComboBox -->
+                    <TextBlock Text="Rozmiar"
                        VerticalAlignment="Center"
                        FontSize="20"
                        Margin="0,30,0,5"/>
 
-            <ComboBox x:Name="Permissons_combobox"
+                    <ComboBox x:Name="Permissons_combobox"
                       Padding="5"
                       FontSize="20"
                       Width="300"
                       VerticalAlignment="Center"
                       SelectedItem="{Binding Size}"
                       >
-                <ComboBoxItem Tag="S" IsSelected="True">S</ComboBoxItem>
-                <ComboBoxItem Tag="M">M</ComboBoxItem>
-                <ComboBoxItem Tag="L">L</ComboBoxItem>
-                <ComboBoxItem Tag="unassigned" IsSelected="True">Nieprzydzielony</ComboBoxItem>
-            </ComboBox>
+                        <ComboBoxItem Tag="S">S</ComboBoxItem>
+                        <ComboBoxItem Tag="M">M</ComboBoxItem>
+                        <ComboBoxItem Tag="L">L</ComboBoxItem>
+                        <ComboBoxItem Tag="unassigned" IsSelected="True">Nieprzydzielony</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+            </StackPanel>
+
 
             <!-- Add Button -->
             <Button HorizontalAlignment="Center"
@@ -119,6 +125,7 @@
                     FontSize="20"
                     Margin="0,30,0,0"
                     Command="{Binding AddLocation}"/>
+
 
         </StackPanel>
     </Grid>

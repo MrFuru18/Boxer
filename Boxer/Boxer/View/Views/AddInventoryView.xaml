@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Boxer.View.Views"
              mc:Ignorable="d" >
     <Grid Background="White">
-        <StackPanel Width="640" VerticalAlignment="Center">
+        <StackPanel VerticalAlignment="Center">
 
             <!-- Cancel Button-->
             <Button x:Name="Cancel_button"
@@ -34,7 +34,9 @@
                     <TextBlock Text="Lokalizacja id"
                        VerticalAlignment="Center"
                        FontSize="20"
-                       Margin="0,0,0,5"/>
+                       Margin="0,0,0,5"
+                               HorizontalAlignment="Center"
+                               Width="300"/>
 
                     <TextBox x:Name="Location_id_textbox"
                      Padding="5"
@@ -43,25 +45,25 @@
                      VerticalAlignment="Center"
                      Text="{Binding Location_id}"/>
 
-                    <ListView Grid.Row="1" Grid.Column="0" Width="300" Height="80" Margin="0,10,0,0"  ItemsSource="{Binding locations}">
+                    <ListView Grid.Row="1" Grid.Column="0" Width="450" Height="80" Margin="0,10,0,0"  ItemsSource="{Binding locations}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Width="50" DisplayMemberBinding="{Binding id}">
+                                <GridViewColumn Width="40" DisplayMemberBinding="{Binding id}">
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader Content="id" CommandParameter="id"/>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
-                                <GridViewColumn Width="50" DisplayMemberBinding="{Binding sector}">
+                                <GridViewColumn Width="40" DisplayMemberBinding="{Binding sector}">
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader Content="Sektor" CommandParameter="sector"/>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
-                                <GridViewColumn Width="50" DisplayMemberBinding="{Binding aisle}">
+                                <GridViewColumn Width="40" DisplayMemberBinding="{Binding aisle}">
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader Content="Alejka" CommandParameter="aisle"/>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
-                                <GridViewColumn Width="50" DisplayMemberBinding="{Binding unit}">
+                                <GridViewColumn Width="40" DisplayMemberBinding="{Binding unit}">
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader Content="Regał" CommandParameter="unit"/>
                                     </GridViewColumn.Header>
@@ -76,6 +78,21 @@
                                         <GridViewColumnHeader Content="Miejsce" CommandParameter="position"/>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
+                                <GridViewColumn Width="50" DisplayMemberBinding="{Binding size}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Rozmiar" CommandParameter="size"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="70" DisplayMemberBinding="{Binding availability}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Dostępność" CommandParameter="availability"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="70" DisplayMemberBinding="{Binding pallet_space}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Miejsce Paletowe" CommandParameter="pallet_space"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -85,7 +102,9 @@
                     <TextBlock Text="Uwagi"
                        VerticalAlignment="Center"
                        FontSize="20"
-                       Margin="0,30,0,5"/>
+                       Margin="0,30,0,5"   
+                               HorizontalAlignment="Center"
+                               Width="300"/>
 
                     <TextBox x:Name="Surname_textbox"
                      Padding="5"
@@ -173,7 +192,14 @@
                         FontSize="20"
                         Width="40"
                         Height="40"
-                        Margin="30,0,0,0"/>
+                        Margin="10,0,0,0"/>
+                        <Button Content="-"
+                        VerticalAlignment="Bottom"
+                        Padding="5"
+                        FontSize="20"
+                        Width="40"
+                        Height="40"
+                        Margin="10,0,0,0"/>
                     </StackPanel>
 
                     <ListView Grid.Row="1" Grid.Column="0" Width="300" Height="80" Margin="0,10,0,0"  ItemsSource="{Binding employees}">
