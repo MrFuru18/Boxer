@@ -76,7 +76,7 @@ namespace Boxer
         }
         private TasksMenuViewModel CreateTasksMenuViewModel()
         {
-            return new TasksMenuViewModel(CreateMainMenuNavigationService());
+            return new TasksMenuViewModel(CreateMainMenuNavigationService(), CreateTasksNavigationService());
         }
 
         private INavigationService CreateWarehouseMenuNavigationService()

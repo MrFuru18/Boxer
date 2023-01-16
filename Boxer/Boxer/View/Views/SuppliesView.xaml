@@ -76,7 +76,7 @@
                     VerticalAlignment="Top" 
                     Content="Edytuj" 
                     Command="{Binding EditSupply}"/>
-            <ListView Width="550" Margin="0,30,0,0" HorizontalAlignment="Center" ItemsSource="{Binding supplies}">
+            <ListView Width="550" Margin="0,30,0,0" HorizontalAlignment="Center" ItemsSource="{Binding supplies_items}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">
