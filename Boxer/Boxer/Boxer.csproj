@@ -99,6 +99,7 @@
     <Compile Include="ViewModel\AdminMenuViewModel.cs" />
     <Compile Include="ViewModel\CustomersViewModel.cs" />
     <Compile Include="ViewModel\EmployeesViewModel.cs" />
+    <Compile Include="ViewModel\LocationsViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
     <Compile Include="ViewModel\ManufacturersViewModel.cs" />
@@ -142,6 +143,9 @@
     </Compile>
     <Compile Include="View\Views\EmployeesView.xaml.cs">
       <DependentUpon>EmployeesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Views\LocationsView.xaml.cs">
+      <DependentUpon>LocationsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Views\LoginScreen.xaml.cs">
       <DependentUpon>LoginScreen.xaml</DependentUpon>
@@ -232,6 +236,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Views\EmployeesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Views\LocationsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

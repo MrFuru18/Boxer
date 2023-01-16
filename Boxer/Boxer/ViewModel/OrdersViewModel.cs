@@ -1,8 +1,11 @@
-﻿using Boxer.Commands;
+﻿using ApiLibrary.Model;
+using ApiLibrary.Repo;
+using Boxer.Commands;
 using Boxer.Navigation;
 using Boxer.ViewModel.BaseClass;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +18,10 @@ namespace Boxer.ViewModel
         INavigationService _navigationService;
         ModalNavigationStore _modalNavigationStore;
 
+        public BindingList<Order> orders { get; set; }
+        private List<Order> _orders { get; set; }
+        private Order order = null;
+
         public ICommand NavigateBackCommand { get; }
         public ICommand NewOrder { get; }
 
@@ -26,6 +33,9 @@ namespace Boxer.ViewModel
             NavigateBackCommand = new NavigateCommand(ordersMenuNavigationService);
             NewOrder = new NavigateCommand(addOrderNavigationService);
 
+            order = new Order();
+            orders = new BindingList<Order>(OrderProcessor.getAllOrders(order).Result);
+            _orders = new List<Order>(orders);
         }
     }
 }

@@ -85,7 +85,7 @@ namespace Boxer
         }
         private WarehouseMenuViewModel CreateWarehouseMenuViewModel()
         {
-            return new WarehouseMenuViewModel(CreateMainMenuNavigationService());
+            return new WarehouseMenuViewModel(CreateMainMenuNavigationService(), CreateLocationsNavigationService());
         }
 
         private INavigationService CreateOrdersMenuNavigationService()
@@ -117,14 +117,6 @@ namespace Boxer
 
 
         //                                                                                                                          Views
-        private INavigationService CreateEmployeesNavigationService()
-        {
-            return new NavigationService<EmployeesViewModel>(_navigationStore, CreateEmployeesViewModel);
-        }
-        private EmployeesViewModel CreateEmployeesViewModel()
-        {
-            return new EmployeesViewModel(CreateAdminMenuNavigationService(), CreateAddEmployeeNavigationService(), _modalNavigationStore);
-        }
 
         private INavigationService CreateCustomersNavigationService()
         {
@@ -134,6 +126,25 @@ namespace Boxer
         {
             return new CustomersViewModel(CreateOrdersMenuNavigationService(), CreateAddCustomerNavigationService(), _modalNavigationStore);
         }
+
+        private INavigationService CreateEmployeesNavigationService()
+        {
+            return new NavigationService<EmployeesViewModel>(_navigationStore, CreateEmployeesViewModel);
+        }
+        private EmployeesViewModel CreateEmployeesViewModel()
+        {
+            return new EmployeesViewModel(CreateAdminMenuNavigationService(), CreateAddEmployeeNavigationService(), _modalNavigationStore);
+        }
+
+        private INavigationService CreateLocationsNavigationService()
+        {
+            return new NavigationService<LocationsViewModel>(_navigationStore, CreateLocationsViewModel);
+        }
+        private LocationsViewModel CreateLocationsViewModel()
+        {
+            return new LocationsViewModel(CreateWarehouseMenuNavigationService(), CreateAddLocationNavigationService(), _modalNavigationStore);
+        }
+
 
         private INavigationService CreateManufacturersNavigationService()
         {

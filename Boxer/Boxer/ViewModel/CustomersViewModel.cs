@@ -18,6 +18,9 @@ namespace Boxer.ViewModel
     {
         INavigationService _navigationService;
         ModalNavigationStore _modalNavigationStore;
+        public BindingList<Customer> customers { get; set; }
+        private List<Customer> _customers { get; set; }
+        private Customer customer = null;
 
         public ICommand NavigateBackCommand { get; }
         public ICommand NewCustomer { get; }
@@ -29,6 +32,10 @@ namespace Boxer.ViewModel
 
             NavigateBackCommand = new NavigateCommand(ordersMenuNavigationService);
             NewCustomer = new NavigateCommand(addCustomerNavigationService);
+
+            customer = new Customer();
+            customers = new BindingList<Customer>(CustomerProcessor.getAllCustomers(customer).Result);
+            _customers = new List<Customer>(customers);
 
         }
     }
