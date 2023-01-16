@@ -19,9 +19,10 @@ namespace Boxer.ViewModel
         public ICommand NavigateShortagesCommand { get; }
         public ICommand NavigateLocationsCommand { get; }
 
-        public WarehouseMenuViewModel(INavigationService mainMenuNavigationService, INavigationService locationsNavigationService)
+        public WarehouseMenuViewModel(INavigationService mainMenuNavigationService, INavigationService inventoryNavigationService, INavigationService locationsNavigationService)
         {
             NavigateBackCommand = new NavigateCommand(mainMenuNavigationService);
+            NavigateInventoryCommand = new NavigateCommand(inventoryNavigationService);
             NavigateLocationsCommand = new NavigateCommand(locationsNavigationService);
         }
     }

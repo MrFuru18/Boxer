@@ -4,9 +4,39 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Boxer.View.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             mc:Ignorable="d" >
+    <Grid Background="White">
+        <StackPanel Width="300" VerticalAlignment="Center">
+
+            <!-- Cancel Button-->
+            <Button x:Name="Cancel_button"
+                    HorizontalAlignment="Right"
+                    Background="Transparent"
+                    Width="40"
+                    Height="40"
+                    Command="{Binding CancelCommand}" CommandParameter="Cancel">
+                <StackPanel>
+                    <Image Source="/View/Images/Icon1.png" 
+                       Stretch="None"/>
+                </StackPanel>
+            </Button>
+
+            <TextBlock Text="{Binding HeaderText}"
+                       VerticalAlignment="Center"
+                       FontSize="30"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,40"/>
+
+
+
+
+            <!-- Add Button -->
+            <Button HorizontalAlignment="Center"
+                    Content="Potwerdź"
+                    FontSize="20"
+                    Margin="0,30,0,0"
+                    Command="{Binding AddProduct}"/>
+
+        </StackPanel>
     </Grid>
 </UserControl>

@@ -22,7 +22,7 @@ namespace Boxer.ViewModel
         private Product product = null;
 
         public ICommand NavigateBackCommand { get; }
-        public ICommand NewOrder { get; }
+        public ICommand NewProduct { get; }
 
         public ProductsViewModel(INavigationService suppliesMenuNavigationService, INavigationService addProductNavigationService, ModalNavigationStore modalNavigationStore)
         {
@@ -30,7 +30,7 @@ namespace Boxer.ViewModel
             _modalNavigationStore = modalNavigationStore;
 
             NavigateBackCommand = new NavigateCommand(suppliesMenuNavigationService);
-            NewOrder = new NavigateCommand(addProductNavigationService);
+            NewProduct = new NavigateCommand(addProductNavigationService);
 
             product = new Product();
             products = new BindingList<Product>(ProductProcessor.getAllProducts(product).Result);

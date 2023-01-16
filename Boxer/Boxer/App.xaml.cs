@@ -85,7 +85,7 @@ namespace Boxer
         }
         private WarehouseMenuViewModel CreateWarehouseMenuViewModel()
         {
-            return new WarehouseMenuViewModel(CreateMainMenuNavigationService(), CreateLocationsNavigationService());
+            return new WarehouseMenuViewModel(CreateMainMenuNavigationService(), CreateInventoryNavigationService(), CreateLocationsNavigationService());
         }
 
         private INavigationService CreateOrdersMenuNavigationService()
@@ -135,6 +135,14 @@ namespace Boxer
         {
             return new EmployeesViewModel(CreateAdminMenuNavigationService(), CreateAddEmployeeNavigationService(), _modalNavigationStore);
         }
+        private INavigationService CreateInventoryNavigationService()
+        {
+            return new NavigationService<InventoryViewModel>(_navigationStore, CreateInventoryViewModel);
+        }
+        private InventoryViewModel CreateInventoryViewModel()
+        {
+            return new InventoryViewModel(CreateWarehouseMenuNavigationService(), CreateAddInventoryNavigationService(), _modalNavigationStore);
+        }
 
         private INavigationService CreateLocationsNavigationService()
         {
@@ -144,7 +152,6 @@ namespace Boxer
         {
             return new LocationsViewModel(CreateWarehouseMenuNavigationService(), CreateAddLocationNavigationService(), _modalNavigationStore);
         }
-
 
         private INavigationService CreateManufacturersNavigationService()
         {
@@ -210,6 +217,14 @@ namespace Boxer
         private AddEmployeeViewModel CreateAddEmployeeViewModel()
         {
             return new AddEmployeeViewModel(new CloseModalNavigationService(_modalNavigationStore), null);
+        }
+        private INavigationService CreateAddInventoryNavigationService()
+        {
+            return new ModalNavigationService<AddInventoryViewModel>(_modalNavigationStore, CreateAddInventoryViewModel);
+        }
+        private AddInventoryViewModel CreateAddInventoryViewModel()
+        {
+            return new AddInventoryViewModel(new CloseModalNavigationService(_modalNavigationStore));
         }
 
         private INavigationService CreateAddLocationNavigationService()

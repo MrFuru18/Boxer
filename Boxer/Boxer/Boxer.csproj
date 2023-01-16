@@ -90,6 +90,7 @@
     <Compile Include="Navigation\NavigationStore.cs" />
     <Compile Include="ViewModel\AddCustomerViewModel.cs" />
     <Compile Include="ViewModel\AddEmployeeViewModel.cs" />
+    <Compile Include="ViewModel\AddInventoryViewModel.cs" />
     <Compile Include="ViewModel\AddLocationViewModel.cs" />
     <Compile Include="ViewModel\AddManufacturerViewModel.cs" />
     <Compile Include="ViewModel\AddOrderViewModel.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="ViewModel\AdminMenuViewModel.cs" />
     <Compile Include="ViewModel\CustomersViewModel.cs" />
     <Compile Include="ViewModel\EmployeesViewModel.cs" />
+    <Compile Include="ViewModel\InventoryViewModel.cs" />
     <Compile Include="ViewModel\LocationsViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
@@ -116,6 +118,9 @@
     </Compile>
     <Compile Include="View\Views\AddEmployeeView.xaml.cs">
       <DependentUpon>AddEmployeeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Views\AddInventoryView.xaml.cs">
+      <DependentUpon>AddInventoryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Views\AddLocationView.xaml.cs">
       <DependentUpon>AddLocationView.xaml</DependentUpon>
@@ -143,6 +148,9 @@
     </Compile>
     <Compile Include="View\Views\EmployeesView.xaml.cs">
       <DependentUpon>EmployeesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Views\InventoryView.xaml.cs">
+      <DependentUpon>InventoryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Views\LocationsView.xaml.cs">
       <DependentUpon>LocationsView.xaml</DependentUpon>
@@ -203,6 +211,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Views\AddInventoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Views\AddLocationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -236,6 +248,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Views\EmployeesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Views\InventoryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ApiLibrary.Repo
 {
-    class InventoryProcessor
+    public class InventoryProcessor
     {
         public static async Task<List<Inventory>> getAllInventory(Inventory inventory)
         {
