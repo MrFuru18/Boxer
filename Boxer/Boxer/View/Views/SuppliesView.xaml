@@ -36,7 +36,9 @@
         </Button>
 
 
-        <ListView Grid.Row="1" Grid.Column="0" Width="800" Height="500" Margin="0,30,0,0"  ItemsSource="{Binding supplies}">
+        <ListView Grid.Row="1" Grid.Column="0" Width="800" Height="500" Margin="0,30,0,0"  
+                  ItemsSource="{Binding supplies}"
+                  SelectedItem="{Binding SelectedSupply}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">

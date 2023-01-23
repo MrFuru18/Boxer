@@ -206,9 +206,8 @@ namespace Boxer
         }
         private AddCustomerViewModel CreateAddCustomerViewModel()
         {
-            return new AddCustomerViewModel(new CloseModalNavigationService(_modalNavigationStore));
+            return new AddCustomerViewModel(new CloseModalNavigationService(_modalNavigationStore), null);
         }
-
 
         private INavigationService CreateAddEmployeeNavigationService()
         {
@@ -224,7 +223,7 @@ namespace Boxer
         }
         private AddInventoryViewModel CreateAddInventoryViewModel()
         {
-            return new AddInventoryViewModel(new CloseModalNavigationService(_modalNavigationStore));
+            return new AddInventoryViewModel(new CloseModalNavigationService(_modalNavigationStore), null);
         }
 
         private INavigationService CreateAddLocationNavigationService()
@@ -233,7 +232,7 @@ namespace Boxer
         }
         private AddLocationViewModel CreateAddLocationViewModel()
         {
-            return new AddLocationViewModel(new CloseModalNavigationService(_modalNavigationStore));
+            return new AddLocationViewModel(new CloseModalNavigationService(_modalNavigationStore), null);
         }
 
         private INavigationService CreateAddManufacturerNavigationService()
@@ -242,7 +241,7 @@ namespace Boxer
         }
         private AddManufacturerViewModel CreateAddManufacturerViewModel()
         {
-            return new AddManufacturerViewModel(new CloseModalNavigationService(_modalNavigationStore));
+            return new AddManufacturerViewModel(new CloseModalNavigationService(_modalNavigationStore), null);
         }
 
         private INavigationService CreateAddOrderNavigationService()
@@ -251,7 +250,7 @@ namespace Boxer
         }
         private AddOrderViewModel CreateAddOrderViewModel()
         {
-            return new AddOrderViewModel(new CloseModalNavigationService(_modalNavigationStore));
+            return new AddOrderViewModel(new CloseModalNavigationService(_modalNavigationStore), null);
         }
 
         private INavigationService CreateAddProductNavigationService()
@@ -260,7 +259,7 @@ namespace Boxer
         }
         private AddProductViewModel CreateAddProductViewModel()
         {
-            return new AddProductViewModel(new CloseModalNavigationService(_modalNavigationStore));
+            return new AddProductViewModel(new CloseModalNavigationService(_modalNavigationStore), null);
         }
 
         private INavigationService CreateAddSupplyNavigationService()
@@ -269,7 +268,7 @@ namespace Boxer
         }
         private AddSupplyViewModel CreateAddSupplyViewModel()
         {
-            return new AddSupplyViewModel(new CloseModalNavigationService(_modalNavigationStore));
+            return new AddSupplyViewModel(new CloseModalNavigationService(_modalNavigationStore), null);
         }
 
         private INavigationService CreateAddTaskNavigationService()
@@ -278,7 +277,7 @@ namespace Boxer
         }
         private AddTaskViewModel CreateAddTaskViewModel()
         {
-            return new AddTaskViewModel(new CloseModalNavigationService(_modalNavigationStore));
+            return new AddTaskViewModel(new CloseModalNavigationService(_modalNavigationStore), null);
         }
     }
 }

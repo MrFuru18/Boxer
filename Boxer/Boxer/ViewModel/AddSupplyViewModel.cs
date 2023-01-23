@@ -1,4 +1,5 @@
-﻿using Boxer.Commands;
+﻿using ApiLibrary.Model;
+using Boxer.Commands;
 using Boxer.Navigation;
 using Boxer.ViewModel.BaseClass;
 using System;
@@ -16,12 +17,16 @@ namespace Boxer.ViewModel
         public ICommand CancelCommand { get; }
         public ICommand AddManufacturer { get; }
 
-        public AddSupplyViewModel(INavigationService navigationService)
+        public AddSupplyViewModel(INavigationService navigationService, Supply supply)
         {
             CancelCommand = new NavigateCommand(navigationService);
             AddManufacturer = new NavigateCommand(navigationService);
 
             HeaderText = "Dodaj Dostawę";
+            if (supply != null)
+            {
+                HeaderText = "Edytuj Dostawę";
+            }
         }
     }
 }

@@ -24,6 +24,31 @@ namespace Boxer.ViewModel
 
         public ICommand NavigateBackCommand { get; }
         public ICommand NewLocation { get; }
+        private ICommand _editLocation;
+        public ICommand EditLocation
+        {
+            get
+            {
+                return _editLocation ?? (_editLocation = new RelayCommand((p) =>
+                {
+                    _modalNavigationStore.CurrentViewModel = new AddLocationViewModel(new CloseModalNavigationService(_modalNavigationStore), SelectedLocation);
+
+                }, p => true));
+
+            }
+        }
+
+        private Location _selectedLocation;
+        public Location SelectedLocation
+        {
+            get { return _selectedLocation; }
+            set
+            {
+                _selectedLocation = value;
+                onPropertyChanged(nameof(SelectedLocation));
+            }
+        }
+
 
         public LocationsViewModel(INavigationService warehouseMenuNavigationService, INavigationService addLocationNavigationService, ModalNavigationStore modalNavigationStore)
         {
@@ -36,6 +61,11 @@ namespace Boxer.ViewModel
             location = new Location();
             locations = new BindingList<Location>(LocationProcessor.getAllLocations(location).Result);
             _locations = new List<Location>(locations);
+
+            if (_locations.Count > 0)
+            {
+                SelectedLocation = _locations[0];
+            }
         }
     }
 }

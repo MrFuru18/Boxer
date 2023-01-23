@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Boxer.ViewModel
@@ -24,6 +25,31 @@ namespace Boxer.ViewModel
 
         public ICommand NavigateBackCommand { get; }
         public ICommand NewInventory { get; }
+        private ICommand _editInventory;
+        public ICommand EditInventory
+        {
+            get
+            {
+                return _editInventory ?? (_editInventory = new RelayCommand((p) =>
+                {
+                    _modalNavigationStore.CurrentViewModel = new AddInventoryViewModel(new CloseModalNavigationService(_modalNavigationStore), SelectedInventory);
+                   
+                }, p => true));
+
+            }
+        }
+
+        private Inventory _selectedInventory;
+        public Inventory SelectedInventory
+        {
+            get { return _selectedInventory; }
+            set
+            {
+                _selectedInventory = value;
+                onPropertyChanged(nameof(SelectedInventory));
+            }
+        }
+
 
         public InventoryViewModel(INavigationService warehouseMenuNavigationService, INavigationService addInventoryNavigationService, ModalNavigationStore modalNavigationStore)
         {
@@ -36,6 +62,11 @@ namespace Boxer.ViewModel
             inventory = new Inventory();
             inventoryList = new BindingList<Inventory>(InventoryProcessor.getAllInventory(inventory).Result);
             _inventoryList = new List<Inventory>(inventoryList);
+
+            if (_inventoryList.Count > 0)
+            {
+                SelectedInventory = _inventoryList[0];
+            }
         }
     }
 }

@@ -20,7 +20,6 @@ namespace Boxer.ViewModel
         ModalNavigationStore _modalNavigationStore;
         public BindingList<Employee> employees { get; set; }
         private List<Employee> _employees { get; set; }
-        private Employee employee = null;
 
         public ICommand NavigateBackCommand { get; }
         public ICommand NewEmployee { get; }
@@ -32,16 +31,16 @@ namespace Boxer.ViewModel
             {
                 return _editEmployee ?? (_editEmployee= new RelayCommand((p) =>
                 {
-                    //_modalNavigationStore.CurrentViewModel = new AddEmployeeViewModel(_navigationService, employee);
-                    //MessageBox.Show(SelectedEmployee);
+                    _modalNavigationStore.CurrentViewModel = new AddEmployeeViewModel(new CloseModalNavigationService(_modalNavigationStore), SelectedEmployee);
+                    //MessageBox.Show(SelectedEmployee.name);
 
                 }, p => true));
 
             }
         }
 
-        /*private string _selectedEmployee;
-        public string SelectedEmployee
+        private Employee _selectedEmployee;
+        public Employee SelectedEmployee
         {
             get { return _selectedEmployee; }
             set
@@ -49,7 +48,7 @@ namespace Boxer.ViewModel
                 _selectedEmployee = value;
                 onPropertyChanged(nameof(SelectedEmployee));
             }
-        }*/
+        }
 
 
         public EmployeesViewModel(INavigationService adminMenuNavigationService, INavigationService addEmployeeNavigationService, ModalNavigationStore modalNavigationStore)
@@ -62,6 +61,11 @@ namespace Boxer.ViewModel
 
             employees = new BindingList<Employee>(EmployeeProcessor.getAllEmployees().Result);
             _employees = new List<Employee>(employees);
+            
+            if (_employees.Count > 0)
+            {
+                SelectedEmployee = _employees[0];
+            }
         }
     }
 }

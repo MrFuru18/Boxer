@@ -1,4 +1,5 @@
-﻿using Boxer.Commands;
+﻿using ApiLibrary.Model;
+using Boxer.Commands;
 using Boxer.Navigation;
 using Boxer.ViewModel.BaseClass;
 using System;
@@ -16,12 +17,16 @@ namespace Boxer.ViewModel
         public ICommand CancelCommand { get; }
         public ICommand AddLocation { get; }
 
-        public AddLocationViewModel(INavigationService navigationService)
+        public AddLocationViewModel(INavigationService navigationService, Location location)
         {
             CancelCommand = new NavigateCommand(navigationService);
             AddLocation = new NavigateCommand(navigationService);
 
             HeaderText = "Dodaj Lokalizację";
+            if (location != null)
+            {
+                HeaderText = "Edytuj Lokalizację";
+            }
         }
     }
 }

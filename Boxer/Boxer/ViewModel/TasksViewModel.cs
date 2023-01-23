@@ -24,6 +24,30 @@ namespace Boxer.ViewModel
 
         public ICommand NavigateBackCommand { get; }
         public ICommand NewTask { get; }
+        private ICommand _editTask;
+        public ICommand EditTask
+        {
+            get
+            {
+                return _editTask ?? (_editTask = new RelayCommand((p) =>
+                {
+                    _modalNavigationStore.CurrentViewModel = new AddTaskViewModel(new CloseModalNavigationService(_modalNavigationStore), SelectedTask);
+
+                }, p => true));
+
+            }
+        }
+
+        private Tasks _selectedTask;
+        public Tasks SelectedTask
+        {
+            get { return _selectedTask; }
+            set
+            {
+                _selectedTask = value;
+                onPropertyChanged(nameof(SelectedTask));
+            }
+        }
 
         public TasksViewModel(INavigationService tasksMenuNavigationService, INavigationService addTaskNavigationService, ModalNavigationStore modalNavigationStore)
         {
@@ -36,6 +60,11 @@ namespace Boxer.ViewModel
             task = new Tasks();
             tasks = new BindingList<Tasks>(TaskProcessor.getAllTasks(task).Result);
             _tasks = new List<Tasks>(tasks);
+
+            if (_tasks.Count > 0)
+            {
+                SelectedTask = _tasks[0];
+            }
         }
     }
 }

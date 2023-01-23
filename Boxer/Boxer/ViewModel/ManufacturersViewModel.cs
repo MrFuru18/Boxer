@@ -25,6 +25,30 @@ namespace Boxer.ViewModel
 
         public ICommand NavigateBackCommand { get; }
         public ICommand NewManufacturer { get; }
+        private ICommand _editManufacturer;
+        public ICommand EditManufacturer
+        {
+            get
+            {
+                return _editManufacturer ?? (_editManufacturer = new RelayCommand((p) =>
+                {
+                    _modalNavigationStore.CurrentViewModel = new AddManufacturerViewModel(new CloseModalNavigationService(_modalNavigationStore), SelectedManufacturer);
+
+                }, p => true));
+
+            }
+        }
+
+        private Manufacturer _selectedManufacturer;
+        public Manufacturer SelectedManufacturer
+        {
+            get { return _selectedManufacturer; }
+            set
+            {
+                _selectedManufacturer = value;
+                onPropertyChanged(nameof(SelectedManufacturer));
+            }
+        }
 
         public ManufacturersViewModel(INavigationService suppliesMenuNavigationService, INavigationService addManufacturerNavigationService, ModalNavigationStore modalNavigationStore)
         {
@@ -37,6 +61,11 @@ namespace Boxer.ViewModel
             manufacturer = new Manufacturer();
             manufacturers = new BindingList<Manufacturer>(ManufacturerProcessor.getAllManufacturers(manufacturer).Result);
             _manufacturers = new List<Manufacturer>(manufacturers);
+
+            if (_manufacturers.Count > 0)
+            {
+                SelectedManufacturer = _manufacturers[0];
+            }
         }
     }
 }

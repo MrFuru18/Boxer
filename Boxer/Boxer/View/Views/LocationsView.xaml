@@ -55,7 +55,9 @@
         </StackPanel>
 
 
-        <ListView Grid.Row="1" Grid.Column="0" Width="1000" Margin="0,30,40,0" ItemsSource="{Binding locations}">
+        <ListView Grid.Row="1" Grid.Column="0" Width="1000" Margin="0,30,40,0" 
+                  ItemsSource="{Binding locations}"
+                  SelectedItem="{Binding SelectedLocation}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">

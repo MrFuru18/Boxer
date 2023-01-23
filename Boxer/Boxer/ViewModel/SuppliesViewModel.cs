@@ -24,6 +24,30 @@ namespace Boxer.ViewModel
 
         public ICommand NavigateBackCommand { get; }
         public ICommand NewSupply { get; }
+        private ICommand _editSupply;
+        public ICommand EditSupply
+        {
+            get
+            {
+                return _editSupply ?? (_editSupply = new RelayCommand((p) =>
+                {
+                    _modalNavigationStore.CurrentViewModel = new AddSupplyViewModel(new CloseModalNavigationService(_modalNavigationStore), SelectedSupply);
+
+                }, p => true));
+
+            }
+        }
+
+        private Supply _selectedSupply;
+        public Supply SelectedSupply
+        {
+            get { return _selectedSupply; }
+            set
+            {
+                _selectedSupply = value;
+                onPropertyChanged(nameof(SelectedSupply));
+            }
+        }
 
         public SuppliesViewModel(INavigationService suppliesMenuNavigationService, INavigationService addSupplyNavigationService, ModalNavigationStore modalNavigationStore)
         {
@@ -36,6 +60,11 @@ namespace Boxer.ViewModel
             supply = new Supply();
             supplies = new BindingList<Supply>(SupplyProcessor.getAllSupplies(supply).Result);
             _supplies = new List<Supply>(supplies);
+
+            if (_supplies.Count > 0)
+            {
+                SelectedSupply = _supplies[0];
+            }
         }
     }
 }

@@ -34,7 +34,9 @@
         </Button>
 
 
-        <ListView Grid.Row="1" Grid.Column="0" Width="900" Margin="0,30,40,0"  ItemsSource="{Binding orders}">
+        <ListView Grid.Row="1" Grid.Column="0" Width="900" Margin="0,30,40,0"  
+                  ItemsSource="{Binding orders}"
+                  SelectedItem="{Binding SelectedOrder}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">
@@ -78,7 +80,7 @@
                     FontSize="20" 
                     VerticalAlignment="Top" 
                     Content="Edytuj" 
-                    Command="{Binding EditOrders}"/>
+                    Command="{Binding EditOrder}"/>
 
             <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="400" Margin="0,30,0,0"  ItemsSource="{Binding orders_items}">
                 <ListView.View>

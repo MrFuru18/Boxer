@@ -1,4 +1,5 @@
-﻿using Boxer.Commands;
+﻿using ApiLibrary.Model;
+using Boxer.Commands;
 using Boxer.Navigation;
 using Boxer.ViewModel.BaseClass;
 using System;
@@ -17,13 +18,17 @@ namespace Boxer.ViewModel
         public ICommand AddCustomer { get; }
         public ICommand EditCustomer { get; }
 
-        public AddCustomerViewModel(INavigationService navigationService)
+        public AddCustomerViewModel(INavigationService navigationService, Customer customer)
         {
             CancelCommand = new NavigateCommand(navigationService);
             AddCustomer = new NavigateCommand(navigationService);
             EditCustomer = new NavigateCommand(navigationService);
 
             HeaderText = "Dodaj Klienta";
+            if (customer != null)
+            {
+                HeaderText = "Edytuj Klienta";
+            }
         }
     }
 }
