@@ -95,9 +95,9 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<string> deleteShortage(int id)
+        public static async Task<string> deleteShortage(Shortage shortage)
         {
-            string url = "http://localhost:3000/shortage/delete/" + id;
+            string url = "http://localhost:3000/shortage/delete/" + shortage.id;
             string result;
 
             using (HttpResponseMessage response = await ClientHttp.ApiClient.DeleteAsync(url).ConfigureAwait(false))

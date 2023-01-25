@@ -95,9 +95,9 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<string> deleteSupply(int id)
+        public static async Task<string> deleteSupply(Supply supply)
         {
-            string url = "http://localhost:3000/supply/delete/" + id;
+            string url = "http://localhost:3000/supply/delete/" + supply.id;
             string result;
 
             using (HttpResponseMessage response = await ClientHttp.ApiClient.DeleteAsync(url).ConfigureAwait(false))

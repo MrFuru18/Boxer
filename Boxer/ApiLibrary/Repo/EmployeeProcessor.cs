@@ -31,10 +31,9 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<Employee> getEmployee(string uid)
+        public static async Task<Employee> getEmployee(Employee employee)
         {
-            string url = "http://localhost:4000/employee/" + uid;
-            Employee employee = new Employee();
+            string url = "http://localhost:4000/employee/" + employee.uid;
 
             using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
             {

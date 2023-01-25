@@ -95,9 +95,9 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<string> deletePallet(int id)
+        public static async Task<string> deletePallet(Pallet pallet)
         {
-            string url = "http://localhost:3000/pallet/delete/" + id;
+            string url = "http://localhost:3000/pallet/delete/" + pallet.id;
             string result;
 
             using (HttpResponseMessage response = await ClientHttp.ApiClient.DeleteAsync(url).ConfigureAwait(false))
