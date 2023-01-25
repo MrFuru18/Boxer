@@ -97,7 +97,6 @@ namespace Boxer.ViewModel
 
             HeaderText = "Dodaj Pracownika";
 
-
             if (employee != null)
             {
                 HeaderText = "Edytuj Pracownika";
