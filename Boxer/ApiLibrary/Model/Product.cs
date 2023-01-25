@@ -4,12 +4,12 @@ using System.Text;
 
 namespace ApiLibrary.Model
 {
-    class Product
+    public class Product
     {
-        public Guid id { get; set; }
+        public int id { get; set; }
         public string sku { get; set; }
         public string name { get; set; }
-        public Guid manufacturer_id { get; set; }
+        public int manufacturer_id { get; set; }
         public string category { get; set; }
         public string description { get; set; }
         public float weight { get; set; }

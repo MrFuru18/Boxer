@@ -4,10 +4,10 @@ using System.Text;
 
 namespace ApiLibrary.Model
 {
-    class PalletItem
+    public class PalletItem
     {
-        public Guid pallet_id { get; set; }
-        public Guid product_id { get; set; }
+        public int pallet_id { get; set; }
+        public int product_id { get; set; }
         public int quantity { get; set; }
     }
 }

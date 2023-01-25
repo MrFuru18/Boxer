@@ -8,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace ApiLibrary.Repo
 {
-    class InventoryProcessor
+    public class InventoryProcessor
     {
-        public static async Task<List<Inventory>> getAllInventory()
+        public static async Task<List<Inventory>> getAllInventory(Inventory inventory)
         {
             string url = "http://localhost:3000/inventory";
             List<Inventory> inventoryList = new List<Inventory>();
+            string serializedInventory = JsonConvert.SerializeObject(inventory);
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedInventory, Encoding.UTF8, "application/json")).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {
@@ -32,7 +34,7 @@ namespace ApiLibrary.Repo
 
         public static async Task<Inventory> getInventory(int id)
         {
-            string url = "http://localhost:3000/inventory/" + id;
+            string url = "http://localhost:3000/inventory/get/" + id;
             Inventory inventory = new Inventory();
 
             using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))

@@ -4,13 +4,13 @@ using System.Text;
 
 namespace ApiLibrary.Model
 {
-    class Tasks
+    public class Tasks
     {
-        public Guid id { get; set; }
-        public Guid employee_id { get; set; }
+        public int id { get; set; }
+        public int employee_id { get; set; }
         public string type { get; set; }
-        public Guid order_id { get; set; }
-        public Guid supply_id { get; set; }
+        public int order_id { get; set; }
+        public int supply_id { get; set; }
         public string remarks { get; set; }
     }
 }

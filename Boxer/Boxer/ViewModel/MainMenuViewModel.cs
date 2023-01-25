@@ -14,14 +14,22 @@ namespace Boxer.ViewModel
 
     class MainMenuViewModel : BaseViewModel
     {
-        public ICommand NavigateSearchPageCommand { get; }
         public ICommand NavigateTasksPannelPageCommand { get; }
+        public ICommand NavigateWarehousePannelPageCommand { get; }
+        public ICommand NavigateOrdersPannelPageCommand { get; }
+        public ICommand NavigateSuppliesPannelPageCommand { get; }
+        public ICommand NavigateAdminPannelPageCommand { get; }
         public ICommand Logout { get; }
 
-        public MainMenuViewModel(AccountStore accountStore, INavigationService userControl1NavigationService, INavigationService userControl2NavigationService, INavigationService loginNavigationService)
+        public MainMenuViewModel(AccountStore accountStore, INavigationService tasksMenuNavigationService, 
+            INavigationService warehouseMenuNavigationService, INavigationService ordersMenuNavigationService,
+            INavigationService suppliesMenuNavigationService, INavigationService adminMenuNavigationService, INavigationService loginNavigationService)
         {
-            NavigateSearchPageCommand = new NavigateCommand(userControl1NavigationService);
-            NavigateTasksPannelPageCommand = new NavigateCommand(userControl2NavigationService);
+            NavigateTasksPannelPageCommand = new NavigateCommand(tasksMenuNavigationService);
+            NavigateWarehousePannelPageCommand = new NavigateCommand(warehouseMenuNavigationService);
+            NavigateOrdersPannelPageCommand = new NavigateCommand(ordersMenuNavigationService);
+            NavigateSuppliesPannelPageCommand = new NavigateCommand(suppliesMenuNavigationService);
+            NavigateAdminPannelPageCommand = new NavigateCommand(adminMenuNavigationService);
             Logout = new LogoutCommand(this, accountStore, loginNavigationService);
         }
     }

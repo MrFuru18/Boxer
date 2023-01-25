@@ -8,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace ApiLibrary.Repo
 {
-    class SupplyProcessor
+    public class SupplyProcessor
     {
-        public static async Task<List<Supply>> getAllSupplies()
+        public static async Task<List<Supply>> getAllSupplies(Supply supply)
         {
             string url = "http://localhost:3000/supplies";
             List<Supply> suppliesList = new List<Supply>();
+            string serializedSupply = JsonConvert.SerializeObject(supply);
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedSupply, Encoding.UTF8, "application/json")).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {
@@ -30,12 +32,13 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<Supply> getSupply(int id)
+        public static async Task<Supply> getSupply(Supply supply)
         {
-            string url = "http://localhost:3000/supply/" + id;
-            Supply supply = new Supply();
+            string url = "http://localhost:3000/supply/get/" + supply.id;
+            string serializedSupply = JsonConvert.SerializeObject(supply);
 
-            using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedSupply, Encoding.UTF8, "application/json")).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {
@@ -103,6 +106,29 @@ namespace ApiLibrary.Repo
                 {
                     result = await response.Content.ReadAsStringAsync();
                     return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+
+        public static async Task<List<SupplyItem>> getSupplyItems(SupplyItem supplyItem)
+        {
+            string url = "http://localhost:3000/supply_items/get_from_supply/" + supplyItem.supply_id;
+            List<SupplyItem> supplyItemsList = new List<SupplyItem>();
+            string serializedSupplyItem = JsonConvert.SerializeObject(supplyItem);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedSupplyItem, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonResult = await response.Content.ReadAsStringAsync();
+                    supplyItemsList = JsonConvert.DeserializeObject<List<SupplyItem>>(jsonResult);
+                    return supplyItemsList;
                 }
                 else
                 {

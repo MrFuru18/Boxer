@@ -1,0 +1,212 @@
+﻿<UserControl x:Class="Boxer.View.Views.AddCustomerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Boxer.View.Views"
+             mc:Ignorable="d">
+
+    <Grid Background="White">
+
+        <StackPanel VerticalAlignment="Center">
+
+            <!-- Cancel Button-->
+            <Button x:Name="Cancel_button"
+                    HorizontalAlignment="Right"
+                    Background="Transparent"
+                    Width="40"
+                    Height="40"
+                    Command="{Binding CancelCommand}" CommandParameter="Cancel">
+                <StackPanel>
+                    <Image Source="/View/Images/Icon1.png" 
+                       Stretch="None"/>
+                </StackPanel>
+            </Button>
+
+            <TextBlock Text="{Binding HeaderText}"
+                       VerticalAlignment="Center"
+                       FontSize="30"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,40"/>
+
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Margin="0,0,40,0">
+                    <!-- Name TextBox -->
+                    <TextBlock Text="Imię"
+                       VerticalAlignment="Center"
+                       FontSize="20"
+                       Margin="0,0,0,5"/>
+
+                    <TextBox x:Name="Name_textbox"
+                     Padding="5"
+                     FontSize="20"
+                     Width="300"
+                     VerticalAlignment="Center"
+                     Text="{Binding Name}"/>
+
+                    <!-- Surname TextBox -->
+                    <TextBlock Text="Nazwisko"
+                       VerticalAlignment="Center"
+                       FontSize="20"
+                       Margin="0,30,0,5"/>
+
+                    <TextBox x:Name="Surname_textbox"
+                     Padding="5"
+                     FontSize="20"
+                     Width="300"
+                     VerticalAlignment="Center"
+                     Text="{Binding Surname}"/>
+
+                    <!-- Email TextBox -->
+                    <TextBlock Text="Email"
+                       VerticalAlignment="Center"
+                       FontSize="20"
+                       Margin="0,30,0,5"/>
+
+                    <TextBox x:Name="Email_textbox"
+                     Padding="5"
+                     FontSize="20"
+                     Width="300"
+                     VerticalAlignment="Center"
+                     Text="{Binding Email}"/>
+
+                    <!-- Phone TextBox -->
+                    <TextBlock Text="Numer Telefonu"
+                       VerticalAlignment="Center"
+                       FontSize="20"
+                       Margin="0,30,0,5"/>
+
+                    <TextBox x:Name="Phone_textbox"
+                     Padding="5"
+                     FontSize="20"
+                     Width="300"
+                     VerticalAlignment="Center"
+                     Text="{Binding Phone}"/>
+
+                </StackPanel>
+                <StackPanel>
+                    <!-- AddressLine TextBox -->
+                    <TextBlock Text="Linia Adresowa 1"
+                       VerticalAlignment="Center"
+                       FontSize="20"/>
+
+                    <TextBox x:Name="AddressLine1_textbox"
+                     Padding="5"
+                     FontSize="20"
+                     Width="300"
+                     VerticalAlignment="Center"
+                     Text="{Binding AddressLine1}"/>
+
+                    <!-- AddressLine TextBox -->
+                    <TextBlock Text="Linia Adresowa 2"
+                       VerticalAlignment="Center"
+                       FontSize="20"
+                       Margin="0,10,0,5"/>
+
+                    <TextBox x:Name="AddressLine2_textbox"
+                     Padding="5"
+                     FontSize="20"
+                     Width="300"
+                     VerticalAlignment="Center"
+                     Text="{Binding AddressLine2}"/>
+
+                    <!-- Country TextBox -->
+                    <TextBlock Text="Kraj"
+                       VerticalAlignment="Center"
+                       FontSize="20"
+                       Margin="0,10,0,5"/>
+
+                    <TextBox x:Name="Country_textbox"
+                     Padding="5"
+                     FontSize="20"
+                     Width="300"
+                     VerticalAlignment="Center"
+                     Text="{Binding Country}"/>
+
+                    <!-- Region TextBox -->
+                    <TextBlock Text="Region"
+                       VerticalAlignment="Center"
+                       FontSize="20"
+                       Margin="0,10,0,5"/>
+
+                    <TextBox x:Name="Region_textbox"
+                     Padding="5"
+                     FontSize="20"
+                     Width="300"
+                     VerticalAlignment="Center"
+                     Text="{Binding Region}"/>
+
+                    <GroupBox Margin="0,10,0,0">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <!-- Postal Code TextBox -->
+                                    <TextBlock Text="Kod Pocztowy"
+                                                VerticalAlignment="Center"
+                                                FontSize="20"
+                                                Margin="0,0,0,5"/>
+
+                                    <TextBox x:Name="PostalCode_textbox"
+                                             Padding="5"
+                                             FontSize="20"
+                                             Width="200"
+                                             VerticalAlignment="Center"
+                                             Text="{Binding PostalCode}"/>
+                                </StackPanel>
+                                <Button Content="+"
+                                        VerticalAlignment="Bottom"
+                                        Padding="5"
+                                        FontSize="20"
+                                        Width="40"
+                                        Height="40"
+                                        Margin="10,0,0,0"/>
+                                <Button Content="-"
+                                        VerticalAlignment="Bottom"
+                                        Padding="5"
+                                        FontSize="20"
+                                        Width="40"
+                                        Height="40"
+                                        Margin="10,0,0,0"/>
+                            </StackPanel>
+
+                            <ListView Grid.Row="1" Grid.Column="0" Width="300" Height="80" Margin="0,10,0,0"  ItemsSource="{Binding employees}">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding id}">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="id" CommandParameter="+id"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="170" DisplayMemberBinding="{Binding address_line_1}">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="Linia Adresowa 1" CommandParameter="name"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="80" DisplayMemberBinding="{Binding postal_code}">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="Kod Pocztowy" CommandParameter="postal_code"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </StackPanel>
+                    </GroupBox>
+
+
+                </StackPanel>
+            </StackPanel>
+
+
+            <!-- Add Button -->
+            <Button HorizontalAlignment="Center"
+                    Content="Potwerdź"
+                    FontSize="20"
+                    Margin="0,30,0,0"
+                    Command="{Binding AddCustomer}"/>
+            
+            
+
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:Boxer"
              xmlns:views="clr-namespace:Boxer.View.Views"
              xmlns:vm="clr-namespace:Boxer.ViewModel">
+    
     <Application.Resources>
         <DataTemplate DataType="{x:Type vm:MainMenuViewModel}">
             <views:MainMenuPage/>
@@ -11,12 +12,77 @@
         <DataTemplate DataType="{x:Type vm:LoginViewModel}">
             <views:LoginScreen/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:UserControl1ViewModel}">
-            <views:UserControl1/>
+        <DataTemplate DataType="{x:Type vm:TasksMenuViewModel}">
+            <views:TasksMenuPage/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:UserControl2ViewModel}">
-            <views:UserControl2/>
+        <DataTemplate DataType="{x:Type vm:WarehouseMenuViewModel}">
+            <views:WarehouseMenuPage/>
         </DataTemplate>
-         
+        <DataTemplate DataType="{x:Type vm:OrdersMenuViewModel}">
+            <views:OrdersMenuPage/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SuppliesMenuViewModel}">
+            <views:SuppliesMenuPage/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AdminMenuViewModel}">
+            <views:AdminMenuPage/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:CustomersViewModel}">
+            <views:CustomersView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:EmployeesViewModel}">
+            <views:EmployeesView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:InventoryViewModel}">
+            <views:InventoryView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:LocationsViewModel}">
+            <views:LocationsView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ManufacturersViewModel}">
+            <views:ManufacturersView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:OrdersViewModel}">
+            <views:OrdersView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ProductsViewModel}">
+            <views:ProductsView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SuppliesViewModel}">
+            <views:SuppliesView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:TasksViewModel}">
+            <views:TasksView/>
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type vm:AddCustomerViewModel}">
+            <views:AddCustomerView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AddEmployeeViewModel}">
+            <views:AddEmployeeView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AddInventoryViewModel}">
+            <views:AddInventoryView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AddLocationViewModel}">
+            <views:AddLocationView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AddManufacturerViewModel}">
+            <views:AddManufacturerView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AddOrderViewModel}">
+            <views:AddOrderView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AddProductViewModel}">
+            <views:AddProductView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AddSupplyViewModel}">
+            <views:AddSupplyView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AddTaskViewModel}">
+            <views:AddTaskView/>
+        </DataTemplate>
+        
     </Application.Resources>
 </Application>

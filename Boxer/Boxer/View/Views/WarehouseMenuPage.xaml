@@ -1,0 +1,109 @@
+﻿<UserControl x:Class="Boxer.View.Views.WarehouseMenuPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Boxer.View.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <!-- Back Button -->
+        <Button x:Name="Back_button"
+                Grid.Row="0"
+                HorizontalAlignment="Left"
+                Background="Transparent"
+                Width="100"
+                Height="100"
+                Command="{Binding NavigateBackCommand}" CommandParameter="Back">
+            <StackPanel>
+                <Image  Source="/View/Images/Icon1.png"
+                                Stretch="None"/>
+                <TextBlock  x:Name="Back_textblock"
+                                    Text="Wróć"
+                                    HorizontalAlignment="Center"
+                                    FontSize="20"/>
+            </StackPanel>
+        </Button>
+
+
+        <StackPanel Grid.Row="1" 
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+            <!--  Inventory Button -->
+            <Button x:Name="Inventory_button"
+                    Background="Transparent"
+                    Margin="15,0,15,0"
+                    Width="150"
+                    Height="150"
+                    Command="{Binding NavigateInventoryCommand}" CommandParameter="Inventory">
+                <StackPanel>
+                    <Image  Source="/View/Images/Icon1.png"
+                            Stretch="None"/>
+                    <TextBlock  x:Name="Inventory_textblock"
+                                Text="Przeglądaj Inwentarz"
+                                HorizontalAlignment="Center"
+                                FontSize="20"/>
+                </StackPanel>
+            </Button>
+
+            <!--  Palletes Button -->
+            <Button x:Name="Palletes_button"
+                    Background="Transparent"
+                    Margin="15,0,15,0"
+                    Width="150"
+                    Height="150"
+                    Command="{Binding NavigatePalletesCommand}" CommandParameter="Palletes">
+                <StackPanel>
+                    <Image  Source="/View/Images/Icon1.png"
+                            Stretch="None"/>
+                    <TextBlock  x:Name="Palletes_textblock"
+                                Text="Przeglądaj Palety"
+                                HorizontalAlignment="Center"
+                                FontSize="20"/>
+                </StackPanel>
+            </Button>
+
+            <!--  Shortages Button -->
+            <Button x:Name="Shortages_button"
+                    Background="Transparent"
+                    Margin="15,0,15,0"
+                    Width="150"
+                    Height="150"
+                    Command="{Binding NavigateShortagesCommand}" CommandParameter="Shortages">
+                <StackPanel>
+                    <Image  Source="/View/Images/Icon1.png"
+                            Stretch="None"/>
+                    <TextBlock  x:Name="Shortages_textblock"
+                                Text="Przeglądaj Braki"
+                                HorizontalAlignment="Center"
+                                FontSize="20"/>
+                </StackPanel>
+            </Button>
+            
+            <!--  Locations Button -->
+            <Button x:Name="Locations_button"
+                    Background="Transparent"
+                    Margin="15,0,15,0"
+                    Width="150"
+                    Height="150"
+                    Command="{Binding NavigateLocationsCommand}" CommandParameter="Locations">
+                <StackPanel>
+                    <Image  Source="/View/Images/Icon1.png"
+                            Stretch="None"/>
+                    <TextBlock  x:Name="Locations_textblock"
+                                Text="Przeglądaj Lokalizacje"
+                                HorizontalAlignment="Center"
+                                FontSize="20"/>
+                </StackPanel>
+            </Button>
+
+        </StackPanel>
+
+    </Grid>
+
+</UserControl>

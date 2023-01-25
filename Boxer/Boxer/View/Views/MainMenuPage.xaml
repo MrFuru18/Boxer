@@ -10,31 +10,36 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
+            <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-        </Grid.ColumnDefinitions>
 
-        <StackPanel Orientation="Horizontal">
-            <!-- Search Button -->
-            <Button x:Name="Search_button"
-                    Background="Transparent"
-                    Width="150"
-                    Height="150"
-                    Command="{Binding NavigateSearchPageCommand}" CommandParameter="Search">
-                <StackPanel>
-                    <Image  Source="/View/Images/Icon1.png"
+        <!-- Logout Button -->
+        <Button x:Name="Logout_button"
+                Grid.Row="0"
+                HorizontalAlignment="Right"
+                Background="Transparent"
+                Width="100"
+                Height="100"
+                Command="{Binding Logout}" CommandParameter="Logout">
+            <StackPanel>
+                <Image  Source="/View/Images/Icon1.png"
                             Stretch="None"/>
-                    <TextBlock  x:Name="Search_textblock"
-                                Text="Wyszukiwanie"
+                <TextBlock  x:Name="Logout_textblock"
+                                Text="Wyloguj"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
-                </StackPanel>
-            </Button>
-
+            </StackPanel>
+        </Button>
+        
+        
+        <StackPanel Grid.Row="1"
+                    HorizontalAlignment="Center" 
+                    Orientation="Horizontal">
+            
             <!-- Tasks Pannel Button -->
             <Button x:Name="TasksPannel_button"
                     Background="Transparent"
+                    Margin="15,0,15,0"
                     Width="150"
                     Height="150"
                     Command="{Binding NavigateTasksPannelPageCommand}" CommandParameter="TasksPannel">
@@ -47,54 +52,77 @@
                                 FontSize="20"/>
                 </StackPanel>
             </Button>
-
-            <!-- Warehouse Button -->
-            <Button x:Name="Inventory_button"
+            
+            <!-- Warehouse Pannel Button -->
+            <Button x:Name="WarehousePannel_button"
                     Background="Transparent"
+                    Margin="15,0,15,0"
                     Width="150"
                     Height="150"
-                    Command="{Binding NavigateWarehousePageCommand}" CommandParameter="Warehouse">
+                    Command="{Binding NavigateWarehousePannelPageCommand}" CommandParameter="WarehousePannel">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
                             Stretch="None"/>
-                    <TextBlock  x:Name="Warehouse_textblock"
-                                Text="Magazyn"
+                    <TextBlock  x:Name="WarehousePannel_textblock"
+                                Text="Panel magazynu"
+                                HorizontalAlignment="Center"
+                                FontSize="20"/>
+                </StackPanel>
+            </Button>
+
+
+            <!-- Orders Pannel Button -->
+            <Button x:Name="OrdersPannel_button"
+                    Background="Transparent"
+                    Margin="15,0,15,0"
+                    Width="150"
+                    Height="150"
+                    Command="{Binding NavigateOrdersPannelPageCommand}" CommandParameter="OrdersPannel">
+                <StackPanel>
+                    <Image  Source="/View/Images/Icon1.png"
+                            Stretch="None"/>
+                    <TextBlock  x:Name="OrdersPannel_textblock"
+                                Text="Panel Zamówień"
+                                HorizontalAlignment="Center"
+                                FontSize="20"/>
+                </StackPanel>
+            </Button>
+
+
+            <!-- Supplies Pannel Button -->
+            <Button x:Name="SuppliesPannel_button"
+                    Background="Transparent"
+                    Margin="15,0,15,0"
+                    Width="150"
+                    Height="150"
+                    Command="{Binding NavigateSuppliesPannelPageCommand}" CommandParameter="SuppliesPannel">
+                <StackPanel>
+                    <Image  Source="/View/Images/Icon1.png"
+                            Stretch="None"/>
+                    <TextBlock  x:Name="SuppliesPannel_textblock"
+                                Text="Panel Zaopatrzeń"
+                                HorizontalAlignment="Center"
+                                FontSize="20"/>
+                </StackPanel>
+            </Button>
+
+            <!-- Admin Button -->
+            <Button x:Name="AdminPannel_button"
+                    Background="Transparent"
+                    Margin="15,0,15,0"
+                    Width="150"
+                    Height="150"
+                    Command="{Binding NavigateAdminPannelPageCommand}" CommandParameter="AdminPannel">
+                <StackPanel>
+                    <Image  Source="/View/Images/Icon1.png"
+                            Stretch="None"/>
+                    <TextBlock  x:Name="AdminPannel_textblock"
+                                Text="Panel Administratora"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>
             </Button>
             
-            <!-- Admin Button -->
-            <Button x:Name="Admin_button"
-                    Background="Transparent"
-                    Width="150"
-                    Height="150"
-                    Command="{Binding NavigateProductsPageCommand}" CommandParameter="Admin">
-                <StackPanel>
-                    <Image  Source="/View/Images/Icon1.png"
-                            Stretch="None"/>
-                    <TextBlock  x:Name="Admin_textblock"
-                                Text="Panel Admina"
-                                HorizontalAlignment="Center"
-                                FontSize="20"/>
-                </StackPanel>
-            </Button>
-
-            <!-- Logout Button -->
-            <Button x:Name="Logout_button"
-                    Background="Transparent"
-                    Width="150"
-                    Height="150"
-                    Command="{Binding Logout}" CommandParameter="Logout">
-                <StackPanel>
-                    <Image  Source="/View/Images/Icon1.png"
-                            Stretch="None"/>
-                    <TextBlock  x:Name="Logout_textblock"
-                                Text="Wyloguj"
-                                HorizontalAlignment="Center"
-                                FontSize="20"/>
-                </StackPanel>
-            </Button>
         </StackPanel>
         
     </Grid>
