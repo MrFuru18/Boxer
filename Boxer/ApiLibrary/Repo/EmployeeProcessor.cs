@@ -93,9 +93,9 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<string> deleteEmployee(string uid)
+        public static async Task<string> deleteEmployee(Employee employee)
         {
-            string url = "http://localhost:4000/employee/delete/" + uid;
+            string url = "http://localhost:4000/employee/delete/" + employee.uid;
             string result;
 
             using (HttpResponseMessage response = await ClientHttp.ApiClient.DeleteAsync(url).ConfigureAwait(false))
