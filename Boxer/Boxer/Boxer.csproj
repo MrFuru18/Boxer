@@ -78,6 +78,7 @@
     <Compile Include="Commands\NavigateCommand.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\AccountStore.cs" />
+    <Compile Include="Model\Permissions.cs" />
     <Compile Include="Navigation\CloseModalNavigatonService.cs" />
     <Compile Include="Navigation\CompositeNavigationService.cs" />
     <Compile Include="Navigation\CreateViewModel.cs" />

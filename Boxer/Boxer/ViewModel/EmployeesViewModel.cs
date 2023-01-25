@@ -32,7 +32,6 @@ namespace Boxer.ViewModel
                 return _editEmployee ?? (_editEmployee= new RelayCommand((p) =>
                 {
                     _modalNavigationStore.CurrentViewModel = new AddEmployeeViewModel(new CloseModalNavigationService(_modalNavigationStore), SelectedEmployee);
-                    //MessageBox.Show(SelectedEmployee.name);
 
                 }, p => true));
 

@@ -4,7 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Boxer.View.Views"
+             xmlns:model="clr-namespace:Boxer.Model"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="permissionsFromEnum"
+                            MethodName="GetValues" 
+                            ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="model:Permissions"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
     
     <Grid Background="White">
         <StackPanel VerticalAlignment="Center">
@@ -95,11 +106,8 @@
                       FontSize="20"
                       Width="300"
                       VerticalAlignment="Center"
-                      SelectedItem="{Binding Permissions}"
-                      >
-                        <ComboBoxItem Tag="worker" IsSelected="True">pracownik</ComboBoxItem>
-                        <ComboBoxItem Tag="management">kierownictwo</ComboBoxItem>
-                        <ComboBoxItem Tag="admin">admin</ComboBoxItem>
+                      ItemsSource="{Binding Source={StaticResource permissionsFromEnum}}"
+                      SelectedItem="{Binding Permission}">
                     </ComboBox>
 
                     <!-- Uid TextBox -->

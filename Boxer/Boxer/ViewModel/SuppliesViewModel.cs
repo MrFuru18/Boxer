@@ -22,6 +22,10 @@ namespace Boxer.ViewModel
         private List<Supply> _supplies { get; set; }
         private Supply supply = null;
 
+        public BindingList<SupplyItem> supply_items { get; set; }
+        public List<SupplyItem> _supply_items { get; set; }
+        private SupplyItem supplyItem = new SupplyItem();
+
         public ICommand NavigateBackCommand { get; }
         public ICommand NewSupply { get; }
         private ICommand _editSupply;
@@ -46,7 +50,19 @@ namespace Boxer.ViewModel
             {
                 _selectedSupply = value;
                 onPropertyChanged(nameof(SelectedSupply));
+
+                loadSupplyItems();
             }
+        }
+
+        private void loadSupplyItems()
+        {
+            supplyItem.supply_id = SelectedSupply.id;
+            _supply_items = new List<SupplyItem>(SupplyProcessor.getSupplyItems(supplyItem).Result);
+
+            supply_items.Clear();
+            foreach (var item in _supply_items)
+                supply_items.Add(item);
         }
 
         public SuppliesViewModel(INavigationService suppliesMenuNavigationService, INavigationService addSupplyNavigationService, ModalNavigationStore modalNavigationStore)
@@ -60,6 +76,9 @@ namespace Boxer.ViewModel
             supply = new Supply();
             supplies = new BindingList<Supply>(SupplyProcessor.getAllSupplies(supply).Result);
             _supplies = new List<Supply>(supplies);
+
+            supplyItem = new SupplyItem();
+            supply_items = new BindingList<SupplyItem>();
 
             if (_supplies.Count > 0)
             {

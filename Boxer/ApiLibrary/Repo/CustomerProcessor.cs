@@ -113,5 +113,28 @@ namespace ApiLibrary.Repo
                 }
             }
         }
+
+
+        public static async Task<List<CustomerAddress>> getCustomerAdresses(CustomerAddress customerAddress)
+        {
+            string url = "http://localhost:3000/customer_addresses/get_all_of_customer/" + customerAddress.customer_id;
+            List<CustomerAddress> customerAddressesList = new List<CustomerAddress>();
+            string serializedCustomerAddress = JsonConvert.SerializeObject(customerAddress);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedCustomerAddress, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonResult = await response.Content.ReadAsStringAsync();
+                    customerAddressesList = JsonConvert.DeserializeObject<List<CustomerAddress>>(jsonResult);
+                    return customerAddressesList;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
     }
 }

@@ -113,5 +113,29 @@ namespace ApiLibrary.Repo
                 }
             }
         }
+
+
+
+        public static async Task<List<OrderItem>> getOrderItems(OrderItem orderItem)
+        {
+            string url = "http://localhost:3000/order_items/get_from_order/" + orderItem.order_id;
+            List<OrderItem> orderItemsList = new List<OrderItem>();
+            string serializedOrderItem = JsonConvert.SerializeObject(orderItem);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedOrderItem, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonResult = await response.Content.ReadAsStringAsync();
+                    orderItemsList = JsonConvert.DeserializeObject<List<OrderItem>>(jsonResult);
+                    return orderItemsList;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
     }
 }

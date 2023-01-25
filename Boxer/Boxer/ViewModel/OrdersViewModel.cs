@@ -22,6 +22,10 @@ namespace Boxer.ViewModel
         private List<Order> _orders { get; set; }
         private Order order = null;
 
+        public BindingList<OrderItem> order_items { get; set; }
+        public List<OrderItem> _order_items { get; set; }
+        private OrderItem orderItem = new OrderItem();
+
         public ICommand NavigateBackCommand { get; }
         public ICommand NewOrder { get; }
         private ICommand _editOrder;
@@ -47,8 +51,16 @@ namespace Boxer.ViewModel
             {
                 _selectedOrder = value;
                 onPropertyChanged(nameof(SelectedOrder));
+
+                loadOrderItems();
             }
         }
+
+        private void loadOrderItems()
+        {
+
+        }
+
         public OrdersViewModel(INavigationService ordersMenuNavigationService, INavigationService addOrderNavigationService, ModalNavigationStore modalNavigationStore)
         {
             _navigationService = addOrderNavigationService;
@@ -60,6 +72,9 @@ namespace Boxer.ViewModel
             order = new Order();
             orders = new BindingList<Order>(OrderProcessor.getAllOrders(order).Result);
             _orders = new List<Order>(orders);
+
+            orderItem = new OrderItem();
+            order_items = new BindingList<OrderItem>();
 
             if (_orders.Count > 0)
             {

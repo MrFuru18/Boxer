@@ -82,7 +82,8 @@
                     Content="Edytuj" 
                     Command="{Binding EditOrder}"/>
 
-            <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="400" Margin="0,30,0,0"  ItemsSource="{Binding orders_items}">
+            <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="400" Margin="0,30,0,0"  
+                      ItemsSource="{Binding order_items}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">

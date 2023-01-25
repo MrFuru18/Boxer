@@ -128,7 +128,7 @@
                     </ComboBox>
                     
                     
-                    <GroupBox Margin="0,30,0,0" BorderThickness="0" Visibility="Collapsed">
+                    <GroupBox Margin="0,30,0,0" Visibility="Collapsed">
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel>
@@ -240,7 +240,7 @@
                     </GroupBox>
 
                     
-                    <GroupBox Margin="0,30,0,0" BorderThickness="0">
+                    <GroupBox Margin="0,30,0,0">
                         <StackPanel>
                             <!-- Order TextBox -->
                             <TextBlock Text="Zamówienie id"
@@ -285,7 +285,7 @@
                     </GroupBox>
 
 
-                    <GroupBox Margin="0,30,0,0" BorderThickness="0">
+                    <GroupBox Margin="0,30,0,0">
                         <StackPanel>
                             <!-- Supply TextBox -->
                             <TextBlock Text="Dostawa id"

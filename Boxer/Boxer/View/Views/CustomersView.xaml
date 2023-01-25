@@ -91,7 +91,8 @@
         </ListView>
 
 
-        <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="1400" Margin="0,30,0,0"  ItemsSource="{Binding customers_addresses}">
+        <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="1400" Margin="0,30,0,0"  
+                  ItemsSource="{Binding customer_addresses}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">
@@ -124,7 +125,7 @@
                             <GridViewColumnHeader Content="Region" CommandParameter="region"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding postal_Code}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding postal_code}">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Kod Pocztowy" CommandParameter="postal_code"/>
                         </GridViewColumn.Header>
