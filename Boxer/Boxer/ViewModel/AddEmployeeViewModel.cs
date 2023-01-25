@@ -19,6 +19,7 @@ namespace Boxer.ViewModel
     {
         public string HeaderText { get; set; }
 
+        Employee _employee = new Employee();
         public ICommand CancelCommand { get; }
         public ICommand AddEmployee { get; }
 
@@ -30,6 +31,8 @@ namespace Boxer.ViewModel
             {
                 _name = value;
                 onPropertyChanged(nameof(Name));
+
+                _employee.name = Name;
             }
         }
 
@@ -41,6 +44,8 @@ namespace Boxer.ViewModel
             {
                 _surname = value;
                 onPropertyChanged(nameof(Surname));
+
+                _employee.surname = Surname;
             }
         }
 
@@ -52,6 +57,8 @@ namespace Boxer.ViewModel
             {
                 _email = value;
                 onPropertyChanged(nameof(Email));
+
+                _employee.email = Email;
             }
         }
 
@@ -63,6 +70,8 @@ namespace Boxer.ViewModel
             {
                 _phone = value;
                 onPropertyChanged(nameof(Phone));
+
+                _employee.phone = Phone;
             }
         }
 
@@ -74,6 +83,8 @@ namespace Boxer.ViewModel
             {
                 _uid = value;
                 onPropertyChanged(nameof(Uid));
+
+                _employee.uid = Uid;
             }
         }
 
@@ -85,6 +96,8 @@ namespace Boxer.ViewModel
             {
                 _permission = value;
                 onPropertyChanged(nameof(Permission));
+
+                _employee.permissions = Permission.ToString();
             }
         }
 
@@ -95,11 +108,15 @@ namespace Boxer.ViewModel
             CancelCommand = new NavigateCommand(navigationService);
             AddEmployee = new NavigateCommand(navigationService);
 
+            _employee = new Employee();
+
             HeaderText = "Dodaj Pracownika";
 
             if (employee != null)
             {
                 HeaderText = "Edytuj Pracownika";
+
+                _employee = employee;
                 Name = employee.name;
                 Surname = employee.surname;
                 Email = employee.email;
