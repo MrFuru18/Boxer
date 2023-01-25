@@ -38,7 +38,6 @@ namespace Boxer.ViewModel
                     if (_customerAddress != null)
                     {
                         _customer_addresses.Add(_customerAddress);
-                        MessageBox.Show(_customer_addresses.Count().ToString());
                         refreshCustomerAdresses();
 
                         _customerAddress = new CustomerAddress();
