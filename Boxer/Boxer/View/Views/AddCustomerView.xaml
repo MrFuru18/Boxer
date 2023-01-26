@@ -196,7 +196,7 @@
                                         </GridViewColumn>
                                         <GridViewColumn Width="170" DisplayMemberBinding="{Binding address_line_1}">
                                             <GridViewColumn.Header>
-                                                <GridViewColumnHeader Content="Linia Adresowa 1" CommandParameter="name"/>
+                                                <GridViewColumnHeader Content="Linia Adresowa 1" CommandParameter="address_line_1"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
                                         <GridViewColumn Width="80" DisplayMemberBinding="{Binding postal_code}">

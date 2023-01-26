@@ -30,68 +30,74 @@
             <StackPanel Orientation="Horizontal">
 
                 <StackPanel Margin="0,0,40,0">
-                    <StackPanel Orientation="Horizontal">
+                    <GroupBox>
                         <StackPanel>
-                            <!-- Employee_id TextBox -->
-                            <TextBlock Text="Pracownik Id"
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <!-- Employee_id TextBox -->
+                                    <TextBlock Text="Pracownik Id"
                                        VerticalAlignment="Center"
                                        FontSize="20"
                                        Margin="0,0,0,5"/>
 
-                            <TextBox x:Name="Emplopyee_id_textbox"
+                                    <TextBox x:Name="Emplopyee_id_textbox"
                                      Padding="5"
                                      FontSize="20"
                                      Width="135"
                                      VerticalAlignment="Center"
-                                     Text="{Binding Employee_id}"/>
-                        </StackPanel>
-                        <StackPanel>
-                            <!-- SKU TextBox -->
-                            <TextBlock Text="Uid"
+                                     Text="{Binding EmployeeId}"/>
+                                </StackPanel>
+                                <StackPanel>
+                                    <!-- SKU TextBox -->
+                                    <TextBlock Text="Uid"
                                        VerticalAlignment="Center"
                                        FontSize="20"
                                        Margin="30,0,0,5"/>
 
-                            <TextBox x:Name="Employee_uid_textbox"
+                                    <TextBox x:Name="Employee_uid_textbox"
                                      Padding="5"
                                      FontSize="20"
                                      Width="135"
                                      Margin="30,0,0,0"
                                      VerticalAlignment="Center"
-                                     Text="{Binding uid}"/>
+                                     Text="{Binding Uid}"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <ListView Width="300" Height="80" Margin="0,10,0,0"  
+                                      ItemsSource="{Binding employees}">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Width="40" DisplayMemberBinding="{Binding id}">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="id" CommandParameter="id"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="40" DisplayMemberBinding="{Binding uid}">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="uid" CommandParameter="uid"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="80" DisplayMemberBinding="{Binding name}">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="Imię" CommandParameter="name"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="80" DisplayMemberBinding="{Binding surname}">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="Nazwisko" CommandParameter="surname"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="60" DisplayMemberBinding="{Binding availability}">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="Dostępność" CommandParameter="availability"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
                         </StackPanel>
-                    </StackPanel>
-                    <ListView Width="300" Height="80" Margin="0,10,0,0"  ItemsSource="{Binding employees}">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Width="40" DisplayMemberBinding="{Binding id}">
-                                    <GridViewColumn.Header>
-                                        <GridViewColumnHeader Content="id" CommandParameter="id"/>
-                                    </GridViewColumn.Header>
-                                </GridViewColumn>
-                                <GridViewColumn Width="40" DisplayMemberBinding="{Binding uid}">
-                                    <GridViewColumn.Header>
-                                        <GridViewColumnHeader Content="uid" CommandParameter="uid"/>
-                                    </GridViewColumn.Header>
-                                </GridViewColumn>
-                                <GridViewColumn Width="80" DisplayMemberBinding="{Binding name}">
-                                    <GridViewColumn.Header>
-                                        <GridViewColumnHeader Content="Imię" CommandParameter="name"/>
-                                    </GridViewColumn.Header>
-                                </GridViewColumn>
-                                <GridViewColumn Width="80" DisplayMemberBinding="{Binding surname}">
-                                    <GridViewColumn.Header>
-                                        <GridViewColumnHeader Content="Nazwisko" CommandParameter="surname"/>
-                                    </GridViewColumn.Header>
-                                </GridViewColumn>
-                                <GridViewColumn Width="60" DisplayMemberBinding="{Binding availability}">
-                                    <GridViewColumn.Header>
-                                        <GridViewColumnHeader Content="Dostępność" CommandParameter="availability"/>
-                                    </GridViewColumn.Header>
-                                </GridViewColumn>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                    </GroupBox>
+                    
 
                     <!-- Remarks TextBox -->
                     <TextBlock Text="Uwagi"
@@ -127,7 +133,7 @@
                         <ComboBoxItem Tag="relocation">Relokacja</ComboBoxItem>
                     </ComboBox>
                     
-                    
+                    <!-- RELOCATIONS -->
                     <GroupBox Margin="0,30,0,0" Visibility="Collapsed">
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">
@@ -143,7 +149,7 @@
                                              FontSize="20"
                                              Width="135"
                                              VerticalAlignment="Center"
-                                             Text="{Binding Product}"/>
+                                             Text="{Binding ProductId}"/>
                                 </StackPanel>
                                 <StackPanel>
                                     <!-- SKU TextBox -->
@@ -158,7 +164,7 @@
                                              Width="135"
                                              Margin="30,0,0,0"
                                              VerticalAlignment="Center"
-                                             Text="{Binding sku}"/>
+                                             Text="{Binding Sku}"/>
                                 </StackPanel>
                             </StackPanel>
 
@@ -197,7 +203,7 @@
                                              FontSize="20"
                                              Width="200"
                                              VerticalAlignment="Center"
-                                             Text="{Binding Product}"/>
+                                             Text="{Binding Quantity}"/>
                                 </StackPanel>
 
                                 <Button Content="+"
@@ -209,7 +215,7 @@
                                         Margin="30,0,0,0"/>
                             </StackPanel>
 
-                            <ListView Width="300" Height="80" Margin="0,10,0,0"  ItemsSource="{Binding employees}">
+                            <ListView Width="300" Height="80" Margin="0,10,0,0"  ItemsSource="{Binding products}">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn Width="50" DisplayMemberBinding="{Binding id}">
@@ -239,7 +245,8 @@
                         
                     </GroupBox>
 
-                    
+
+                    <!-- ORDERS -->
                     <GroupBox Margin="0,30,0,0">
                         <StackPanel>
                             <!-- Order TextBox -->
@@ -285,6 +292,7 @@
                     </GroupBox>
 
 
+                    <!-- SUPPLIES -->
                     <GroupBox Margin="0,30,0,0">
                         <StackPanel>
                             <!-- Supply TextBox -->
@@ -332,7 +340,7 @@
                     Content="Potwerdź"
                     FontSize="20"
                     Margin="0,30,0,0"
-                    Command="{Binding AddProduct}"/>
+                    Command="{Binding AddTask}"/>
 
         </StackPanel>
     </Grid>

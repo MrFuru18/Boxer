@@ -113,5 +113,27 @@ namespace ApiLibrary.Repo
                 }
             }
         }
+
+        public static async Task<List<Category>> getCategories(Category category)
+        {
+            string url = "http://localhost:3000/categories";
+            List<Category> categoriesList = new List<Category>();
+            string serializedCategory = JsonConvert.SerializeObject(category);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedCategory, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonResult = await response.Content.ReadAsStringAsync();
+                    categoriesList = JsonConvert.DeserializeObject<List<Category>>(jsonResult);
+                    return categoriesList;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
     }
 }
