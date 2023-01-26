@@ -21,12 +21,11 @@ namespace Boxer.ViewModel
         private Customer _customer = new Customer();
 
         public BindingList<CustomerAddress> customer_addresses { get; set; }
-        public List<CustomerAddress> _customer_addresses { get; set; }
+        private List<CustomerAddress> _customer_addresses { get; set; }
         private CustomerAddress _customerAddress = new CustomerAddress();
 
         public ICommand CancelCommand { get; }
         public ICommand AddCustomer { get; }
-        public ICommand EditCustomer { get; }
 
         private ICommand _addAddress;
         public ICommand AddAddress
@@ -239,7 +238,6 @@ namespace Boxer.ViewModel
         {
             CancelCommand = new NavigateCommand(navigationService);
             AddCustomer = new NavigateCommand(navigationService);
-            EditCustomer = new NavigateCommand(navigationService);
 
             _customer = new Customer();
 

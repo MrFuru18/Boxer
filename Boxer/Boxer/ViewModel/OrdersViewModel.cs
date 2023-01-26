@@ -58,7 +58,12 @@ namespace Boxer.ViewModel
 
         private void loadOrderItems()
         {
+            orderItem.order_id = SelectedOrder.id;
+            _order_items = new List<OrderItem>(OrderProcessor.getOrderItems(orderItem).Result);
 
+            order_items.Clear();
+            foreach (var item in _order_items)
+                order_items.Add(item);
         }
 
         public OrdersViewModel(INavigationService ordersMenuNavigationService, INavigationService addOrderNavigationService, ModalNavigationStore modalNavigationStore)
