@@ -24,9 +24,10 @@ namespace Boxer.Commands
         public override void Execute(object p)
         {
             string result = LocationProcessor.updateLocation(_location).Result;
-            MessageBox.Show(result);
-
-            _navigationService.Navigate();
+            if (result == "OK")
+                _navigationService.Navigate();
+            else
+                MessageBox.Show(result);
         }
     }
 }
