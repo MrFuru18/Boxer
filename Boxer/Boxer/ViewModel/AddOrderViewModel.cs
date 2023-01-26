@@ -15,7 +15,7 @@ namespace Boxer.ViewModel
 {
     class AddOrderViewModel : BaseViewModel
     {
-        private bool edit = false;
+        private bool isNotEdit = true;
         public string HeaderText { get; set; }
 
         private Order _order = new Order();
@@ -46,8 +46,8 @@ namespace Boxer.ViewModel
                         _orderItem = new OrderItem();
                         _orderItem.order_id = _order.id;
 
-                        ProductId = "";
-                        Quantity = "";
+                        ProductId = null;
+                        Quantity = null ;
                     }
 
                 }, p => true));
@@ -80,8 +80,7 @@ namespace Boxer.ViewModel
                 _customerAddressId = value;
                 onPropertyChanged(nameof(CustomerAddressId));
 
-                if (CustomerAddressId != "")
-                    _order.customer_address_id = int.Parse(CustomerAddressId);
+                _order.customer_address_id = Int32.TryParse(CustomerAddressId, out var tempVal) ? tempVal : (int?)null;
             }
         }
 
@@ -107,8 +106,7 @@ namespace Boxer.ViewModel
                 _productId = value;
                 onPropertyChanged(nameof(ProductId));
 
-                if (ProductId != "")
-                    _orderItem.product_id = int.Parse(ProductId.ToString());
+                _orderItem.product_id = Int32.TryParse(ProductId, out var tempVal) ? tempVal : (int?)null;
             }
         }
 
@@ -121,8 +119,7 @@ namespace Boxer.ViewModel
                 _quantity = value;
                 onPropertyChanged(nameof(Quantity));
 
-                if (Quantity != "")
-                    _orderItem.quantity = int.Parse(Quantity);
+                _orderItem.quantity = Int32.TryParse(Quantity, out var tempVal) ? tempVal : (int?)null;
             }
         }
 
@@ -173,7 +170,7 @@ namespace Boxer.ViewModel
             HeaderText = "Dodaj Zamówienie";
             if (order != null)
             {
-                edit = true;
+                isNotEdit = false;
                 HeaderText = "Edytuj Zamówienie";
 
                 _order = order;

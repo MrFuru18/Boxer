@@ -45,6 +45,8 @@ namespace Boxer.ViewModel
             {
                 _selectedProduct = value;
                 onPropertyChanged(nameof(SelectedProduct));
+
+
             }
         }
 

@@ -16,7 +16,7 @@ namespace Boxer.ViewModel
 {
     class AddTaskViewModel : BaseViewModel
     {
-        private bool edit = false;
+        private bool isNotEdit = true;
         public string HeaderText { get; set; }
 
         public bool TypeOrderChosen { get; set; }
@@ -50,9 +50,9 @@ namespace Boxer.ViewModel
                         _relocationItem = new RelocationItem();
                         _relocationItem.task_id = _task.id;
 
-                        InventoryId = "";
-                        LocationId = "";
-                        Quantity = "";
+                        InventoryId = null;
+                        LocationId = null;
+                        Quantity = null;
 
                     }
 
@@ -88,8 +88,7 @@ namespace Boxer.ViewModel
                 _employeeId = value;
                 onPropertyChanged(nameof(EmployeeId));
 
-                if (EmployeeId != "")
-                    _task.employee_id = int.Parse(EmployeeId);
+                _task.employee_id = Int32.TryParse(EmployeeId, out var tempVal) ? tempVal : (int?)null;
             }
         }
 
@@ -151,8 +150,7 @@ namespace Boxer.ViewModel
                 _inventoryId = value;
                 onPropertyChanged(nameof(InventoryId));
 
-                if (InventoryId != "")
-                    _relocationItem.inventory_id = int.Parse(InventoryId);
+                _relocationItem.inventory_id = Int32.TryParse(InventoryId, out var tempVal) ? tempVal : (int?)null;
             }
         }
 
@@ -165,8 +163,7 @@ namespace Boxer.ViewModel
                 _locationId = value;
                 onPropertyChanged(nameof(LocationId));
 
-                if (LocationId != "")
-                    _relocationItem.location_id = int.Parse(LocationId);
+                _relocationItem.location_id = Int32.TryParse(LocationId, out var tempVal) ? tempVal : (int?)null;
             }
         }
 
@@ -179,8 +176,7 @@ namespace Boxer.ViewModel
                 _quantity = value;
                 onPropertyChanged(nameof(Quantity));
 
-                if (Quantity != "")
-                    _relocationItem.quantity = int.Parse(Quantity);
+                _relocationItem.quantity = Int32.TryParse(Quantity, out var tempVal) ? tempVal : (int?)null;
             }
         }
 
@@ -237,7 +233,7 @@ namespace Boxer.ViewModel
             HeaderText = "Dodaj Zadanie";
             if (task != null)
             {
-                edit = true;
+                isNotEdit = false;
                 HeaderText = "Edytuj Zadanie";
 
                 _task = task;

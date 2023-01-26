@@ -53,7 +53,9 @@
         </StackPanel>
 
 
-        <ListView Grid.Row="1" Grid.Column="0" Width="1300" Margin="0,30,0,0"  ItemsSource="{Binding products}">
+        <ListView Grid.Row="1" Grid.Column="0" Width="1300" Margin="0,30,0,0"  
+                  ItemsSource="{Binding products}"
+                  SelectedItem="{Binding SelectedProduct}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">

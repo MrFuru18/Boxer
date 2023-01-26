@@ -15,7 +15,7 @@ namespace Boxer.ViewModel
 {
     class AddSupplyViewModel : BaseViewModel
     {
-        private bool edit = false;
+        private bool isNotEdit = true;
         public string HeaderText { get; set; }
         private Supply _supply = new Supply();
 
@@ -43,8 +43,8 @@ namespace Boxer.ViewModel
                         _supplyItem = new SupplyItem();
                         _supplyItem.supply_id = _supply.id;
 
-                        ProductId = "";
-                        Quantity = "";
+                        ProductId = null;
+                        Quantity = null;
                     }
 
                 }, p => true));
@@ -79,8 +79,20 @@ namespace Boxer.ViewModel
                 _productId = value;
                 onPropertyChanged(nameof(ProductId));
 
-                if (ProductId != "")
-                    _supplyItem.product_id = int.Parse(ProductId.ToString());
+                _supplyItem.product_id = Int32.TryParse(ProductId, out var tempVal) ? tempVal : (int?)null;
+            }
+        }
+
+        private string _locationId;
+        public string LocationId
+        {
+            get { return _locationId; }
+            set
+            {
+                _locationId = value;
+                onPropertyChanged(nameof(LocationId));
+
+                _supplyItem.location_id = Int32.TryParse(LocationId, out var tempVal) ? tempVal : (int?)null;
             }
         }
 
@@ -93,8 +105,7 @@ namespace Boxer.ViewModel
                 _quantity = value;
                 onPropertyChanged(nameof(Quantity));
 
-                if (Quantity != "")
-                    _supplyItem.quantity = int.Parse(Quantity);
+                _supplyItem.quantity = Int32.TryParse(Quantity, out var tempVal) ? tempVal : (int?)null;
             }
         }
 
@@ -119,6 +130,7 @@ namespace Boxer.ViewModel
                 Quantity = SelectedSupplyItem.quantity.ToString();
             }
         }
+
 
         private string _remarks;
         public string Remarks
@@ -156,7 +168,7 @@ namespace Boxer.ViewModel
             HeaderText = "Dodaj Dostawę";
             if (supply != null)
             {
-                edit = true;
+                isNotEdit = false;
                 HeaderText = "Edytuj Dostawę";
 
                 _supply = supply;

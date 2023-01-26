@@ -14,7 +14,7 @@ namespace Boxer.ViewModel
 {
     class AddProductViewModel : BaseViewModel
     {
-        private bool edit = false;
+        private bool isNotEdit = true;
         public string HeaderText { get; set; }
         private Product _product = new Product();
 
@@ -56,8 +56,7 @@ namespace Boxer.ViewModel
                 _manufacturerId = value;
                 onPropertyChanged(nameof(ManufacturerId));
 
-                if (ManufacturerId != "")
-                    _product.manufacturer_id = int.Parse(ManufacturerId);
+                _product.manufacturer_id = Int32.TryParse(ManufacturerId, out var tempVal) ? tempVal : (int?)null;
             }
         }
 
@@ -70,7 +69,7 @@ namespace Boxer.ViewModel
                 _weight = value;
                 onPropertyChanged(nameof(Weight));
 
-                _product.weight = float.Parse(Weight);
+                _product.weight = float.TryParse(Weight, out var tempVal) ? tempVal : (float?)null;
             }
         }
 
@@ -83,7 +82,7 @@ namespace Boxer.ViewModel
                 _value = value;
                 onPropertyChanged(nameof(Value));
 
-                _product.value = float.Parse(Value);
+                _product.value = float.TryParse(Value, out var tempVal) ? tempVal : (float?)null;
             }
         }
 
@@ -123,7 +122,7 @@ namespace Boxer.ViewModel
 
             if (product != null)
             {
-                edit = true;
+                isNotEdit = false;
                 HeaderText = "Edytuj Produkt";
 
                 _product = product;

@@ -16,7 +16,7 @@ namespace Boxer.ViewModel
 {
     class AddCustomerViewModel : BaseViewModel
     {
-        private bool edit = false;
+        private bool isNotEdit = true;
         public string HeaderText { get; set; }
 
         private Customer _customer = new Customer();
@@ -43,12 +43,12 @@ namespace Boxer.ViewModel
                         _customerAddress = new CustomerAddress();
                         _customerAddress.customer_id = _customer.id;
 
-                        AddressLine1 = "";
-                        AddressLine2 = "";
-                        City = "";
-                        Country = "";
-                        Region = "";
-                        PostalCode = "";
+                        AddressLine1 = null;
+                        AddressLine2 = null;
+                        City = null;
+                        Country = null;
+                        Region = null;
+                        PostalCode = null;
                     }
 
                 }, p => true));
@@ -249,7 +249,7 @@ namespace Boxer.ViewModel
             HeaderText = "Dodaj Klienta";
             if (customer != null)
             {
-                edit = true;
+                isNotEdit = false;
                 HeaderText = "Edytuj Klienta";
 
                 _customer = customer;
