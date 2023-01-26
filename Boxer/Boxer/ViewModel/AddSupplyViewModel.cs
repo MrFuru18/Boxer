@@ -15,6 +15,7 @@ namespace Boxer.ViewModel
 {
     class AddSupplyViewModel : BaseViewModel
     {
+        private bool edit = false;
         public string HeaderText { get; set; }
         private Supply _supply = new Supply();
 
@@ -155,6 +156,7 @@ namespace Boxer.ViewModel
             HeaderText = "Dodaj Dostawę";
             if (supply != null)
             {
+                edit = true;
                 HeaderText = "Edytuj Dostawę";
 
                 _supply = supply;

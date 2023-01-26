@@ -13,6 +13,7 @@ namespace Boxer.ViewModel
 {
     class AddInventoryViewModel : BaseViewModel
     {
+        private bool edit = false;
         public string HeaderText { get; set; }
 
         private Inventory _inventory = new Inventory();
@@ -83,6 +84,7 @@ namespace Boxer.ViewModel
             HeaderText = "Dodaj Do Stanów";
             if (inventory != null)
             {
+                edit = true;
                 HeaderText = "Edytuj Stany";
 
                 _inventory = inventory;

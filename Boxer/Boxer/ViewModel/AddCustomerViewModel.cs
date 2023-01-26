@@ -16,6 +16,7 @@ namespace Boxer.ViewModel
 {
     class AddCustomerViewModel : BaseViewModel
     {
+        private bool edit = false;
         public string HeaderText { get; set; }
 
         private Customer _customer = new Customer();
@@ -248,7 +249,9 @@ namespace Boxer.ViewModel
             HeaderText = "Dodaj Klienta";
             if (customer != null)
             {
+                edit = true;
                 HeaderText = "Edytuj Klienta";
+
                 _customer = customer;
                 Name = _customer.name;
                 Surname = _customer.surname;

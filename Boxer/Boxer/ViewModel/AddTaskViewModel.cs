@@ -16,6 +16,7 @@ namespace Boxer.ViewModel
 {
     class AddTaskViewModel : BaseViewModel
     {
+        private bool edit = false;
         public string HeaderText { get; set; }
 
         public bool TypeOrderChosen { get; set; }
@@ -234,7 +235,9 @@ namespace Boxer.ViewModel
             supplies = new BindingList<Supply>();
 
             HeaderText = "Dodaj Zadanie";
-            if (task != null){
+            if (task != null)
+            {
+                edit = true;
                 HeaderText = "Edytuj Zadanie";
 
                 _task = task;

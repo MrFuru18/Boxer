@@ -13,6 +13,7 @@ namespace Boxer.ViewModel
 {
     class AddManufacturerViewModel : BaseViewModel
     {
+        private bool edit = false;
         public string HeaderText { get; set; }
 
         private Manufacturer _manufacturer = new Manufacturer();
@@ -81,6 +82,7 @@ namespace Boxer.ViewModel
             HeaderText = "Dodaj Producenta";
             if(manufacturer != null)
             {
+                edit = true;
                 HeaderText = "Edytuj Producenta";
 
                 _manufacturer = manufacturer;

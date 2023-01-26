@@ -14,6 +14,7 @@ namespace Boxer.ViewModel
 {
     class AddLocationViewModel : BaseViewModel
     {
+        private bool edit = false;
         public string HeaderText { get; set; }
 
         private Location _location = new Location();
@@ -109,7 +110,9 @@ namespace Boxer.ViewModel
             HeaderText = "Dodaj Lokalizację";
             if (location != null)
             {
+                edit = true;
                 HeaderText = "Edytuj Lokalizację";
+
                 _location = location;
                 Sector = _location.sector;
                 Aisle = _location.aisle;

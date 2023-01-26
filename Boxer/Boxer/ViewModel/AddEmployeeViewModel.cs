@@ -17,6 +17,7 @@ namespace Boxer.ViewModel
 {
     class AddEmployeeViewModel : BaseViewModel
     {
+        private bool edit = false;
         public string HeaderText { get; set; }
 
         Employee _employee = new Employee();
@@ -114,6 +115,7 @@ namespace Boxer.ViewModel
 
             if (employee != null)
             {
+                edit = true;
                 HeaderText = "Edytuj Pracownika";
 
                 _employee = employee;

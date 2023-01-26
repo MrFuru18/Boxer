@@ -15,6 +15,7 @@ namespace Boxer.ViewModel
 {
     class AddOrderViewModel : BaseViewModel
     {
+        private bool edit = false;
         public string HeaderText { get; set; }
 
         private Order _order = new Order();
@@ -172,6 +173,7 @@ namespace Boxer.ViewModel
             HeaderText = "Dodaj Zamówienie";
             if (order != null)
             {
+                edit = true;
                 HeaderText = "Edytuj Zamówienie";
 
                 _order = order;

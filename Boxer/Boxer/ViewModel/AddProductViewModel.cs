@@ -14,6 +14,7 @@ namespace Boxer.ViewModel
 {
     class AddProductViewModel : BaseViewModel
     {
+        private bool edit = false;
         public string HeaderText { get; set; }
         private Product _product = new Product();
 
@@ -122,7 +123,9 @@ namespace Boxer.ViewModel
 
             if (product != null)
             {
+                edit = true;
                 HeaderText = "Edytuj Produkt";
+
                 _product = product;
                 Sku = _product.sku;
                 Name = _product.name;
