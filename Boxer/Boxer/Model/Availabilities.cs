@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Boxer.Model
 {
-    public enum Sizes
+    public enum Availabilities
     {
-        unassigned,
-        S,
-        M,
-        L
+        empty,
+        available,
+        occupied
     }
 }
