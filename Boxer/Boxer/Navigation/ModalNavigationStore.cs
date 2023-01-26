@@ -10,6 +10,7 @@ namespace Boxer.Navigation
     public class ModalNavigationStore : INavigationStore
     {
         public event Action CurrentViewModelChanged;
+        public event Action CurrentViewModelClosed;
 
         private BaseViewModel _currentViewModel;
         public BaseViewModel CurrentViewModel
@@ -28,6 +29,7 @@ namespace Boxer.Navigation
         public void Close()
         {
             CurrentViewModel = null;
+            CurrentViewModelClosed?.Invoke();
         }
 
         private void OnCurrentViewModelChanged()

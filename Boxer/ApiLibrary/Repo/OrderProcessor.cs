@@ -95,9 +95,9 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<string> deleteOrder(int id)
+        public static async Task<string> deleteOrder(Order order)
         {
-            string url = "http://localhost:3000/order/delete/" + id;
+            string url = "http://localhost:3000/order/delete/" + order.id;
             string result;
 
             using (HttpResponseMessage response = await ClientHttp.ApiClient.DeleteAsync(url).ConfigureAwait(false))

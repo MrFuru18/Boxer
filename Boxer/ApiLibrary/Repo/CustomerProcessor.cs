@@ -95,9 +95,9 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<string> deleteCustomer(int id)
+        public static async Task<string> deleteCustomer(Customer customer)
         {
-            string url = "http://localhost:3000/customer/delete/" + id;
+            string url = "http://localhost:3000/customer/delete/" + customer.id;
             string result;
 
             using (HttpResponseMessage response = await ClientHttp.ApiClient.DeleteAsync(url).ConfigureAwait(false))
@@ -129,6 +129,46 @@ namespace ApiLibrary.Repo
                     string jsonResult = await response.Content.ReadAsStringAsync();
                     customerAddressesList = JsonConvert.DeserializeObject<List<CustomerAddress>>(jsonResult);
                     return customerAddressesList;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<string> addCustomerAddress(CustomerAddress customerAddress)
+        {
+            string url = "http://localhost:3000/customer_address/add";
+            string result;
+            string serializedCustomerAddress = JsonConvert.SerializeObject(customerAddress);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedCustomerAddress, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    result = await response.Content.ReadAsStringAsync();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<string> deleteCustomerAddress(CustomerAddress customerAddress)
+        {
+            string url = "http://localhost:3000/customer_address/delete/" + customerAddress.id;
+            string result;
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient.DeleteAsync(url).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    result = await response.Content.ReadAsStringAsync();
+                    return result;
                 }
                 else
                 {

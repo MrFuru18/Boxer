@@ -32,10 +32,9 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<Inventory> getInventory(int id)
+        public static async Task<Inventory> getInventory(Inventory inventory)
         {
-            string url = "http://localhost:3000/inventory/get/" + id;
-            Inventory inventory = new Inventory();
+            string url = "http://localhost:3000/inventory/get/" + inventory.id;
 
             using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
             {
@@ -94,9 +93,9 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<string> deleteInventory(int id)
+        public static async Task<string> deleteInventory(Inventory inventory)
         {
-            string url = "http://localhost:3000/inventory/delete/" + id;
+            string url = "http://localhost:3000/inventory/delete/" + inventory.id;
             string result;
 
             using (HttpResponseMessage response = await ClientHttp.ApiClient.DeleteAsync(url).ConfigureAwait(false))

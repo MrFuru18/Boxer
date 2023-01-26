@@ -3,8 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Boxer.View.Views"
+             xmlns:local="clr-namespace:Boxer.View.Views"             
+             xmlns:model="clr-namespace:Boxer.Model"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" >
+
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="taskTypesFromEnum"
+                            MethodName="GetValues" 
+                            ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="model:TaskTypes"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
+    
     <Grid Background="White">
         <StackPanel VerticalAlignment="Center">
 
@@ -30,68 +44,74 @@
             <StackPanel Orientation="Horizontal">
 
                 <StackPanel Margin="0,0,40,0">
-                    <StackPanel Orientation="Horizontal">
+                    <GroupBox>
                         <StackPanel>
-                            <!-- Employee_id TextBox -->
-                            <TextBlock Text="Pracownik Id"
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <!-- Employee_id TextBox -->
+                                    <TextBlock Text="Pracownik Id"
                                        VerticalAlignment="Center"
                                        FontSize="20"
                                        Margin="0,0,0,5"/>
 
-                            <TextBox x:Name="Emplopyee_id_textbox"
+                                    <TextBox x:Name="Emplopyee_id_textbox"
                                      Padding="5"
                                      FontSize="20"
                                      Width="135"
                                      VerticalAlignment="Center"
-                                     Text="{Binding Employee_id}"/>
-                        </StackPanel>
-                        <StackPanel>
-                            <!-- SKU TextBox -->
-                            <TextBlock Text="Uid"
+                                     Text="{Binding EmployeeId}"/>
+                                </StackPanel>
+                                <StackPanel>
+                                    <!-- SKU TextBox -->
+                                    <TextBlock Text="Uid"
                                        VerticalAlignment="Center"
                                        FontSize="20"
                                        Margin="30,0,0,5"/>
 
-                            <TextBox x:Name="Employee_uid_textbox"
+                                    <TextBox x:Name="Employee_uid_textbox"
                                      Padding="5"
                                      FontSize="20"
                                      Width="135"
                                      Margin="30,0,0,0"
                                      VerticalAlignment="Center"
-                                     Text="{Binding uid}"/>
+                                     Text="{Binding Uid}"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <ListView Width="300" Height="80" Margin="0,10,0,0"  
+                                      ItemsSource="{Binding employees}">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Width="40" DisplayMemberBinding="{Binding id}">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="id" CommandParameter="id"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="40" DisplayMemberBinding="{Binding uid}">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="uid" CommandParameter="uid"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="80" DisplayMemberBinding="{Binding name}">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="Imię" CommandParameter="name"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="80" DisplayMemberBinding="{Binding surname}">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="Nazwisko" CommandParameter="surname"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="60" DisplayMemberBinding="{Binding availability}">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="Dostępność" CommandParameter="availability"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
                         </StackPanel>
-                    </StackPanel>
-                    <ListView Width="300" Height="80" Margin="0,10,0,0"  ItemsSource="{Binding employees}">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Width="40" DisplayMemberBinding="{Binding id}">
-                                    <GridViewColumn.Header>
-                                        <GridViewColumnHeader Content="id" CommandParameter="id"/>
-                                    </GridViewColumn.Header>
-                                </GridViewColumn>
-                                <GridViewColumn Width="40" DisplayMemberBinding="{Binding uid}">
-                                    <GridViewColumn.Header>
-                                        <GridViewColumnHeader Content="uid" CommandParameter="uid"/>
-                                    </GridViewColumn.Header>
-                                </GridViewColumn>
-                                <GridViewColumn Width="80" DisplayMemberBinding="{Binding name}">
-                                    <GridViewColumn.Header>
-                                        <GridViewColumnHeader Content="Imię" CommandParameter="name"/>
-                                    </GridViewColumn.Header>
-                                </GridViewColumn>
-                                <GridViewColumn Width="80" DisplayMemberBinding="{Binding surname}">
-                                    <GridViewColumn.Header>
-                                        <GridViewColumnHeader Content="Nazwisko" CommandParameter="surname"/>
-                                    </GridViewColumn.Header>
-                                </GridViewColumn>
-                                <GridViewColumn Width="60" DisplayMemberBinding="{Binding availability}">
-                                    <GridViewColumn.Header>
-                                        <GridViewColumnHeader Content="Dostępność" CommandParameter="availability"/>
-                                    </GridViewColumn.Header>
-                                </GridViewColumn>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                    </GroupBox>
+                    
 
                     <!-- Remarks TextBox -->
                     <TextBlock Text="Uwagi"
@@ -120,71 +140,77 @@
                       FontSize="20"
                       Width="300"
                       VerticalAlignment="Center"
-                      SelectedItem="{Binding Type}"
-                      >
-                        <ComboBoxItem Tag="order" IsSelected="True">Zamówienie</ComboBoxItem>
-                        <ComboBoxItem Tag="supply">Dostawa</ComboBoxItem>
-                        <ComboBoxItem Tag="relocation">Relokacja</ComboBoxItem>
+                      ItemsSource="{Binding Source={StaticResource taskTypesFromEnum}}"
+                      SelectedItem="{Binding TaskType}">
                     </ComboBox>
                     
-                    
-                    <GroupBox Margin="0,30,0,0" Visibility="Collapsed">
+                    <!-- RELOCATIONS -->
+                    <GroupBox Margin="0,30,0,0" Visibility="{Binding TypeRelocationChosen, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <StackPanel>
-                                    <!-- Product_id TextBox -->
-                                    <TextBlock Text="Produkt Id"
-                                               VerticalAlignment="Center"
-                                               FontSize="20"
-                                               Margin="0,0,0,5"/>
+                            <!-- Location TextBox -->
+                            <TextBlock Text="Lokalizacja id"
+                       VerticalAlignment="Center"
+                       FontSize="20"
+                       Margin="0,0,0,5"
+                               HorizontalAlignment="Center"
+                               Width="300"/>
 
-                                    <TextBox x:Name="Product_id_textbox"
-                                             Padding="5"
-                                             FontSize="20"
-                                             Width="135"
-                                             VerticalAlignment="Center"
-                                             Text="{Binding Product}"/>
-                                </StackPanel>
-                                <StackPanel>
-                                    <!-- SKU TextBox -->
-                                    <TextBlock Text="SKU"
-                                               VerticalAlignment="Center"
-                                               FontSize="20"
-                                               Margin="30,0,0,5"/>
+                            <TextBox x:Name="Location_id_textbox"
+                     Padding="5"
+                     FontSize="20"
+                     Width="300"
+                     VerticalAlignment="Center"
+                     Text="{Binding LocationId}"/>
 
-                                    <TextBox x:Name="sku_textbox"
-                                             Padding="5"
-                                             FontSize="20"
-                                             Width="135"
-                                             Margin="30,0,0,0"
-                                             VerticalAlignment="Center"
-                                             Text="{Binding sku}"/>
-                                </StackPanel>
-                            </StackPanel>
-
-                            <ListView Width="300" Height="80" Margin="0,10,0,0"  ItemsSource="{Binding products}">
+                            <ListView Width="350" Height="80" Margin="0,10,0,0"  
+                                      ItemsSource="{Binding locations}">
                                 <ListView.View>
                                     <GridView>
-                                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding id}">
+                                        <GridViewColumn Width="40" DisplayMemberBinding="{Binding id}">
                                             <GridViewColumn.Header>
                                                 <GridViewColumnHeader Content="id" CommandParameter="id"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding sku}">
+                                        <GridViewColumn Width="40" DisplayMemberBinding="{Binding sector}">
                                             <GridViewColumn.Header>
-                                                <GridViewColumnHeader Content="sku" CommandParameter="sku"/>
+                                                <GridViewColumnHeader Content="Sektor" CommandParameter="sector"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding name}">
+                                        <GridViewColumn Width="40" DisplayMemberBinding="{Binding aisle}">
                                             <GridViewColumn.Header>
-                                                <GridViewColumnHeader Content="Produkt" CommandParameter="name"/>
+                                                <GridViewColumnHeader Content="Alejka" CommandParameter="aisle"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="40" DisplayMemberBinding="{Binding unit}">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="Regał" CommandParameter="unit"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="40" DisplayMemberBinding="{Binding level}">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="Poziom" CommandParameter="level"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="40" DisplayMemberBinding="{Binding position}">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="Miejsce" CommandParameter="position"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="40" DisplayMemberBinding="{Binding size}">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="Rozmiar" CommandParameter="size"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="70" DisplayMemberBinding="{Binding availability}">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="Dostępność" CommandParameter="availability"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
                                     </GridView>
                                 </ListView.View>
                             </ListView>
 
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <StackPanel>
                                     <!-- Quantity TextBox -->
                                     <TextBlock Text="Ilość"
@@ -197,7 +223,7 @@
                                              FontSize="20"
                                              Width="200"
                                              VerticalAlignment="Center"
-                                             Text="{Binding Product}"/>
+                                             Text="{Binding Quantity}"/>
                                 </StackPanel>
 
                                 <Button Content="+"
@@ -206,10 +232,21 @@
                                         FontSize="20"
                                         Width="40"
                                         Height="40"
-                                        Margin="30,0,0,0"/>
+                                        Margin="10,0,0,0"
+                                        Command="{Binding AddItem}"/>
+                                 <Button Content="-"
+                                        VerticalAlignment="Bottom"
+                                        Padding="5"
+                                        FontSize="20"
+                                        Width="40"
+                                        Height="40"
+                                        Margin="10,0,0,0"
+                                        Command="{Binding DeleteItem}"/>
                             </StackPanel>
 
-                            <ListView Width="300" Height="80" Margin="0,10,0,0"  ItemsSource="{Binding employees}">
+                            <ListView Width="300" Height="80" Margin="0,10,0,0"  
+                                      ItemsSource="{Binding relocation_items}"
+                                      SelectedItem="{Binding SelectedRelocationItem}">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn Width="50" DisplayMemberBinding="{Binding id}">
@@ -217,14 +254,14 @@
                                                 <GridViewColumnHeader Content="id" CommandParameter="id"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding sku}">
+                                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding inventory_id}">
                                             <GridViewColumn.Header>
-                                                <GridViewColumnHeader Content="sku" CommandParameter="sku"/>
+                                                <GridViewColumnHeader Content="Pozycja id" CommandParameter="inventory_id"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding name}">
+                                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding location_id}">
                                             <GridViewColumn.Header>
-                                                <GridViewColumnHeader Content="Produkt" CommandParameter="name"/>
+                                                <GridViewColumnHeader Content="Nowa Lok" CommandParameter="location_id"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
                                         <GridViewColumn Width="50" DisplayMemberBinding="{Binding quantity}">
@@ -236,11 +273,11 @@
                                 </ListView.View>
                             </ListView>
                         </StackPanel>
-                        
                     </GroupBox>
 
-                    
-                    <GroupBox Margin="0,30,0,0">
+
+                    <!-- ORDERS -->
+                    <GroupBox Margin="0,30,0,0" Visibility="{Binding TypeOrderChosen, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <StackPanel>
                             <!-- Order TextBox -->
                             <TextBlock Text="Zamówienie id"
@@ -285,7 +322,8 @@
                     </GroupBox>
 
 
-                    <GroupBox Margin="0,30,0,0">
+                    <!-- SUPPLIES -->
+                    <GroupBox Margin="0,30,0,0" Visibility="{Binding TypeSupplyChosen, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <StackPanel>
                             <!-- Supply TextBox -->
                             <TextBlock Text="Dostawa id"
@@ -332,7 +370,7 @@
                     Content="Potwerdź"
                     FontSize="20"
                     Margin="0,30,0,0"
-                    Command="{Binding AddProduct}"/>
+                    Command="{Binding AddTask}"/>
 
         </StackPanel>
     </Grid>

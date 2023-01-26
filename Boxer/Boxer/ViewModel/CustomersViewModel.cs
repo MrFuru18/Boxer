@@ -76,6 +76,8 @@ namespace Boxer.ViewModel
             NavigateBackCommand = new NavigateCommand(ordersMenuNavigationService);
             NewCustomer = new NavigateCommand(addCustomerNavigationService);
 
+            _modalNavigationStore.CurrentViewModelClosed += OnCurrentModalViewModelClosed;
+
             customer = new Customer();
             customers = new BindingList<Customer>(CustomerProcessor.getAllCustomers(customer).Result);
             _customers = new List<Customer>(customers);
@@ -89,5 +91,10 @@ namespace Boxer.ViewModel
             }
 
         }
+        private void OnCurrentModalViewModelClosed()
+        {
+            //refresh the listview
+        }
+
     }
 }

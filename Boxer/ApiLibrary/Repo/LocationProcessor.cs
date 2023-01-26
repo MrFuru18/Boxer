@@ -117,9 +117,9 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<string> deleteLocation(int id)
+        public static async Task<string> deleteLocation(Location location)
         {
-            string url = "http://localhost:3000/location/delete/" + id;
+            string url = "http://localhost:3000/location/delete/" + location.id;
             string result;
 
             using (HttpResponseMessage response = await ClientHttp.ApiClient.DeleteAsync(url).ConfigureAwait(false))

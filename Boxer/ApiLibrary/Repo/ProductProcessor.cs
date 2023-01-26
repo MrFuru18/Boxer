@@ -95,9 +95,9 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<string> deleteProduct(int id)
+        public static async Task<string> deleteProduct(Product product)
         {
-            string url = "http://localhost:3000/product/delete/" + id;
+            string url = "http://localhost:3000/product/delete/" + product.id;
             string result;
 
             using (HttpResponseMessage response = await ClientHttp.ApiClient.DeleteAsync(url).ConfigureAwait(false))
@@ -106,6 +106,28 @@ namespace ApiLibrary.Repo
                 {
                     result = await response.Content.ReadAsStringAsync();
                     return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<List<Category>> getCategories(Category category)
+        {
+            string url = "http://localhost:3000/categories";
+            List<Category> categoriesList = new List<Category>();
+            string serializedCategory = JsonConvert.SerializeObject(category);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedCategory, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonResult = await response.Content.ReadAsStringAsync();
+                    categoriesList = JsonConvert.DeserializeObject<List<Category>>(jsonResult);
+                    return categoriesList;
                 }
                 else
                 {
