@@ -45,8 +45,6 @@ namespace Boxer.ViewModel
             {
                 _selectedProduct = value;
                 onPropertyChanged(nameof(SelectedProduct));
-
-
             }
         }
 
@@ -56,12 +54,28 @@ namespace Boxer.ViewModel
             _navigationService = addProductNavigationService;
             _modalNavigationStore = modalNavigationStore;
 
+            _modalNavigationStore.CurrentViewModelClosed += OnCurrentModalViewModelClosed;
+
             NavigateBackCommand = new NavigateCommand(suppliesMenuNavigationService);
             NewProduct = new NavigateCommand(addProductNavigationService);
 
             product = new Product();
             products = new BindingList<Product>(ProductProcessor.getAllProducts(product).Result);
             _products = new List<Product>(products);
+
+            if (_products.Count > 0)
+            {
+                SelectedProduct = _products[0];
+            }
+        }
+
+        private void OnCurrentModalViewModelClosed()
+        {
+            _products = new List<Product>(ProductProcessor.getAllProducts(product).Result);
+
+            products.Clear();
+            foreach (var prod in _products)
+                products.Add(prod);
 
             if (_products.Count > 0)
             {

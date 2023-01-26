@@ -79,7 +79,10 @@ namespace Boxer.ViewModel
             foreach (var loc in _locations)
                 locations.Add(loc);
 
-            SelectedLocation = locations.Last();
+            if (_locations.Count > 0)
+            {
+                SelectedLocation = _locations[0];
+            }
         }
     }
 }

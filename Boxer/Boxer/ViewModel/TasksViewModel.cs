@@ -53,13 +53,30 @@ namespace Boxer.ViewModel
         {
             _navigationService = addTaskNavigationService;
             _modalNavigationStore = modalNavigationStore;
-
+            
+            _modalNavigationStore.CurrentViewModelClosed += OnCurrentModalViewModelClosed;
+            
             NavigateBackCommand = new NavigateCommand(tasksMenuNavigationService);
             NewTask = new NavigateCommand(addTaskNavigationService);
 
             task = new Tasks();
             tasks = new BindingList<Tasks>(TaskProcessor.getAllTasks(task).Result);
             _tasks = new List<Tasks>(tasks);
+
+            if (_tasks.Count > 0)
+            {
+                SelectedTask = _tasks[0];
+            }
+        }
+
+        
+        private void OnCurrentModalViewModelClosed()
+        {
+            _tasks = new List<Tasks>(TaskProcessor.getAllTasks(task).Result);
+
+            tasks.Clear();
+            foreach (var tas in _tasks)
+                tasks.Add(tas);
 
             if (_tasks.Count > 0)
             {

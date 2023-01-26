@@ -54,13 +54,30 @@ namespace Boxer.ViewModel
         {
             _navigationService = addManufacturerNavigationService;
             _modalNavigationStore = modalNavigationStore;
-
+            
+            _modalNavigationStore.CurrentViewModelClosed += OnCurrentModalViewModelClosed;
+            
             NavigateBackCommand = new NavigateCommand(suppliesMenuNavigationService);
             NewManufacturer = new NavigateCommand(addManufacturerNavigationService);
 
             manufacturer = new Manufacturer();
             manufacturers = new BindingList<Manufacturer>(ManufacturerProcessor.getAllManufacturers(manufacturer).Result);
             _manufacturers = new List<Manufacturer>(manufacturers);
+
+            if (_manufacturers.Count > 0)
+            {
+                SelectedManufacturer = _manufacturers[0];
+            }
+        }
+
+        
+        private void OnCurrentModalViewModelClosed()
+        {
+            _manufacturers = new List<Manufacturer>(ManufacturerProcessor.getAllManufacturers(manufacturer).Result);
+
+            manufacturers.Clear();
+            foreach (var manu in _manufacturers)
+                manufacturers.Add(manu);
 
             if (_manufacturers.Count > 0)
             {
