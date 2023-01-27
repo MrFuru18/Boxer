@@ -37,13 +37,13 @@ namespace Boxer.ViewModel
                 {
                     if (isNotEdit)
                     {
-                        AddCustomerCommand addCustomerCommand = new AddCustomerCommand(_navigationService, _customer, _customer_addresses);
-                        addCustomerCommand.Execute(true);
+                        AddCustomerCommand addCommand = new AddCustomerCommand(_navigationService, _customer, _customer_addresses);
+                        addCommand.Execute(true);
                     }
                     else
                     {
-                        EditCustomerCommand editCustomerCommand = new EditCustomerCommand(_navigationService, _customer, _customer_addresses);
-                        editCustomerCommand.Execute(true);
+                        EditCustomerCommand editCommand = new EditCustomerCommand(_navigationService, _customer, _customer_addresses);
+                        editCommand.Execute(true);
                     }
 
 

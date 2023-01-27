@@ -32,13 +32,13 @@ namespace Boxer.ViewModel
                 {
                     if (isNotEdit)
                     {
-                        AddLocationCommand addLocationCommand = new AddLocationCommand(_navigationService, _location);
-                        addLocationCommand.Execute(true);
+                        AddLocationCommand addCommand = new AddLocationCommand(_navigationService, _location);
+                        addCommand.Execute(true);
                     }
                     else
                     {
-                        EditLocationCommand editLocationCommand = new EditLocationCommand(_navigationService, _location);
-                        editLocationCommand.Execute(true);
+                        EditLocationCommand editCommand = new EditLocationCommand(_navigationService, _location);
+                        editCommand.Execute(true);
                     }
                         
 
