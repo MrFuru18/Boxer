@@ -86,6 +86,7 @@
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\AccountStore.cs" />
     <Compile Include="Model\Availabilities.cs" />
+    <Compile Include="Model\CustomerAddressNoId.cs" />
     <Compile Include="Model\ObjectComparerUtility.cs" />
     <Compile Include="Model\Permissions.cs" />
     <Compile Include="Model\Sizes.cs" />

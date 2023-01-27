@@ -52,8 +52,9 @@ namespace Boxer.ViewModel
             {
                 _selectedCustomer = value;
                 onPropertyChanged(nameof(SelectedCustomer));
-
-                loadCustomerAddresses();
+                
+                if (SelectedCustomer != null)
+                    loadCustomerAddresses();
             }
         }
 

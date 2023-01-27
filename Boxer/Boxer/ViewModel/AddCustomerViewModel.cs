@@ -16,6 +16,7 @@ namespace Boxer.ViewModel
 {
     class AddCustomerViewModel : BaseViewModel
     {
+        private readonly INavigationService _navigationService;
         private bool isNotEdit = true;
         public string HeaderText { get; set; }
 
@@ -26,8 +27,30 @@ namespace Boxer.ViewModel
         private CustomerAddress _customerAddress = new CustomerAddress();
 
         public ICommand CancelCommand { get; }
-        public ICommand AddCustomer { get; }
 
+        private ICommand _addCustomer;
+        public ICommand AddCustomer
+        {
+            get
+            {
+                return _addCustomer ?? (_addCustomer = new RelayCommand((p) =>
+                {
+                    if (isNotEdit)
+                    {
+                        AddCustomerCommand addCustomerCommand = new AddCustomerCommand(_navigationService, _customer, _customer_addresses);
+                        addCustomerCommand.Execute(true);
+                    }
+                    else
+                    {
+                        EditCustomerCommand editCustomerCommand = new EditCustomerCommand(_navigationService, _customer, _customer_addresses);
+                        editCustomerCommand.Execute(true);
+                    }
+
+
+                }, p => true));
+
+            }
+        }
         private ICommand _addAddress;
         public ICommand AddAddress
         {
@@ -221,6 +244,7 @@ namespace Boxer.ViewModel
             {
                 AddressLine1 = SelectedCustomerAddress.address_line_1;
                 AddressLine2 = SelectedCustomerAddress.address_line_2;
+                City = SelectedCustomerAddress.city;
                 Country = SelectedCustomerAddress.country;
                 Region = SelectedCustomerAddress.region;
                 PostalCode = SelectedCustomerAddress.postal_code;
@@ -237,8 +261,8 @@ namespace Boxer.ViewModel
 
         public AddCustomerViewModel(INavigationService navigationService, Customer customer)
         {
+            _navigationService = navigationService;
             CancelCommand = new NavigateCommand(navigationService);
-            AddCustomer = new NavigateCommand(navigationService);
 
             _customer = new Customer();
 

@@ -16,5 +16,12 @@ namespace Boxer.Model
 
             return obj1Serialized == obj2Serialized;
         }
+
+        public static U Convert<T, U>(T obj1)
+        {
+            U obj2 = JsonConvert.DeserializeObject<U>(JsonConvert.SerializeObject(obj1));
+
+            return obj2;
+        }
     }
 }
