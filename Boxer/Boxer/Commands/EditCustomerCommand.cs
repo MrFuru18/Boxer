@@ -38,7 +38,6 @@ namespace Boxer.Commands
                 deleteAddresses();
 
                 _navigationService.Navigate();
-                
             }
             else
                 MessageBox.Show(result);
@@ -78,7 +77,8 @@ namespace Boxer.Commands
             foreach (var address in _toAddCustomerAddresses)
             {
                 string result = CustomerProcessor.addCustomerAddress(address).Result;
-                MessageBox.Show(result);
+                if (result != "Created")
+                    MessageBox.Show(result);
             }
         }
 
@@ -87,7 +87,8 @@ namespace Boxer.Commands
             foreach (var address in _toDeleteCustomerAddresses)
             {
                 string result = CustomerProcessor.deleteCustomerAddress(address).Result;
-                MessageBox.Show(result);
+                if (result != "OK")
+                    MessageBox.Show(result);
             }
         }
     }

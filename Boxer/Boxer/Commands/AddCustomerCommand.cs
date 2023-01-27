@@ -29,6 +29,7 @@ namespace Boxer.Commands
             string result = CustomerProcessor.addCustomer(_customer).Result;
             if (result == "Created")
             {
+                addAddresses();
 
                 _navigationService.Navigate();
             }
@@ -38,13 +39,13 @@ namespace Boxer.Commands
 
         private void addAddresses()
         {
+            Customer cust = CustomerProcessor.getAllCustomers(new Customer()).Result.Last();
             foreach (var address in _customerAddresses)
             {
-                string result = CustomerProcessor.addCustomer(_customer).Result;
+                address.customer_id = cust.id;
+                string result = CustomerProcessor.addCustomerAddress(address).Result;
                 if (result != "Created")
-                {
                     MessageBox.Show(result);
-                }
             }
         }
     }
