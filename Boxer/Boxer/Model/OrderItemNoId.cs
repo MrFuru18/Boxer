@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace ApiLibrary.Model
+namespace Boxer.Model
 {
-    public class SupplyItem
+    public class OrderItemNoId
     {
-        public int id { get; set; }
-        public int supply_id { get; set; }
+        public int order_id { get; set; }
         public int? product_id { get; set; }
         public int? quantity { get; set; }
-        public int? location_id { get; set; }
         public int? current_quantity { get; set; }
     }
 }

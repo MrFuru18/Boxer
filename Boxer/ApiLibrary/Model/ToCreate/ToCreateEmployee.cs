@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ApiLibrary.Model.Account
+namespace ApiLibrary.Model.ToCreate
 {
     public class ToCreateEmployee
     {

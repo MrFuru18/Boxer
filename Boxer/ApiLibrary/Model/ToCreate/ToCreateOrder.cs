@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ApiLibrary.Model
+namespace ApiLibrary.Model.ToCreate
 {
-    public class Order
+    public class ToCreateOrder
     {
         public int id { get; set; }
         public int? customer_address_id { get; set; }
         public string remarks { get; set; }
-        public DateTime? time { get; set; }
     }
 }

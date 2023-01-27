@@ -10,5 +10,6 @@ namespace ApiLibrary.Model
         public int? inventory_id { get; set; }
         public int? location_id { get; set; }
         public int? quantity { get; set; }
+        public int? current_quantity { get; set; }
     }
 }

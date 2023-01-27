@@ -15,6 +15,7 @@ namespace Boxer.ViewModel
 {
     class AddOrderViewModel : BaseViewModel
     {
+        private readonly INavigationService _navigationService;
         private bool isNotEdit = true;
         public string HeaderText { get; set; }
 
@@ -29,7 +30,30 @@ namespace Boxer.ViewModel
         private Product _product = new Product();
 
         public ICommand CancelCommand { get; }
-        public ICommand AddOrder { get; }
+
+        private ICommand _addOrder;
+        public ICommand AddOrder
+        {
+            get
+            {
+                return _addOrder ?? (_addOrder = new RelayCommand((p) =>
+                {
+                    if (isNotEdit)
+                    {
+                        AddOrderCommand addCommand = new AddOrderCommand(_navigationService, _order, _order_items);
+                        addCommand.Execute(true);
+                    }
+                    else
+                    {
+                        EditOrderCommand editCommand = new EditOrderCommand(_navigationService, _order, _order_items);
+                        editCommand.Execute(true);
+                    }
+
+
+                }, p => true));
+
+            }
+        }
 
         private ICommand _addItem;
         public ICommand AddItem
@@ -154,8 +178,9 @@ namespace Boxer.ViewModel
 
         public AddOrderViewModel(INavigationService navigationService, Order order)
         {
+            _navigationService = navigationService;
+
             CancelCommand = new NavigateCommand(navigationService);
-            AddOrder = new NavigateCommand(navigationService);
 
             _order = new Order();
 
