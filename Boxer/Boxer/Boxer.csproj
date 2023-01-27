@@ -79,11 +79,13 @@
     <Compile Include="Commands\AddEmployeeCommand.cs" />
     <Compile Include="Commands\AddInventoryCommand.cs" />
     <Compile Include="Commands\AddLocationCommand.cs" />
+    <Compile Include="Commands\AddManufacturerCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\EditCustomerCommand.cs" />
     <Compile Include="Commands\EditEmployeeCommand.cs" />
     <Compile Include="Commands\EditInventoryCommand.cs" />
     <Compile Include="Commands\EditLocationCommand.cs" />
+    <Compile Include="Commands\EditManufacturerCommand.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Commands\LogoutCommand.cs" />
     <Compile Include="Commands\NavigateCommand.cs" />

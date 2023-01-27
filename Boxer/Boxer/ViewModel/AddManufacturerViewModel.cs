@@ -13,13 +13,37 @@ namespace Boxer.ViewModel
 {
     class AddManufacturerViewModel : BaseViewModel
     {
+        private readonly INavigationService _navigationService;
         private bool isNotEdit = true;
         public string HeaderText { get; set; }
 
         private Manufacturer _manufacturer = new Manufacturer();
 
         public ICommand CancelCommand { get; }
-        public ICommand AddManufacturer { get; }
+
+        private ICommand _addManufacturer;
+        public ICommand AddManufacturer
+        {
+            get
+            {
+                return _addManufacturer ?? (_addManufacturer = new RelayCommand((p) =>
+                {
+                    if (isNotEdit)
+                    {
+                        AddManufacturerCommand addCommand = new AddManufacturerCommand(_navigationService, _manufacturer);
+                        addCommand.Execute(true);
+                    }
+                    else
+                    {
+                        EditManufacturerCommand editCommand = new EditManufacturerCommand(_navigationService, _manufacturer);
+                        editCommand.Execute(true);
+                    }
+
+
+                }, p => true));
+
+            }
+        }
 
         private string _name;
         public string Name
@@ -74,8 +98,8 @@ namespace Boxer.ViewModel
 
         public AddManufacturerViewModel(INavigationService navigationService, Manufacturer manufacturer)
         {
+            _navigationService = navigationService;
             CancelCommand = new NavigateCommand(navigationService);
-            AddManufacturer = new NavigateCommand(navigationService);
 
             _manufacturer = new Manufacturer();
 
