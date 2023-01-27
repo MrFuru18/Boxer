@@ -52,7 +52,8 @@ namespace Boxer.ViewModel
                 _selectedOrder = value;
                 onPropertyChanged(nameof(SelectedOrder));
 
-                loadOrderItems();
+                if (SelectedOrder != null)
+                    loadOrderItems();
             }
         }
 

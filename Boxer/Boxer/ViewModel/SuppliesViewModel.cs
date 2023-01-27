@@ -51,7 +51,8 @@ namespace Boxer.ViewModel
                 _selectedSupply = value;
                 onPropertyChanged(nameof(SelectedSupply));
 
-                loadSupplyItems();
+                if (SelectedSupply != null)
+                    loadSupplyItems();
             }
         }
 
