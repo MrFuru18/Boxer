@@ -13,12 +13,35 @@ namespace Boxer.ViewModel
 {
     class AddInventoryViewModel : BaseViewModel
     {
+        private readonly INavigationService _navigationService;
         private bool isNotEdit = true;
         public string HeaderText { get; set; }
 
         private Inventory _inventory = new Inventory();
         public ICommand CancelCommand { get; }
-        public ICommand AddInventory { get; }
+        private ICommand _addInventory;
+        public ICommand AddInventory
+        {
+            get
+            {
+                return _addInventory ?? (_addInventory = new RelayCommand((p) =>
+                {
+                    if (isNotEdit)
+                    {
+                        AddInventoryCommand addCommand = new AddInventoryCommand(_navigationService, _inventory);
+                        addCommand.Execute(true);
+                    }
+                    else
+                    {
+                        EditInventoryCommand editCommand = new EditInventoryCommand(_navigationService, _inventory);
+                        editCommand.Execute(true);
+                    }
+
+
+                }, p => true));
+
+            }
+        }
 
         private string _locationId;
         public string LocationId
@@ -73,8 +96,9 @@ namespace Boxer.ViewModel
         }
         public AddInventoryViewModel(INavigationService navigationService, Inventory inventory)
         {
+            _navigationService = navigationService;
+            
             CancelCommand = new NavigateCommand(navigationService);
-            AddInventory = new NavigateCommand(navigationService);
 
             _inventory = new Inventory();
 
