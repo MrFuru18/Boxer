@@ -16,26 +16,27 @@ namespace Boxer.ViewModel
 {
     class AddTaskViewModel : BaseViewModel
     {
+        private readonly INavigationService _navigationService;
         private bool isNotEdit = true;
         public string HeaderText { get; set; }
 
         public bool TypeOrderChosen { get; set; }
         public bool TypeSupplyChosen { get; set; }
-        public bool TypeRelocationChosen { get; set; }
+        //public bool TypeRelocationChosen { get; set; }
 
         private Tasks _task = new Tasks();
-
+        /*
         public BindingList<RelocationItem> relocation_items { get; set; }
         private List<RelocationItem> _relocation_items { get; set; }
         private RelocationItem _relocationItem = new RelocationItem();
-
+        */
         public BindingList<Employee> employees { get; set; }
         public BindingList<Order> orders { get; set; }
         public BindingList<Supply> supplies { get; set; }
 
         public ICommand CancelCommand { get; }
         public ICommand AddTask { get; }
-        private ICommand _addItem;
+        /*private ICommand _addItem;
         public ICommand AddItem
         {
             get
@@ -78,6 +79,7 @@ namespace Boxer.ViewModel
 
             }
         }
+        */
 
         private string _employeeId;
         public string EmployeeId
@@ -116,6 +118,8 @@ namespace Boxer.ViewModel
 
                 setVisibility();
                 _task.type = TaskType.ToString();
+                /*_relocation_items.Clear();
+                refreshRelocationItems();*/
             }
         }
 
@@ -123,7 +127,7 @@ namespace Boxer.ViewModel
         {
             TypeOrderChosen = false;
             TypeSupplyChosen = false;
-            TypeRelocationChosen = false;
+            //TypeRelocationChosen = false;
             if (TaskType == TaskTypes.order)
             {
                 TypeOrderChosen = true;
@@ -132,15 +136,16 @@ namespace Boxer.ViewModel
             {
                 TypeSupplyChosen = true;
             }
-            if (TaskType == TaskTypes.relocation)
+            /*if (TaskType == TaskTypes.relocation)
             {
                 TypeRelocationChosen = true;
-            }
+            }*/
             onPropertyChanged(nameof(TypeOrderChosen));
             onPropertyChanged(nameof(TypeSupplyChosen));
-            onPropertyChanged(nameof(TypeRelocationChosen));
+            //onPropertyChanged(nameof(TypeRelocationChosen));
         }
 
+        /*
         private string _inventoryId;
         public string InventoryId
         {
@@ -166,7 +171,7 @@ namespace Boxer.ViewModel
                 _relocationItem.location_id = Int32.TryParse(LocationId, out var tempVal) ? tempVal : (int?)null;
             }
         }
-
+        
         private string _quantity;
         public string Quantity
         {
@@ -179,7 +184,8 @@ namespace Boxer.ViewModel
                 _relocationItem.quantity = Int32.TryParse(Quantity, out var tempVal) ? tempVal : (int?)null;
             }
         }
-
+        */
+        /*
         private RelocationItem _selectedRelocationItem;
         public RelocationItem SelectedRelocationItem
         {
@@ -202,17 +208,19 @@ namespace Boxer.ViewModel
             }
         }
 
-
         private void refreshRelocationItems()
         {
             relocation_items.Clear();
             foreach (var item in _relocation_items)
                 relocation_items.Add(item);
         }
+        
+        */
 
 
         public AddTaskViewModel(INavigationService navigationService, Tasks task)
         {
+            _navigationService = navigationService;
             CancelCommand = new NavigateCommand(navigationService);
             AddTask = new NavigateCommand(navigationService);
            
@@ -220,15 +228,17 @@ namespace Boxer.ViewModel
 
             _task = new Tasks();
 
-            _relocationItem = new RelocationItem();
-            relocation_items = new BindingList<RelocationItem>();
-            _relocation_items = new List<RelocationItem>();
-
             employees = new BindingList<Employee>();
 
             orders = new BindingList<Order>();
 
             supplies = new BindingList<Supply>();
+
+            /*
+            _relocationItem = new OrderItem();
+            relocation_items = new BindingList<RelocationItem>();
+            _relocation_items = new List<OrderItem>();
+            */
 
             HeaderText = "Dodaj Zadanie";
             if (task != null)

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace ApiLibrary.Model
+namespace Boxer.Model
 {
-    public class RelocationItem
+    public class RelocationItemNoId
     {
-        public int id { get; set; }
         public int task_id { get; set; }
         public int? inventory_id { get; set; }
         public int? location_id { get; set; }

@@ -32,7 +32,7 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<Tasks> getTasks(Tasks task)
+        public static async Task<Tasks> getTask(Tasks task)
         {
             string url = "http://localhost:3000/task/get/" + task.id;
             string serializedTask = JsonConvert.SerializeObject(task);
@@ -53,7 +53,7 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<string> addTasks(Tasks task)
+        public static async Task<string> addTask(Tasks task)
         {
             string url = "http://localhost:3000/task/add";
             string result;
@@ -74,7 +74,7 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<string> updateTasks(Tasks task)
+        public static async Task<string> updateTask(Tasks task)
         {
             string url = "http://localhost:3000/task/edit/" + task.id;
             string result;
@@ -95,7 +95,7 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<string> deleteTasks(Tasks task)
+        public static async Task<string> deleteTask(Tasks task)
         {
             string url = "http://localhost:3000/task/delete/" + task.id;
             string result;
@@ -128,6 +128,46 @@ namespace ApiLibrary.Repo
                     string jsonResult = await response.Content.ReadAsStringAsync();
                     taskStatesList = JsonConvert.DeserializeObject<List<TaskState>>(jsonResult);
                     return taskStatesList;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<string> addRelocationItem(RelocationItem relocationItem)
+        {
+            string url = "http://localhost:3000/relocation_item/add";
+            string result;
+            string serializedRelocationItem = JsonConvert.SerializeObject(relocationItem);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedRelocationItem, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    result = await response.Content.ReadAsStringAsync();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<string> deleteRelocationItem(RelocationItem relocationItem)
+        {
+            string url = "http://localhost:3000/relocation_item/delete/" + relocationItem.id;
+            string result;
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient.DeleteAsync(url).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    result = await response.Content.ReadAsStringAsync();
+                    return result;
                 }
                 else
                 {

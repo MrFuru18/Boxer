@@ -83,6 +83,7 @@
     <Compile Include="Commands\AddOrderCommand.cs" />
     <Compile Include="Commands\AddProductCommand.cs" />
     <Compile Include="Commands\AddSupplyCommand.cs" />
+    <Compile Include="Commands\AddTaskCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\EditCustomerCommand.cs" />
     <Compile Include="Commands\EditEmployeeCommand.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Commands\EditOrderCommand.cs" />
     <Compile Include="Commands\EditProductCommand.cs" />
     <Compile Include="Commands\EditSupplyCommand.cs" />
+    <Compile Include="Commands\EditTaskCommand.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Commands\LogoutCommand.cs" />
     <Compile Include="Commands\NavigateCommand.cs" />
@@ -103,6 +105,7 @@
     <Compile Include="Model\ObjectComparerUtility.cs" />
     <Compile Include="Model\OrderItemNoId.cs" />
     <Compile Include="Model\Permissions.cs" />
+    <Compile Include="Model\RelocationItemNoId.cs" />
     <Compile Include="Model\Sizes.cs" />
     <Compile Include="Model\TaskTypes.cs" />
     <Compile Include="Navigation\CloseModalNavigatonService.cs" />
@@ -163,6 +166,9 @@
     </Compile>
     <Compile Include="View\Views\AddSupplyView.xaml.cs">
       <DependentUpon>AddSupplyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Views\AddTaskRelocationView.xaml.cs">
+      <DependentUpon>AddTaskRelocationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Views\AddTaskView.xaml.cs">
       <DependentUpon>AddTaskView.xaml</DependentUpon>
@@ -259,6 +265,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Views\AddSupplyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Views\AddTaskRelocationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
