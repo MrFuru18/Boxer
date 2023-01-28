@@ -15,6 +15,7 @@ namespace Boxer.ViewModel
 {
     class AddSupplyViewModel : BaseViewModel
     {
+        private readonly INavigationService _navigationService;
         private bool isNotEdit = true;
         public string HeaderText { get; set; }
         private Supply _supply = new Supply();
@@ -26,7 +27,30 @@ namespace Boxer.ViewModel
         private Product _product = new Product();
 
         public ICommand CancelCommand { get; }
-        public ICommand AddSupply { get; }
+
+        private ICommand _addSupply;
+        public ICommand AddSupply
+        {
+            get
+            {
+                return _addSupply ?? (_addSupply = new RelayCommand((p) =>
+                {
+                    if (isNotEdit)
+                    {
+                        AddSupplyCommand addCommand = new AddSupplyCommand(_navigationService, _supply, _supply_items);
+                        addCommand.Execute(true);
+                    }
+                    else
+                    {
+                        EditSupplyCommand editCommand = new EditSupplyCommand(_navigationService, _supply, _supply_items);
+                        editCommand.Execute(true);
+                    }
+
+
+                }, p => true));
+
+            }
+        }
 
         private ICommand _addItem;
         public ICommand AddItem
@@ -45,6 +69,7 @@ namespace Boxer.ViewModel
 
                         ProductId = null;
                         Quantity = null;
+                        LocationId = null;
                     }
 
                 }, p => true));
@@ -154,8 +179,8 @@ namespace Boxer.ViewModel
 
         public AddSupplyViewModel(INavigationService navigationService, Supply supply)
         {
+            _navigationService = navigationService;
             CancelCommand = new NavigateCommand(navigationService);
-            AddSupply = new NavigateCommand(navigationService);
 
             _supply = new Supply();
 

@@ -1,4 +1,5 @@
 ﻿using ApiLibrary.Model;
+using ApiLibrary.Model.ToCreate;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -53,7 +54,7 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<string> addSupply(Supply supply)
+        public static async Task<string> addSupply(ToCreateSupply supply)
         {
             string url = "http://localhost:3000/supply/add";
             string result;
@@ -74,7 +75,7 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<string> updateSupply(Supply supply)
+        public static async Task<string> updateSupply(ToCreateSupply supply)
         {
             string url = "http://localhost:3000/supply/edit/" + supply.id;
             string result;
@@ -129,6 +130,46 @@ namespace ApiLibrary.Repo
                     string jsonResult = await response.Content.ReadAsStringAsync();
                     supplyItemsList = JsonConvert.DeserializeObject<List<SupplyItem>>(jsonResult);
                     return supplyItemsList;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<string> addSupplyItem(SupplyItem supplyItem)
+        {
+            string url = "http://localhost:3000/supply_item/add";
+            string result;
+            string serializedSupplyItem = JsonConvert.SerializeObject(supplyItem);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedSupplyItem, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    result = await response.Content.ReadAsStringAsync();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<string> deleteSupplyItem(SupplyItem supplyItem)
+        {
+            string url = "http://localhost:3000/supply_item/delete/" + supplyItem.id;
+            string result;
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient.DeleteAsync(url).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    result = await response.Content.ReadAsStringAsync();
+                    return result;
                 }
                 else
                 {

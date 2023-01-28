@@ -22,6 +22,10 @@ namespace Boxer.ViewModel
         private List<Tasks> _tasks { get; set; }
         private Tasks task = null;
 
+        public BindingList<TaskState> task_states { get; set; }
+        public List<TaskState> _task_states { get; set; }
+        private TaskState taskState = new TaskState();
+
         public ICommand NavigateBackCommand { get; }
         public ICommand NewTask { get; }
         private ICommand _editTask;
@@ -46,7 +50,20 @@ namespace Boxer.ViewModel
             {
                 _selectedTask = value;
                 onPropertyChanged(nameof(SelectedTask));
+
+                if (SelectedTask != null)
+                    loadTaskStates();
             }
+        }
+
+        private void loadTaskStates()
+        {
+            taskState.task_id = SelectedTask.id;
+            _task_states = new List<TaskState>(TaskProcessor.getTaskStates(taskState).Result);
+
+            task_states.Clear();
+            foreach (var item in _task_states)
+                task_states.Add(item);
         }
 
         public TasksViewModel(INavigationService tasksMenuNavigationService, INavigationService addTaskNavigationService, ModalNavigationStore modalNavigationStore)
@@ -62,6 +79,9 @@ namespace Boxer.ViewModel
             task = new Tasks();
             tasks = new BindingList<Tasks>(TaskProcessor.getAllTasks(task).Result);
             _tasks = new List<Tasks>(tasks);
+
+            taskState = new TaskState();
+            task_states = new BindingList<TaskState>();
 
             if (_tasks.Count > 0)
             {

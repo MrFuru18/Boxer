@@ -14,12 +14,36 @@ namespace Boxer.ViewModel
 {
     class AddProductViewModel : BaseViewModel
     {
+        private readonly INavigationService _navigationService;
         private bool isNotEdit = true;
         public string HeaderText { get; set; }
         private Product _product = new Product();
 
         public ICommand CancelCommand { get; }
-        public ICommand AddProduct { get; }
+
+        private ICommand _addProduct;
+        public ICommand AddProduct
+        {
+            get
+            {
+                return _addProduct ?? (_addProduct = new RelayCommand((p) =>
+                {
+                    if (isNotEdit)
+                    {
+                        AddProductCommand addCommand = new AddProductCommand(_navigationService, _product);
+                        addCommand.Execute(true);
+                    }
+                    else
+                    {
+                        EditProductCommand editCommand = new EditProductCommand(_navigationService, _product);
+                        editCommand.Execute(true);
+                    }
+
+
+                }, p => true));
+
+            }
+        }
 
         private string _sku;
         public string Sku
@@ -113,10 +137,11 @@ namespace Boxer.ViewModel
         }
         public AddProductViewModel(INavigationService navigationService, Product product)
         {
+            _navigationService = navigationService;
             CancelCommand = new NavigateCommand(navigationService);
-            AddProduct = new NavigateCommand(navigationService);
 
             _product = new Product();
+            Size = Sizes.unassigned;
 
             HeaderText = "Dodaj Produkt";
 

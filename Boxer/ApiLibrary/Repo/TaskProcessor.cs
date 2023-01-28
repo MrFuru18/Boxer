@@ -113,5 +113,28 @@ namespace ApiLibrary.Repo
                 }
             }
         }
+
+        public static async Task<List<TaskState>> getTaskStates(TaskState taskState)
+        {
+            string url = "http://localhost:3000/task_states/get/" + taskState.task_id;
+            List<TaskState> taskStatesList = new List<TaskState>();
+            string serializedTaskState = JsonConvert.SerializeObject(taskState);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedTaskState, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonResult = await response.Content.ReadAsStringAsync();
+                    taskStatesList = JsonConvert.DeserializeObject<List<TaskState>>(jsonResult);
+                    return taskStatesList;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
     }
 }

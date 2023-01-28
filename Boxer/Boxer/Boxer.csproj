@@ -81,6 +81,8 @@
     <Compile Include="Commands\AddLocationCommand.cs" />
     <Compile Include="Commands\AddManufacturerCommand.cs" />
     <Compile Include="Commands\AddOrderCommand.cs" />
+    <Compile Include="Commands\AddProductCommand.cs" />
+    <Compile Include="Commands\AddSupplyCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\EditCustomerCommand.cs" />
     <Compile Include="Commands\EditEmployeeCommand.cs" />
@@ -88,9 +90,12 @@
     <Compile Include="Commands\EditLocationCommand.cs" />
     <Compile Include="Commands\EditManufacturerCommand.cs" />
     <Compile Include="Commands\EditOrderCommand.cs" />
+    <Compile Include="Commands\EditProductCommand.cs" />
+    <Compile Include="Commands\EditSupplyCommand.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Commands\LogoutCommand.cs" />
     <Compile Include="Commands\NavigateCommand.cs" />
+    <Compile Include="Commands\SupplyItemNoId.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\AccountStore.cs" />
     <Compile Include="Model\Availabilities.cs" />
