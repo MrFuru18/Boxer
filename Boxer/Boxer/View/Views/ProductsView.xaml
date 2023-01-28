@@ -78,9 +78,9 @@
                             <GridViewColumnHeader Content="id Producenta" CommandParameter="manufacturer_id"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding category}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding category_id}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Kategoria" CommandParameter="category"/>
+                            <GridViewColumnHeader Content="id Kategorii" CommandParameter="category_id"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn Width="350" DisplayMemberBinding="{Binding description}">
