@@ -15,6 +15,7 @@
                 <x:Type TypeName="model:Permissions"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </UserControl.Resources>
     
     <Grid Background="White">
@@ -67,6 +68,21 @@
                      VerticalAlignment="Center"
                      Text="{Binding Surname}"/>
 
+                    <!-- Permissions ComboBox -->
+                    <TextBlock Text="Uprawnienia"
+                       VerticalAlignment="Center"
+                       FontSize="20"
+                       Margin="0,30,0,5"/>
+
+                    <ComboBox x:Name="Permissons_combobox"
+                      Padding="5"
+                      FontSize="20"
+                      Width="300"
+                      VerticalAlignment="Center"
+                      ItemsSource="{Binding Source={StaticResource permissionsFromEnum}}"
+                      SelectedItem="{Binding Permission}">
+                    </ComboBox>
+                    
                     <!-- Email TextBox -->
                     <TextBlock Text="Email"
                        VerticalAlignment="Center"
@@ -94,27 +110,14 @@
                      Text="{Binding Phone}"/>
                 </StackPanel>
 
-                <StackPanel Margin="30,0,0,0">
-                    <!-- Permissions ComboBox -->
-                    <TextBlock Text="Uprawnienia"
-                       VerticalAlignment="Center"
-                       FontSize="20"
-                       Margin="0,0,0,5"/>
-
-                    <ComboBox x:Name="Permissons_combobox"
-                      Padding="5"
-                      FontSize="20"
-                      Width="300"
-                      VerticalAlignment="Center"
-                      ItemsSource="{Binding Source={StaticResource permissionsFromEnum}}"
-                      SelectedItem="{Binding Permission}">
-                    </ComboBox>
-
+                <StackPanel Margin="30,0,0,0" 
+                            Visibility="{Binding isNotEdit, Converter={StaticResource BooleanToVisibilityConverter}}">
+                
                     <!-- Uid TextBox -->
                     <TextBlock Text="Uid"
                        VerticalAlignment="Center"
                        FontSize="20"
-                       Margin="0,30,0,5"/>
+                       Margin="0,0,0,5"/>
 
                     <TextBox x:Name="Uid_textbox"
                      Padding="5"

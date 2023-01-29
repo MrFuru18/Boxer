@@ -19,7 +19,7 @@ namespace Boxer.ViewModel
     class AddEmployeeViewModel : BaseViewModel
     {
         private readonly INavigationService _navigationService;
-        private bool isNotEdit = true;
+        public bool isNotEdit { get; set; }
         public string HeaderText { get; set; }
 
         Employee _employee = new Employee();
@@ -133,6 +133,7 @@ namespace Boxer.ViewModel
 
         public AddEmployeeViewModel(INavigationService navigationService, Employee employee)
         {
+            isNotEdit = true;
             _navigationService = navigationService;
 
             CancelCommand = new NavigateCommand(navigationService);
