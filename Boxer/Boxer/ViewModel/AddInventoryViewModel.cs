@@ -13,12 +13,35 @@ namespace Boxer.ViewModel
 {
     class AddInventoryViewModel : BaseViewModel
     {
-        private bool edit = false;
+        private readonly INavigationService _navigationService;
+        private bool isNotEdit = true;
         public string HeaderText { get; set; }
 
         private Inventory _inventory = new Inventory();
         public ICommand CancelCommand { get; }
-        public ICommand AddInventory { get; }
+        private ICommand _addInventory;
+        public ICommand AddInventory
+        {
+            get
+            {
+                return _addInventory ?? (_addInventory = new RelayCommand((p) =>
+                {
+                    if (isNotEdit)
+                    {
+                        AddInventoryCommand addCommand = new AddInventoryCommand(_navigationService, _inventory);
+                        addCommand.Execute(true);
+                    }
+                    else
+                    {
+                        EditInventoryCommand editCommand = new EditInventoryCommand(_navigationService, _inventory);
+                        editCommand.Execute(true);
+                    }
+
+
+                }, p => true));
+
+            }
+        }
 
         private string _locationId;
         public string LocationId
@@ -29,8 +52,7 @@ namespace Boxer.ViewModel
                 _locationId = value;
                 onPropertyChanged(nameof(LocationId));
 
-                if (LocationId != "")
-                    _inventory.location_id = int.Parse(LocationId);
+                _inventory.location_id = Int32.TryParse(LocationId, out var tempVal) ? tempVal : (int?)null;
             }
         }
 
@@ -43,8 +65,7 @@ namespace Boxer.ViewModel
                 _productId = value;
                 onPropertyChanged(nameof(ProductId));
 
-                if (ProductId != "")
-                    _inventory.product_id = int.Parse(ProductId);
+                _inventory.product_id = Int32.TryParse(ProductId, out var tempVal) ? tempVal : (int?)null;
             }
         }
 
@@ -57,8 +78,7 @@ namespace Boxer.ViewModel
                 _quantity = value;
                 onPropertyChanged(nameof(Quantity));
 
-                if (Quantity != "")
-                    _inventory.quantity = int.Parse(Quantity);
+                _inventory.quantity = Int32.TryParse(Quantity, out var tempVal) ? tempVal : (int?)null;
             }
         }
 
@@ -76,15 +96,16 @@ namespace Boxer.ViewModel
         }
         public AddInventoryViewModel(INavigationService navigationService, Inventory inventory)
         {
+            _navigationService = navigationService;
+            
             CancelCommand = new NavigateCommand(navigationService);
-            AddInventory = new NavigateCommand(navigationService);
 
             _inventory = new Inventory();
 
             HeaderText = "Dodaj Do Stanów";
             if (inventory != null)
             {
-                edit = true;
+                isNotEdit = false;
                 HeaderText = "Edytuj Stany";
 
                 _inventory = inventory;

@@ -8,9 +8,9 @@ namespace Boxer.Model
 {
     public enum Sizes
     {
+        unassigned,
         S,
         M,
-        L,
-        unassigned
+        L
     }
 }

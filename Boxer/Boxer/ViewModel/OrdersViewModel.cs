@@ -52,7 +52,8 @@ namespace Boxer.ViewModel
                 _selectedOrder = value;
                 onPropertyChanged(nameof(SelectedOrder));
 
-                loadOrderItems();
+                if (SelectedOrder != null)
+                    loadOrderItems();
             }
         }
 
@@ -71,6 +72,8 @@ namespace Boxer.ViewModel
             _navigationService = addOrderNavigationService;
             _modalNavigationStore = modalNavigationStore;
 
+            _modalNavigationStore.CurrentViewModelClosed += OnCurrentModalViewModelClosed;
+
             NavigateBackCommand = new NavigateCommand(ordersMenuNavigationService);
             NewOrder = new NavigateCommand(addOrderNavigationService);
 
@@ -80,6 +83,21 @@ namespace Boxer.ViewModel
 
             orderItem = new OrderItem();
             order_items = new BindingList<OrderItem>();
+
+            if (_orders.Count > 0)
+            {
+                SelectedOrder = _orders[0];
+            }
+        }
+
+        
+        private void OnCurrentModalViewModelClosed()
+        {
+            _orders = new List<Order>(OrderProcessor.getAllOrders(order).Result);
+
+            orders.Clear();
+            foreach (var ord in _orders)
+                orders.Add(ord);
 
             if (_orders.Count > 0)
             {

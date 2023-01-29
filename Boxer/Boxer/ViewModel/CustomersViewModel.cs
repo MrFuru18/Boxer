@@ -52,8 +52,9 @@ namespace Boxer.ViewModel
             {
                 _selectedCustomer = value;
                 onPropertyChanged(nameof(SelectedCustomer));
-
-                loadCustomerAddresses();
+                
+                if (SelectedCustomer != null)
+                    loadCustomerAddresses();
             }
         }
 
@@ -73,14 +74,15 @@ namespace Boxer.ViewModel
             _navigationService = addCustomerNavigationService;
             _modalNavigationStore = modalNavigationStore;
 
+            _modalNavigationStore.CurrentViewModelClosed += OnCurrentModalViewModelClosed;
+
             NavigateBackCommand = new NavigateCommand(ordersMenuNavigationService);
             NewCustomer = new NavigateCommand(addCustomerNavigationService);
 
-            _modalNavigationStore.CurrentViewModelClosed += OnCurrentModalViewModelClosed;
 
             customer = new Customer();
             customers = new BindingList<Customer>(CustomerProcessor.getAllCustomers(customer).Result);
-            _customers = new List<Customer>(customers);
+            _customers = new List<Customer>();
 
             customerAddress = new CustomerAddress();
             customer_addresses = new BindingList<CustomerAddress>();
@@ -91,9 +93,20 @@ namespace Boxer.ViewModel
             }
 
         }
+        
         private void OnCurrentModalViewModelClosed()
         {
-            //refresh the listview
+            _customers = new List<Customer>(CustomerProcessor.getAllCustomers(customer).Result);
+
+            customers.Clear();
+            foreach (var cust in _customers)
+                customers.Add(cust);
+
+            if (_customers.Count > 0)
+            {
+                SelectedCustomer = _customers[0];
+            }
+
         }
 
     }

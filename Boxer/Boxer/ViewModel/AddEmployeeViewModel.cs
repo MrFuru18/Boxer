@@ -1,4 +1,5 @@
 ﻿using ApiLibrary.Model;
+using ApiLibrary.Model.ToCreate;
 using Boxer.Commands;
 using Boxer.Model;
 using Boxer.Navigation;
@@ -17,12 +18,38 @@ namespace Boxer.ViewModel
 {
     class AddEmployeeViewModel : BaseViewModel
     {
-        private bool edit = false;
+        private readonly INavigationService _navigationService;
+        private bool isNotEdit = true;
         public string HeaderText { get; set; }
 
         Employee _employee = new Employee();
         public ICommand CancelCommand { get; }
-        public ICommand AddEmployee { get; }
+        private ICommand _addEmployee;
+        public ICommand AddEmployee
+        {
+            get
+            {
+                return _addEmployee ?? (_addEmployee = new RelayCommand((p) =>
+                {
+                    if (isNotEdit)
+                    {
+                        ToCreateEmployee toCreateEmployee = ObjectComparerUtility.Convert<Employee, ToCreateEmployee>(_employee);
+                        toCreateEmployee.password = Password;
+                        AddEmployeeCommand addCommand = new AddEmployeeCommand(_navigationService, toCreateEmployee);
+                        addCommand.Execute(true);
+                    }
+                    else
+                    {
+                        EditEmployeeCommand editCommand = new EditEmployeeCommand(_navigationService, _employee);
+                        editCommand.Execute(true);
+                    }
+
+
+                }, p => true));
+
+            }
+        }
+
 
         private string _name;
         public string Name
@@ -106,16 +133,18 @@ namespace Boxer.ViewModel
 
         public AddEmployeeViewModel(INavigationService navigationService, Employee employee)
         {
+            _navigationService = navigationService;
+
             CancelCommand = new NavigateCommand(navigationService);
-            AddEmployee = new NavigateCommand(navigationService);
 
             _employee = new Employee();
+            Permission = Permissions.worker;
 
             HeaderText = "Dodaj Pracownika";
 
             if (employee != null)
             {
-                edit = true;
+                isNotEdit = false;
                 HeaderText = "Edytuj Pracownika";
 
                 _employee = employee;

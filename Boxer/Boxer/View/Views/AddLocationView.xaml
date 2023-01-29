@@ -16,6 +16,13 @@
                 <x:Type TypeName="model:Sizes"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
+        <ObjectDataProvider x:Key="availabilitiesFromEnum"
+                            MethodName="GetValues" 
+                            ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="model:Availabilities"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
     </UserControl.Resources>
     
     <Grid Background="White">
@@ -80,14 +87,12 @@
                      Width="300"
                      VerticalAlignment="Center"
                      Text="{Binding Unit}"/>
-                </StackPanel>
-                
-                <StackPanel Margin="30,0,0,0">
+                    
                     <!-- Level TextBox -->
                     <TextBlock Text="Poziom"
                        VerticalAlignment="Center"
                        FontSize="20"
-                       Margin="0,0,0,5"/>
+                       Margin="0,30,0,5"/>
 
                     <TextBox x:Name="Level_textbox"
                      Padding="5"
@@ -95,12 +100,15 @@
                      Width="300"
                      VerticalAlignment="Center"
                      Text="{Binding Level}"/>
-
+                </StackPanel>
+                
+                <StackPanel Margin="30,0,0,0">
+                    
                     <!-- Position TextBox -->
                     <TextBlock Text="Miejsce"
                        VerticalAlignment="Center"
                        FontSize="20"
-                       Margin="0,30,0,5"/>
+                       Margin="0,0,0,5"/>
 
                     <TextBox x:Name="Position_textbox"
                      Padding="5"
@@ -123,6 +131,22 @@
                       ItemsSource="{Binding Source={StaticResource sizesFromEnum}}"
                       SelectedItem="{Binding Size}">
                         
+                    </ComboBox>
+
+                    <!-- Availability ComboBox -->
+                    <TextBlock Text="Dostępność"
+                       VerticalAlignment="Center"
+                       FontSize="20"
+                       Margin="0,30,0,5"/>
+
+                    <ComboBox x:Name="Availability_combobox"
+                      Padding="5"
+                      FontSize="20"
+                      Width="300"
+                      VerticalAlignment="Center"
+                      ItemsSource="{Binding Source={StaticResource availabilitiesFromEnum}}"
+                      SelectedItem="{Binding Availability}">
+
                     </ComboBox>
                 </StackPanel>
             </StackPanel>

@@ -51,7 +51,8 @@ namespace Boxer.ViewModel
                 _selectedSupply = value;
                 onPropertyChanged(nameof(SelectedSupply));
 
-                loadSupplyItems();
+                if (SelectedSupply != null)
+                    loadSupplyItems();
             }
         }
 
@@ -69,7 +70,9 @@ namespace Boxer.ViewModel
         {
             _navigationService = addSupplyNavigationService;
             _modalNavigationStore = modalNavigationStore;
-
+            
+            _modalNavigationStore.CurrentViewModelClosed += OnCurrentModalViewModelClosed;
+            
             NavigateBackCommand = new NavigateCommand(suppliesMenuNavigationService);
             NewSupply = new NavigateCommand(addSupplyNavigationService);
 
@@ -79,6 +82,21 @@ namespace Boxer.ViewModel
 
             supplyItem = new SupplyItem();
             supply_items = new BindingList<SupplyItem>();
+
+            if (_supplies.Count > 0)
+            {
+                SelectedSupply = _supplies[0];
+            }
+        }
+
+        
+        private void OnCurrentModalViewModelClosed()
+        {
+            _supplies = new List<Supply>(SupplyProcessor.getAllSupplies(supply).Result);
+
+            supplies.Clear();
+            foreach (var sup in _supplies)
+                supplies.Add(sup);
 
             if (_supplies.Count > 0)
             {

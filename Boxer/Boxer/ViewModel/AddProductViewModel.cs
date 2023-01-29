@@ -14,12 +14,36 @@ namespace Boxer.ViewModel
 {
     class AddProductViewModel : BaseViewModel
     {
-        private bool edit = false;
+        private readonly INavigationService _navigationService;
+        private bool isNotEdit = true;
         public string HeaderText { get; set; }
         private Product _product = new Product();
 
         public ICommand CancelCommand { get; }
-        public ICommand AddProduct { get; }
+
+        private ICommand _addProduct;
+        public ICommand AddProduct
+        {
+            get
+            {
+                return _addProduct ?? (_addProduct = new RelayCommand((p) =>
+                {
+                    if (isNotEdit)
+                    {
+                        AddProductCommand addCommand = new AddProductCommand(_navigationService, _product);
+                        addCommand.Execute(true);
+                    }
+                    else
+                    {
+                        EditProductCommand editCommand = new EditProductCommand(_navigationService, _product);
+                        editCommand.Execute(true);
+                    }
+
+
+                }, p => true));
+
+            }
+        }
 
         private string _sku;
         public string Sku
@@ -56,8 +80,7 @@ namespace Boxer.ViewModel
                 _manufacturerId = value;
                 onPropertyChanged(nameof(ManufacturerId));
 
-                if (ManufacturerId != "")
-                    _product.manufacturer_id = int.Parse(ManufacturerId);
+                _product.manufacturer_id = Int32.TryParse(ManufacturerId, out var tempVal) ? tempVal : (int?)null;
             }
         }
 
@@ -70,7 +93,7 @@ namespace Boxer.ViewModel
                 _weight = value;
                 onPropertyChanged(nameof(Weight));
 
-                _product.weight = float.Parse(Weight);
+                _product.weight = float.TryParse(Weight, out var tempVal) ? tempVal : (float?)null;
             }
         }
 
@@ -83,7 +106,7 @@ namespace Boxer.ViewModel
                 _value = value;
                 onPropertyChanged(nameof(Value));
 
-                _product.value = float.Parse(Value);
+                _product.value = float.TryParse(Value, out var tempVal) ? tempVal : (float?)null;
             }
         }
 
@@ -114,16 +137,17 @@ namespace Boxer.ViewModel
         }
         public AddProductViewModel(INavigationService navigationService, Product product)
         {
+            _navigationService = navigationService;
             CancelCommand = new NavigateCommand(navigationService);
-            AddProduct = new NavigateCommand(navigationService);
 
             _product = new Product();
+            Size = Sizes.unassigned;
 
             HeaderText = "Dodaj Produkt";
 
             if (product != null)
             {
-                edit = true;
+                isNotEdit = false;
                 HeaderText = "Edytuj Produkt";
 
                 _product = product;

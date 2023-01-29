@@ -56,12 +56,29 @@ namespace Boxer.ViewModel
             _navigationService = addInventoryNavigationService;
             _modalNavigationStore = modalNavigationStore;
 
+            _modalNavigationStore.CurrentViewModelClosed += OnCurrentModalViewModelClosed;
+
             NavigateBackCommand = new NavigateCommand(warehouseMenuNavigationService);
             NewInventory = new NavigateCommand(addInventoryNavigationService);
 
             inventory = new Inventory();
             inventoryList = new BindingList<Inventory>(InventoryProcessor.getAllInventory(inventory).Result);
             _inventoryList = new List<Inventory>(inventoryList);
+
+            if (_inventoryList.Count > 0)
+            {
+                SelectedInventory = _inventoryList[0];
+            }
+        }
+
+        
+        private void OnCurrentModalViewModelClosed()
+        {
+            _inventoryList = new List<Inventory>(InventoryProcessor.getAllInventory(inventory).Result);
+
+            inventoryList.Clear();
+            foreach (var invent in _inventoryList)
+                inventoryList.Add(invent);
 
             if (_inventoryList.Count > 0)
             {

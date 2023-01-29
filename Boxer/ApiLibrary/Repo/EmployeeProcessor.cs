@@ -1,4 +1,5 @@
 ﻿using ApiLibrary.Model;
+using ApiLibrary.Model.ToCreate;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -50,7 +51,7 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<string> addEmployee(Employee employee)
+        public static async Task<string> addEmployee(ToCreateEmployee employee)
         {
             string url = "http://localhost:4000/employee/add";
             string result;

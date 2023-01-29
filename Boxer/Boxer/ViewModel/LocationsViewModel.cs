@@ -55,12 +55,29 @@ namespace Boxer.ViewModel
             _navigationService = addLocationNavigationService;
             _modalNavigationStore = modalNavigationStore;
 
+            _modalNavigationStore.CurrentViewModelClosed += OnCurrentModalViewModelClosed;
+
             NavigateBackCommand = new NavigateCommand(warehouseMenuNavigationService);
             NewLocation = new NavigateCommand(addLocationNavigationService);
 
             location = new Location();
             locations = new BindingList<Location>(LocationProcessor.getAllLocations(location).Result);
-            _locations = new List<Location>(locations);
+            _locations = new List<Location>();
+            _locations.AddRange(locations);
+
+            if (_locations.Count > 0)
+            {
+                SelectedLocation = _locations[0];
+            }
+        }
+
+        private void OnCurrentModalViewModelClosed()
+        {
+            _locations = new List<Location>(LocationProcessor.getAllLocations(location).Result);
+
+            locations.Clear();
+            foreach (var loc in _locations)
+                locations.Add(loc);
 
             if (_locations.Count > 0)
             {

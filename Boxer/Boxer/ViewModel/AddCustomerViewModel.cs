@@ -16,7 +16,8 @@ namespace Boxer.ViewModel
 {
     class AddCustomerViewModel : BaseViewModel
     {
-        private bool edit = false;
+        private readonly INavigationService _navigationService;
+        private bool isNotEdit = true;
         public string HeaderText { get; set; }
 
         private Customer _customer = new Customer();
@@ -26,8 +27,30 @@ namespace Boxer.ViewModel
         private CustomerAddress _customerAddress = new CustomerAddress();
 
         public ICommand CancelCommand { get; }
-        public ICommand AddCustomer { get; }
 
+        private ICommand _addCustomer;
+        public ICommand AddCustomer
+        {
+            get
+            {
+                return _addCustomer ?? (_addCustomer = new RelayCommand((p) =>
+                {
+                    if (isNotEdit)
+                    {
+                        AddCustomerCommand addCommand = new AddCustomerCommand(_navigationService, _customer, _customer_addresses);
+                        addCommand.Execute(true);
+                    }
+                    else
+                    {
+                        EditCustomerCommand editCommand = new EditCustomerCommand(_navigationService, _customer, _customer_addresses);
+                        editCommand.Execute(true);
+                    }
+
+
+                }, p => true));
+
+            }
+        }
         private ICommand _addAddress;
         public ICommand AddAddress
         {
@@ -43,12 +66,12 @@ namespace Boxer.ViewModel
                         _customerAddress = new CustomerAddress();
                         _customerAddress.customer_id = _customer.id;
 
-                        AddressLine1 = "";
-                        AddressLine2 = "";
-                        City = "";
-                        Country = "";
-                        Region = "";
-                        PostalCode = "";
+                        AddressLine1 = null;
+                        AddressLine2 = null;
+                        City = null;
+                        Country = null;
+                        Region = null;
+                        PostalCode = null;
                     }
 
                 }, p => true));
@@ -221,6 +244,7 @@ namespace Boxer.ViewModel
             {
                 AddressLine1 = SelectedCustomerAddress.address_line_1;
                 AddressLine2 = SelectedCustomerAddress.address_line_2;
+                City = SelectedCustomerAddress.city;
                 Country = SelectedCustomerAddress.country;
                 Region = SelectedCustomerAddress.region;
                 PostalCode = SelectedCustomerAddress.postal_code;
@@ -237,8 +261,8 @@ namespace Boxer.ViewModel
 
         public AddCustomerViewModel(INavigationService navigationService, Customer customer)
         {
+            _navigationService = navigationService;
             CancelCommand = new NavigateCommand(navigationService);
-            AddCustomer = new NavigateCommand(navigationService);
 
             _customer = new Customer();
 
@@ -249,7 +273,7 @@ namespace Boxer.ViewModel
             HeaderText = "Dodaj Klienta";
             if (customer != null)
             {
-                edit = true;
+                isNotEdit = false;
                 HeaderText = "Edytuj Klienta";
 
                 _customer = customer;

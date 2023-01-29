@@ -52,10 +52,13 @@
         <DataTemplate DataType="{x:Type vm:SuppliesViewModel}">
             <views:SuppliesView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:TasksViewModel}">
-            <views:TasksView/>
+        <DataTemplate DataType="{x:Type vm:TasksOrdersViewModel}">
+            <views:TasksOrdersView/>
         </DataTemplate>
-        
+        <DataTemplate DataType="{x:Type vm:TasksSuppliesViewModel}">
+            <views:TasksSuppliesView/>
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type vm:AddCustomerViewModel}">
             <views:AddCustomerView/>
         </DataTemplate>
@@ -80,9 +83,12 @@
         <DataTemplate DataType="{x:Type vm:AddSupplyViewModel}">
             <views:AddSupplyView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:AddTaskViewModel}">
-            <views:AddTaskView/>
+        <DataTemplate DataType="{x:Type vm:AddTaskOrderViewModel}">
+            <views:AddTaskOrderView/>
         </DataTemplate>
-        
+        <DataTemplate DataType="{x:Type vm:AddTaskSupplyViewModel}">
+            <views:AddTaskSupplyView/>
+        </DataTemplate>
+
     </Application.Resources>
 </Application>

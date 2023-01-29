@@ -89,56 +89,61 @@
                         <ComboBoxItem Tag="other">inne</ComboBoxItem>
                     </ComboBox>
 
-                    <StackPanel Orientation="Horizontal">
+                    <GroupBox Margin="0,20,0,5">
                         <StackPanel>
-                            <!-- Manufacturer TextBox -->
-                            <TextBlock Text="Producent"
-                       VerticalAlignment="Center"
-                       FontSize="20"
-                       Margin="0,30,0,5"/>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <!-- Manufacturer_id TextBox -->
+                                    <TextBlock Text="Producent Id"
+                                                VerticalAlignment="Center"
+                                                FontSize="20"
+                                                Margin="0,0,0,5"/>
 
-                            <TextBox x:Name="ManufacturerName_textbox"
-                     Padding="5"
-                     FontSize="20"
-                     Width="200"
-                     VerticalAlignment="Center"
-                     Text="{Binding ManufacturerName}"/>
-                        </StackPanel>
-                        <StackPanel>
-                            <!-- Manufacturer_id TextBox -->
-                            <TextBlock Text="Id"
-                       VerticalAlignment="Center"
-                       FontSize="20"
-                       Margin="30,30,0,5"/>
+                                    <TextBox x:Name="ManufacturerId_textbox"
+                                                Padding="5"
+                                                FontSize="20"
+                                                Width="120"
+                                                VerticalAlignment="Center"
+                                                Text="{Binding ManufacturerId}"/>
+                                </StackPanel>
+                                <StackPanel>
+                                    <!-- Manufacturer TextBox -->
+                                    <TextBlock Text="Nazwa"
+                                                VerticalAlignment="Center"
+                                                FontSize="20"
+                                                Margin="30,0,0,5"/>
 
-                            <TextBox x:Name="ManufacturerId_textbox"
-                     Padding="5"
-                     FontSize="20"
-                     Width="70"
-                     Margin="30,0,0,0"
-                     VerticalAlignment="Center"
-                     Text="{Binding ManufacturerId}"/>
-                        </StackPanel>
-                    </StackPanel>
+                                    <TextBox x:Name="ManufacturerName_textbox"
+                                             Padding="5"
+                                             FontSize="20"
+                                             Width="150"
+                                             VerticalAlignment="Center"
+                                             Margin="30,0,0,0"
+                                             Text="{Binding ManufacturerName}"/>
+                                </StackPanel>
+                            </StackPanel>
 
-                    <ListView Grid.Row="1" Grid.Column="0" Width="300" Height="80" Margin="0,10,0,0"  
+                            <ListView Grid.Row="1" Grid.Column="0" Width="300" Height="80" Margin="0,10,0,0"  
                               ItemsSource="{Binding manufacturers}">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Width="50" DisplayMemberBinding="{Binding id}">
-                                    <GridViewColumn.Header>
-                                        <GridViewColumnHeader Content="id" CommandParameter="id"/>
-                                    </GridViewColumn.Header>
-                                </GridViewColumn>
-                                <GridViewColumn Width="250" DisplayMemberBinding="{Binding name}">
-                                    <GridViewColumn.Header>
-                                        <GridViewColumnHeader Content="Nazwa Producenta" CommandParameter="Producent"/>
-                                    </GridViewColumn.Header>
-                                </GridViewColumn>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding id}">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="id" CommandParameter="id"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="250" DisplayMemberBinding="{Binding name}">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="Nazwa Producenta" CommandParameter="Producent"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
 
+                        </StackPanel>
+                    </GroupBox>
+                    
                 </StackPanel>
 
                 <StackPanel>

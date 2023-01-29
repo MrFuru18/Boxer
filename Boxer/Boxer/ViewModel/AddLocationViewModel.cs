@@ -8,19 +8,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Boxer.ViewModel
 {
     class AddLocationViewModel : BaseViewModel
     {
-        private bool edit = false;
+        private readonly INavigationService _navigationService;
+
+        private bool isNotEdit = true;
         public string HeaderText { get; set; }
 
         private Location _location = new Location();
 
         public ICommand CancelCommand { get; }
-        public ICommand AddLocation { get; }
+        private ICommand _addLocation;
+        public ICommand AddLocation
+        {
+            get
+            {
+                return _addLocation ?? (_addLocation = new RelayCommand((p) =>
+                {
+                    if (isNotEdit)
+                    {
+                        AddLocationCommand addCommand = new AddLocationCommand(_navigationService, _location);
+                        addCommand.Execute(true);
+                    }
+                    else
+                    {
+                        EditLocationCommand editCommand = new EditLocationCommand(_navigationService, _location);
+                        editCommand.Execute(true);
+                    }
+                        
+
+                }, p => true));
+
+            }
+        }
 
         private string _sector;
         public string Sector
@@ -100,17 +125,34 @@ namespace Boxer.ViewModel
             }
         }
 
+        private Availabilities _availability;
+        public Availabilities Availability
+        {
+            get { return _availability; }
+            set
+            {
+                _availability = value;
+                onPropertyChanged(nameof(Availability));
+
+                _location.availability = Availability.ToString();
+            }
+        }
+
         public AddLocationViewModel(INavigationService navigationService, Location location)
         {
+            _navigationService = navigationService;
             CancelCommand = new NavigateCommand(navigationService);
-            AddLocation = new NavigateCommand(navigationService);
 
             _location = new Location();
+
+
+            _location.size = Size.ToString();
+            _location.availability = Availability.ToString();
 
             HeaderText = "Dodaj Lokalizację";
             if (location != null)
             {
-                edit = true;
+                isNotEdit = false;
                 HeaderText = "Edytuj Lokalizację";
 
                 _location = location;
@@ -120,7 +162,9 @@ namespace Boxer.ViewModel
                 Unit = _location.unit;
                 Position = _location.position;
                 Size = (Sizes)Enum.Parse(typeof(Sizes), _location.size);
+                Availability = (Availabilities)Enum.Parse(typeof(Availabilities), _location.availability);
             }
+
         }
     }
 }

@@ -15,14 +15,14 @@ namespace Boxer.ViewModel
         public ICommand NavigateBackCommand { get; }
         public ICommand NavigateTasksOrdersCommand { get; }
         public ICommand NavigateTasksSuppliesCommand { get; }
-        public ICommand NavigateTasksRelocationsCommand { get; }
+        //public ICommand NavigateTasksRelocationsCommand { get; }
 
-        public TasksMenuViewModel(INavigationService mainMenuNavigationService, INavigationService tasksNavigationSrvice)
+        public TasksMenuViewModel(INavigationService mainMenuNavigationService, INavigationService tasksOrdersNavigationService, INavigationService tasksSuppliesNavigationService)
         {
             NavigateBackCommand = new NavigateCommand(mainMenuNavigationService);
-            NavigateTasksOrdersCommand = new NavigateCommand(tasksNavigationSrvice);
-            NavigateTasksSuppliesCommand = new NavigateCommand(tasksNavigationSrvice);
-            NavigateTasksRelocationsCommand = new NavigateCommand(tasksNavigationSrvice);
+            NavigateTasksOrdersCommand = new NavigateCommand(tasksOrdersNavigationService);
+            NavigateTasksSuppliesCommand = new NavigateCommand(tasksSuppliesNavigationService);
+            //NavigateTasksRelocationsCommand = new NavigateCommand(tasksNavigationService);
         }
     }
 }

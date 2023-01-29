@@ -44,6 +44,9 @@
     <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.7.0.0\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -72,13 +75,37 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\AddCustomerCommand.cs" />
+    <Compile Include="Commands\AddEmployeeCommand.cs" />
+    <Compile Include="Commands\AddInventoryCommand.cs" />
+    <Compile Include="Commands\AddLocationCommand.cs" />
+    <Compile Include="Commands\AddManufacturerCommand.cs" />
+    <Compile Include="Commands\AddOrderCommand.cs" />
+    <Compile Include="Commands\AddProductCommand.cs" />
+    <Compile Include="Commands\AddSupplyCommand.cs" />
+    <Compile Include="Commands\AddTaskCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\EditCustomerCommand.cs" />
+    <Compile Include="Commands\EditEmployeeCommand.cs" />
+    <Compile Include="Commands\EditInventoryCommand.cs" />
+    <Compile Include="Commands\EditLocationCommand.cs" />
+    <Compile Include="Commands\EditManufacturerCommand.cs" />
+    <Compile Include="Commands\EditOrderCommand.cs" />
+    <Compile Include="Commands\EditProductCommand.cs" />
+    <Compile Include="Commands\EditSupplyCommand.cs" />
+    <Compile Include="Commands\EditTaskCommand.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Commands\LogoutCommand.cs" />
     <Compile Include="Commands\NavigateCommand.cs" />
+    <Compile Include="Commands\SupplyItemNoId.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\AccountStore.cs" />
+    <Compile Include="Model\Availabilities.cs" />
+    <Compile Include="Model\CustomerAddressNoId.cs" />
+    <Compile Include="Model\ObjectComparerUtility.cs" />
+    <Compile Include="Model\OrderItemNoId.cs" />
     <Compile Include="Model\Permissions.cs" />
+    <Compile Include="Model\RelocationItemNoId.cs" />
     <Compile Include="Model\Sizes.cs" />
     <Compile Include="Model\TaskTypes.cs" />
     <Compile Include="Navigation\CloseModalNavigatonService.cs" />
@@ -99,7 +126,9 @@
     <Compile Include="ViewModel\AddOrderViewModel.cs" />
     <Compile Include="ViewModel\AddProductViewModel.cs" />
     <Compile Include="ViewModel\AddSupplyViewModel.cs" />
-    <Compile Include="ViewModel\AddTaskViewModel.cs" />
+    <Compile Include="ViewModel\AddTaskOrderViewModel.cs" />
+    <Compile Include="ViewModel\AddTaskRelocationViewModel.cs" />
+    <Compile Include="ViewModel\AddTaskSupplyViewModel.cs" />
     <Compile Include="ViewModel\AdminMenuViewModel.cs" />
     <Compile Include="ViewModel\CustomersViewModel.cs" />
     <Compile Include="ViewModel\EmployeesViewModel.cs" />
@@ -114,7 +143,8 @@
     <Compile Include="ViewModel\SuppliesMenuViewModel.cs" />
     <Compile Include="ViewModel\SuppliesViewModel.cs" />
     <Compile Include="ViewModel\TasksMenuViewModel.cs" />
-    <Compile Include="ViewModel\TasksViewModel.cs" />
+    <Compile Include="ViewModel\TasksOrdersViewModel.cs" />
+    <Compile Include="ViewModel\TasksSuppliesViewModel.cs" />
     <Compile Include="ViewModel\WarehouseMenuViewModel.cs" />
     <Compile Include="View\Views\AddCustomerView.xaml.cs">
       <DependentUpon>AddCustomerView.xaml</DependentUpon>
@@ -140,8 +170,14 @@
     <Compile Include="View\Views\AddSupplyView.xaml.cs">
       <DependentUpon>AddSupplyView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Views\AddTaskView.xaml.cs">
-      <DependentUpon>AddTaskView.xaml</DependentUpon>
+    <Compile Include="View\Views\AddTaskRelocationView.xaml.cs">
+      <DependentUpon>AddTaskRelocationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Views\AddTaskSupplyView.xaml.cs">
+      <DependentUpon>AddTaskSupplyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Views\AddTaskOrderView.xaml.cs">
+      <DependentUpon>AddTaskOrderView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Views\AdminMenuPage.xaml.cs">
       <DependentUpon>AdminMenuPage.xaml</DependentUpon>
@@ -185,8 +221,11 @@
     <Compile Include="View\Views\TasksMenuPage.xaml.cs">
       <DependentUpon>TasksMenuPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Views\TasksView.xaml.cs">
-      <DependentUpon>TasksView.xaml</DependentUpon>
+    <Compile Include="View\Views\TasksOrdersView.xaml.cs">
+      <DependentUpon>TasksOrdersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Views\TasksSuppliesView.xaml.cs">
+      <DependentUpon>TasksSuppliesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Views\WarehouseMenuPage.xaml.cs">
       <DependentUpon>WarehouseMenuPage.xaml</DependentUpon>
@@ -238,7 +277,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Views\AddTaskView.xaml">
+    <Page Include="View\Views\AddTaskRelocationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Views\AddTaskSupplyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Views\AddTaskOrderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -298,7 +345,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Views\TasksView.xaml">
+    <Page Include="View\Views\TasksOrdersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Views\TasksSuppliesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

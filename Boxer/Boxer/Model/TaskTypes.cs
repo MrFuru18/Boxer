@@ -9,7 +9,6 @@ namespace Boxer.Model
     public enum TaskTypes
     {
         order,
-        supply,
-        relocation
+        supply
     }
 }

@@ -55,16 +55,33 @@ namespace Boxer.ViewModel
             _navigationService = addEmployeeNavigationService;
             _modalNavigationStore = modalNavigationStore;
 
+            _modalNavigationStore.CurrentViewModelClosed += OnCurrentModalViewModelClosed;
+
             NavigateBackCommand = new NavigateCommand(adminMenuNavigationService);
             NewEmployee = new NavigateCommand(addEmployeeNavigationService);
 
             employees = new BindingList<Employee>(EmployeeProcessor.getAllEmployees().Result);
-            _employees = new List<Employee>(employees);
+            _employees = new List<Employee>();
             
             if (_employees.Count > 0)
             {
                 SelectedEmployee = _employees[0];
             }
         }
+
+        private void OnCurrentModalViewModelClosed()
+        {
+            _employees = new List<Employee>(EmployeeProcessor.getAllEmployees().Result);
+
+            employees.Clear();
+            foreach (var employ in _employees)
+                employees.Add(employ);
+
+            if (_employees.Count > 0)
+            {
+                SelectedEmployee = _employees[0];
+            }
+        }
+
     }
 }

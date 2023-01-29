@@ -15,7 +15,8 @@ namespace Boxer.ViewModel
 {
     class AddSupplyViewModel : BaseViewModel
     {
-        private bool edit = false;
+        private readonly INavigationService _navigationService;
+        private bool isNotEdit = true;
         public string HeaderText { get; set; }
         private Supply _supply = new Supply();
 
@@ -26,7 +27,30 @@ namespace Boxer.ViewModel
         private Product _product = new Product();
 
         public ICommand CancelCommand { get; }
-        public ICommand AddSupply { get; }
+
+        private ICommand _addSupply;
+        public ICommand AddSupply
+        {
+            get
+            {
+                return _addSupply ?? (_addSupply = new RelayCommand((p) =>
+                {
+                    if (isNotEdit)
+                    {
+                        AddSupplyCommand addCommand = new AddSupplyCommand(_navigationService, _supply, _supply_items);
+                        addCommand.Execute(true);
+                    }
+                    else
+                    {
+                        EditSupplyCommand editCommand = new EditSupplyCommand(_navigationService, _supply, _supply_items);
+                        editCommand.Execute(true);
+                    }
+
+
+                }, p => true));
+
+            }
+        }
 
         private ICommand _addItem;
         public ICommand AddItem
@@ -43,8 +67,9 @@ namespace Boxer.ViewModel
                         _supplyItem = new SupplyItem();
                         _supplyItem.supply_id = _supply.id;
 
-                        ProductId = "";
-                        Quantity = "";
+                        ProductId = null;
+                        Quantity = null;
+                        LocationId = null;
                     }
 
                 }, p => true));
@@ -79,8 +104,20 @@ namespace Boxer.ViewModel
                 _productId = value;
                 onPropertyChanged(nameof(ProductId));
 
-                if (ProductId != "")
-                    _supplyItem.product_id = int.Parse(ProductId.ToString());
+                _supplyItem.product_id = Int32.TryParse(ProductId, out var tempVal) ? tempVal : (int?)null;
+            }
+        }
+
+        private string _locationId;
+        public string LocationId
+        {
+            get { return _locationId; }
+            set
+            {
+                _locationId = value;
+                onPropertyChanged(nameof(LocationId));
+
+                _supplyItem.location_id = Int32.TryParse(LocationId, out var tempVal) ? tempVal : (int?)null;
             }
         }
 
@@ -93,8 +130,7 @@ namespace Boxer.ViewModel
                 _quantity = value;
                 onPropertyChanged(nameof(Quantity));
 
-                if (Quantity != "")
-                    _supplyItem.quantity = int.Parse(Quantity);
+                _supplyItem.quantity = Int32.TryParse(Quantity, out var tempVal) ? tempVal : (int?)null;
             }
         }
 
@@ -120,6 +156,7 @@ namespace Boxer.ViewModel
             }
         }
 
+
         private string _remarks;
         public string Remarks
         {
@@ -142,8 +179,8 @@ namespace Boxer.ViewModel
 
         public AddSupplyViewModel(INavigationService navigationService, Supply supply)
         {
+            _navigationService = navigationService;
             CancelCommand = new NavigateCommand(navigationService);
-            AddSupply = new NavigateCommand(navigationService);
 
             _supply = new Supply();
 
@@ -156,7 +193,7 @@ namespace Boxer.ViewModel
             HeaderText = "Dodaj Dostawę";
             if (supply != null)
             {
-                edit = true;
+                isNotEdit = false;
                 HeaderText = "Edytuj Dostawę";
 
                 _supply = supply;

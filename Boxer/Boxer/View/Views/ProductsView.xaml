@@ -53,7 +53,9 @@
         </StackPanel>
 
 
-        <ListView Grid.Row="1" Grid.Column="0" Width="1300" Margin="0,30,0,0"  ItemsSource="{Binding products}">
+        <ListView Grid.Row="1" Grid.Column="0" Width="1300" Margin="0,30,0,0"  
+                  ItemsSource="{Binding products}"
+                  SelectedItem="{Binding SelectedProduct}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">
@@ -76,9 +78,9 @@
                             <GridViewColumnHeader Content="id Producenta" CommandParameter="manufacturer_id"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding category}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding category_id}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Kategoria" CommandParameter="category"/>
+                            <GridViewColumnHeader Content="id Kategorii" CommandParameter="category_id"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn Width="350" DisplayMemberBinding="{Binding description}">

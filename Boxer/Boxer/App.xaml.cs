@@ -76,7 +76,7 @@ namespace Boxer
         }
         private TasksMenuViewModel CreateTasksMenuViewModel()
         {
-            return new TasksMenuViewModel(CreateMainMenuNavigationService(), CreateTasksNavigationService());
+            return new TasksMenuViewModel(CreateMainMenuNavigationService(), CreateTasksOrdersNavigationService(), CreateTasksSuppliesNavigationService());
         }
 
         private INavigationService CreateWarehouseMenuNavigationService()
@@ -189,13 +189,21 @@ namespace Boxer
             return new SuppliesViewModel(CreateSuppliesMenuNavigationService(), CreateAddSupplyNavigationService(), _modalNavigationStore);
         }
 
-        private INavigationService CreateTasksNavigationService()
+        private INavigationService CreateTasksOrdersNavigationService()
         {
-            return new NavigationService<TasksViewModel>(_navigationStore, CreateTasksViewModel);
+            return new NavigationService<TasksOrdersViewModel>(_navigationStore, CreateTasksOrdersViewModel);
         }
-        private TasksViewModel CreateTasksViewModel()
+        private TasksOrdersViewModel CreateTasksOrdersViewModel()
         {
-            return new TasksViewModel(CreateTasksMenuNavigationService(), CreateAddTaskNavigationService(), _modalNavigationStore);
+            return new TasksOrdersViewModel(CreateTasksMenuNavigationService(), CreateAddTaskOrderNavigationService(), _modalNavigationStore);
+        }
+        private INavigationService CreateTasksSuppliesNavigationService()
+        {
+            return new NavigationService<TasksSuppliesViewModel>(_navigationStore, CreateTasksSuppliesViewModel);
+        }
+        private TasksSuppliesViewModel CreateTasksSuppliesViewModel()
+        {
+            return new TasksSuppliesViewModel(CreateTasksMenuNavigationService(), CreateAddTaskSupplyNavigationService(), _modalNavigationStore);
         }
 
 
@@ -271,13 +279,22 @@ namespace Boxer
             return new AddSupplyViewModel(new CloseModalNavigationService(_modalNavigationStore), null);
         }
 
-        private INavigationService CreateAddTaskNavigationService()
+        private INavigationService CreateAddTaskOrderNavigationService()
         {
-            return new ModalNavigationService<AddTaskViewModel>(_modalNavigationStore, CreateAddTaskViewModel);
+            return new ModalNavigationService<AddTaskOrderViewModel>(_modalNavigationStore, CreateAddTaskOrderViewModel);
         }
-        private AddTaskViewModel CreateAddTaskViewModel()
+        private AddTaskOrderViewModel CreateAddTaskOrderViewModel()
         {
-            return new AddTaskViewModel(new CloseModalNavigationService(_modalNavigationStore), null);
+            return new AddTaskOrderViewModel(new CloseModalNavigationService(_modalNavigationStore), null);
+        }
+
+        private INavigationService CreateAddTaskSupplyNavigationService()
+        {
+            return new ModalNavigationService<AddTaskSupplyViewModel>(_modalNavigationStore, CreateAddTaskSupplyViewModel);
+        }
+        private AddTaskSupplyViewModel CreateAddTaskSupplyViewModel()
+        {
+            return new AddTaskSupplyViewModel(new CloseModalNavigationService(_modalNavigationStore), null);
         }
     }
 }

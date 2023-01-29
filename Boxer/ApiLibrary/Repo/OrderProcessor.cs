@@ -1,4 +1,5 @@
 ﻿using ApiLibrary.Model;
+using ApiLibrary.Model.ToCreate;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -53,7 +54,7 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<string> addOrder(Order order)
+        public static async Task<string> addOrder(ToCreateOrder order)
         {
             string url = "http://localhost:3000/order/add";
             string result;
@@ -74,7 +75,7 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<string> updateOrder(Order order)
+        public static async Task<string> updateOrder(ToCreateOrder order)
         {
             string url = "http://localhost:3000/order/edit/" + order.id;
             string result;
@@ -130,6 +131,46 @@ namespace ApiLibrary.Repo
                     string jsonResult = await response.Content.ReadAsStringAsync();
                     orderItemsList = JsonConvert.DeserializeObject<List<OrderItem>>(jsonResult);
                     return orderItemsList;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<string> addOrderItem(OrderItem orderItem)
+        {
+            string url = "http://localhost:3000/order_item/add";
+            string result;
+            string serializedOrderItem = JsonConvert.SerializeObject(orderItem);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedOrderItem, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    result = await response.Content.ReadAsStringAsync();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<string> deleteOrderItem(OrderItem orderItem)
+        {
+            string url = "http://localhost:3000/order_item/delete/" + orderItem.id;
+            string result;
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient.DeleteAsync(url).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    result = await response.Content.ReadAsStringAsync();
+                    return result;
                 }
                 else
                 {

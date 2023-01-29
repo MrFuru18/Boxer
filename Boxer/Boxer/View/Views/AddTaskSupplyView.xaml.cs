@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Boxer.View.Views
 {
     /// <summary>
-    /// Logika interakcji dla klasy AddTaskView.xaml
+    /// Logika interakcji dla klasy AddTaskSupply.xaml
     /// </summary>
-    public partial class AddTaskView : UserControl
+    public partial class AddTaskSupplyView : UserControl
     {
-        public AddTaskView()
+        public AddTaskSupplyView()
         {
             InitializeComponent();
         }
