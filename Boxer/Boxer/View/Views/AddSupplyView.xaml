@@ -84,12 +84,12 @@
                                     SelectedItem="{Binding SelectedProduct}">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Width="50" DisplayMemberBinding="{Binding id}">
+                                    <GridViewColumn Width="40" DisplayMemberBinding="{Binding id}">
                                         <GridViewColumn.Header>
                                             <GridViewColumnHeader Content="id" CommandParameter="id"/>
                                         </GridViewColumn.Header>
                                     </GridViewColumn>
-                                    <GridViewColumn Width="50" DisplayMemberBinding="{Binding sku}">
+                                    <GridViewColumn Width="60" DisplayMemberBinding="{Binding sku}">
                                         <GridViewColumn.Header>
                                             <GridViewColumnHeader Content="sku" CommandParameter="sku"/>
                                         </GridViewColumn.Header>
@@ -223,7 +223,7 @@
                                       SelectedItem="{Binding SelectedSupplyItem}">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Width="50" DisplayMemberBinding="{Binding id}">
+                                    <GridViewColumn Width="40" DisplayMemberBinding="{Binding id}">
                                         <GridViewColumn.Header>
                                             <GridViewColumnHeader Content="id" CommandParameter="id"/>
                                         </GridViewColumn.Header>
@@ -243,7 +243,7 @@
                                             <GridViewColumnHeader Content="L. id" CommandParameter="location_id"/>
                                         </GridViewColumn.Header>
                                     </GridViewColumn>
-                                    <GridViewColumn Width="50" DisplayMemberBinding="{Binding sku}">
+                                    <GridViewColumn Width="60" DisplayMemberBinding="{Binding sku}">
                                         <GridViewColumn.Header>
                                             <GridViewColumnHeader Content="SKU" CommandParameter="sku"/>
                                         </GridViewColumn.Header>

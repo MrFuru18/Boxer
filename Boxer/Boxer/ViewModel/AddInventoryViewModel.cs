@@ -1,9 +1,11 @@
 ﻿using ApiLibrary.Model;
+using ApiLibrary.Repo;
 using Boxer.Commands;
 using Boxer.Navigation;
 using Boxer.ViewModel.BaseClass;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +20,15 @@ namespace Boxer.ViewModel
         public string HeaderText { get; set; }
 
         private Inventory _inventory = new Inventory();
+
+        public BindingList<Location> locations { get; set; }
+        private List<Location> _locations { get; set; }
+        private Location _location = new Location();
+
+        public BindingList<Product> products { get; set; }
+        private List<Product> _products { get; set; }
+        private Product _product = new Product();
+
         public ICommand CancelCommand { get; }
         private ICommand _addInventory;
         public ICommand AddInventory
@@ -56,6 +67,17 @@ namespace Boxer.ViewModel
             }
         }
 
+        private Location _selectedLocation;
+        public Location SelectedLocation
+        {
+            get { return _selectedLocation; }
+            set
+            {
+                _selectedLocation = value;
+                onPropertyChanged(nameof(SelectedLocation));
+            }
+        }
+
         private string _productId;
         public string ProductId
         {
@@ -66,6 +88,17 @@ namespace Boxer.ViewModel
                 onPropertyChanged(nameof(ProductId));
 
                 _inventory.product_id = Int32.TryParse(ProductId, out var tempVal) ? tempVal : (int?)null;
+            }
+        }
+
+        private Product _selectedProduct;
+        public Product SelectedProduct
+        {
+            get { return _selectedProduct; }
+            set
+            {
+                _selectedProduct = value;
+                onPropertyChanged(nameof(SelectedProduct));
             }
         }
 
@@ -94,11 +127,18 @@ namespace Boxer.ViewModel
                 _inventory.remarks = Remarks;
             }
         }
+
         public AddInventoryViewModel(INavigationService navigationService, Inventory inventory)
         {
             _navigationService = navigationService;
             
             CancelCommand = new NavigateCommand(navigationService);
+
+            locations = new BindingList<Location>(LocationProcessor.getAllLocations(_location).Result);
+            _locations = new List<Location>();
+
+            products = new BindingList<Product>(ProductProcessor.getAllProducts(_product).Result);
+            _products = new List<Product>();
 
             _inventory = new Inventory();
 
