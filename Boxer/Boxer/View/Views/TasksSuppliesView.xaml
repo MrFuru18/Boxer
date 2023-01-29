@@ -17,6 +17,37 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
+        <Grid Name="dummygrid" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" Name="dummywidth1"></Border>
+            <Border Grid.Column="1" Name="dummywidth2"></Border>
+            <Border Grid.Column="2" Name="dummywidth3"></Border>
+            <Border Grid.Column="3" Name="dummywidth4"></Border>
+            <Border Grid.Column="5" Name="dummywidth5"></Border>
+        </Grid>
+        <!--Grid Name="dummygrid" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" Name="dummywidth1"></Border>
+            <Border Grid.Column="1" Name="dummywidth2"></Border>
+            <Border Grid.Column="2" Name="dummywidth3"></Border>
+            <Border Grid.Column="3" Name="dummywidth4"></Border>
+            <Border Grid.Column="4" Name="dummywidth5"></Border>
+            <Border Grid.Column="5" Name="dummywidth6"></Border>
+        </Grid-->
+        
         <!-- Back Button -->
         <Button x:Name="Back_button"
                 Grid.Row="0"
@@ -93,7 +124,7 @@
                     Content="Edytuj" 
                     Command="{Binding EditTask}"/>
 
-            <ListView Width="600" Margin="0,30,0,0"  ItemsSource="{Binding task_states}">
+            <ListView Width="600" Height="300" Margin="0,30,0,0"  ItemsSource="{Binding task_states}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">

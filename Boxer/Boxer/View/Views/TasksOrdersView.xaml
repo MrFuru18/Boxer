@@ -93,7 +93,7 @@
                     Content="Edytuj" 
                     Command="{Binding EditTask}"/>
 
-            <ListView Width="600" Margin="0,30,0,0"  ItemsSource="{Binding task_states}">
+            <ListView Width="600" Height="300"  Margin="0,30,0,0"  ItemsSource="{Binding task_states}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">
