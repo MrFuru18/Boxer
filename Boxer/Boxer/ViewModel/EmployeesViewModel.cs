@@ -61,7 +61,7 @@ namespace Boxer.ViewModel
             NewEmployee = new NavigateCommand(addEmployeeNavigationService);
 
             employees = new BindingList<Employee>(EmployeeProcessor.getAllEmployees().Result);
-            _employees = new List<Employee>();
+            _employees = new List<Employee>(employees);
             
             if (_employees.Count > 0)
             {

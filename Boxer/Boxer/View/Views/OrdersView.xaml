@@ -34,7 +34,7 @@
         </Button>
 
 
-        <ListView Grid.Row="1" Grid.Column="0" Width="900" Margin="0,30,40,0"  
+        <ListView Grid.Row="1" Grid.Column="0" Width="1010" Margin="0,30,40,0"  
                   ItemsSource="{Binding orders}"
                   SelectedItem="{Binding SelectedOrder}">
             <ListView.View>
@@ -49,7 +49,7 @@
                             <GridViewColumnHeader Content="Adres id" CommandParameter="name"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="500" DisplayMemberBinding="{Binding remarks}">
+                    <GridViewColumn Width="600" DisplayMemberBinding="{Binding remarks}">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Uwagi" CommandParameter="surname"/>
                         </GridViewColumn.Header>

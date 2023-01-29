@@ -82,7 +82,7 @@ namespace Boxer.ViewModel
 
             customer = new Customer();
             customers = new BindingList<Customer>(CustomerProcessor.getAllCustomers(customer).Result);
-            _customers = new List<Customer>();
+            _customers = new List<Customer>(customers);
 
             customerAddress = new CustomerAddress();
             customer_addresses = new BindingList<CustomerAddress>();
