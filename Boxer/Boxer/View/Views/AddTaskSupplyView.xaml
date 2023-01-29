@@ -164,7 +164,6 @@
                      Padding="5"
                      FontSize="20"
                      Height="100"
-                     Width="300"
                      VerticalAlignment="Center"
                      Text="{Binding Remarks}"/>
 
