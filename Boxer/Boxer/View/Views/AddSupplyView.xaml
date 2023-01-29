@@ -130,7 +130,7 @@
                         <TextBox x:Name="Location_id_textbox"
                      Padding="5"
                      FontSize="20"
-                     Width="150"
+                     Width="120"
                      HorizontalAlignment="Left"
                      VerticalAlignment="Center"
                      Text="{Binding LocationId}"/>
