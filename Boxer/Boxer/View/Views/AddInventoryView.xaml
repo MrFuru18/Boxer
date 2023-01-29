@@ -29,62 +29,61 @@
 
             <StackPanel Orientation="Horizontal">
 
-                <StackPanel>
+                <StackPanel Width="500">
                     <!-- Location TextBox -->
                     <TextBlock Text="Lokalizacja id"
                        VerticalAlignment="Center"
                        FontSize="20"
-                       Margin="0,0,0,5"
-                               HorizontalAlignment="Center"
-                               Width="300"/>
+                       Margin="0,0,0,5"/>
 
                     <TextBox x:Name="Location_id_textbox"
                      Padding="5"
                      FontSize="20"
-                     Width="300"
+                     Width="150"
+                     HorizontalAlignment="Left"
                      VerticalAlignment="Center"
                      Text="{Binding LocationId}"/>
 
-                    <ListView Grid.Row="1" Grid.Column="0" Width="350" Height="80" Margin="0,10,0,0"  
+                    <ListView Grid.Row="1" Grid.Column="0" Height="100" Margin="0,10,0,0"  
                               ItemsSource="{Binding locations}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Width="40" DisplayMemberBinding="{Binding id}">
+                                <GridViewColumn Width="50" DisplayMemberBinding="{Binding id}">
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader Content="id" CommandParameter="id"/>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
-                                <GridViewColumn Width="40" DisplayMemberBinding="{Binding sector}">
+                                <GridViewColumn Width="50" DisplayMemberBinding="{Binding sector}">
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader Content="Sektor" CommandParameter="sector"/>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
-                                <GridViewColumn Width="40" DisplayMemberBinding="{Binding aisle}">
+                                <GridViewColumn Width="50" DisplayMemberBinding="{Binding aisle}">
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader Content="Alejka" CommandParameter="aisle"/>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
-                                <GridViewColumn Width="40" DisplayMemberBinding="{Binding unit}">
+                                <GridViewColumn Width="50" DisplayMemberBinding="{Binding unit}">
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader Content="Regał" CommandParameter="unit"/>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
-                                <GridViewColumn Width="40" DisplayMemberBinding="{Binding level}">
+                                <GridViewColumn Width="50" DisplayMemberBinding="{Binding level}">
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader Content="Poziom" CommandParameter="level"/>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
-                                <GridViewColumn Width="40" DisplayMemberBinding="{Binding position}">
+                                <GridViewColumn Width="50" DisplayMemberBinding="{Binding position}">
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader Content="Miejsce" CommandParameter="position"/>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
-                                <GridViewColumn Width="40" DisplayMemberBinding="{Binding size}">
+                                <GridViewColumn Width="50" DisplayMemberBinding="{Binding size}">
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader Content="Rozmiar" CommandParameter="size"/>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
-                                <GridViewColumn Width="70" DisplayMemberBinding="{Binding availability}">
+                                <GridViewColumn Width="150" DisplayMemberBinding="{Binding availability}">
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader Content="Dostępność" CommandParameter="availability"/>
                                     </GridViewColumn.Header>
@@ -104,10 +103,27 @@
                             <TextBox x:Name="Product_id_textbox"
                      Padding="5"
                      FontSize="20"
-                     Width="135"
+                     Width="100"
                      VerticalAlignment="Center"
                      Text="{Binding ProductId}"/>
                         </StackPanel>
+
+                        <StackPanel>
+                            <!-- Product_name TextBox -->
+                            <TextBlock Text="Nazwa"
+                       VerticalAlignment="Center"
+                       FontSize="20"
+                       Margin="30,0,0,5"/>
+
+                            <TextBox x:Name="Product_name_textbox"
+                     Padding="5"
+                     FontSize="20"
+                     Width="200"     
+                     Margin="30,0,0,0"
+                     VerticalAlignment="Center"
+                     Text="{Binding ProductName}"/>
+                        </StackPanel>
+                        
                         <StackPanel>
                             <!-- SKU TextBox -->
                             <TextBlock Text="SKU"
@@ -118,14 +134,14 @@
                             <TextBox x:Name="sku_textbox"
                      Padding="5"
                      FontSize="20"
-                     Width="135"
+                     Width="140"
                      Margin="30,0,0,0"
                      VerticalAlignment="Center"
                      Text="{Binding Sku}"/>
                         </StackPanel>
                     </StackPanel>
 
-                    <ListView Grid.Row="1" Grid.Column="0" Width="300" Height="80" Margin="0,10,0,0"  
+                    <ListView Grid.Row="1" Grid.Column="0" Height="150" Margin="0,10,0,0"  
                               ItemsSource="{Binding products}">
                         <ListView.View>
                             <GridView>
@@ -139,9 +155,24 @@
                                         <GridViewColumnHeader Content="sku" CommandParameter="sku"/>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
-                                <GridViewColumn Width="200" DisplayMemberBinding="{Binding name}">
+                                <GridViewColumn Width="100" DisplayMemberBinding="{Binding name}">
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader Content="Produkt" CommandParameter="name"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="100" DisplayMemberBinding="{Binding category}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Kategoria" CommandParameter="category"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="100" DisplayMemberBinding="{Binding description}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Opis" CommandParameter="description"/>
+                                    </GridViewColumn.Header>
+                                </GridViewColumn>
+                                <GridViewColumn Width="100" DisplayMemberBinding="{Binding manufacturer_name}">
+                                    <GridViewColumn.Header>
+                                        <GridViewColumnHeader Content="Producent" CommandParameter="manufacturer_name"/>
                                     </GridViewColumn.Header>
                                 </GridViewColumn>
                             </GridView>
@@ -155,13 +186,14 @@
                                     VerticalAlignment="Center"
                                     Width="300"
                                     FontSize="20"
+                                   HorizontalAlignment="Left"
                                     Margin="0,10,0,5"/>
 
                         <TextBox x:Name="Quantity_textbox"
                                 Padding="5"
                                 FontSize="20"
-                                Width="300"
-                                VerticalAlignment="Center"
+                                Width="200"
+                                HorizontalAlignment="Left"
                                 Text="{Binding Quantity}"/>
                     </StackPanel>
 
@@ -170,15 +202,12 @@
                     <TextBlock Text="Uwagi"
                        VerticalAlignment="Center"
                        FontSize="20"
-                       Margin="0,30,0,5"   
-                               HorizontalAlignment="Center"
-                               Width="300"/>
+                       Margin="0,30,0,5"/>
 
                     <TextBox x:Name="Remarks_textbox"
                      Padding="5"
                      FontSize="20"
                      Height="100"
-                     Width="300"
                      VerticalAlignment="Center"
                      Text="{Binding Remarks}"/>
 
