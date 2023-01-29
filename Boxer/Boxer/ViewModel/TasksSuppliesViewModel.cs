@@ -13,7 +13,7 @@ using System.Windows.Input;
 
 namespace Boxer.ViewModel
 {
-    class TasksViewModel : BaseViewModel
+    class TasksSuppliesViewModel : BaseViewModel
     {
         INavigationService _navigationService;
         ModalNavigationStore _modalNavigationStore;
@@ -35,7 +35,7 @@ namespace Boxer.ViewModel
             {
                 return _editTask ?? (_editTask = new RelayCommand((p) =>
                 {
-                    _modalNavigationStore.CurrentViewModel = new AddTaskViewModel(new CloseModalNavigationService(_modalNavigationStore), SelectedTask);
+                    _modalNavigationStore.CurrentViewModel = new AddTaskSupplyViewModel(new CloseModalNavigationService(_modalNavigationStore), SelectedTask);
 
                 }, p => true));
 
@@ -66,13 +66,13 @@ namespace Boxer.ViewModel
                 task_states.Add(item);
         }
 
-        public TasksViewModel(INavigationService tasksMenuNavigationService, INavigationService addTaskNavigationService, ModalNavigationStore modalNavigationStore)
+        public TasksSuppliesViewModel(INavigationService tasksMenuNavigationService, INavigationService addTaskNavigationService, ModalNavigationStore modalNavigationStore)
         {
             _navigationService = addTaskNavigationService;
             _modalNavigationStore = modalNavigationStore;
-            
+
             _modalNavigationStore.CurrentViewModelClosed += OnCurrentModalViewModelClosed;
-            
+
             NavigateBackCommand = new NavigateCommand(tasksMenuNavigationService);
             NewTask = new NavigateCommand(addTaskNavigationService);
 
@@ -89,7 +89,7 @@ namespace Boxer.ViewModel
             }
         }
 
-        
+
         private void OnCurrentModalViewModelClosed()
         {
             _tasks = new List<Tasks>(TaskProcessor.getAllTasks(task).Result);

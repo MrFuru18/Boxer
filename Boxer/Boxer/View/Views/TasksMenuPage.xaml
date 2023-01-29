@@ -67,13 +67,14 @@
                 </StackPanel>
             </Button>
 
-            <!--  Tasks Relocations Button -->
+            <!--  Tasks Relocations Button Hidden -->
             <Button x:Name="TasksRelocations_button"
                     Background="Transparent"
                     Margin="15,0,15,0"
                     Width="150"
                     Height="150"
-                    Command="{Binding NavigateTasksRelocationsCommand}" CommandParameter="Tasks">
+                    Command="{Binding NavigateTasksRelocationsCommand}" CommandParameter="Tasks"
+                    Visibility="Collapsed">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
                                 Stretch="None"/>

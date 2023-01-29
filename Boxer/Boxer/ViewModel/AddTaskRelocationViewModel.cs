@@ -9,19 +9,16 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 
 namespace Boxer.ViewModel
 {
-    class AddTaskViewModel : BaseViewModel
+    class AddTaskRelocationViewModel : BaseViewModel
     {
         private readonly INavigationService _navigationService;
         private bool isNotEdit = true;
         public string HeaderText { get; set; }
 
-        public bool TypeOrderChosen { get; set; }
-        public bool TypeSupplyChosen { get; set; }
         //public bool TypeRelocationChosen { get; set; }
 
         private Tasks _task = new Tasks();
@@ -32,7 +29,6 @@ namespace Boxer.ViewModel
         */
         public BindingList<Employee> employees { get; set; }
         public BindingList<Order> orders { get; set; }
-        public BindingList<Supply> supplies { get; set; }
 
         public ICommand CancelCommand { get; }
         public ICommand AddTask { get; }
@@ -106,7 +102,7 @@ namespace Boxer.ViewModel
                 _task.remarks = Remarks;
             }
         }
-
+        /*
         private TaskTypes _taskType;
         public TaskTypes TaskType
         {
@@ -118,11 +114,10 @@ namespace Boxer.ViewModel
 
                 setVisibility();
                 _task.type = TaskType.ToString();
-                /*_relocation_items.Clear();
-                refreshRelocationItems();*/
+                _relocation_items.Clear();
+                refreshRelocationItems();
             }
         }
-
         private void setVisibility()
         {
             TypeOrderChosen = false;
@@ -136,14 +131,15 @@ namespace Boxer.ViewModel
             {
                 TypeSupplyChosen = true;
             }
-            /*if (TaskType == TaskTypes.relocation)
+            if (TaskType == TaskTypes.relocation)
             {
                 TypeRelocationChosen = true;
-            }*/
+            }
             onPropertyChanged(nameof(TypeOrderChosen));
             onPropertyChanged(nameof(TypeSupplyChosen));
             //onPropertyChanged(nameof(TypeRelocationChosen));
         }
+        */
 
         /*
         private string _inventoryId;
@@ -218,21 +214,17 @@ namespace Boxer.ViewModel
         */
 
 
-        public AddTaskViewModel(INavigationService navigationService, Tasks task)
+        public AddTaskRelocationViewModel(INavigationService navigationService, Tasks task)
         {
             _navigationService = navigationService;
             CancelCommand = new NavigateCommand(navigationService);
             AddTask = new NavigateCommand(navigationService);
-           
-            TypeOrderChosen = true;
 
             _task = new Tasks();
 
             employees = new BindingList<Employee>();
 
             orders = new BindingList<Order>();
-
-            supplies = new BindingList<Supply>();
 
             /*
             _relocationItem = new OrderItem();
@@ -249,7 +241,7 @@ namespace Boxer.ViewModel
                 _task = task;
                 EmployeeId = _task.employee_id.ToString();
                 Remarks = _task.remarks;
-                TaskType = (TaskTypes)Enum.Parse(typeof(TaskTypes), _task.type);
+                //TaskType = (TaskTypes)Enum.Parse(typeof(TaskTypes), _task.type);
             }
         }
     }

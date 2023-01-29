@@ -16,11 +16,10 @@ namespace Boxer.Commands
         private Tasks _task;
         private List<RelocationItem> _relocationItems;
 
-        public AddTaskCommand(INavigationService navigationService, Tasks task, List<RelocationItem> relocationItems)
+        public AddTaskCommand(INavigationService navigationService, Tasks task)
         {
             _navigationService = navigationService;
             _task = task;
-            _relocationItems = relocationItems;
         }
 
         public override void Execute(object p)
