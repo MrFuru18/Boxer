@@ -165,7 +165,8 @@
                             </StackPanel>
 
                             <ListView Grid.Row="1" Grid.Column="0" Height="200" Margin="0,10,0,0"  
-                              ItemsSource="{Binding products}">
+                                        ItemsSource="{Binding products}"
+                                        SelectedItem="{Binding SelectedProduct}">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn Width="50" DisplayMemberBinding="{Binding id}">

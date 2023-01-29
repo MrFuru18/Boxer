@@ -63,7 +63,8 @@
                                 </StackPanel>
                             </StackPanel>
                             <ListView Height="100" Margin="0,10,0,0"  
-                                      ItemsSource="{Binding employees}">
+                                      ItemsSource="{Binding employees}"
+                                      SelectedItem="{Binding SelectedEmployee}">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn Width="50" DisplayMemberBinding="{Binding id}">
@@ -124,7 +125,7 @@
                                      HorizontalAlignment="Left"
                                      Text="{Binding OrderId}"/>
 
-                        <ListView Grid.Row="1" Grid.Column="0" Height="150" Margin="0,30,40,0"  
+                        <ListView Grid.Row="1" Grid.Column="0" Height="150" Margin="0,10,40,0"  
                                     ItemsSource="{Binding orders}"
                                     SelectedItem="{Binding SelectedOrder}">
                             <ListView.View>
