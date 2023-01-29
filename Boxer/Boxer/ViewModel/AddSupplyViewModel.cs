@@ -152,6 +152,7 @@ namespace Boxer.ViewModel
             if (SelectedSupplyItem != null)
             {
                 ProductId = SelectedSupplyItem.product_id.ToString();
+                LocationId = _selectedSupplyItem.location_id.ToString();
                 Quantity = SelectedSupplyItem.quantity.ToString();
             }
         }

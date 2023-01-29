@@ -29,7 +29,7 @@
 
             <StackPanel Orientation="Horizontal">
 
-                <StackPanel Width="500">
+                <StackPanel>
                     <!-- Location TextBox -->
                     <TextBlock Text="Lokalizacja id"
                        VerticalAlignment="Center"

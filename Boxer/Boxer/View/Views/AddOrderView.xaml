@@ -252,12 +252,12 @@
                                                 <GridViewColumnHeader Content="P. id" CommandParameter="product_id"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding quantity}">
+                                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding quantity}">
                                             <GridViewColumn.Header>
                                                 <GridViewColumnHeader Content="Ilość" CommandParameter="quantity"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding sku}">
+                                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding sku}">
                                             <GridViewColumn.Header>
                                                 <GridViewColumnHeader Content="SKU" CommandParameter="sku"/>
                                             </GridViewColumn.Header>

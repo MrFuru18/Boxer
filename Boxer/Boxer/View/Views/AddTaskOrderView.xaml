@@ -42,12 +42,12 @@
                                     <TextBox x:Name="Emplopyee_id_textbox"
                                      Padding="5"
                                      FontSize="20"
-                                     Width="135"
+                                     Width="120"
                                      VerticalAlignment="Center"
                                      Text="{Binding EmployeeId}"/>
                                 </StackPanel>
                                 <StackPanel>
-                                    <!-- SKU TextBox -->
+                                    <!-- Uid TextBox -->
                                     <TextBlock Text="Uid"
                                        VerticalAlignment="Center"
                                        FontSize="20"
@@ -56,42 +56,52 @@
                                     <TextBox x:Name="Employee_uid_textbox"
                                      Padding="5"
                                      FontSize="20"
-                                     Width="135"
+                                     Width="120"
                                      Margin="30,0,0,0"
                                      VerticalAlignment="Center"
                                      Text="{Binding Uid}"/>
                                 </StackPanel>
                             </StackPanel>
-                            <ListView Width="300" Height="80" Margin="0,10,0,0"  
+                            <ListView Height="100" Margin="0,10,0,0"  
                                       ItemsSource="{Binding employees}">
                                 <ListView.View>
                                     <GridView>
-                                        <GridViewColumn Width="40" DisplayMemberBinding="{Binding id}">
+                                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding id}">
                                             <GridViewColumn.Header>
                                                 <GridViewColumnHeader Content="id" CommandParameter="id"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="40" DisplayMemberBinding="{Binding uid}">
+                                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding uid}">
                                             <GridViewColumn.Header>
-                                                <GridViewColumnHeader Content="uid" CommandParameter="uid"/>
+                                                <GridViewColumnHeader Content="Uid" CommandParameter="uid"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="80" DisplayMemberBinding="{Binding name}">
+                                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding name}">
                                             <GridViewColumn.Header>
                                                 <GridViewColumnHeader Content="Imię" CommandParameter="name"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="80" DisplayMemberBinding="{Binding surname}">
+                                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding surname}">
                                             <GridViewColumn.Header>
                                                 <GridViewColumnHeader Content="Nazwisko" CommandParameter="surname"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="60" DisplayMemberBinding="{Binding availability}">
+                                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding availability}">
                                             <GridViewColumn.Header>
                                                 <GridViewColumnHeader Content="Dostępność" CommandParameter="availability"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
-                                    </GridView>
+                                    <GridViewColumn Width="50" DisplayMemberBinding="{Binding phone}">
+                                        <GridViewColumn.Header>
+                                            <GridViewColumnHeader Content="Nr Tel" CommandParameter="phone"/>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="50" DisplayMemberBinding="{Binding email}">
+                                        <GridViewColumn.Header>
+                                            <GridViewColumnHeader Content="Email" CommandParameter="email"/>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+                                </GridView>
                                 </ListView.View>
                             </ListView>
                         </StackPanel>
@@ -109,37 +119,40 @@
                             <TextBox x:Name="Order_id_textbox"
                                      Padding="5"
                                      FontSize="20"
-                                     Width="300"
+                                     Width="120"
                                      VerticalAlignment="Center"
+                                     HorizontalAlignment="Left"
                                      Text="{Binding OrderId}"/>
 
-                            <ListView Width="300" Height="80" Margin="0,10,0,0"  ItemsSource="{Binding orders}">
-                                <ListView.View>
-                                    <GridView>
-                                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding id}">
-                                            <GridViewColumn.Header>
-                                                <GridViewColumnHeader Content="id" CommandParameter="id"/>
-                                            </GridViewColumn.Header>
-                                        </GridViewColumn>
-                                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding customer_address_id}">
-                                            <GridViewColumn.Header>
-                                                <GridViewColumnHeader Content="Adres id" CommandParameter="customer_address_id"/>
-                                            </GridViewColumn.Header>
-                                        </GridViewColumn>
-                                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding remarks}">
-                                            <GridViewColumn.Header>
-                                                <GridViewColumnHeader Content="Uwagi" CommandParameter="remarks"/>
-                                            </GridViewColumn.Header>
-                                        </GridViewColumn>
-                                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding time}">
-                                            <GridViewColumn.Header>
-                                                <GridViewColumnHeader Content="Kiedy" CommandParameter="time"/>
-                                            </GridViewColumn.Header>
-                                        </GridViewColumn>
-                                    </GridView>
-                                </ListView.View>
-                            </ListView>
-                        </StackPanel>
+                        <ListView Grid.Row="1" Grid.Column="0" Height="150" Margin="0,30,40,0"  
+                                    ItemsSource="{Binding orders}"
+                                    SelectedItem="{Binding SelectedOrder}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="50" DisplayMemberBinding="{Binding id}">
+                                        <GridViewColumn.Header>
+                                            <GridViewColumnHeader Content="id" CommandParameter="id"/>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="50" DisplayMemberBinding="{Binding customer_address_id}">
+                                        <GridViewColumn.Header>
+                                            <GridViewColumnHeader Content="Adres id" CommandParameter="name"/>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="300" DisplayMemberBinding="{Binding remarks}">
+                                        <GridViewColumn.Header>
+                                            <GridViewColumnHeader Content="Uwagi" CommandParameter="surname"/>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding time}">
+                                        <GridViewColumn.Header>
+                                            <GridViewColumnHeader Content="Kiedy" CommandParameter="time"/>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
                     </GroupBox>
 
                     <!-- Remarks TextBox -->
@@ -152,7 +165,6 @@
                      Padding="5"
                      FontSize="20"
                      Height="100"
-                     Width="300"
                      VerticalAlignment="Center"
                      Text="{Binding Remarks}"/>
 
