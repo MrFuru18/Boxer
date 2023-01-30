@@ -28,6 +28,8 @@
                      FontSize="20"
                      Width="300"
                      VerticalAlignment="Center"
+                     PreviewTextInput="Uid_textbox_PreviewTextInput"
+                     DataObject.Pasting="Uid_textbox_Pasting"
                      Text="{Binding Uid}"/>
 
             <!-- Password PasswordBox -->

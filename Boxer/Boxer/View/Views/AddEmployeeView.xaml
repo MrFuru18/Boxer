@@ -108,6 +108,7 @@
                      FontSize="20"
                      Width="300"
                      VerticalAlignment="Center"
+                     PreviewTextInput="Phone_textbox_PreviewTextInput"
                      Text="{Binding Phone}"/>
                 </StackPanel>
 
@@ -121,11 +122,13 @@
                        Margin="0,0,0,5"/>
 
                     <TextBox x:Name="Uid_textbox"
-                     Padding="5"
-                     FontSize="20"
-                     Width="300"
-                     VerticalAlignment="Center"
-                     Text="{Binding Uid}"/>
+                            Padding="5"
+                            FontSize="20"
+                            Width="300"
+                            VerticalAlignment="Center"
+                            PreviewTextInput="Uid_textbox_PreviewTextInput"
+                            DataObject.Pasting="Uid_textbox_Pasting"
+                             Text="{Binding Uid}"/>
 
                     <!-- Password PasswordBox -->
                     <TextBlock Text="Hasło"
