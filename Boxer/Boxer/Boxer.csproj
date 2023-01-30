@@ -118,6 +118,7 @@
     <Compile Include="Navigation\INavigationStore.cs" />
     <Compile Include="Navigation\NavigationService.cs" />
     <Compile Include="Navigation\NavigationStore.cs" />
+    <Compile Include="Utils\GridViewSort.cs" />
     <Compile Include="ViewModel\AddCustomerViewModel.cs" />
     <Compile Include="ViewModel\AddEmployeeViewModel.cs" />
     <Compile Include="ViewModel\AddInventoryViewModel.cs" />

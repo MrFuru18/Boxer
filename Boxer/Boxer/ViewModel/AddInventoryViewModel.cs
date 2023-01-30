@@ -5,6 +5,7 @@ using Boxer.Navigation;
 using Boxer.ViewModel.BaseClass;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -21,11 +22,11 @@ namespace Boxer.ViewModel
 
         private Inventory _inventory = new Inventory();
 
-        public BindingList<Location> locations { get; set; }
+        public ObservableCollection<Location> locations { get; set; }
         private List<Location> _locations { get; set; }
         private Location _location = new Location();
 
-        public BindingList<Product> products { get; set; }
+        public ObservableCollection<Product> products { get; set; }
         private List<Product> _products { get; set; }
         private Product _product = new Product();
 
@@ -138,10 +139,10 @@ namespace Boxer.ViewModel
             
             CancelCommand = new NavigateCommand(navigationService);
 
-            locations = new BindingList<Location>(LocationProcessor.getAllLocations(_location).Result);
+            locations = new ObservableCollection<Location>(LocationProcessor.getAllLocations(_location).Result);
             _locations = new List<Location>();
 
-            products = new BindingList<Product>(ProductProcessor.getAllProducts(_product).Result);
+            products = new ObservableCollection<Product>(ProductProcessor.getAllProducts(_product).Result);
             _products = new List<Product>();
 
             _inventory = new Inventory();

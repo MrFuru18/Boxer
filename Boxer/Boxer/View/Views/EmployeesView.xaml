@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Boxer.View.Views"
+             xmlns:utils="clr-namespace:Boxer.Utils"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="1200">
     <Grid Background="White">
@@ -56,45 +57,56 @@
 
         <ListView Grid.Row="1" Grid.Column="0" Width="1300" Margin="0,30,0,0" HorizontalAlignment="Center" 
                   ItemsSource="{Binding employees}"
-                  SelectedItem="{Binding SelectedEmployee}">
+                  SelectedItem="{Binding SelectedEmployee}"
+                  IsSynchronizedWithCurrentItem="True"
+                  utils:GridViewSort.AutoSort="True"
+                  utils:GridViewSort.ShowSortGlyph="True">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="50" DisplayMemberBinding="{Binding id}">
+                    <GridViewColumn Width="50" DisplayMemberBinding="{Binding id}"
+                                    utils:GridViewSort.PropertyName="id">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="id" CommandParameter="id"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="50" DisplayMemberBinding="{Binding uid}">
+                    <GridViewColumn Width="50" DisplayMemberBinding="{Binding uid}"
+                                    utils:GridViewSort.PropertyName="uid">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Uid" CommandParameter="uid"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding name}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding name}"
+                                    utils:GridViewSort.PropertyName="name">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Imię" CommandParameter="name"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding surname}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding surname}"
+                                    utils:GridViewSort.PropertyName="surname">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Nazwisko" CommandParameter="surname"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding email}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding email}"
+                                    utils:GridViewSort.PropertyName="email">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Email" CommandParameter="email"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding phone}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding phone}"
+                                    utils:GridViewSort.PropertyName="phone">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Numer Telofonu" CommandParameter="number"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding permissions}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding permissions}"
+                                    utils:GridViewSort.PropertyName="permissions">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Uprawnienia" CommandParameter="permissions"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding state}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding state}"
+                                    utils:GridViewSort.PropertyName="state">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Stan" CommandParameter="state"/>
                         </GridViewColumn.Header>

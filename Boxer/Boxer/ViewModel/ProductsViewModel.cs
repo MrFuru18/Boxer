@@ -5,6 +5,7 @@ using Boxer.Navigation;
 using Boxer.ViewModel.BaseClass;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace Boxer.ViewModel
     {
         INavigationService _navigationService;
         ModalNavigationStore _modalNavigationStore;
-        public BindingList<Product> products { get; set; }
+        public ObservableCollection<Product> products { get; set; }
         private List<Product> _products { get; set; }
         private Product product = null;
 
@@ -60,7 +61,7 @@ namespace Boxer.ViewModel
             NewProduct = new NavigateCommand(addProductNavigationService);
 
             product = new Product();
-            products = new BindingList<Product>(ProductProcessor.getAllProducts(product).Result);
+            products = new ObservableCollection<Product>(ProductProcessor.getAllProducts(product).Result);
             _products = new List<Product>(products);
 
             if (_products.Count > 0)

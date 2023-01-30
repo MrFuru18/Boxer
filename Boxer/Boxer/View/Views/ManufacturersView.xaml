@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Boxer.View.Views"
+             xmlns:utils="clr-namespace:Boxer.Utils"
              mc:Ignorable="d" >
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -57,30 +58,38 @@
 
         <ListView Grid.Row="1" Grid.Column="0" Width="900" Margin="0,30,40,0" 
                   ItemsSource="{Binding manufacturers}"
-                  SelectedItem="{Binding SelectedManufacturer}">
+                  SelectedItem="{Binding SelectedManufacturer}"
+                  IsSynchronizedWithCurrentItem="True"
+                                      utils:GridViewSort.AutoSort="True"
+                                      utils:GridViewSort.ShowSortGlyph="True">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}"
+                                    utils:GridViewSort.PropertyName="id">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="id" CommandParameter="id"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding name}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding name}"
+                                    utils:GridViewSort.PropertyName="name">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Nazwa" CommandParameter="name"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding country}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding country}"
+                                    utils:GridViewSort.PropertyName="country">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Kraj" CommandParameter="country"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding phone}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding phone}"
+                                    utils:GridViewSort.PropertyName="phone">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Numer Telofonu" CommandParameter="phone"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding email}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding email}"
+                                    utils:GridViewSort.PropertyName="email">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Email" CommandParameter="email"/>
                         </GridViewColumn.Header>

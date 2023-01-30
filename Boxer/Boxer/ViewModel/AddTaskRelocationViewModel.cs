@@ -5,6 +5,7 @@ using Boxer.Navigation;
 using Boxer.ViewModel.BaseClass;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -23,12 +24,12 @@ namespace Boxer.ViewModel
 
         private Tasks _task = new Tasks();
         /*
-        public BindingList<RelocationItem> relocation_items { get; set; }
+        public ObservableCollection<RelocationItem> relocation_items { get; set; }
         private List<RelocationItem> _relocation_items { get; set; }
         private RelocationItem _relocationItem = new RelocationItem();
         */
-        public BindingList<Employee> employees { get; set; }
-        public BindingList<Order> orders { get; set; }
+        public ObservableCollection<Employee> employees { get; set; }
+        public ObservableCollection<Order> orders { get; set; }
 
         public ICommand CancelCommand { get; }
         public ICommand AddTask { get; }
@@ -222,13 +223,13 @@ namespace Boxer.ViewModel
 
             _task = new Tasks();
 
-            employees = new BindingList<Employee>();
+            employees = new ObservableCollection<Employee>();
 
-            orders = new BindingList<Order>();
+            orders = new ObservableCollection<Order>();
 
             /*
             _relocationItem = new OrderItem();
-            relocation_items = new BindingList<RelocationItem>();
+            relocation_items = new ObservableCollection<RelocationItem>();
             _relocation_items = new List<OrderItem>();
             */
 

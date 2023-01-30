@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Boxer.View.Views"
+             xmlns:utils="clr-namespace:Boxer.Utils"
              mc:Ignorable="d" >
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -36,25 +37,32 @@
 
         <ListView Grid.Row="1" Grid.Column="0" Width="1010" Margin="0,30,40,0"  
                   ItemsSource="{Binding orders}"
-                  SelectedItem="{Binding SelectedOrder}">
+                  SelectedItem="{Binding SelectedOrder}"
+                  IsSynchronizedWithCurrentItem="True"
+                                      utils:GridViewSort.AutoSort="True"
+                                      utils:GridViewSort.ShowSortGlyph="True">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}"
+                                    utils:GridViewSort.PropertyName="id">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Uid" CommandParameter="uid"/>
+                            <GridViewColumnHeader Content="Uid" CommandParameter="id"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding customer_address_id}">
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding customer_address_id}"
+                                    utils:GridViewSort.PropertyName="customer_address_id">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Adres id" CommandParameter="name"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="600" DisplayMemberBinding="{Binding remarks}">
+                    <GridViewColumn Width="600" DisplayMemberBinding="{Binding remarks}"
+                                    utils:GridViewSort.PropertyName="remarks">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Uwagi" CommandParameter="surname"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding time}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding time}"
+                                    utils:GridViewSort.PropertyName="time">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Kiedy" CommandParameter="time"/>
                         </GridViewColumn.Header>
@@ -83,40 +91,50 @@
                     Command="{Binding EditOrder}"/>
 
             <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="510" Height="300" Margin="0,30,0,0"  
-                      ItemsSource="{Binding order_items}">
+                      ItemsSource="{Binding order_items}"
+                      IsSynchronizedWithCurrentItem="True"
+                                      utils:GridViewSort.AutoSort="True"
+                                      utils:GridViewSort.ShowSortGlyph="True">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding id}">
+                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding id}"
+                                        utils:GridViewSort.PropertyName="id">
                             <GridViewColumn.Header>
                                 <GridViewColumnHeader Content="id" CommandParameter="id"/>
                             </GridViewColumn.Header>
                         </GridViewColumn>
-                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding product_id}">
+                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding product_id}"
+                                        utils:GridViewSort.PropertyName="product_id">
                             <GridViewColumn.Header>
                                 <GridViewColumnHeader Content="P. id" CommandParameter="product_id"/>
                             </GridViewColumn.Header>
                         </GridViewColumn>
-                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding quantity}">
+                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding quantity}"
+                                        utils:GridViewSort.PropertyName="quantity">
                             <GridViewColumn.Header>
                                 <GridViewColumnHeader Content="Ilość" CommandParameter="quantity"/>
                             </GridViewColumn.Header>
                         </GridViewColumn>
-                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding sku}">
+                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding sku}"
+                                        utils:GridViewSort.PropertyName="sku">
                             <GridViewColumn.Header>
                                 <GridViewColumnHeader Content="SKU" CommandParameter="sku"/>
                             </GridViewColumn.Header>
                         </GridViewColumn>
-                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding product_name}">
+                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding product_name}"
+                                        utils:GridViewSort.PropertyName="product_name">
                             <GridViewColumn.Header>
                                 <GridViewColumnHeader Content="Nazwa" CommandParameter="product_name"/>
                             </GridViewColumn.Header>
                         </GridViewColumn>
-                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding manufacturer_name}">
+                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding manufacturer_name}"
+                                        utils:GridViewSort.PropertyName="manufacturer_name">
                             <GridViewColumn.Header>
                                 <GridViewColumnHeader Content="Producent" CommandParameter="manufacturer_name"/>
                             </GridViewColumn.Header>
                         </GridViewColumn>
-                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding current_quanitity}">
+                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding current_quanitity}"
+                                        utils:GridViewSort.PropertyName="current_quantity">
                             <GridViewColumn.Header>
                                 <GridViewColumnHeader Content="Zebrano" CommandParameter="current_quantity"/>
                             </GridViewColumn.Header>

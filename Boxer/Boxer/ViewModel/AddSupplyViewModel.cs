@@ -5,6 +5,7 @@ using Boxer.Navigation;
 using Boxer.ViewModel.BaseClass;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -20,15 +21,15 @@ namespace Boxer.ViewModel
         public string HeaderText { get; set; }
         private Supply _supply = new Supply();
 
-        public BindingList<SupplyItem> supply_items { get; set; }
+        public ObservableCollection<SupplyItem> supply_items { get; set; }
         private List<SupplyItem> _supply_items { get; set; }
         private SupplyItem _supplyItem = new SupplyItem();
 
-        public BindingList<Location> locations { get; set; }
+        public ObservableCollection<Location> locations { get; set; }
         private List<Location> _locations { get; set; }
         private Location _location = new Location();
 
-        public BindingList<Product> products { get; set; }
+        public ObservableCollection<Product> products { get; set; }
         private List<Product> _products { get; set; }
         private Product _product = new Product();
 
@@ -215,16 +216,16 @@ namespace Boxer.ViewModel
             _navigationService = navigationService;
             CancelCommand = new NavigateCommand(navigationService);
 
-            locations = new BindingList<Location>(LocationProcessor.getAllLocations(_location).Result);
+            locations = new ObservableCollection<Location>(LocationProcessor.getAllLocations(_location).Result);
             _locations = new List<Location>();
 
-            products = new BindingList<Product>(ProductProcessor.getAllProducts(_product).Result);
+            products = new ObservableCollection<Product>(ProductProcessor.getAllProducts(_product).Result);
             _products = new List<Product>();
 
             _supply = new Supply();
 
             _supplyItem = new SupplyItem();
-            supply_items = new BindingList<SupplyItem>();
+            supply_items = new ObservableCollection<SupplyItem>();
             _supply_items = new List<SupplyItem>();
 
             _product = new Product();
@@ -240,7 +241,7 @@ namespace Boxer.ViewModel
 
                 _supplyItem.supply_id = _supply.id;
 
-                supply_items = new BindingList<SupplyItem>(SupplyProcessor.getSupplyItems(_supplyItem).Result);
+                supply_items = new ObservableCollection<SupplyItem>(SupplyProcessor.getSupplyItems(_supplyItem).Result);
                 _supply_items.AddRange(supply_items);
             }
         }

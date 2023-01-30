@@ -5,6 +5,7 @@ using Boxer.Navigation;
 using Boxer.ViewModel.BaseClass;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,11 @@ namespace Boxer.ViewModel
     {
         INavigationService _navigationService;
         ModalNavigationStore _modalNavigationStore;
-        public BindingList<Customer> customers { get; set; }
+        public ObservableCollection<Customer> customers { get; set; }
         private List<Customer> _customers { get; set; }
         private Customer customer = new Customer();
 
-        public BindingList<CustomerAddress> customer_addresses { get; set; }
+        public ObservableCollection<CustomerAddress> customer_addresses { get; set; }
         public List<CustomerAddress> _customer_addresses { get; set; }
         private CustomerAddress customerAddress = new CustomerAddress();
 
@@ -81,11 +82,11 @@ namespace Boxer.ViewModel
 
 
             customer = new Customer();
-            customers = new BindingList<Customer>(CustomerProcessor.getAllCustomers(customer).Result);
+            customers = new ObservableCollection<Customer>(CustomerProcessor.getAllCustomers(customer).Result);
             _customers = new List<Customer>(customers);
 
             customerAddress = new CustomerAddress();
-            customer_addresses = new BindingList<CustomerAddress>();
+            customer_addresses = new ObservableCollection<CustomerAddress>();
 
             if (_customers.Count > 0)
             {

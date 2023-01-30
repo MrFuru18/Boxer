@@ -5,6 +5,7 @@ using Boxer.Navigation;
 using Boxer.ViewModel.BaseClass;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -21,15 +22,15 @@ namespace Boxer.ViewModel
 
         private Order _order = new Order();
 
-        public BindingList<OrderItem> order_items { get; set; }
+        public ObservableCollection<OrderItem> order_items { get; set; }
         private List<OrderItem> _order_items { get; set; }
         private OrderItem _orderItem = new OrderItem();
 
-        public BindingList<CustomerAddress> customer_addresses { get; set; }
+        public ObservableCollection<CustomerAddress> customer_addresses { get; set; }
         private List<CustomerAddress> _customer_addresses { get; set; }
         private CustomerAddress _customerAddress = new CustomerAddress();
 
-        public BindingList<Product> products { get; set; }
+        public ObservableCollection<Product> products { get; set; }
         private List<Product> _products { get; set; }
         private Product _product = new Product();
 
@@ -214,16 +215,16 @@ namespace Boxer.ViewModel
 
             CancelCommand = new NavigateCommand(navigationService);
 
-            products = new BindingList<Product>(ProductProcessor.getAllProducts(_product).Result);
+            products = new ObservableCollection<Product>(ProductProcessor.getAllProducts(_product).Result);
             _products = new List<Product>();
 
-            customer_addresses = new BindingList<CustomerAddress>(CustomerProcessor.getAllCustomerAddresses(_customerAddress).Result);
+            customer_addresses = new ObservableCollection<CustomerAddress>(CustomerProcessor.getAllCustomerAddresses(_customerAddress).Result);
             _customer_addresses = new List<CustomerAddress>();
 
             _order = new Order();
 
             _orderItem = new OrderItem();
-            order_items = new BindingList<OrderItem>();
+            order_items = new ObservableCollection<OrderItem>();
             _order_items = new List<OrderItem>();
 
 
@@ -239,7 +240,7 @@ namespace Boxer.ViewModel
 
                 _orderItem.order_id = _order.id;
 
-                order_items = new BindingList<OrderItem>(OrderProcessor.getOrderItems(_orderItem).Result);
+                order_items = new ObservableCollection<OrderItem>(OrderProcessor.getOrderItems(_orderItem).Result);
                 _order_items.AddRange(order_items);
             }
         }

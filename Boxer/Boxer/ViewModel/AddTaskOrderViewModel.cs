@@ -6,6 +6,7 @@ using Boxer.Navigation;
 using Boxer.ViewModel.BaseClass;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -22,10 +23,10 @@ namespace Boxer.ViewModel
         public string HeaderText { get; set; }
 
         private Tasks _task = new Tasks();
-        public BindingList<Employee> employees { get; set; }
+        public ObservableCollection<Employee> employees { get; set; }
         private List<Employee> _employees { get; set; }
         private Employee _employee = new Employee();
-        public BindingList<Order> orders { get; set; }
+        public ObservableCollection<Order> orders { get; set; }
         private List<Order> _orders { get; set; }
         private Order _order = new Order();
 
@@ -128,9 +129,9 @@ namespace Boxer.ViewModel
             _task = new Tasks();
             _task.type = TaskTypes.order.ToString();
 
-            employees = new BindingList<Employee>(EmployeeProcessor.getAllEmployees().Result);
+            employees = new ObservableCollection<Employee>(EmployeeProcessor.getAllEmployees().Result);
 
-            orders = new BindingList<Order>(OrderProcessor.getAllOrders(_order).Result);
+            orders = new ObservableCollection<Order>(OrderProcessor.getAllOrders(_order).Result);
 
             HeaderText = "Dodaj Zadanie";
             if (task != null)

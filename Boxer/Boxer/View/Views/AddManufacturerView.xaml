@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Boxer.View.Views"
+             xmlns:utils="clr-namespace:Boxer.Utils"
              mc:Ignorable="d">
     
     <Grid Background="White">

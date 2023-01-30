@@ -5,6 +5,7 @@ using Boxer.Navigation;
 using Boxer.ViewModel.BaseClass;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace Boxer.ViewModel
         INavigationService _navigationService;
         ModalNavigationStore _modalNavigationStore;
 
-        public BindingList<Manufacturer> manufacturers { get; set; }
+        public ObservableCollection<Manufacturer> manufacturers { get; set; }
         private List<Manufacturer> _manufacturers { get; set; }
         private Manufacturer manufacturer = null;
 
@@ -61,7 +62,7 @@ namespace Boxer.ViewModel
             NewManufacturer = new NavigateCommand(addManufacturerNavigationService);
 
             manufacturer = new Manufacturer();
-            manufacturers = new BindingList<Manufacturer>(ManufacturerProcessor.getAllManufacturers(manufacturer).Result);
+            manufacturers = new ObservableCollection<Manufacturer>(ManufacturerProcessor.getAllManufacturers(manufacturer).Result);
             _manufacturers = new List<Manufacturer>(manufacturers);
 
             if (_manufacturers.Count > 0)

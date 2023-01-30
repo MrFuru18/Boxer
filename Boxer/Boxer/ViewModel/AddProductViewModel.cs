@@ -6,6 +6,7 @@ using Boxer.Navigation;
 using Boxer.ViewModel.BaseClass;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,7 @@ namespace Boxer.ViewModel
         public string HeaderText { get; set; }
         private Product _product = new Product();
 
-        public BindingList<Manufacturer> manufacturers { get; set; }
+        public ObservableCollection<Manufacturer> manufacturers { get; set; }
         private List<Manufacturer> _manufacturers { get; set; }
         private Manufacturer _manufacturer = new Manufacturer();
 
@@ -159,7 +160,7 @@ namespace Boxer.ViewModel
             _navigationService = navigationService;
             CancelCommand = new NavigateCommand(navigationService);
 
-            manufacturers = new BindingList<Manufacturer>(ManufacturerProcessor.getAllManufacturers(_manufacturer).Result);
+            manufacturers = new ObservableCollection<Manufacturer>(ManufacturerProcessor.getAllManufacturers(_manufacturer).Result);
             _manufacturers = new List<Manufacturer>();
 
             _product = new Product();

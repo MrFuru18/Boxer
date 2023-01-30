@@ -5,6 +5,7 @@ using Boxer.Navigation;
 using Boxer.ViewModel.BaseClass;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,11 @@ namespace Boxer.ViewModel
         INavigationService _navigationService;
         ModalNavigationStore _modalNavigationStore;
 
-        public BindingList<Order> orders { get; set; }
+        public ObservableCollection<Order> orders { get; set; }
         private List<Order> _orders { get; set; }
         private Order order = null;
 
-        public BindingList<OrderItem> order_items { get; set; }
+        public ObservableCollection<OrderItem> order_items { get; set; }
         public List<OrderItem> _order_items { get; set; }
         private OrderItem orderItem = new OrderItem();
 
@@ -78,11 +79,11 @@ namespace Boxer.ViewModel
             NewOrder = new NavigateCommand(addOrderNavigationService);
 
             order = new Order();
-            orders = new BindingList<Order>(OrderProcessor.getAllOrders(order).Result);
+            orders = new ObservableCollection<Order>(OrderProcessor.getAllOrders(order).Result);
             _orders = new List<Order>(orders);
 
             orderItem = new OrderItem();
-            order_items = new BindingList<OrderItem>();
+            order_items = new ObservableCollection<OrderItem>();
 
             if (_orders.Count > 0)
             {

@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Boxer.View.Views"
+             xmlns:utils="clr-namespace:Boxer.Utils"
+             xmlns:l="clr-namespace:Boxer"
              mc:Ignorable="d" >
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -58,30 +60,38 @@
 
         <ListView Grid.Row="1" Grid.Column="0" Width="900" Height="500" Margin="0,30,40,0" 
                   ItemsSource="{Binding customers}"
-                  SelectedItem="{Binding SelectedCustomer}">
+                  SelectedItem="{Binding SelectedCustomer}"
+                  IsSynchronizedWithCurrentItem="True"
+                  utils:GridViewSort.AutoSort="True"
+                  utils:GridViewSort.ShowSortGlyph="True">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}"
+                                    utils:GridViewSort.PropertyName="id">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="id" CommandParameter="id"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding name}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding name}" 
+                                    utils:GridViewSort.PropertyName="name">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Imię" CommandParameter="name"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding surname}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding surname}"
+                                    utils:GridViewSort.PropertyName="surname">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Nazwisko" CommandParameter="surname"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding email}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding email}"
+                                    utils:GridViewSort.PropertyName="email">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Email" CommandParameter="email"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding phone}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding phone}"
+                                    utils:GridViewSort.PropertyName="phone">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Numer Telofonu" CommandParameter="number"/>
                         </GridViewColumn.Header>
@@ -92,45 +102,56 @@
 
 
         <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="1400" Margin="0,30,0,0"  
-                  ItemsSource="{Binding customer_addresses}">
+                  ItemsSource="{Binding customer_addresses}"
+                  IsSynchronizedWithCurrentItem="True"
+                  utils:GridViewSort.AutoSort="True"
+                  utils:GridViewSort.ShowSortGlyph="True">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}">
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}"
+                                    utils:GridViewSort.PropertyName="id">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="id" CommandParameter="id"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding customer_id}">
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding customer_id}"
+                                    utils:GridViewSort.PropertyName="customer_id">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="id Klienta" CommandParameter="customer_id"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding address_line_1}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding address_line_1}"
+                                    utils:GridViewSort.PropertyName="address_line_1">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Linia Adresowa 1" CommandParameter="address_line_1"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding address_line_2}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding address_line_2}"
+                                    utils:GridViewSort.PropertyName="address_line_2">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Linia Adresowa 2" CommandParameter="address_line_2"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding city}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding city}"
+                                    utils:GridViewSort.PropertyName="city">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Miasto" CommandParameter="city"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding region}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding region}"
+                                    utils:GridViewSort.PropertyName="region">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Region" CommandParameter="region"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding postal_code}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding postal_code}"
+                                    utils:GridViewSort.PropertyName="postal_code">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Kod Pocztowy" CommandParameter="postal_code"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding country}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding country}"
+                                    utils:GridViewSort.PropertyName="country">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Kraj" CommandParameter="country"/>
                         </GridViewColumn.Header>

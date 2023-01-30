@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Boxer.View.Views"
              xmlns:model="clr-namespace:Boxer.Model"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:utils="clr-namespace:Boxer.Utils"
              mc:Ignorable="d">
     <UserControl.Resources>
         <ObjectDataProvider x:Key="permissionsFromEnum"
