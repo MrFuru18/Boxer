@@ -38,12 +38,14 @@
                        Margin="0,0,0,5"/>
 
                     <TextBox x:Name="Location_id_textbox"
-                     Padding="5"
-                     FontSize="20"
-                     Width="120"
-                     HorizontalAlignment="Left"
-                     VerticalAlignment="Center"
-                     Text="{Binding LocationId}"/>
+                             Padding="5"
+                             FontSize="20"
+                             Width="120"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Center"
+                             PreviewTextInput="textbox_PreviewTextInput"
+                             DataObject.Pasting="textbox_Pasting"
+                             Text="{Binding LocationId}"/>
 
                     <ListView Grid.Row="1" Grid.Column="0" Height="120" Margin="0,10,0,0"  
                               ItemsSource="{Binding locations}"
@@ -114,11 +116,13 @@
                        Margin="0,0,0,5"/>
 
                             <TextBox x:Name="Product_id_textbox"
-                     Padding="5"
-                     FontSize="20"
-                     Width="100"
-                     VerticalAlignment="Center"
-                     Text="{Binding ProductId}"/>
+                                     Padding="5"
+                                     FontSize="20"
+                                     Width="100"
+                                     VerticalAlignment="Center"
+                                     PreviewTextInput="textbox_PreviewTextInput"
+                                     DataObject.Pasting="textbox_Pasting"
+                                     Text="{Binding ProductId}"/>
                         </StackPanel>
 
                         <StackPanel>
@@ -145,12 +149,14 @@
                        Margin="30,0,0,5"/>
 
                             <TextBox x:Name="sku_textbox"
-                     Padding="5"
-                     FontSize="20"
-                     Width="140"
-                     Margin="30,0,0,0"
-                     VerticalAlignment="Center"
-                     Text="{Binding Sku}"/>
+                                     Padding="5"
+                                     FontSize="20"
+                                     Width="140"
+                                     Margin="30,0,0,0"
+                                     VerticalAlignment="Center"
+                                     PreviewTextInput="textbox_PreviewTextInput"
+                                     DataObject.Pasting="textbox_Pasting"
+                                     Text="{Binding Sku}"/>
                         </StackPanel>
                     </StackPanel>
 
@@ -217,6 +223,8 @@
                                 FontSize="20"
                                 Width="200"
                                 HorizontalAlignment="Left"
+                                PreviewTextInput="textbox_PreviewTextInput"
+                                DataObject.Pasting="textbox_Pasting"
                                 Text="{Binding Quantity}"/>
                     </StackPanel>
 

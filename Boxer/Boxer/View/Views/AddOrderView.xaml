@@ -46,6 +46,8 @@
                                      Width="150"
                                      HorizontalAlignment="Left"
                                      VerticalAlignment="Center"
+                                             PreviewTextInput="textbox_PreviewTextInput"
+                                             DataObject.Pasting="textbox_Pasting"
                                      Text="{Binding CustomerAddressId}"/>
                                 </StackPanel>
 
@@ -62,6 +64,8 @@
                                             Width="150"     
                                             Margin="30,0,0,0"
                                             VerticalAlignment="Center"
+                                             PreviewTextInput="textbox_PreviewTextInput"
+                                             DataObject.Pasting="textbox_Pasting"
                                             Text="{Binding CustomerId}"/>
                                 </StackPanel>
                             </StackPanel>
@@ -142,6 +146,8 @@
                                              FontSize="20"
                                              Width="100"
                                              VerticalAlignment="Center"
+                                             PreviewTextInput="textbox_PreviewTextInput"
+                                             DataObject.Pasting="textbox_Pasting"
                                              Text="{Binding ProductId}"/>
                                 </StackPanel>
 
@@ -174,6 +180,8 @@
                                             Width="140"
                                             Margin="30,0,0,0"
                                             VerticalAlignment="Center"
+                                             PreviewTextInput="textbox_PreviewTextInput"
+                                             DataObject.Pasting="textbox_Pasting"
                                             Text="{Binding Sku}"/>
                                 </StackPanel>
                             </StackPanel>
@@ -236,10 +244,12 @@
                            Margin="0,10,0,5"/>
 
                                     <TextBox x:Name="Quantity_textbox"
-                         Padding="5"
-                         FontSize="20"
-                         Width="200"
-                         VerticalAlignment="Center"
+                                             Padding="5"
+                                             FontSize="20"
+                                             Width="200"
+                                             VerticalAlignment="Center"
+                                             PreviewTextInput="textbox_PreviewTextInput"
+                                             DataObject.Pasting="textbox_Pasting"
                          Text="{Binding Quantity}"/>
                                 </StackPanel>
 

@@ -41,11 +41,13 @@
                                        Margin="0,0,0,5"/>
 
                                     <TextBox x:Name="Emplopyee_id_textbox"
-                                     Padding="5"
-                                     FontSize="20"
-                                     Width="120"
-                                     VerticalAlignment="Center"
-                                     Text="{Binding EmployeeId}"/>
+                                             Padding="5"
+                                             FontSize="20"
+                                             Width="120"
+                                             VerticalAlignment="Center"
+                                             PreviewTextInput="textbox_PreviewTextInput"
+                                             DataObject.Pasting="textbox_Pasting"
+                                             Text="{Binding EmployeeId}"/>
                                 </StackPanel>
                                 <StackPanel>
                                     <!-- Uid TextBox -->
@@ -55,12 +57,14 @@
                                        Margin="30,0,0,5"/>
 
                                     <TextBox x:Name="Employee_uid_textbox"
-                                     Padding="5"
-                                     FontSize="20"
-                                     Width="120"
-                                     Margin="30,0,0,0"
-                                     VerticalAlignment="Center"
-                                     Text="{Binding Uid}"/>
+                                             Padding="5"
+                                             FontSize="20"
+                                             Width="120"
+                                             Margin="30,0,0,0"
+                                             VerticalAlignment="Center"
+                                             PreviewTextInput="textbox_PreviewTextInput"
+                                             DataObject.Pasting="textbox_Pasting"
+                                             Text="{Binding Uid}"/>
                                 </StackPanel>
                             </StackPanel>
                         <ListView Height="100" Margin="0,10,0,0"  
@@ -122,6 +126,8 @@
                                      Width="120"
                                      VerticalAlignment="Center"
                                      HorizontalAlignment="Left"
+                                     PreviewTextInput="textbox_PreviewTextInput"
+                                     DataObject.Pasting="textbox_Pasting"
                                      Text="{Binding OrderId}"/>
 
                         <ListView Grid.Row="1" Grid.Column="0" Height="150" Margin="0,10,0,0"  

@@ -66,6 +66,8 @@
                      FontSize="20"
                      Width="300"
                      VerticalAlignment="Center"
+                     PreviewTextInput="Phone_textbox_PreviewTextInput"
+                     DataObject.Pasting="Phone_textbox_Pasting"
                      Text="{Binding Phone}"/>
             
 
