@@ -46,7 +46,8 @@
                                          VerticalAlignment="Center"
                                          PreviewTextInput="textbox_PreviewTextInput"
                                          DataObject.Pasting="textbox_Pasting"
-                                         Text="{Binding EmployeeId}"/>
+                                         Text="{Binding EmployeeId}"
+                                         MaxLength="8"/>
                             </StackPanel>
                             <StackPanel>
                                 <!-- SKU TextBox -->
@@ -63,7 +64,8 @@
                                          VerticalAlignment="Center"
                                          PreviewTextInput="textbox_PreviewTextInput"
                                          DataObject.Pasting="textbox_Pasting"
-                                         Text="{Binding Uid}"/>
+                                         Text="{Binding Uid}"
+                                         MaxLength="8"/>
                             </StackPanel>
                         </StackPanel>
                         <ListView Height="100" Margin="0,10,0,0"  
@@ -127,7 +129,8 @@
                                  VerticalAlignment="Center"
                                  PreviewTextInput="textbox_PreviewTextInput"
                                  DataObject.Pasting="textbox_Pasting"
-                                 Text="{Binding SupplyId}"/>
+                                 Text="{Binding SupplyId}"
+                                 MaxLength="10"/>
 
                         <ListView Height="150" Margin="0,10,0,0"  
                                   ItemsSource="{Binding supplies}"

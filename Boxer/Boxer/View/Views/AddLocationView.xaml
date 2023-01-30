@@ -61,7 +61,8 @@
                      FontSize="20"
                      Width="300"
                      VerticalAlignment="Center"
-                     Text="{Binding Sector}"/>
+                     Text="{Binding Sector}"
+                             MaxLength="3"/>
 
                     <!-- Aisle TextBox -->
                     <TextBlock Text="Alejka"
@@ -74,7 +75,8 @@
                      FontSize="20"
                      Width="300"
                      VerticalAlignment="Center"
-                     Text="{Binding Aisle}"/>
+                     Text="{Binding Aisle}"
+                             MaxLength="3"/>
 
                     <!-- Unit TextBox -->
                     <TextBlock Text="Regał"
@@ -87,7 +89,8 @@
                      FontSize="20"
                      Width="300"
                      VerticalAlignment="Center"
-                     Text="{Binding Unit}"/>
+                     Text="{Binding Unit}"
+                             MaxLength="3"/>
                     
                     <!-- Level TextBox -->
                     <TextBlock Text="Poziom"
@@ -100,7 +103,8 @@
                      FontSize="20"
                      Width="300"
                      VerticalAlignment="Center"
-                     Text="{Binding Level}"/>
+                     Text="{Binding Level}"
+                             MaxLength="3"/>
                 </StackPanel>
                 
                 <StackPanel Margin="30,0,0,0">
@@ -116,7 +120,8 @@
                      FontSize="20"
                      Width="300"
                      VerticalAlignment="Center"
-                     Text="{Binding Position}"/>
+                     Text="{Binding Position}"
+                             MaxLength="3"/>
 
                     <!-- Size ComboBox -->
                     <TextBlock Text="Rozmiar"

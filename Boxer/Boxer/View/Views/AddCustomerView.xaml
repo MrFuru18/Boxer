@@ -42,7 +42,8 @@
                      Padding="5"
                      FontSize="20"
                      VerticalAlignment="Center"
-                     Text="{Binding Name}"/>
+                     Text="{Binding Name}"
+                             MaxLength="64"/>
 
                     <!-- Surname TextBox -->
                     <TextBlock Text="Nazwisko"
@@ -54,7 +55,8 @@
                      Padding="5"
                      FontSize="20"
                      VerticalAlignment="Center"
-                     Text="{Binding Surname}"/>
+                     Text="{Binding Surname}"
+                             MaxLength="64"/>
 
                     <!-- Email TextBox -->
                     <TextBlock Text="Email"
@@ -66,7 +68,8 @@
                      Padding="5"
                      FontSize="20"
                      VerticalAlignment="Center"
-                     Text="{Binding Email}"/>
+                     Text="{Binding Email}"
+                             MaxLength="64"/>
 
                     <!-- Phone TextBox -->
                     <TextBlock Text="Numer Telefonu"
@@ -80,7 +83,8 @@
                              VerticalAlignment="Center"
                              PreviewTextInput="Phone_textbox_PreviewTextInput"
                              DataObject.Pasting="Phone_textbox_Pasting"
-                             Text="{Binding Phone}"/>
+                             Text="{Binding Phone}"
+                             MaxLength="16"/>
 
                 </StackPanel>
                 <StackPanel >
@@ -119,7 +123,8 @@
                              Padding="5"
                              FontSize="20"
                              VerticalAlignment="Center"
-                             Text="{Binding City}"/>
+                             Text="{Binding City}"
+                                     MaxLength="64"/>
 
                             <!-- Country TextBox -->
                             <TextBlock Text="Kraj"
@@ -131,7 +136,8 @@
                              Padding="5"
                              FontSize="20"
                              VerticalAlignment="Center"
-                             Text="{Binding Country}"/>
+                             Text="{Binding Country}"
+                                     MaxLength="64"/>
 
                             <!-- Region TextBox -->
                             <TextBlock Text="Region"
@@ -143,7 +149,8 @@
                              Padding="5"
                              FontSize="20"
                              VerticalAlignment="Center"
-                             Text="{Binding Region}"/>
+                             Text="{Binding Region}"
+                                     MaxLength="64"/>
 
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel>
@@ -158,7 +165,8 @@
                                              FontSize="20"
                                              VerticalAlignment="Center"
                                              Width="200"
-                                             Text="{Binding PostalCode}"/>
+                                             Text="{Binding PostalCode}"
+                                             MaxLength="16"/>
                                 </StackPanel>
                                 <Button Content="+"
                                         VerticalAlignment="Bottom"
