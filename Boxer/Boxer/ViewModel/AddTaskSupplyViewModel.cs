@@ -66,6 +66,19 @@ namespace Boxer.ViewModel
             }
         }
 
+        private Employee _selectedEmployee;
+        public Employee SelectedEmployee
+        {
+            get { return _selectedEmployee; }
+            set
+            {
+                _selectedEmployee = value;
+                onPropertyChanged(nameof(SelectedEmployee));
+
+                EmployeeId = SelectedEmployee.id.ToString();
+            }
+        }
+
         private string _supplyId;
         public string SupplyId
         {
@@ -76,6 +89,19 @@ namespace Boxer.ViewModel
                 onPropertyChanged(nameof(SupplyId));
 
                 _task.supply_id = Int32.TryParse(SupplyId, out var tempVal) ? tempVal : (int?)null;
+            }
+        }
+
+        private Supply _selectedSupply;
+        public Supply SelectedSupply
+        {
+            get { return _selectedSupply; }
+            set
+            {
+                _selectedSupply = value;
+                onPropertyChanged(nameof(SelectedSupply));
+
+                SupplyId = SelectedSupply.id.ToString();
             }
         }
 

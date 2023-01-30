@@ -121,6 +121,8 @@ namespace Boxer.ViewModel
             {
                 _selectedCustomerAddress = value;
                 onPropertyChanged(nameof(SelectedCustomerAddress));
+
+                CustomerAddressId = SelectedCustomerAddress.id.ToString();
             }
         }
 
@@ -159,6 +161,8 @@ namespace Boxer.ViewModel
             {
                 _selectedProduct = value;
                 onPropertyChanged(nameof(SelectedProduct));
+
+                ProductId = SelectedProduct.id.ToString();
             }
         }
 

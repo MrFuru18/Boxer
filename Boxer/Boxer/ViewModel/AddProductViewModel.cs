@@ -1,10 +1,12 @@
 ﻿using ApiLibrary.Model;
+using ApiLibrary.Repo;
 using Boxer.Commands;
 using Boxer.Model;
 using Boxer.Navigation;
 using Boxer.ViewModel.BaseClass;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +20,10 @@ namespace Boxer.ViewModel
         private bool isNotEdit = true;
         public string HeaderText { get; set; }
         private Product _product = new Product();
+
+        public BindingList<Manufacturer> manufacturers { get; set; }
+        private List<Manufacturer> _manufacturers { get; set; }
+        private Manufacturer _manufacturer = new Manufacturer();
 
         public ICommand CancelCommand { get; }
 
@@ -84,6 +90,19 @@ namespace Boxer.ViewModel
             }
         }
 
+        private Manufacturer _selectedManufacturer;
+        public Manufacturer SelectedManufacturer
+        {
+            get { return _selectedManufacturer; }
+            set
+            {
+                _selectedManufacturer = value;
+                onPropertyChanged(nameof(SelectedManufacturer));
+
+                ManufacturerId = SelectedManufacturer.id.ToString();
+            }
+        }
+
         private string _weight;
         public string Weight
         {
@@ -139,6 +158,9 @@ namespace Boxer.ViewModel
         {
             _navigationService = navigationService;
             CancelCommand = new NavigateCommand(navigationService);
+
+            manufacturers = new BindingList<Manufacturer>(ManufacturerProcessor.getAllManufacturers(_manufacturer).Result);
+            _manufacturers = new List<Manufacturer>();
 
             _product = new Product();
             Size = Sizes.unassigned;
