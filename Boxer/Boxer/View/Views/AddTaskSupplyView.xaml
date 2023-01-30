@@ -76,12 +76,12 @@
                                             <GridViewColumnHeader Content="uid" CommandParameter="uid"/>
                                         </GridViewColumn.Header>
                                     </GridViewColumn>
-                                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding name}">
+                                    <GridViewColumn Width="150" DisplayMemberBinding="{Binding name}">
                                         <GridViewColumn.Header>
                                             <GridViewColumnHeader Content="Imię" CommandParameter="name"/>
                                         </GridViewColumn.Header>
                                     </GridViewColumn>
-                                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding surname}">
+                                    <GridViewColumn Width="150" DisplayMemberBinding="{Binding surname}">
                                         <GridViewColumn.Header>
                                             <GridViewColumnHeader Content="Nazwisko" CommandParameter="surname"/>
                                         </GridViewColumn.Header>
@@ -89,16 +89,6 @@
                                     <GridViewColumn Width="100" DisplayMemberBinding="{Binding availability}">
                                         <GridViewColumn.Header>
                                             <GridViewColumnHeader Content="Dostępność" CommandParameter="availability"/>
-                                        </GridViewColumn.Header>
-                                    </GridViewColumn>
-                                    <GridViewColumn Width="50" DisplayMemberBinding="{Binding phone}">
-                                        <GridViewColumn.Header>
-                                            <GridViewColumnHeader Content="Nr Tel" CommandParameter="phone"/>
-                                        </GridViewColumn.Header>
-                                    </GridViewColumn>
-                                    <GridViewColumn Width="50" DisplayMemberBinding="{Binding email}">
-                                        <GridViewColumn.Header>
-                                            <GridViewColumnHeader Content="Email" CommandParameter="email"/>
                                         </GridViewColumn.Header>
                                     </GridViewColumn>
                                 </GridView>

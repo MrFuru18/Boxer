@@ -73,7 +73,12 @@
                                     <GridView>
                                         <GridViewColumn Width="50" DisplayMemberBinding="{Binding id}">
                                             <GridViewColumn.Header>
-                                                <GridViewColumnHeader Content="id" CommandParameter="+id"/>
+                                                <GridViewColumnHeader Content="id" CommandParameter="id"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding customer_id}">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="Klient id" CommandParameter="customer_id"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
                                         <GridViewColumn Width="250" DisplayMemberBinding="{Binding address_line_1}">
@@ -86,7 +91,7 @@
                                                 <GridViewColumnHeader Content="Miasto" CommandParameter="city"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding postal_code}">
+                                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding postal_code}">
                                             <GridViewColumn.Header>
                                                 <GridViewColumnHeader Content="Kod Pocztowy" CommandParameter="postal_code"/>
                                             </GridViewColumn.Header>

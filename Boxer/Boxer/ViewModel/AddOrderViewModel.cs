@@ -25,9 +25,14 @@ namespace Boxer.ViewModel
         private List<OrderItem> _order_items { get; set; }
         private OrderItem _orderItem = new OrderItem();
 
+        public BindingList<CustomerAddress> customer_addresses { get; set; }
+        private List<CustomerAddress> _customer_addresses { get; set; }
         private CustomerAddress _customerAddress = new CustomerAddress();
 
+        public BindingList<Product> products { get; set; }
+        private List<Product> _products { get; set; }
         private Product _product = new Product();
+
 
         public ICommand CancelCommand { get; }
 
@@ -108,6 +113,18 @@ namespace Boxer.ViewModel
             }
         }
 
+        private Product _selectedCustomerAddress;
+        public Product SelectedCustomerAddress
+        {
+            get { return _selectedCustomerAddress; }
+            set
+            {
+                _selectedCustomerAddress = value;
+                onPropertyChanged(nameof(SelectedCustomerAddress));
+            }
+        }
+
+
         private string _remarks;
         public string Remarks
         {
@@ -131,6 +148,17 @@ namespace Boxer.ViewModel
                 onPropertyChanged(nameof(ProductId));
 
                 _orderItem.product_id = Int32.TryParse(ProductId, out var tempVal) ? tempVal : (int?)null;
+            }
+        }
+
+        private Product _selectedProduct;
+        public Product SelectedProduct
+        {
+            get { return _selectedProduct; }
+            set
+            {
+                _selectedProduct = value;
+                onPropertyChanged(nameof(SelectedProduct));
             }
         }
 
@@ -182,15 +210,18 @@ namespace Boxer.ViewModel
 
             CancelCommand = new NavigateCommand(navigationService);
 
+            products = new BindingList<Product>(ProductProcessor.getAllProducts(_product).Result);
+            _products = new List<Product>();
+
+            customer_addresses = new BindingList<CustomerAddress>(CustomerProcessor.getAllCustomerAddresses(_customerAddress).Result);
+            _customer_addresses = new List<CustomerAddress>();
+
             _order = new Order();
 
             _orderItem = new OrderItem();
             order_items = new BindingList<OrderItem>();
             _order_items = new List<OrderItem>();
 
-            _customerAddress = new CustomerAddress();
-
-            _product = new Product();
 
             HeaderText = "Dodaj Zamówienie";
             if (order != null)
