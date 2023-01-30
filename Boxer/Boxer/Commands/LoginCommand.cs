@@ -47,6 +47,12 @@ namespace Boxer.Commands
                 {
                     account.accessToken = access.accessToken;
                     account.uid = loginModel.uid;
+                    Employee emp = new Employee();
+                    emp.uid = loginModel.uid;
+                    emp = EmployeeProcessor.getEmployee(emp).Result;
+                    account.id = emp.id;
+                    account.permissions = emp.permissions;
+
                     _accountStore.CurrentAccount = account;
 
                     if (_accountStore.IsLoggedIn)

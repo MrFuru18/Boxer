@@ -54,7 +54,8 @@
                     Margin="15,0,15,0"
                     Width="150"
                     Height="100"
-                    Command="{Binding NavigateTasksPannelPageCommand}" CommandParameter="TasksPannel">
+                    Command="{Binding NavigateTasksPannelPageCommand}" CommandParameter="TasksPannel"
+                    Visibility="{Binding IsManagement, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
                             Stretch="None"/>
@@ -113,7 +114,8 @@
                     Margin="15,0,15,0"
                     Width="150"
                     Height="100"
-                    Command="{Binding NavigateSuppliesPannelPageCommand}" CommandParameter="SuppliesPannel">
+                    Command="{Binding NavigateSuppliesPannelPageCommand}" CommandParameter="SuppliesPannel"
+                    Visibility="{Binding IsManagement, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
                             Stretch="None"/>
@@ -132,7 +134,8 @@
                     Margin="15,0,15,0"
                     Width="150"
                     Height="100"
-                    Command="{Binding NavigateAdminPannelPageCommand}" CommandParameter="AdminPannel">
+                    Command="{Binding NavigateAdminPannelPageCommand}" CommandParameter="AdminPannel"
+                    Visibility="{Binding IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
                             Stretch="None"/>
@@ -167,13 +170,14 @@
             </StackPanel>
         </Button>
 
-        <modalcontrol:Modal Grid.Column="1" Grid.Row="2" Panel.ZIndex="1" IsOpen="{Binding IsModalOpen}">
+        <modalcontrol:Modal Grid.Column="1" Grid.Row="1" Panel.ZIndex="1" IsOpen="{Binding IsModalOpen}">
             <ContentControl Content="{Binding CurrentModalViewModel}"/>
         </modalcontrol:Modal>
 
         <ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding CurrentPage}"/>
 
-        <StackPanel Grid.Row="2" Grid.Column="1"  Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Grid.Row="2" Grid.Column="1"  Orientation="Horizontal" HorizontalAlignment="Right"
+                    Visibility="{Binding LoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}">
             <TextBlock FontSize="14"
                    Text="Uid: "
                    VerticalAlignment="Center"/>

@@ -25,7 +25,9 @@ namespace Boxer.ViewModel
         public bool IsModalOpen => _modalNavigationStore.IsOpen;
 
         public bool LoggedIn => _accountStore.IsLoggedIn;
-       public string Uid => _accountStore.CurrentAccount?.uid;
+        public bool IsAdmin => _accountStore.IsAdmin;
+        public bool IsManagement => _accountStore.IsManagement;
+        public string Uid => _accountStore.CurrentAccount?.uid;
 
         public ICommand NavigateTasksPannelPageCommand { get; }
         public ICommand NavigateWarehousePannelPageCommand { get; }
@@ -59,6 +61,8 @@ namespace Boxer.ViewModel
         {
             onPropertyChanged(nameof(CurrentPage));
             onPropertyChanged(nameof(LoggedIn));
+            onPropertyChanged(nameof(IsAdmin));
+            onPropertyChanged(nameof(IsManagement));
             onPropertyChanged(nameof(Uid));
         }
         private void OnCurrentModalViewModelChanged()

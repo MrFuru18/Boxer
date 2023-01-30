@@ -20,5 +20,9 @@ namespace Boxer.Model
 
         public bool IsLoggedIn => _currentAccount != null;
 
+        public bool IsAdmin => _currentAccount?.permissions == "admin";
+
+        public bool IsManagement => (_currentAccount?.permissions != "worker") && (_currentAccount?.permissions != null);
+
     }
 }
