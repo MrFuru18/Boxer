@@ -115,20 +115,20 @@
                                 <GridViewColumnHeader Content="Ilość" CommandParameter="quantity"/>
                             </GridViewColumn.Header>
                         </GridViewColumn>
-                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding sku}"
+                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding sku}"
                                         utils:GridViewSort.PropertyName="sku">
                             <GridViewColumn.Header>
                                 <GridViewColumnHeader Content="SKU" CommandParameter="sku"/>
                             </GridViewColumn.Header>
                         </GridViewColumn>
-                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding product_name}"
-                                        utils:GridViewSort.PropertyName="product_name">
+                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding name}"
+                                        utils:GridViewSort.PropertyName="name">
                             <GridViewColumn.Header>
                                 <GridViewColumnHeader Content="Nazwa" CommandParameter="product_name"/>
                             </GridViewColumn.Header>
                         </GridViewColumn>
-                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding manufacturer_name}"
-                                        utils:GridViewSort.PropertyName="manufacturer_name">
+                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding manufacturer}"
+                                        utils:GridViewSort.PropertyName="manufacturer">
                             <GridViewColumn.Header>
                                 <GridViewColumnHeader Content="Producent" CommandParameter="manufacturer_name"/>
                             </GridViewColumn.Header>

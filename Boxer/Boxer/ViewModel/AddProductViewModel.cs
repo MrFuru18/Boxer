@@ -22,6 +22,7 @@ namespace Boxer.ViewModel
         public string HeaderText { get; set; }
         private Product _product = new Product();
 
+        public ObservableCollection<Category> categories { get; set; }
         public ObservableCollection<Manufacturer> manufacturers { get; set; }
         private List<Manufacturer> _manufacturers { get; set; }
         private Manufacturer _manufacturer = new Manufacturer();
@@ -75,6 +76,19 @@ namespace Boxer.ViewModel
                 onPropertyChanged(nameof(Name));
 
                 _product.name = Name;
+            }
+        }
+
+        private Category _selectedCategory;
+        public Category SelectedCategory
+        {
+            get { return _selectedCategory; }
+            set
+            {
+                _selectedCategory = value;
+                onPropertyChanged(nameof(SelectedCategory));
+
+                _product.category_id = SelectedCategory.id;
             }
         }
 
@@ -159,6 +173,8 @@ namespace Boxer.ViewModel
         {
             _navigationService = navigationService;
             CancelCommand = new NavigateCommand(navigationService);
+
+            categories = new ObservableCollection<Category>(ProductProcessor.getCategories(new Category()).Result);
 
             manufacturers = new ObservableCollection<Manufacturer>(ManufacturerProcessor.getAllManufacturers(_manufacturer).Result);
             _manufacturers = new List<Manufacturer>();

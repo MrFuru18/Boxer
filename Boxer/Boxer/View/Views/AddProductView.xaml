@@ -88,13 +88,8 @@
                       Width="300"
                       VerticalAlignment="Center"
                       HorizontalAlignment="Left"
-                      SelectedItem="{Binding Category}">
-
-                        <ComboBoxItem Tag="books" IsSelected="True">książki</ComboBoxItem>
-                        <ComboBoxItem Tag="movies">filmy</ComboBoxItem>
-                        <ComboBoxItem Tag="electronics">elektronika</ComboBoxItem>
-                        <ComboBoxItem Tag="collectibles">kolekcjonerskie</ComboBoxItem>
-                        <ComboBoxItem Tag="other">inne</ComboBoxItem>
+                      ItemsSource="{Binding categories}"
+                      SelectedItem="{Binding SelectedCategory}">
                     </ComboBox>
 
                     <GroupBox Margin="0,20,0,5">
