@@ -24,6 +24,12 @@ namespace Boxer.ViewModel
         private List<SupplyItem> _supply_items { get; set; }
         private SupplyItem _supplyItem = new SupplyItem();
 
+        public BindingList<Location> locations { get; set; }
+        private List<Location> _locations { get; set; }
+        private Location _location = new Location();
+
+        public BindingList<Product> products { get; set; }
+        private List<Product> _products { get; set; }
         private Product _product = new Product();
 
         public ICommand CancelCommand { get; }
@@ -108,6 +114,17 @@ namespace Boxer.ViewModel
             }
         }
 
+        private Product _selectedProduct;
+        public Product SelectedProduct
+        {
+            get { return _selectedProduct; }
+            set
+            {
+                _selectedProduct = value;
+                onPropertyChanged(nameof(SelectedProduct));
+            }
+        }
+
         private string _locationId;
         public string LocationId
         {
@@ -118,6 +135,17 @@ namespace Boxer.ViewModel
                 onPropertyChanged(nameof(LocationId));
 
                 _supplyItem.location_id = Int32.TryParse(LocationId, out var tempVal) ? tempVal : (int?)null;
+            }
+        }
+
+        private Location _selectedLocation;
+        public Location SelectedLocation
+        {
+            get { return _selectedLocation; }
+            set
+            {
+                _selectedLocation = value;
+                onPropertyChanged(nameof(SelectedLocation));
             }
         }
 
@@ -182,6 +210,12 @@ namespace Boxer.ViewModel
         {
             _navigationService = navigationService;
             CancelCommand = new NavigateCommand(navigationService);
+
+            locations = new BindingList<Location>(LocationProcessor.getAllLocations(_location).Result);
+            _locations = new List<Location>();
+
+            products = new BindingList<Product>(ProductProcessor.getAllProducts(_product).Result);
+            _products = new List<Product>();
 
             _supply = new Supply();
 
