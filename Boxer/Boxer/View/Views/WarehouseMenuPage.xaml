@@ -12,24 +12,6 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
-        <!-- Back Button -->
-        <Button x:Name="Back_button"
-                Grid.Row="0"
-                HorizontalAlignment="Left"
-                Background="Transparent"
-                Width="100"
-                Height="100"
-                Command="{Binding NavigateBackCommand}" CommandParameter="Back">
-            <StackPanel>
-                <Image  Source="/View/Images/Icon1.png"
-                                Stretch="None"/>
-                <TextBlock  x:Name="Back_textblock"
-                                    Text="Wróć"
-                                    HorizontalAlignment="Center"
-                                    FontSize="20"/>
-            </StackPanel>
-        </Button>
 
 
         <StackPanel Grid.Row="1" 
@@ -46,7 +28,7 @@
                     <Image  Source="/View/Images/Icon1.png"
                             Stretch="None"/>
                     <TextBlock  x:Name="Inventory_textblock"
-                                Text="Przeglądaj Inwentarz"
+                                Text="Inwentarz"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>
@@ -63,7 +45,7 @@
                     <Image  Source="/View/Images/Icon1.png"
                             Stretch="None"/>
                     <TextBlock  x:Name="Palletes_textblock"
-                                Text="Przeglądaj Palety"
+                                Text="Palety"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>
@@ -80,7 +62,7 @@
                     <Image  Source="/View/Images/Icon1.png"
                             Stretch="None"/>
                     <TextBlock  x:Name="Shortages_textblock"
-                                Text="Przeglądaj Braki"
+                                Text="Braki"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>
@@ -97,7 +79,7 @@
                     <Image  Source="/View/Images/Icon1.png"
                             Stretch="None"/>
                     <TextBlock  x:Name="Locations_textblock"
-                                Text="Przeglądaj Lokalizacje"
+                                Text="Lokalizacje"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>

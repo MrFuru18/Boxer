@@ -12,14 +12,12 @@ namespace Boxer.ViewModel
 {
     class TasksMenuViewModel : BaseViewModel
     {
-        public ICommand NavigateBackCommand { get; }
         public ICommand NavigateTasksOrdersCommand { get; }
         public ICommand NavigateTasksSuppliesCommand { get; }
         //public ICommand NavigateTasksRelocationsCommand { get; }
 
-        public TasksMenuViewModel(INavigationService mainMenuNavigationService, INavigationService tasksOrdersNavigationService, INavigationService tasksSuppliesNavigationService)
+        public TasksMenuViewModel(INavigationService tasksOrdersNavigationService, INavigationService tasksSuppliesNavigationService)
         {
-            NavigateBackCommand = new NavigateCommand(mainMenuNavigationService);
             NavigateTasksOrdersCommand = new NavigateCommand(tasksOrdersNavigationService);
             NavigateTasksSuppliesCommand = new NavigateCommand(tasksSuppliesNavigationService);
             //NavigateTasksRelocationsCommand = new NavigateCommand(tasksNavigationService);

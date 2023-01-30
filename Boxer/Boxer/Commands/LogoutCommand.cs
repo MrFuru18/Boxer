@@ -17,9 +17,8 @@ namespace Boxer.Commands
         private readonly AccountStore _accountStore;
         private readonly INavigationService _navigationService;
 
-        public LogoutCommand(MainMenuViewModel viewModel, AccountStore accountStore, INavigationService loginNavigationService)
+        public LogoutCommand(AccountStore accountStore, INavigationService loginNavigationService)
         {
-            _viewModel = viewModel;
             _accountStore = accountStore;
             _navigationService = loginNavigationService;
         }

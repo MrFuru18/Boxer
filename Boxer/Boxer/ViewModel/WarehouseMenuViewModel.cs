@@ -13,15 +13,13 @@ namespace Boxer.ViewModel
 
     class WarehouseMenuViewModel : BaseViewModel
     {
-        public ICommand NavigateBackCommand { get; }
         public ICommand NavigateInventoryCommand { get; }
         public ICommand NavigatePalletesCommand { get; }
         public ICommand NavigateShortagesCommand { get; }
         public ICommand NavigateLocationsCommand { get; }
 
-        public WarehouseMenuViewModel(INavigationService mainMenuNavigationService, INavigationService inventoryNavigationService, INavigationService locationsNavigationService)
+        public WarehouseMenuViewModel(INavigationService inventoryNavigationService, INavigationService locationsNavigationService)
         {
-            NavigateBackCommand = new NavigateCommand(mainMenuNavigationService);
             NavigateInventoryCommand = new NavigateCommand(inventoryNavigationService);
             NavigateLocationsCommand = new NavigateCommand(locationsNavigationService);
         }

@@ -46,6 +46,7 @@ namespace Boxer.Commands
                 if (access.success == "yes")
                 {
                     account.accessToken = access.accessToken;
+                    account.uid = loginModel.uid;
                     _accountStore.CurrentAccount = account;
 
                     if (_accountStore.IsLoggedIn)

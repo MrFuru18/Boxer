@@ -12,25 +12,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <!-- Back Button -->
-        <Button x:Name="Back_button"
-                Grid.Row="0"
-                HorizontalAlignment="Left"
-                Background="Transparent"
-                Width="100"
-                Height="100"
-                Command="{Binding NavigateBackCommand}" CommandParameter="Back">
-            <StackPanel>
-                <Image  Source="/View/Images/Icon1.png"
-                                Stretch="None"/>
-                <TextBlock  x:Name="Back_textblock"
-                                    Text="Wróć"
-                                    HorizontalAlignment="Center"
-                                    FontSize="20"/>
-            </StackPanel>
-        </Button>
-
-
+        
         <StackPanel Grid.Row="1" 
                     HorizontalAlignment="Center"
                     Orientation="Horizontal">
@@ -45,7 +27,7 @@
                     <Image  Source="/View/Images/Icon1.png"
                                 Stretch="None"/>
                     <TextBlock  x:Name="Orders_textblock"
-                                    Text="Przeglądaj zamówienia"
+                                    Text="Zamówienia"
                                     HorizontalAlignment="Center"
                                     FontSize="20"/>
                 </StackPanel>
@@ -62,7 +44,7 @@
                     <Image  Source="/View/Images/Icon1.png"
                                 Stretch="None"/>
                     <TextBlock  x:Name="Clients_textblock"
-                                    Text="Przeglądaj Klientów"
+                                    Text="Klienci"
                                     HorizontalAlignment="Center"
                                     FontSize="20"/>
                 </StackPanel>
