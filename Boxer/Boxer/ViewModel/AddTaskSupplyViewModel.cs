@@ -1,4 +1,5 @@
 ﻿using ApiLibrary.Model;
+using ApiLibrary.Repo;
 using Boxer.Commands;
 using Boxer.Model;
 using Boxer.Navigation;
@@ -21,7 +22,11 @@ namespace Boxer.ViewModel
 
         private Tasks _task = new Tasks();
         public BindingList<Employee> employees { get; set; }
+        private List<Employee> _employees { get; set; }
+        private Employee _employee = new Employee();
         public BindingList<Supply> supplies { get; set; }
+        private List<Supply> _supplies { get; set; }
+        private Supply _supply = new Supply();
 
         public ICommand CancelCommand { get; }
         private ICommand _addTask;
@@ -94,9 +99,9 @@ namespace Boxer.ViewModel
             _task = new Tasks();
             _task.type = TaskTypes.supply.ToString();
 
-            employees = new BindingList<Employee>();
+            employees = new BindingList<Employee>(EmployeeProcessor.getAllEmployees().Result);
 
-            supplies = new BindingList<Supply>();
+            supplies = new BindingList<Supply>(SupplyProcessor.getAllSupplies(_supply).Result);
 
             HeaderText = "Dodaj Zadanie";
             if (task != null)

@@ -86,9 +86,9 @@
                                             <GridViewColumnHeader Content="Nazwisko" CommandParameter="surname"/>
                                         </GridViewColumn.Header>
                                     </GridViewColumn>
-                                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding availability}">
+                                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding state}">
                                         <GridViewColumn.Header>
-                                            <GridViewColumnHeader Content="Dostępność" CommandParameter="availability"/>
+                                            <GridViewColumnHeader Content="Stan" CommandParameter="state"/>
                                         </GridViewColumn.Header>
                                     </GridViewColumn>
                                 </GridView>
