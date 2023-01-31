@@ -117,6 +117,34 @@ namespace Boxer.ViewModel
             }
         }
 
+        private string _customerId;
+        public string CustomerId
+        {
+            get { return _customerId; }
+            set
+            {
+                _customerId = value;
+                onPropertyChanged(nameof(CustomerId));
+
+                filterCustomerAddresses();
+            }
+        }
+
+        private void filterCustomerAddresses()
+        {
+            customer_addresses.Clear();
+            foreach (var ca in _customer_addresses)
+                customer_addresses.Add(ca);
+
+            for (int i = customer_addresses.Count - 1; i >= 0; i--)
+            {
+                if (CustomerId == null)
+                    CustomerId = "";
+                if (!customer_addresses[i].customer_id.ToString().Contains(CustomerId))
+                    customer_addresses.RemoveAt(i);
+            }
+        }
+
         private CustomerAddress _selectedCustomerAddress;
         public CustomerAddress SelectedCustomerAddress
         {
@@ -269,6 +297,7 @@ namespace Boxer.ViewModel
 
             customer_addresses = new ObservableCollection<CustomerAddress>(CustomerProcessor.getAllCustomerAddresses(_customerAddress).Result);
             _customer_addresses = new List<CustomerAddress>();
+            _customer_addresses.AddRange(customer_addresses);
 
             _order = new Order();
 
@@ -276,6 +305,7 @@ namespace Boxer.ViewModel
             order_items = new ObservableCollection<OrderItem>();
             _order_items = new List<OrderItem>();
 
+            CustomerId = "";
             ProductName = "";
             Sku = "";
 

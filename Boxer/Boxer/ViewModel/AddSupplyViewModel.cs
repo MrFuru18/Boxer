@@ -142,7 +142,6 @@ namespace Boxer.ViewModel
             }
         }
 
-
         private void filterProducts()
         {
             products.Clear();
@@ -334,6 +333,7 @@ namespace Boxer.ViewModel
 
             locations = new ObservableCollection<Location>(LocationProcessor.getAllLocations(_location).Result);
             _locations = new List<Location>();
+            _locations.AddRange(locations);
 
             products = new ObservableCollection<Product>(ProductProcessor.getAllProducts(_product).Result);
             _products = new List<Product>();

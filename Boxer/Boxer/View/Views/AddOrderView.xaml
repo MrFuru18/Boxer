@@ -70,7 +70,7 @@
                                             VerticalAlignment="Center"
                                              PreviewTextInput="textbox_PreviewTextInput"
                                              DataObject.Pasting="textbox_Pasting"
-                                            Text="{Binding CustomerId}"
+                                            Text="{Binding CustomerId, UpdateSourceTrigger=PropertyChanged}"
                                              MaxLength="8"/>
                                 </StackPanel>
                             </StackPanel>

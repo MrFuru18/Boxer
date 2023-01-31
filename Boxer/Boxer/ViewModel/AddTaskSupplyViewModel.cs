@@ -67,6 +67,34 @@ namespace Boxer.ViewModel
             }
         }
 
+        private string _uid;
+        public string Uid
+        {
+            get { return _uid; }
+            set
+            {
+                _uid = value;
+                onPropertyChanged(nameof(Uid));
+
+                filterUid();
+            }
+        }
+
+        private void filterUid()
+        {
+            employees.Clear();
+            foreach (var pr in _employees)
+                employees.Add(pr);
+
+            for (int i = employees.Count - 1; i >= 0; i--)
+            {
+                if (Uid == null)
+                    Uid = "";
+                if (!employees[i].uid.Contains(Uid))
+                    employees.RemoveAt(i);
+            }
+        }
+
         private Employee _selectedEmployee;
         public Employee SelectedEmployee
         {
@@ -129,9 +157,12 @@ namespace Boxer.ViewModel
             _task.type = TaskTypes.supply.ToString();
 
             employees = new ObservableCollection<Employee>(EmployeeProcessor.getAllEmployees().Result);
+            _employees = new List<Employee>();
+            _employees.AddRange(employees);
 
             supplies = new ObservableCollection<Supply>(SupplyProcessor.getSuppliesNotConnected(_supply).Result);
 
+            Uid = "";
             HeaderText = "Dodaj Zadanie";
             if (task != null)
             {

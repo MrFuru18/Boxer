@@ -65,7 +65,7 @@
                                              VerticalAlignment="Center"
                                              PreviewTextInput="textbox_PreviewTextInput"
                                              DataObject.Pasting="textbox_Pasting"
-                                             Text="{Binding Uid}"
+                                             Text="{Binding Uid, UpdateSourceTrigger=PropertyChanged}"
                                              MaxLength="8"/>
                                 </StackPanel>
                             </StackPanel>
