@@ -68,7 +68,7 @@
                      Width="200"     
                      Margin="30,0,0,0"
                      VerticalAlignment="Center"
-                     Text="{Binding ProductName}"
+                     Text="{Binding ProductName, UpdateSourceTrigger=PropertyChanged}"
                                          MaxLength="128"/>
                             </StackPanel>
 
@@ -87,7 +87,7 @@
                                          VerticalAlignment="Center"
                                          PreviewTextInput="textbox_PreviewTextInput"
                                          DataObject.Pasting="textbox_Pasting"
-                                         Text="{Binding Sku}"
+                                         Text="{Binding Sku, UpdateSourceTrigger=PropertyChanged}"
                                          MaxLength="16"/>
                             </StackPanel>
                         </StackPanel>

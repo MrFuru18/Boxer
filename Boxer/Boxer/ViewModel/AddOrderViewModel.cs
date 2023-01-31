@@ -158,6 +158,50 @@ namespace Boxer.ViewModel
             }
         }
 
+        private string _productName;
+        public string ProductName
+        {
+            get { return _productName; }
+            set
+            {
+                _productName = value;
+                onPropertyChanged(nameof(ProductName));
+
+                filterProducts();
+            }
+        }
+
+        private string _sku;
+        public string Sku
+        {
+            get { return _sku; }
+            set
+            {
+                _sku = value;
+                onPropertyChanged(nameof(Sku));
+
+                filterProducts();
+            }
+        }
+
+
+        private void filterProducts()
+        {
+            products.Clear();
+            foreach (var pr in _products)
+                products.Add(pr);
+
+            for (int i = products.Count - 1; i >= 0; i--)
+            {
+                if (ProductName == null)
+                    ProductName = "";
+                if (Sku == null)
+                    Sku = "";
+                if ((!products[i].name.Contains(ProductName)) || (!products[i].sku.Contains(Sku)))
+                    products.RemoveAt(i);
+            }
+        }
+
         private Product _selectedProduct;
         public Product SelectedProduct
         {
@@ -221,6 +265,7 @@ namespace Boxer.ViewModel
 
             products = new ObservableCollection<Product>(ProductProcessor.getAllProducts(_product).Result);
             _products = new List<Product>();
+            _products.AddRange(products);
 
             customer_addresses = new ObservableCollection<CustomerAddress>(CustomerProcessor.getAllCustomerAddresses(_customerAddress).Result);
             _customer_addresses = new List<CustomerAddress>();
@@ -231,6 +276,8 @@ namespace Boxer.ViewModel
             order_items = new ObservableCollection<OrderItem>();
             _order_items = new List<OrderItem>();
 
+            ProductName = "";
+            Sku = "";
 
             HeaderText = "Dodaj Zamówienie";
             if (order != null)

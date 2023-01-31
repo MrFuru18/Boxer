@@ -214,6 +214,9 @@ namespace Boxer.ViewModel
             _product = new Product();
             Size = Sizes.unassigned;
 
+
+            ManufacturerName = "";
+
             HeaderText = "Dodaj Produkt";
 
             if (product != null)

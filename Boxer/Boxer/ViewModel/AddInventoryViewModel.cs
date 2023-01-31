@@ -70,6 +70,75 @@ namespace Boxer.ViewModel
                 _inventory.location_id = Int32.TryParse(LocationId, out var tempVal) ? tempVal : (int?)null;
             }
         }
+        private string _locationSector;
+        public string LocationSector
+        {
+            get { return _locationSector; }
+            set
+            {
+                _locationSector = value;
+                onPropertyChanged(nameof(LocationSector));
+
+                filterLocations();
+            }
+        }
+        private string _locationAisle;
+        public string LocationAisle
+        {
+            get { return _locationAisle; }
+            set
+            {
+                _locationAisle = value;
+                onPropertyChanged(nameof(LocationAisle));
+
+                filterLocations();
+            }
+        }
+        private string _locationUnit;
+        public string LocationUnit
+        {
+            get { return _locationUnit; }
+            set
+            {
+                _locationUnit = value;
+                onPropertyChanged(nameof(LocationUnit));
+
+                filterLocations();
+            }
+        }
+        private string _locationLevel;
+        public string LocationLevel
+        {
+            get { return _locationLevel; }
+            set
+            {
+                _locationLevel = value;
+                onPropertyChanged(nameof(LocationLevel));
+
+                filterLocations();
+            }
+        }
+
+        private void filterLocations()
+        {
+            locations.Clear();
+            foreach (var loc in _locations)
+                locations.Add(loc);
+
+            for (int i = locations.Count - 1; i >= 0; i--)
+            {
+                if (LocationSector == null)
+                    LocationSector = "";
+                if (LocationAisle == null)
+                    LocationAisle = "";
+                if (LocationUnit == null)
+                    LocationUnit = "";
+                if (LocationLevel == null)
+                    LocationLevel = "";
+                if ((!locations[i].sector.Contains(LocationSector)) || (!locations[i].aisle.Contains(LocationAisle)) || (!locations[i].unit.Contains(LocationUnit)) || (!locations[i].level.Contains(LocationLevel)))
+                    locations.RemoveAt(i);
+            }
+        }
 
         private Location _selectedLocation;
         public Location SelectedLocation
@@ -107,7 +176,7 @@ namespace Boxer.ViewModel
                 _productName = value;
                 onPropertyChanged(nameof(ProductName));
 
-                filter();
+                filterProducts();
             }
         }
 
@@ -120,11 +189,11 @@ namespace Boxer.ViewModel
                 _sku = value;
                 onPropertyChanged(nameof(Sku));
 
-                filter();
+                filterProducts();
             }
         }
 
-        private void filter()
+        private void filterProducts()
         {
             products.Clear();
             foreach (var pr in _products)
@@ -197,6 +266,14 @@ namespace Boxer.ViewModel
             _products.AddRange(products);
 
             _inventory = new Inventory();
+
+
+            LocationSector = "";
+            LocationAisle = "";
+            LocationUnit = "";
+            LocationLevel = "";
+            ProductName = "";
+            Sku = "";
 
             HeaderText = "Dodaj Do Stanów";
             if (inventory != null)
