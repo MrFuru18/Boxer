@@ -117,8 +117,8 @@ namespace Boxer.ViewModel
             }
         }
 
-        private Product _selectedCustomerAddress;
-        public Product SelectedCustomerAddress
+        private CustomerAddress _selectedCustomerAddress;
+        public CustomerAddress SelectedCustomerAddress
         {
             get { return _selectedCustomerAddress; }
             set
