@@ -90,7 +90,7 @@
                     Content="Edytuj" 
                     Command="{Binding EditOrder}"/>
 
-            <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="510" Height="300" Margin="0,30,0,0"  
+            <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="560" Height="300" Margin="0,30,0,0"  
                       ItemsSource="{Binding order_items}"
                       IsSynchronizedWithCurrentItem="True"
                                       utils:GridViewSort.AutoSort="True"

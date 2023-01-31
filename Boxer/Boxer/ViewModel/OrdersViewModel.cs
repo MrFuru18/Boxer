@@ -1,4 +1,5 @@
 ﻿using ApiLibrary.Model;
+using ApiLibrary.Model.Views;
 using ApiLibrary.Repo;
 using Boxer.Commands;
 using Boxer.Navigation;
@@ -23,8 +24,8 @@ namespace Boxer.ViewModel
         private List<Order> _orders { get; set; }
         private Order order = null;
 
-        public ObservableCollection<OrderItem> order_items { get; set; }
-        public List<OrderItem> _order_items { get; set; }
+        public ObservableCollection<OrderItemDetailed> order_items { get; set; }
+        public List<OrderItemDetailed> _order_items { get; set; }
         private OrderItem orderItem = new OrderItem();
 
         public ICommand NavigateBackCommand { get; }
@@ -61,7 +62,7 @@ namespace Boxer.ViewModel
         private void loadOrderItems()
         {
             orderItem.order_id = SelectedOrder.id;
-            _order_items = new List<OrderItem>(OrderProcessor.getOrderItems(orderItem).Result);
+            _order_items = new List<OrderItemDetailed>(OrderProcessor.getOrderItemsDetailed(orderItem).Result);
 
             order_items.Clear();
             foreach (var item in _order_items)
@@ -83,7 +84,7 @@ namespace Boxer.ViewModel
             _orders = new List<Order>(orders);
 
             orderItem = new OrderItem();
-            order_items = new ObservableCollection<OrderItem>();
+            order_items = new ObservableCollection<OrderItemDetailed>();
 
             if (_orders.Count > 0)
             {

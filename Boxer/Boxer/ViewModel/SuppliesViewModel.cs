@@ -1,4 +1,5 @@
 ﻿using ApiLibrary.Model;
+using ApiLibrary.Model.Views;
 using ApiLibrary.Repo;
 using Boxer.Commands;
 using Boxer.Navigation;
@@ -23,8 +24,8 @@ namespace Boxer.ViewModel
         private List<Supply> _supplies { get; set; }
         private Supply supply = null;
 
-        public ObservableCollection<SupplyItem> supply_items { get; set; }
-        public List<SupplyItem> _supply_items { get; set; }
+        public ObservableCollection<SupplyItemDetailed> supply_items { get; set; }
+        public List<SupplyItemDetailed> _supply_items { get; set; }
         private SupplyItem supplyItem = new SupplyItem();
 
         public ICommand NavigateBackCommand { get; }
@@ -60,7 +61,7 @@ namespace Boxer.ViewModel
         private void loadSupplyItems()
         {
             supplyItem.supply_id = SelectedSupply.id;
-            _supply_items = new List<SupplyItem>(SupplyProcessor.getSupplyItems(supplyItem).Result);
+            _supply_items = new List<SupplyItemDetailed>(SupplyProcessor.getSupplyItemsDetailed(supplyItem).Result);
 
             supply_items.Clear();
             foreach (var item in _supply_items)
@@ -82,7 +83,7 @@ namespace Boxer.ViewModel
             _supplies = new List<Supply>(supplies);
 
             supplyItem = new SupplyItem();
-            supply_items = new ObservableCollection<SupplyItem>();
+            supply_items = new ObservableCollection<SupplyItemDetailed>();
 
             if (_supplies.Count > 0)
             {
