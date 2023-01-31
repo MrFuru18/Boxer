@@ -77,7 +77,8 @@ namespace Boxer.ViewModel
                 _selectedEmployee = value;
                 onPropertyChanged(nameof(SelectedEmployee));
 
-                EmployeeId = SelectedEmployee.id.ToString();
+                if (SelectedEmployee != null)
+                    EmployeeId = SelectedEmployee.id.ToString();
             }
         }
 
@@ -103,7 +104,8 @@ namespace Boxer.ViewModel
                 _selectedOrder = value;
                 onPropertyChanged(nameof(SelectedOrder));
 
-                OrderId = SelectedOrder.id.ToString();
+                if (SelectedOrder != null)
+                    OrderId = SelectedOrder.id.ToString();
             }
         }
 

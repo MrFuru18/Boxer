@@ -68,6 +68,7 @@ namespace Boxer.ViewModel
                 {
                     if (_supplyItem != null)
                     {
+                        _supplyItem.current_quantity = _supplyItem.quantity;
                         _supply_items.Add(_supplyItem);
                         refreshSupplyItems();
 
@@ -124,7 +125,8 @@ namespace Boxer.ViewModel
                 _selectedProduct = value;
                 onPropertyChanged(nameof(SelectedProduct));
 
-                ProductId = SelectedProduct.id.ToString();
+                if (SelectedProduct != null)
+                    ProductId = SelectedProduct.id.ToString();
             }
         }
 
@@ -150,6 +152,7 @@ namespace Boxer.ViewModel
                 _selectedLocation = value;
                 onPropertyChanged(nameof(SelectedLocation));
 
+                if (SelectedLocation != null)
                 LocationId = SelectedLocation.id.ToString();
             }
         }
@@ -176,18 +179,16 @@ namespace Boxer.ViewModel
                 _selectedSupplyItem = value;
                 onPropertyChanged(nameof(SelectedSupplyItem));
 
-                loadSupplyItem();
+                if (SelectedSupplyItem != null)
+                    loadSupplyItem();
             }
         }
 
         private void loadSupplyItem()
         {
-            if (SelectedSupplyItem != null)
-            {
-                ProductId = SelectedSupplyItem.product_id.ToString();
-                LocationId = _selectedSupplyItem.location_id.ToString();
-                Quantity = SelectedSupplyItem.quantity.ToString();
-            }
+            ProductId = SelectedSupplyItem.product_id.ToString();
+            LocationId = _selectedSupplyItem.location_id.ToString();
+            Quantity = SelectedSupplyItem.quantity.ToString();
         }
 
 

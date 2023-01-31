@@ -90,7 +90,8 @@ namespace Boxer.ViewModel
                 _selectedCategory = value;
                 onPropertyChanged(nameof(SelectedCategory));
 
-                _product.category_id = SelectedCategory.id;
+                if (SelectedCategory != null)
+                    _product.category_id = SelectedCategory.id;
             }
         }
 
@@ -116,7 +117,8 @@ namespace Boxer.ViewModel
                 _selectedManufacturer = value;
                 onPropertyChanged(nameof(SelectedManufacturer));
 
-                ManufacturerId = SelectedManufacturer.id.ToString();
+                if (SelectedManufacturer != null)
+                    ManufacturerId = SelectedManufacturer.id.ToString();
             }
         }
 

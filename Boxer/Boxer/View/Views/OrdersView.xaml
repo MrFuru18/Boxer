@@ -133,7 +133,7 @@
                                 <GridViewColumnHeader Content="Producent" CommandParameter="manufacturer_name"/>
                             </GridViewColumn.Header>
                         </GridViewColumn>
-                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding current_quanitity}"
+                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding current_quantity}"
                                         utils:GridViewSort.PropertyName="current_quantity">
                             <GridViewColumn.Header>
                                 <GridViewColumnHeader Content="Zebrano" CommandParameter="current_quantity"/>

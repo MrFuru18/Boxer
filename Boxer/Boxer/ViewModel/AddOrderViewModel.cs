@@ -70,6 +70,7 @@ namespace Boxer.ViewModel
                 {
                     if (_orderItem != null)
                     {
+                        _orderItem.current_quantity = 0;
                         _order_items.Add(_orderItem);
                         refreshOrderItems();
 
@@ -123,7 +124,8 @@ namespace Boxer.ViewModel
                 _selectedCustomerAddress = value;
                 onPropertyChanged(nameof(SelectedCustomerAddress));
 
-                CustomerAddressId = SelectedCustomerAddress.id.ToString();
+                if (SelectedCustomerAddress != null)
+                    CustomerAddressId = SelectedCustomerAddress.id.ToString();
             }
         }
 
@@ -163,7 +165,8 @@ namespace Boxer.ViewModel
                 _selectedProduct = value;
                 onPropertyChanged(nameof(SelectedProduct));
 
-                ProductId = SelectedProduct.id.ToString();
+                if (SelectedProduct != null)
+                    ProductId = SelectedProduct.id.ToString();
             }
         }
 
@@ -189,17 +192,15 @@ namespace Boxer.ViewModel
                 _selectedOrderItem = value;
                 onPropertyChanged(nameof(SelectedOrderItem));
 
-                loadOrderItem();
+                if (SelectedOrderItem != null)
+                    loadOrderItem();
             }
         }
 
         private void loadOrderItem()
         {
-            if (SelectedOrderItem != null)
-            {
-                ProductId = SelectedOrderItem.product_id.ToString();
-                Quantity = SelectedOrderItem.quantity.ToString();
-            }
+            ProductId = SelectedOrderItem.product_id.ToString();
+            Quantity = SelectedOrderItem.quantity.ToString();
         }
 
         private void refreshOrderItems()

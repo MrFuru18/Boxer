@@ -1,4 +1,5 @@
 ﻿using ApiLibrary.Model;
+using ApiLibrary.Model.ToCreate;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -51,7 +52,7 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<string> addInventory(Inventory inventory)
+        public static async Task<string> addInventory(ToCreateInventory inventory)
         {
             string url = "http://localhost:3000/inventory/add";
             string result;
@@ -72,7 +73,7 @@ namespace ApiLibrary.Repo
             }
         }
 
-        public static async Task<string> updateInventory(Inventory inventory)
+        public static async Task<string> updateInventory(ToCreateInventory inventory)
         {
             string url = "http://localhost:3000/inventory/edit/" + inventory.id;
             string result;

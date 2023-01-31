@@ -196,12 +196,6 @@
                             <GridViewColumnHeader Content="Ilość" CommandParameter="quantity"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding current_quanitity}"
-                                        utils:GridViewSort.PropertyName="current_quantity">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Zostało" CommandParameter="current_quantity"/>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
                     <GridViewColumn Width="100" DisplayMemberBinding="{Binding sku}"
                                         utils:GridViewSort.PropertyName="sku">
                         <GridViewColumn.Header>
@@ -218,6 +212,12 @@
                                         utils:GridViewSort.PropertyName="manufacturer">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="Producent" CommandParameter="manufacturer_name"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding current_quantity}"
+                                        utils:GridViewSort.PropertyName="current_quantity">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Zostało" CommandParameter="current_quantity"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn Width="100" DisplayMemberBinding="{Binding location_id}"
