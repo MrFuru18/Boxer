@@ -122,8 +122,10 @@ namespace Boxer.ViewModel
             _tasks = new List<Tasks>(TaskProcessor.getAllTasks(task).Result);
 
             tasks.Clear();
-            foreach (var tas in _tasks)
-                tasks.Add(tas);
+            foreach (var t in _tasks)
+                if (t.type == "order")
+                    tasks.Add(t);
+
 
             if (_tasks.Count > 0)
             {

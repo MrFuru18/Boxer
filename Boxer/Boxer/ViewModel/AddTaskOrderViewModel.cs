@@ -133,7 +133,7 @@ namespace Boxer.ViewModel
 
             employees = new ObservableCollection<Employee>(EmployeeProcessor.getAllEmployees().Result);
 
-            orders = new ObservableCollection<Order>(OrderProcessor.getAllOrders(_order).Result);
+            orders = new ObservableCollection<Order>(OrderProcessor.getOrdersNotConnected(_order).Result);
 
             HeaderText = "Dodaj Zadanie";
             if (task != null)

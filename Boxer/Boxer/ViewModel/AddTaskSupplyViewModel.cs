@@ -130,7 +130,7 @@ namespace Boxer.ViewModel
 
             employees = new ObservableCollection<Employee>(EmployeeProcessor.getAllEmployees().Result);
 
-            supplies = new ObservableCollection<Supply>(SupplyProcessor.getAllSupplies(_supply).Result);
+            supplies = new ObservableCollection<Supply>(SupplyProcessor.getSuppliesNotConnected(_supply).Result);
 
             HeaderText = "Dodaj Zadanie";
             if (task != null)

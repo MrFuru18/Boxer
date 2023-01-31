@@ -48,7 +48,38 @@ namespace Boxer.Commands
                 item.supply_id = sup.id;
                 string result = SupplyProcessor.addSupplyItem(item).Result;
                 if (result != "Created")
+                {
                     MessageBox.Show(result);
+                }
+                else
+                {
+                    Inventory inv = new Inventory();
+                    inv.product_id = item.product_id;
+                    List<Inventory> inventoryList = new List<Inventory>(InventoryProcessor.getInventoryWhereProduct(inv).Result);
+                    bool exist = false;
+                    foreach (var el in inventoryList)
+                    {
+                        if (el.location_id == item.location_id)
+                            exist = true;
+                    }
+                    if (exist == false)
+                    {
+                        ToCreateInventory invent = new ToCreateInventory();
+                        invent.location_id = item.location_id;
+                        invent.product_id = item.product_id;
+                        invent.quantity = 0;
+                        invent.remarks = "Auto Generated";
+                        string r = InventoryProcessor.addInventory(invent).Result;
+                        if (result == "Created")
+                        {
+
+                        }
+                        else
+                            MessageBox.Show(r);
+                    }
+
+                }
+
             }
         }
     }

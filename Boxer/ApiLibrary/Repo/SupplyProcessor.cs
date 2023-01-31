@@ -34,6 +34,28 @@ namespace ApiLibrary.Repo
             }
         }
 
+        public static async Task<List<Supply>> getSuppliesNotConnected(Supply supply)
+        {
+            string url = "http://localhost:3000/supplies/not_connected";
+            List<Supply> suppliesList = new List<Supply>();
+            string serializedSupply = JsonConvert.SerializeObject(supply);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedSupply, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonResult = await response.Content.ReadAsStringAsync();
+                    suppliesList = JsonConvert.DeserializeObject<List<Supply>>(jsonResult);
+                    return suppliesList;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
         public static async Task<Supply> getSupply(Supply supply)
         {
             string url = "http://localhost:3000/supply/get/" + supply.id;

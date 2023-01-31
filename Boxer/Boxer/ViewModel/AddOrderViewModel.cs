@@ -17,7 +17,9 @@ namespace Boxer.ViewModel
     class AddOrderViewModel : BaseViewModel
     {
         private readonly INavigationService _navigationService;
-        private bool isNotEdit = true;
+
+        public bool isNotEdit { get; set; }
+        
         public string HeaderText { get; set; }
 
         private Order _order = new Order();
@@ -212,6 +214,7 @@ namespace Boxer.ViewModel
 
         public AddOrderViewModel(INavigationService navigationService, Order order)
         {
+            isNotEdit = true;
             _navigationService = navigationService;
 
             CancelCommand = new NavigateCommand(navigationService);
@@ -244,6 +247,7 @@ namespace Boxer.ViewModel
                 order_items = new ObservableCollection<OrderItem>(OrderProcessor.getOrderItems(_orderItem).Result);
                 _order_items.AddRange(order_items);
             }
+            onPropertyChanged(nameof(isNotEdit));
         }
     }
 }

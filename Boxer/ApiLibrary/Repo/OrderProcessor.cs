@@ -34,6 +34,28 @@ namespace ApiLibrary.Repo
             }
         }
 
+        public static async Task<List<Order>> getOrdersNotConnected(Order order)
+        {
+            string url = "http://localhost:3000/orders/not_connected";
+            List<Order> ordersList = new List<Order>();
+            string serializedOrder = JsonConvert.SerializeObject(order);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedOrder, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonResult = await response.Content.ReadAsStringAsync();
+                    ordersList = JsonConvert.DeserializeObject<List<Order>>(jsonResult);
+                    return ordersList;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
         public static async Task<Order> getOrder(Order order)
         {
             string url = "http://localhost:3000/order/get/" + order.id;

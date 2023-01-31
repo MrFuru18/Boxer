@@ -127,8 +127,8 @@ namespace Boxer.ViewModel
         private void filter()
         {
             products.Clear();
-            foreach (var product in _products)
-                products.Add(product);
+            foreach (var pr in _products)
+                products.Add(pr);
 
             for (int i = products.Count - 1; i >= 0; i--)
             {

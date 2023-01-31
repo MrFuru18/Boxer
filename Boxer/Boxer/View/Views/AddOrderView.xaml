@@ -6,6 +6,9 @@
              xmlns:local="clr-namespace:Boxer.View.Views"
              xmlns:utils="clr-namespace:Boxer.Utils"
              mc:Ignorable="d" >
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
     <Grid Background="White">
         <StackPanel VerticalAlignment="Center">
 
@@ -274,6 +277,7 @@
                             Width="40"
                             Height="40"
                             Margin="10,0,0,0"
+                                        Visibility="{Binding isNotEdit, Converter={StaticResource BooleanToVisibilityConverter}}"
                                         Command="{Binding DeleteItem}"/>
                             </StackPanel>
 

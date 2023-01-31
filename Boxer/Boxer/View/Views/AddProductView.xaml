@@ -128,26 +128,10 @@
                                     <TextBox x:Name="ManufacturerName_textbox"
                                              Padding="5"
                                              FontSize="20"
-                                             Width="150"
+                                             Width="300"
                                              VerticalAlignment="Center"
                                              Margin="30,0,0,0"
-                                             Text="{Binding ManufacturerName}"
-                                             MaxLength="64"/>
-                                </StackPanel>
-                                <StackPanel>
-                                    <!-- Manufacturer TextBox -->
-                                    <TextBlock Text="Kraj"
-                                                VerticalAlignment="Center"
-                                                FontSize="20"
-                                                Margin="30,0,0,5"/>
-
-                                    <TextBox x:Name="ManufacturerCountry_textbox"
-                                             Padding="5"
-                                             FontSize="20"
-                                             Width="150"
-                                             VerticalAlignment="Center"
-                                             Margin="30,0,0,0"
-                                             Text="{Binding ManufacturerCountry}"
+                                             Text="{Binding ManufacturerName, UpdateSourceTrigger=PropertyChanged}"
                                              MaxLength="64"/>
                                 </StackPanel>
                             </StackPanel>

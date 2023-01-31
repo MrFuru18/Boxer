@@ -17,7 +17,7 @@ namespace Boxer.ViewModel
     class AddSupplyViewModel : BaseViewModel
     {
         private readonly INavigationService _navigationService;
-        private bool isNotEdit = true;
+        public bool isNotEdit { get; set; }
         public string HeaderText { get; set; }
         private Supply _supply = new Supply();
 
@@ -214,6 +214,8 @@ namespace Boxer.ViewModel
 
         public AddSupplyViewModel(INavigationService navigationService, Supply supply)
         {
+            isNotEdit = true;
+
             _navigationService = navigationService;
             CancelCommand = new NavigateCommand(navigationService);
 
@@ -245,6 +247,8 @@ namespace Boxer.ViewModel
                 supply_items = new ObservableCollection<SupplyItem>(SupplyProcessor.getSupplyItems(_supplyItem).Result);
                 _supply_items.AddRange(supply_items);
             }
+
+            onPropertyChanged(nameof(isNotEdit));
         }
 
     }

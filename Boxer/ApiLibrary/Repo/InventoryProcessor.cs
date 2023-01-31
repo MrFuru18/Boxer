@@ -52,6 +52,28 @@ namespace ApiLibrary.Repo
             }
         }
 
+        public static async Task<List<Inventory>> getInventoryWhereProduct(Inventory inventory)
+        {
+            string url = "http://localhost:3000/inventory/product/get/" + inventory.product_id;
+            List<Inventory> inventoryList = new List<Inventory>();
+            string serializedInventory = JsonConvert.SerializeObject(inventory);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedInventory, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonResult = await response.Content.ReadAsStringAsync();
+                    inventoryList = JsonConvert.DeserializeObject<List<Inventory>>(jsonResult);
+                    return inventoryList;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
         public static async Task<string> addInventory(ToCreateInventory inventory)
         {
             string url = "http://localhost:3000/inventory/add";

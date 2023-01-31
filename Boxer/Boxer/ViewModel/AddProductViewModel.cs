@@ -107,6 +107,33 @@ namespace Boxer.ViewModel
                 _product.manufacturer_id = Int32.TryParse(ManufacturerId, out var tempVal) ? tempVal : (int?)null;
             }
         }
+        private string _manufacturerName;
+        public string ManufacturerName
+        {
+            get { return _manufacturerName; }
+            set
+            {
+                _manufacturerName = value;
+                onPropertyChanged(nameof(ManufacturerName));
+
+                filter();
+            }
+        }
+
+        private void filter()
+        {
+            manufacturers.Clear();
+            foreach (var man in _manufacturers)
+                manufacturers.Add(man);
+
+            for (int i = manufacturers.Count - 1; i >= 0; i--)
+            {
+                if (ManufacturerName == null)
+                    ManufacturerName = "";
+                if (!manufacturers[i].name.Contains(ManufacturerName))
+                    manufacturers.RemoveAt(i);
+            }
+        }
 
         private Manufacturer _selectedManufacturer;
         public Manufacturer SelectedManufacturer
@@ -180,8 +207,9 @@ namespace Boxer.ViewModel
 
             categories = new ObservableCollection<Category>(ProductProcessor.getCategories(new Category()).Result);
 
-            manufacturers = new ObservableCollection<Manufacturer>(ManufacturerProcessor.getAllManufacturers(_manufacturer).Result);
             _manufacturers = new List<Manufacturer>();
+            manufacturers = new ObservableCollection<Manufacturer>(ManufacturerProcessor.getAllManufacturers(_manufacturer).Result);
+            _manufacturers.AddRange(manufacturers);
 
             _product = new Product();
             Size = Sizes.unassigned;
