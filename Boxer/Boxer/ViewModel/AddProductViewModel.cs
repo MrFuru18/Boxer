@@ -1,4 +1,5 @@
 ﻿using ApiLibrary.Model;
+using ApiLibrary.Model.Views;
 using ApiLibrary.Repo;
 using Boxer.Commands;
 using Boxer.Model;
@@ -11,6 +12,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Boxer.ViewModel
@@ -169,7 +171,7 @@ namespace Boxer.ViewModel
                 _product.size = Size.ToString();
             }
         }
-        public AddProductViewModel(INavigationService navigationService, Product product)
+        public AddProductViewModel(INavigationService navigationService, ProductDetailed product)
         {
             _navigationService = navigationService;
             CancelCommand = new NavigateCommand(navigationService);
@@ -189,14 +191,19 @@ namespace Boxer.ViewModel
                 isNotEdit = false;
                 HeaderText = "Edytuj Produkt";
 
-                _product = product;
+                _product = ObjectComparerUtility.Convert<ProductDetailed, Product>(product);
                 Sku = _product.sku;
                 Name = _product.name;
                 ManufacturerId = _product.manufacturer_id.ToString();
                 Weight = _product.weight.ToString();
                 Value = _product.value.ToString();
                 Description = _product.description;
-                
+
+                Category cat = new Category();
+                cat.id = _product.category_id;
+                cat = ProductProcessor.getCategory(cat).Result;
+                SelectedCategory = cat;
+
                 Size = (Sizes)Enum.Parse(typeof(Sizes), _product.size);
             }
         }

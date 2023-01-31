@@ -89,7 +89,13 @@
                       VerticalAlignment="Center"
                       HorizontalAlignment="Left"
                       ItemsSource="{Binding categories}"
-                      SelectedItem="{Binding SelectedCategory}">
+                      SelectedItem="{Binding SelectedCategory}"
+                      IsSynchronizedWithCurrentItem="True">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding category}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
                     </ComboBox>
 
                     <GroupBox Margin="0,20,0,5">

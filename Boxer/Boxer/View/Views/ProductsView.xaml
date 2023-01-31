@@ -54,7 +54,7 @@
         </StackPanel>
 
 
-        <ListView Grid.Row="1" Grid.Column="0" Width="1300" Margin="0,30,0,0"  
+        <ListView Grid.Row="1" Grid.Column="0" Width="1610" Margin="0,30,0,0"  
                   ItemsSource="{Binding products}"
                   SelectedItem="{Binding SelectedProduct}"
                   IsSynchronizedWithCurrentItem="True"
@@ -86,10 +86,23 @@
                             <GridViewColumnHeader Content="id Producenta" CommandParameter="manufacturer_id"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding category_id}"
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding manufacturer_name}"
+                                    utils:GridViewSort.PropertyName="manufacturer_name">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Producent" CommandParameter="manufacturer"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding category_id}"
                                     utils:GridViewSort.PropertyName="category_id">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Content="id Kategorii" CommandParameter="category_id"/>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding category}"
+                                    utils:GridViewSort.PropertyName="category">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Content="Kategoria" CommandParameter="category_id"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn Width="350" DisplayMemberBinding="{Binding description}"

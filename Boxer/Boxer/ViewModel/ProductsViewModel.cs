@@ -1,4 +1,5 @@
 ﻿using ApiLibrary.Model;
+using ApiLibrary.Model.Views;
 using ApiLibrary.Repo;
 using Boxer.Commands;
 using Boxer.Navigation;
@@ -18,8 +19,8 @@ namespace Boxer.ViewModel
     {
         INavigationService _navigationService;
         ModalNavigationStore _modalNavigationStore;
-        public ObservableCollection<Product> products { get; set; }
-        private List<Product> _products { get; set; }
+        public ObservableCollection<ProductDetailed> products { get; set; }
+        private List<ProductDetailed> _products { get; set; }
         private Product product = null;
 
         public ICommand NavigateBackCommand { get; }
@@ -38,8 +39,8 @@ namespace Boxer.ViewModel
             }
         }
 
-        private Product _selectedProduct;
-        public Product SelectedProduct
+        private ProductDetailed _selectedProduct;
+        public ProductDetailed SelectedProduct
         {
             get { return _selectedProduct; }
             set
@@ -61,8 +62,8 @@ namespace Boxer.ViewModel
             NewProduct = new NavigateCommand(addProductNavigationService);
 
             product = new Product();
-            products = new ObservableCollection<Product>(ProductProcessor.getAllProducts(product).Result);
-            _products = new List<Product>(products);
+            products = new ObservableCollection<ProductDetailed>(ProductProcessor.getAllProductsDetailed(product).Result);
+            _products = new List<ProductDetailed>(products);
 
             if (_products.Count > 0)
             {
@@ -72,7 +73,7 @@ namespace Boxer.ViewModel
 
         private void OnCurrentModalViewModelClosed()
         {
-            _products = new List<Product>(ProductProcessor.getAllProducts(product).Result);
+            _products = new List<ProductDetailed>(ProductProcessor.getAllProductsDetailed(product).Result);
 
             products.Clear();
             foreach (var prod in _products)
