@@ -1,6 +1,7 @@
 ﻿using ApiLibrary.Model;
 using ApiLibrary.Repo;
 using Boxer.Commands;
+using Boxer.Model;
 using Boxer.Navigation;
 using Boxer.ViewModel.BaseClass;
 using System;
@@ -19,6 +20,7 @@ namespace Boxer.ViewModel
     {
         INavigationService _navigationService;
         ModalNavigationStore _modalNavigationStore;
+        private readonly AccountStore _accountStore;
 
         public ObservableCollection<Inventory> inventoryList { get; set; }
         private List<Inventory> _inventoryList { get; set; }
@@ -33,7 +35,7 @@ namespace Boxer.ViewModel
             {
                 return _editInventory ?? (_editInventory = new RelayCommand((p) =>
                 {
-                    _modalNavigationStore.CurrentViewModel = new AddInventoryViewModel(new CloseModalNavigationService(_modalNavigationStore), SelectedInventory);
+                    _modalNavigationStore.CurrentViewModel = new AddInventoryViewModel(new CloseModalNavigationService(_modalNavigationStore), _accountStore, SelectedInventory);
                    
                 }, p => true));
 
@@ -52,10 +54,11 @@ namespace Boxer.ViewModel
         }
 
 
-        public InventoryViewModel(INavigationService warehouseMenuNavigationService, INavigationService addInventoryNavigationService, ModalNavigationStore modalNavigationStore)
+        public InventoryViewModel(INavigationService warehouseMenuNavigationService, INavigationService addInventoryNavigationService, ModalNavigationStore modalNavigationStore, AccountStore accountStore)
         {
             _navigationService = addInventoryNavigationService;
             _modalNavigationStore = modalNavigationStore;
+            _accountStore = accountStore;
 
             _modalNavigationStore.CurrentViewModelClosed += OnCurrentModalViewModelClosed;
 

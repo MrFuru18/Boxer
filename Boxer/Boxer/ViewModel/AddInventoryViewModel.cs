@@ -1,6 +1,7 @@
 ﻿using ApiLibrary.Model;
 using ApiLibrary.Repo;
 using Boxer.Commands;
+using Boxer.Model;
 using Boxer.Navigation;
 using Boxer.ViewModel.BaseClass;
 using System;
@@ -18,6 +19,7 @@ namespace Boxer.ViewModel
     class AddInventoryViewModel : BaseViewModel
     {
         private readonly INavigationService _navigationService;
+        private readonly AccountStore _accountStore;
         private bool isNotEdit = true;
         public string HeaderText { get; set; }
 
@@ -179,9 +181,10 @@ namespace Boxer.ViewModel
             }
         }
 
-        public AddInventoryViewModel(INavigationService navigationService, Inventory inventory)
+        public AddInventoryViewModel(INavigationService navigationService, AccountStore accountStore, Inventory inventory)
         {
             _navigationService = navigationService;
+            _accountStore = accountStore;
             
             CancelCommand = new NavigateCommand(navigationService);
 
@@ -207,6 +210,7 @@ namespace Boxer.ViewModel
                 Quantity = _inventory.quantity.ToString();
                 Remarks = _inventory.remarks;
             }
+            _inventory.employee_id = _accountStore.CurrentAccount.id;
         }
     }
 }
