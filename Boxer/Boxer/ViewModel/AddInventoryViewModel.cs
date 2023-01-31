@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Boxer.ViewModel
@@ -77,7 +78,8 @@ namespace Boxer.ViewModel
                 _selectedLocation = value;
                 onPropertyChanged(nameof(SelectedLocation));
 
-                LocationId = SelectedLocation.id.ToString();
+                if (SelectedLocation != null)
+                    LocationId = SelectedLocation.id.ToString();
             }
         }
 
@@ -94,6 +96,49 @@ namespace Boxer.ViewModel
             }
         }
 
+        private string _productName;
+        public string ProductName
+        {
+            get { return _productName; }
+            set
+            {
+                _productName = value;
+                onPropertyChanged(nameof(ProductName));
+
+                filter();
+            }
+        }
+
+        private string _sku;
+        public string Sku
+        {
+            get { return _sku; }
+            set
+            {
+                _sku = value;
+                onPropertyChanged(nameof(Sku));
+
+                filter();
+            }
+        }
+
+        private void filter()
+        {
+            products.Clear();
+            foreach (var product in _products)
+                products.Add(product);
+
+            for (int i = products.Count - 1; i >= 0; i--)
+            {
+                if (ProductName == null)
+                    ProductName = "";
+                if (Sku == null)
+                    Sku = "";
+                if ((!products[i].name.Contains(ProductName))||(!products[i].sku.Contains(Sku)))
+                    products.RemoveAt(i);
+            }
+        }
+
         private Product _selectedProduct;
         public Product SelectedProduct
         {
@@ -103,7 +148,8 @@ namespace Boxer.ViewModel
                 _selectedProduct = value;
                 onPropertyChanged(nameof(SelectedProduct));
 
-                ProductId = SelectedProduct.id.ToString();
+                if (SelectedProduct != null)
+                    ProductId = SelectedProduct.id.ToString();
             }
         }
 
@@ -141,9 +187,11 @@ namespace Boxer.ViewModel
 
             locations = new ObservableCollection<Location>(LocationProcessor.getAllLocations(_location).Result);
             _locations = new List<Location>();
+            _locations.AddRange(locations);
 
             products = new ObservableCollection<Product>(ProductProcessor.getAllProducts(_product).Result);
             _products = new List<Product>();
+            _products.AddRange(products);
 
             _inventory = new Inventory();
 

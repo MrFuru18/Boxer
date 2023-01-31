@@ -1,4 +1,5 @@
 ﻿using ApiLibrary.Model;
+using ApiLibrary.Model.Views;
 using ApiLibrary.Repo;
 using Boxer.Commands;
 using Boxer.Navigation;
@@ -27,6 +28,9 @@ namespace Boxer.ViewModel
         public List<TaskState> _task_states { get; set; }
         private TaskState taskState = new TaskState();
 
+        public List<SupplyItemDetailed> _supply_items { get; set; }
+        public ObservableCollection<SupplyItemDetailed> supply_items { get; set; }
+
         public ICommand NavigateBackCommand { get; }
         public ICommand NewTask { get; }
         private ICommand _editTask;
@@ -53,7 +57,11 @@ namespace Boxer.ViewModel
                 onPropertyChanged(nameof(SelectedTask));
 
                 if (SelectedTask != null)
+                {
                     loadTaskStates();
+                    loadSupplyItems();
+                }
+                    
             }
         }
 
@@ -65,6 +73,18 @@ namespace Boxer.ViewModel
             task_states.Clear();
             foreach (var item in _task_states)
                 task_states.Add(item);
+        }
+        private void loadSupplyItems()
+        {
+            SupplyItem supIt = new SupplyItem();
+            supIt.supply_id = SelectedTask.supply_id;
+            supply_items.Clear();
+            if (supIt.supply_id != null)
+            {
+                _supply_items = new List<SupplyItemDetailed>(SupplyProcessor.getSupplyItemsDetailed(supIt).Result);
+                foreach (var item in _supply_items)
+                    supply_items.Add(item);
+            }
         }
 
         public TasksSuppliesViewModel(INavigationService tasksMenuNavigationService, INavigationService addTaskNavigationService, ModalNavigationStore modalNavigationStore)
@@ -78,11 +98,16 @@ namespace Boxer.ViewModel
             NewTask = new NavigateCommand(addTaskNavigationService);
 
             task = new Tasks();
-            tasks = new ObservableCollection<Tasks>(TaskProcessor.getAllTasks(task).Result);
-            _tasks = new List<Tasks>(tasks);
+            tasks = new ObservableCollection<Tasks>();
+            _tasks = new List<Tasks>(TaskProcessor.getAllTasks(task).Result);
+            foreach (var t in _tasks)
+                if (t.type == "supply")
+                    tasks.Add(t);
 
             taskState = new TaskState();
             task_states = new ObservableCollection<TaskState>();
+
+            supply_items = new ObservableCollection<SupplyItemDetailed>();
 
             if (_tasks.Count > 0)
             {

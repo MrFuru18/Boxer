@@ -1,4 +1,5 @@
 ﻿using ApiLibrary.Model;
+using ApiLibrary.Model.Views;
 using ApiLibrary.Repo;
 using Boxer.Commands;
 using Boxer.Navigation;
@@ -27,6 +28,9 @@ namespace Boxer.ViewModel
         public List<TaskState> _task_states { get; set; }
         private TaskState taskState = new TaskState();
 
+        public List<OrderItemDetailed> _order_items { get; set; }
+        public ObservableCollection<OrderItemDetailed> order_items { get; set; }
+
         public ICommand NavigateBackCommand { get; }
         public ICommand NewTask { get; }
         private ICommand _editTask;
@@ -53,7 +57,10 @@ namespace Boxer.ViewModel
                 onPropertyChanged(nameof(SelectedTask));
 
                 if (SelectedTask != null)
+                {
                     loadTaskStates();
+                    loadOrderItems();
+                }
             }
         }
 
@@ -67,6 +74,20 @@ namespace Boxer.ViewModel
                 task_states.Add(item);
         }
 
+        private void loadOrderItems()
+        {
+            OrderItem ordIt = new OrderItem();
+            ordIt.order_id = SelectedTask.order_id;
+            order_items.Clear();
+            if (ordIt.order_id != null)
+            {
+                _order_items = new List<OrderItemDetailed>(OrderProcessor.getOrderItemsDetailed(ordIt).Result);
+                foreach (var item in _order_items)
+                    order_items.Add(item);
+
+            }
+        }
+
         public TasksOrdersViewModel(INavigationService tasksMenuNavigationService, INavigationService addTaskNavigationService, ModalNavigationStore modalNavigationStore)
         {
             _navigationService = addTaskNavigationService;
@@ -78,11 +99,16 @@ namespace Boxer.ViewModel
             NewTask = new NavigateCommand(addTaskNavigationService);
 
             task = new Tasks();
-            tasks = new ObservableCollection<Tasks>(TaskProcessor.getAllTasks(task).Result);
-            _tasks = new List<Tasks>(tasks);
+            tasks = new ObservableCollection<Tasks>();
+            _tasks = new List<Tasks>(TaskProcessor.getAllTasks(task).Result);
+            foreach (var t in _tasks)
+                if (t.type == "order")
+                    tasks.Add(t);
 
             taskState = new TaskState();
             task_states = new ObservableCollection<TaskState>();
+
+            order_items = new ObservableCollection<OrderItemDetailed>();
 
             if (_tasks.Count > 0)
             {
