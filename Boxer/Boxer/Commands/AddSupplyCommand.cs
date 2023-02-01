@@ -70,11 +70,7 @@ namespace Boxer.Commands
                         invent.quantity = 0;
                         invent.remarks = "Auto Generated";
                         string r = InventoryProcessor.addInventory(invent).Result;
-                        if (result == "Created")
-                        {
-
-                        }
-                        else
+                        if (result != "Created")
                             MessageBox.Show(r);
                     }
 

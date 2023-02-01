@@ -111,6 +111,7 @@ namespace Boxer.ViewModel
         }
 
 
+        /*
         private ICommand _editItem;
         public ICommand EditItem
         {
@@ -126,6 +127,7 @@ namespace Boxer.ViewModel
 
             }
         }
+        */
 
         private string _productId;
         public string ProductId

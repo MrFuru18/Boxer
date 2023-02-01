@@ -46,7 +46,7 @@
                     <GridViewColumn Width="100" DisplayMemberBinding="{Binding id}"
                                     utils:GridViewSort.PropertyName="id">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Content="Uid" CommandParameter="id"/>
+                            <GridViewColumnHeader Content="id" CommandParameter="id"/>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn Width="100" DisplayMemberBinding="{Binding customer_address_id}"
