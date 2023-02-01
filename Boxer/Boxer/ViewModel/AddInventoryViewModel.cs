@@ -1,4 +1,5 @@
 ﻿using ApiLibrary.Model;
+using ApiLibrary.Model.Views;
 using ApiLibrary.Repo;
 using Boxer.Commands;
 using Boxer.Model;
@@ -29,8 +30,8 @@ namespace Boxer.ViewModel
         private List<Location> _locations { get; set; }
         private Location _location = new Location();
 
-        public ObservableCollection<Product> products { get; set; }
-        private List<Product> _products { get; set; }
+        public ObservableCollection<ProductDetailed> products { get; set; }
+        private List<ProductDetailed> _products { get; set; }
         private Product _product = new Product();
 
         public ICommand CancelCommand { get; }
@@ -210,8 +211,8 @@ namespace Boxer.ViewModel
             }
         }
 
-        private Product _selectedProduct;
-        public Product SelectedProduct
+        private ProductDetailed _selectedProduct;
+        public ProductDetailed SelectedProduct
         {
             get { return _selectedProduct; }
             set
@@ -261,8 +262,8 @@ namespace Boxer.ViewModel
             _locations = new List<Location>();
             _locations.AddRange(locations);
 
-            products = new ObservableCollection<Product>(ProductProcessor.getAllProducts(_product).Result);
-            _products = new List<Product>();
+            products = new ObservableCollection<ProductDetailed>(ProductProcessor.getAllProductsDetailed(_product).Result);
+            _products = new List<ProductDetailed>();
             _products.AddRange(products);
 
             _inventory = new Inventory();

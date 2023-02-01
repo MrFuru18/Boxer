@@ -1,6 +1,8 @@
 ﻿using ApiLibrary.Model;
+using ApiLibrary.Model.Views;
 using ApiLibrary.Repo;
 using Boxer.Commands;
+using Boxer.Model;
 using Boxer.Navigation;
 using Boxer.ViewModel.BaseClass;
 using System;
@@ -24,17 +26,18 @@ namespace Boxer.ViewModel
 
         private Order _order = new Order();
 
-        public ObservableCollection<OrderItem> order_items { get; set; }
-        private List<OrderItem> _order_items { get; set; }
+        public ObservableCollection<OrderItemDetailed> order_items { get; set; }
+        private List<OrderItemDetailed> _order_items { get; set; }
         private OrderItem _orderItem = new OrderItem();
 
         public ObservableCollection<CustomerAddress> customer_addresses { get; set; }
         private List<CustomerAddress> _customer_addresses { get; set; }
         private CustomerAddress _customerAddress = new CustomerAddress();
 
-        public ObservableCollection<Product> products { get; set; }
-        private List<Product> _products { get; set; }
+        public ObservableCollection<ProductDetailed> products { get; set; }
+        private List<ProductDetailed> _products { get; set; }
         private Product _product = new Product();
+
 
 
         public ICommand CancelCommand { get; }
@@ -46,9 +49,14 @@ namespace Boxer.ViewModel
             {
                 return _addOrder ?? (_addOrder = new RelayCommand((p) =>
                 {
+                    List<OrderItem> ordItems = new List<OrderItem>();
+                    foreach (var ordIt in _order_items)
+                    {
+                        ordItems.Add(ObjectComparerUtility.Convert<OrderItemDetailed, OrderItem>(ordIt));
+                    }
                     if (isNotEdit)
                     {
-                        AddOrderCommand addCommand = new AddOrderCommand(_navigationService, _order, _order_items);
+                        AddOrderCommand addCommand = new AddOrderCommand(_navigationService, _order, ordItems);
                         addCommand.Execute(true);
                     }
                     else
@@ -75,7 +83,20 @@ namespace Boxer.ViewModel
                         if (_orderItem != null)
                         {
                             _orderItem.current_quantity = 0;
-                            _order_items.Add(_orderItem);
+                            OrderItemDetailed ordItDet = new OrderItemDetailed();
+                            ordItDet = ObjectComparerUtility.Convert<OrderItem, OrderItemDetailed>(_orderItem);
+                            foreach (var pr in _products)
+                            {
+                                if (ordItDet.product_id == pr.id)
+                                {
+                                    ordItDet.name = pr.name;
+                                    ordItDet.sku = pr.sku;
+                                    ordItDet.manufacturer = pr.manufacturer_name;
+                                    break;
+                                }
+                            }
+
+                            _order_items.Add(ordItDet);
                             refreshOrderItems();
 
                             _orderItem = new OrderItem();
@@ -98,7 +119,7 @@ namespace Boxer.ViewModel
                             _orderItem = new OrderItem();
                             _orderItem.order_id = _order.id;
 
-                            _order_items = new List<OrderItem>(OrderProcessor.getOrderItems(_orderItem).Result);
+                            _order_items = new List<OrderItemDetailed>(OrderProcessor.getOrderItemsDetailed(_orderItem).Result);
                             refreshOrderItems();
 
                             ProductId = null;
@@ -125,7 +146,7 @@ namespace Boxer.ViewModel
                         {
                             SelectedOrderItem.product_id = Int32.TryParse(ProductId, out var tempVal1) ? tempVal1 : (int?)null;
                             SelectedOrderItem.quantity = Int32.TryParse(Quantity, out var tempVal2) ? tempVal2 : (int?)null;
-                            SelectedOrderItem.order_id = _order.id;
+                            //SelectedOrderItem.order_id = _order.id;
                             refreshOrderItems();
 
                             _orderItem = new OrderItem();
@@ -141,15 +162,18 @@ namespace Boxer.ViewModel
                         {
                             //SelectedOrderItem.product_id = Int32.TryParse(ProductId, out var tempVal1) ? tempVal1 : (int?)null;
                             SelectedOrderItem.quantity = Int32.TryParse(Quantity, out var tempVal2) ? tempVal2 : (int?)null;
-                            SelectedOrderItem.order_id = _order.id;
+                            //SelectedOrderItem.order_id = _order.id;
 
-                            EditOrderItemCommand editItemCommand = new EditOrderItemCommand(SelectedOrderItem);
+                            OrderItem ordIt = ObjectComparerUtility.Convert<OrderItemDetailed, OrderItem>(SelectedOrderItem);
+                            ordIt.order_id = _order.id;
+
+                            EditOrderItemCommand editItemCommand = new EditOrderItemCommand(ordIt);
                             editItemCommand.Execute(true);
 
                             _orderItem = new OrderItem();
                             _orderItem.order_id = _order.id;
 
-                            _order_items = new List<OrderItem>(OrderProcessor.getOrderItems(_orderItem).Result);
+                            _order_items = new List<OrderItemDetailed>(OrderProcessor.getOrderItemsDetailed(_orderItem).Result);
                             refreshOrderItems();
 
                             ProductId = null;
@@ -288,8 +312,8 @@ namespace Boxer.ViewModel
             }
         }
 
-        private Product _selectedProduct;
-        public Product SelectedProduct
+        private ProductDetailed _selectedProduct;
+        public ProductDetailed SelectedProduct
         {
             get { return _selectedProduct; }
             set
@@ -315,8 +339,8 @@ namespace Boxer.ViewModel
             }
         }
 
-        private OrderItem _selectedOrderItem;
-        public OrderItem SelectedOrderItem
+        private OrderItemDetailed _selectedOrderItem;
+        public OrderItemDetailed SelectedOrderItem
         {
             get { return _selectedOrderItem; }
             set
@@ -348,8 +372,8 @@ namespace Boxer.ViewModel
 
             CancelCommand = new NavigateCommand(navigationService);
 
-            products = new ObservableCollection<Product>(ProductProcessor.getAllProducts(_product).Result);
-            _products = new List<Product>();
+            products = new ObservableCollection<ProductDetailed>(ProductProcessor.getAllProductsDetailed(_product).Result);
+            _products = new List<ProductDetailed>();
             _products.AddRange(products);
 
             customer_addresses = new ObservableCollection<CustomerAddress>(CustomerProcessor.getAllCustomerAddresses(_customerAddress).Result);
@@ -359,8 +383,8 @@ namespace Boxer.ViewModel
             _order = new Order();
 
             _orderItem = new OrderItem();
-            order_items = new ObservableCollection<OrderItem>();
-            _order_items = new List<OrderItem>();
+            order_items = new ObservableCollection<OrderItemDetailed>();
+            _order_items = new List<OrderItemDetailed>();
 
             CustomerId = "";
             ProductName = "";
@@ -378,7 +402,7 @@ namespace Boxer.ViewModel
 
                 _orderItem.order_id = _order.id;
 
-                order_items = new ObservableCollection<OrderItem>(OrderProcessor.getOrderItems(_orderItem).Result);
+                order_items = new ObservableCollection<OrderItemDetailed>(OrderProcessor.getOrderItemsDetailed(_orderItem).Result);
                 _order_items.AddRange(order_items);
             }
             onPropertyChanged(nameof(isNotEdit));

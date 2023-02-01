@@ -313,19 +313,19 @@
                                                 <GridViewColumnHeader Content="sku" CommandParameter="sku"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding product_name}"
-                                                        utils:GridViewSort.PropertyName="product_name">
+                                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding name}"
+                                                        utils:GridViewSort.PropertyName="name">
                                             <GridViewColumn.Header>
                                                 <GridViewColumnHeader Content="Nazwa" CommandParameter="product_name"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding manufacturer_name}"
+                                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding manufacturer}"
                                                         utils:GridViewSort.PropertyName="manufacturer_name">
                                             <GridViewColumn.Header>
-                                                <GridViewColumnHeader Content="Producent" CommandParameter="manufacturer_name"/>
+                                                <GridViewColumnHeader Content="Producent" CommandParameter="manufacturer"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding current_quanitity}"
+                                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding current_quantity}"
                                                         utils:GridViewSort.PropertyName="current_quantity">
                                             <GridViewColumn.Header>
                                                 <GridViewColumnHeader Content="Zebrano" CommandParameter="current_quantity"/>
