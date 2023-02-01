@@ -1,4 +1,5 @@
 ﻿using ApiLibrary.Model;
+using ApiLibrary.Model.ToCreate;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -135,6 +136,29 @@ namespace ApiLibrary.Repo
                 }
             }
         }
+
+        public static async Task<string> addTaskState(ToCreateTaskState taskState)
+        {
+            string url = "http://localhost:3000/task_state/add";
+            string result;
+            string serializedTasks = JsonConvert.SerializeObject(taskState);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedTasks, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    result = await response.Content.ReadAsStringAsync();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+
 
         public static async Task<string> addRelocationItem(RelocationItem relocationItem)
         {
