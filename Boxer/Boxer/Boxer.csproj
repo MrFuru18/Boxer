@@ -81,8 +81,10 @@
     <Compile Include="Commands\AddLocationCommand.cs" />
     <Compile Include="Commands\AddManufacturerCommand.cs" />
     <Compile Include="Commands\AddOrderCommand.cs" />
+    <Compile Include="Commands\AddOrderItemCommand.cs" />
     <Compile Include="Commands\AddProductCommand.cs" />
     <Compile Include="Commands\AddSupplyCommand.cs" />
+    <Compile Include="Commands\AddSupplyItemCommand.cs" />
     <Compile Include="Commands\AddTaskCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\EditCustomerCommand.cs" />
@@ -91,6 +93,7 @@
     <Compile Include="Commands\EditLocationCommand.cs" />
     <Compile Include="Commands\EditManufacturerCommand.cs" />
     <Compile Include="Commands\EditOrderCommand.cs" />
+    <Compile Include="Commands\EditOrderItemCommand.cs" />
     <Compile Include="Commands\EditProductCommand.cs" />
     <Compile Include="Commands\EditSupplyCommand.cs" />
     <Compile Include="Commands\EditTaskCommand.cs" />

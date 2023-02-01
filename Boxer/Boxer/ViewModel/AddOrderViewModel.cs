@@ -18,7 +18,7 @@ namespace Boxer.ViewModel
     {
         private readonly INavigationService _navigationService;
 
-        public bool isNotEdit { get; set; }
+        private bool isNotEdit = true;
         
         public string HeaderText { get; set; }
 
@@ -53,7 +53,7 @@ namespace Boxer.ViewModel
                     }
                     else
                     {
-                        EditOrderCommand editCommand = new EditOrderCommand(_navigationService, _order, _order_items);
+                        EditOrderCommand editCommand = new EditOrderCommand(_navigationService, _order);
                         editCommand.Execute(true);
                     }
 
@@ -70,34 +70,92 @@ namespace Boxer.ViewModel
             {
                 return _addItem ?? (_addItem = new RelayCommand((p) =>
                 {
-                    if (_orderItem != null)
+                    if (isNotEdit)
                     {
-                        _orderItem.current_quantity = 0;
-                        _order_items.Add(_orderItem);
-                        refreshOrderItems();
+                        if (_orderItem != null)
+                        {
+                            _orderItem.current_quantity = 0;
+                            _order_items.Add(_orderItem);
+                            refreshOrderItems();
 
-                        _orderItem = new OrderItem();
-                        _orderItem.order_id = _order.id;
+                            _orderItem = new OrderItem();
+                            _orderItem.order_id = _order.id;
 
-                        ProductId = null;
-                        Quantity = null ;
+                            ProductId = null;
+                            Quantity = null;
+                        }
                     }
+                    else
+                    {
+                        if (_orderItem != null)
+                        {
+                            _orderItem.current_quantity = 0;
+                            _orderItem.order_id = _order.id;
+
+                            AddOrderItemCommand addItemCommand = new AddOrderItemCommand(_orderItem);
+                            addItemCommand.Execute(true);
+
+                            _orderItem = new OrderItem();
+                            _orderItem.order_id = _order.id;
+
+                            _order_items = new List<OrderItem>(OrderProcessor.getOrderItems(_orderItem).Result);
+                            refreshOrderItems();
+
+                            ProductId = null;
+                            Quantity = null;
+                        }
+
+                    }
+                    
 
                 }, p => true));
 
             }
         }
-        private ICommand _deleteItem;
-        public ICommand DeleteItem
+        private ICommand _editItem;
+        public ICommand EditItem
         {
             get
             {
-                return _deleteItem ?? (_deleteItem = new RelayCommand((p) =>
+                return _editItem ?? (_editItem = new RelayCommand((p) =>
                 {
-                    if (SelectedOrderItem != null)
+                    if (isNotEdit)
                     {
-                        _order_items.Remove(SelectedOrderItem);
-                        refreshOrderItems();
+                        if (SelectedOrderItem != null)
+                        {
+                            SelectedOrderItem.product_id = Int32.TryParse(ProductId, out var tempVal1) ? tempVal1 : (int?)null;
+                            SelectedOrderItem.quantity = Int32.TryParse(Quantity, out var tempVal2) ? tempVal2 : (int?)null;
+                            SelectedOrderItem.order_id = _order.id;
+                            refreshOrderItems();
+
+                            _orderItem = new OrderItem();
+                            _orderItem.order_id = _order.id;
+
+                            ProductId = null;
+                            Quantity = null;
+                        }
+                    }
+                    else
+                    {
+                        if (SelectedOrderItem != null)
+                        {
+                            //SelectedOrderItem.product_id = Int32.TryParse(ProductId, out var tempVal1) ? tempVal1 : (int?)null;
+                            SelectedOrderItem.quantity = Int32.TryParse(Quantity, out var tempVal2) ? tempVal2 : (int?)null;
+                            SelectedOrderItem.order_id = _order.id;
+
+                            EditOrderItemCommand editItemCommand = new EditOrderItemCommand(SelectedOrderItem);
+                            editItemCommand.Execute(true);
+
+                            _orderItem = new OrderItem();
+                            _orderItem.order_id = _order.id;
+
+                            _order_items = new List<OrderItem>(OrderProcessor.getOrderItems(_orderItem).Result);
+                            refreshOrderItems();
+
+                            ProductId = null;
+                            Quantity = null;
+                        }
+
                     }
                 }, p => true));
 
@@ -286,7 +344,6 @@ namespace Boxer.ViewModel
 
         public AddOrderViewModel(INavigationService navigationService, Order order)
         {
-            isNotEdit = true;
             _navigationService = navigationService;
 
             CancelCommand = new NavigateCommand(navigationService);

@@ -204,6 +204,28 @@ namespace ApiLibrary.Repo
             }
         }
 
+        public static async Task<string> editOrderItem(OrderItem orderItem)
+        {
+            string url = "http://localhost:3000/order_item/edit/" + orderItem.id;
+            string result;
+            string serializedOrderItem = JsonConvert.SerializeObject(orderItem);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PutAsync(url, new StringContent(serializedOrderItem, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    result = await response.Content.ReadAsStringAsync();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+
         public static async Task<string> deleteOrderItem(OrderItem orderItem)
         {
             string url = "http://localhost:3000/order_item/delete/" + orderItem.id;
