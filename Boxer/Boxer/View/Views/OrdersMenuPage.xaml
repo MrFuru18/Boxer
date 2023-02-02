@@ -18,7 +18,7 @@
                     Orientation="Horizontal">
             <!--  Orders Button -->
             <Button x:Name="Orders_button"
-                    Background="#4A26FD"
+                    Background="#4169E1"
                     Margin="15,0,15,0"
                     Width="150"
                     Height="150"
@@ -40,7 +40,7 @@
 
             <!--  Klienci Button -->
             <Button x:Name="Clients_button"
-                    Background="#4A26FD"
+                    Background="#4169E1"
                     Margin="15,0,15,0"
                     Width="150"
                     Height="150"

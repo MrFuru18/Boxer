@@ -22,6 +22,7 @@
                 Grid.Row="0"
                 HorizontalAlignment="Left"
                 Background="Transparent"
+                    BorderThickness="0"
                 Width="100"
                 Height="100"
                 Command="{Binding NavigateBackCommand}" CommandParameter="Back">

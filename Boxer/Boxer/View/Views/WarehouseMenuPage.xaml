@@ -19,7 +19,7 @@
                     Orientation="Horizontal">
             <!--  Inventory Button -->
             <Button x:Name="Inventory_button"
-                    Background="#4A26FD"
+                    Background="#4169E1"
                     Margin="15,0,15,0"
                     Width="150"
                     Height="150"
@@ -66,7 +66,7 @@
 
             <!--  Shortages Button -->
             <Button x:Name="Shortages_button"
-                    Background="#4A26FD"
+                    Background="#4169E1"
                     Margin="15,0,15,0"
                     Width="150"
                     Height="150"
@@ -90,7 +90,7 @@
             
             <!--  Locations Button -->
             <Button x:Name="Locations_button"
-                    Background="#4A26FD"
+                    Background="#4169E1"
                     Margin="15,0,15,0"
                     Width="150"
                     Height="150"

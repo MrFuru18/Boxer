@@ -17,6 +17,7 @@
                     Background="Transparent"
                     Width="40"
                     Height="40"
+                    BorderThickness="0"
                     Command="{Binding CancelCommand}" CommandParameter="Cancel">
                 <StackPanel>
                     <Image Source="/View/Images/close.png" 

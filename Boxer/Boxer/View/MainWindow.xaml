@@ -10,16 +10,15 @@
         xmlns:modalcontrol="clr-namespace:ModalControl;assembly=ModalControl"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="900" Width="1200"
+        Title="Boxer" Height="900" Width="1200"
         WindowState="Maximized">
-
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Cursor" Value="Hand"/>
         </Style>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </Window.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
@@ -32,13 +31,13 @@
             <ColumnDefinition Width="20" />
         </Grid.ColumnDefinitions>
 
-        <Rectangle Grid.Row="0" Grid.ColumnSpan="3" Fill="#4A26FD"/>
-        <TextBlock Grid.Column="1" 
-                   Grid.Row="0"
-                   FontSize="60"
-                   Text="Boxer"
-                   VerticalAlignment="Center"
-                   />
+        <Rectangle Grid.Row="0" Grid.ColumnSpan="3" Fill="#4169E1"/>
+        <Image  Source="/View/Images/logo.png"
+                Grid.Row="0"
+                Grid.Column="1"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Height="60"/>
         
         <!-- Menu Bar-->
         <StackPanel Orientation="Horizontal"
