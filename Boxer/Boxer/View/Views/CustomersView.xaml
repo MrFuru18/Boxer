@@ -58,7 +58,7 @@
         </StackPanel>
 
 
-        <ListView Grid.Row="1" Grid.Column="0" Width="900" Height="500" Margin="0,30,40,0" 
+        <ListView Grid.Row="1" Grid.Column="0" Width="910" Height="500" Margin="0,30,40,0" 
                   ItemsSource="{Binding customers}"
                   SelectedItem="{Binding SelectedCustomer}"
                   IsSynchronizedWithCurrentItem="True"
@@ -101,7 +101,7 @@
         </ListView>
 
 
-        <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="1400" Margin="0,30,0,0"  
+        <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="1410" Margin="0,30,0,0"  
                   ItemsSource="{Binding customer_addresses}"
                   IsSynchronizedWithCurrentItem="True"
                   utils:GridViewSort.AutoSort="True"

@@ -56,7 +56,7 @@
         </StackPanel>
 
 
-        <ListView Grid.Row="1" Grid.Column="0" Width="900" Margin="0,30,40,0" 
+        <ListView Grid.Row="1" Grid.Column="0" Width="910" Margin="0,30,40,0" 
                   ItemsSource="{Binding manufacturers}"
                   SelectedItem="{Binding SelectedManufacturer}"
                   IsSynchronizedWithCurrentItem="True"

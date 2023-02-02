@@ -55,7 +55,7 @@
         </StackPanel>
 
 
-        <ListView Grid.Row="1" Grid.Column="0" Width="1300" Margin="0,30,0,0" HorizontalAlignment="Center" 
+        <ListView Grid.Row="1" Grid.Column="0" Width="1310" Margin="0,30,0,0" HorizontalAlignment="Center" 
                   ItemsSource="{Binding employees}"
                   SelectedItem="{Binding SelectedEmployee}"
                   IsSynchronizedWithCurrentItem="True"

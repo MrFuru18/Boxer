@@ -37,7 +37,7 @@
         </Button>
 
 
-        <ListView Grid.Row="1" Grid.Column="0" Width="1100" Height="500" Margin="0,30,0,0"  
+        <ListView Grid.Row="1" Grid.Column="0" Width="1110" Height="500" Margin="0,30,0,0"  
                   ItemsSource="{Binding tasks}"
                   SelectedItem="{Binding SelectedTask}"
                   IsSynchronizedWithCurrentItem="True"
@@ -103,7 +103,7 @@
                     Content="Edytuj" 
                     Command="{Binding EditTask}"/>
 
-            <ListView Width="600" Height="300"  Margin="0,30,0,0"  
+            <ListView Width="610" Height="300"  Margin="0,30,0,0"  
                       ItemsSource="{Binding task_states}"
                       IsSynchronizedWithCurrentItem="True"
                                       utils:GridViewSort.AutoSort="True"
@@ -139,7 +139,7 @@
             </ListView>
         </StackPanel>
 
-        <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="810" Height="300" Margin="0,30,0,0"  
+        <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="810" Height="220" Margin="0,30,0,0"  
                       ItemsSource="{Binding order_items}"
                       IsSynchronizedWithCurrentItem="True"
                                       utils:GridViewSort.AutoSort="True"
