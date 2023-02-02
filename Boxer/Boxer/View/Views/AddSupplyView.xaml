@@ -36,7 +36,7 @@
             <GroupBox>
                 <StackPanel Orientation="Horizontal">
                     <StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,30,0,0" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <StackPanel>
                                 <!-- Product_id TextBox -->
                                 <TextBlock Text="Produkt Id"
@@ -92,7 +92,7 @@
                             </StackPanel>
                         </StackPanel>
 
-                        <ListView Grid.Row="1" Grid.Column="0" Height="200" Margin="0,10,0,0"  
+                        <ListView Grid.Row="1" Grid.Column="0" Height="310" Margin="0,10,0,0"  
                                     ItemsSource="{Binding products}"
                                     SelectedItem="{Binding SelectedProduct}"
                                   IsSynchronizedWithCurrentItem="True"
