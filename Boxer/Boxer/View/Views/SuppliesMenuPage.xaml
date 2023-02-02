@@ -41,7 +41,7 @@
             
             <!--  Products Button -->
             <Button x:Name="Products_button"
-                    Background="#4A26FD"
+                    Background="#4169E1"
                     Margin="15,0,15,0"
                     Width="150"
                     Height="150"
@@ -63,7 +63,7 @@
 
             <!--  Manufacturers Button -->
             <Button x:Name="Manufacturers_button"
-                    Background="#4A26FD"
+                    Background="#4169E1"
                     Margin="15,0,15,0"
                     Width="150"
                     Height="150"
