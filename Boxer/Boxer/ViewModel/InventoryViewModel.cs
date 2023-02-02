@@ -1,4 +1,5 @@
 ﻿using ApiLibrary.Model;
+using ApiLibrary.Model.Views;
 using ApiLibrary.Repo;
 using Boxer.Commands;
 using Boxer.Model;
@@ -26,6 +27,9 @@ namespace Boxer.ViewModel
         private List<Inventory> _inventoryList { get; set; }
         private Inventory inventory = null;
 
+        private List<ProductDetailed> _products { get; set; }
+        public ObservableCollection<ProductDetailed> products { get; set; }
+
         public ICommand NavigateBackCommand { get; }
         public ICommand NewInventory { get; }
         private ICommand _editInventory;
@@ -50,7 +54,22 @@ namespace Boxer.ViewModel
             {
                 _selectedInventory = value;
                 onPropertyChanged(nameof(SelectedInventory));
+
+                if (SelectedInventory != null)
+                    loadProducts();
             }
+        }
+
+        private void loadProducts()
+        {
+            products.Clear();
+            foreach (var p in _products)
+                if (p.id == SelectedInventory.product_id)
+                {
+                    products.Add(p);
+                    break;
+                }
+
         }
 
 
@@ -68,6 +87,10 @@ namespace Boxer.ViewModel
             inventory = new Inventory();
             inventoryList = new ObservableCollection<Inventory>(InventoryProcessor.getAllInventory(inventory).Result);
             _inventoryList = new List<Inventory>(inventoryList);
+
+            _products = new List<ProductDetailed>(ProductProcessor.getAllProductsDetailed(new Product()).Result);
+            products = new ObservableCollection<ProductDetailed>();
+
 
             if (_inventoryList.Count > 0)
             {
