@@ -50,8 +50,18 @@
             <Button HorizontalAlignment="Center"
                     Content="Zaloguj się"
                     FontSize="20"
+                    Width="200"
+                    Height="40"
                     Margin="0,50,0,0"
-                    Command="{Binding Login}"/>
+                    Command="{Binding Login}"
+                    Background="#0000e4"
+                    Foreground="White">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
 
         </StackPanel>
 

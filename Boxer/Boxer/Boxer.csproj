@@ -407,5 +407,47 @@
   <ItemGroup>
     <Resource Include="View\Images\Icon1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\arrow_back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\admin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\employee.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\locations.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\manufacturer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\tasks.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\warehouse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\supply.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\order.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\pallet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\customers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\product.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

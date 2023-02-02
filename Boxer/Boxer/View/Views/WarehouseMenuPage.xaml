@@ -19,24 +19,30 @@
                     Orientation="Horizontal">
             <!--  Inventory Button -->
             <Button x:Name="Inventory_button"
-                    Background="Transparent"
+                    Background="#4A26FD"
                     Margin="15,0,15,0"
                     Width="150"
                     Height="150"
                     Command="{Binding NavigateInventoryCommand}" CommandParameter="Inventory">
                 <StackPanel>
-                    <Image  Source="/View/Images/Icon1.png"
+                    <Image  Source="/View/Images/pallet.png"
                             Stretch="None"/>
                     <TextBlock  x:Name="Inventory_textblock"
                                 Text="Inwentarz"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>
+
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
             </Button>
 
             <!--  Palletes Button -->
             <Button x:Name="Palletes_button"
-                    Background="Transparent"
+                    Background="#4A26FD"
                     Margin="15,0,15,0"
                     Width="150"
                     Height="150"
@@ -50,11 +56,17 @@
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>
+
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
             </Button>
 
             <!--  Shortages Button -->
             <Button x:Name="Shortages_button"
-                    Background="Transparent"
+                    Background="#4A26FD"
                     Margin="15,0,15,0"
                     Width="150"
                     Height="150"
@@ -68,23 +80,35 @@
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>
+
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
             </Button>
             
             <!--  Locations Button -->
             <Button x:Name="Locations_button"
-                    Background="Transparent"
+                    Background="#4A26FD"
                     Margin="15,0,15,0"
                     Width="150"
                     Height="150"
                     Command="{Binding NavigateLocationsCommand}" CommandParameter="Locations">
                 <StackPanel>
-                    <Image  Source="/View/Images/Icon1.png"
+                    <Image  Source="/View/Images/locations.png"
                             Stretch="None"/>
                     <TextBlock  x:Name="Locations_textblock"
                                 Text="Lokalizacje"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>
+
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
             </Button>
 
         </StackPanel>

@@ -19,19 +19,25 @@
                     Orientation="Horizontal">
             <!--  Employees Button -->
             <Button x:Name="Employees_button"
-                    Background="Transparent"
+                    Background="#4A26FD"
                     Margin="15,0,15,0"
                     Width="150"
                     Height="150"
                     Command="{Binding NavigateEmployeesCommand}" CommandParameter="Employees">
                 <StackPanel>
-                    <Image  Source="/View/Images/Icon1.png"
+                    <Image  Source="/View/Images/employee.png"
                                 Stretch="None"/>
                     <TextBlock  x:Name="Employees_textblock"
                                     Text="Pracownicy"
                                     HorizontalAlignment="Center"
                                     FontSize="20"/>
                 </StackPanel>
+
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
             </Button>
         </StackPanel>
     </Grid>

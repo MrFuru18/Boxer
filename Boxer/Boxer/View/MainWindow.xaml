@@ -32,12 +32,13 @@
             <ColumnDefinition Width="20" />
         </Grid.ColumnDefinitions>
 
-        <Rectangle Grid.Row="0" Grid.ColumnSpan="3" Fill="LightSlateGray"/>
+        <Rectangle Grid.Row="0" Grid.ColumnSpan="3" Fill="#4A26FD"/>
         <TextBlock Grid.Column="1" 
                    Grid.Row="0"
                    FontSize="60"
                    Text="Boxer"
-                   VerticalAlignment="Center"/>
+                   VerticalAlignment="Center"
+                   />
         
         <!-- Menu Bar-->
         <StackPanel Orientation="Horizontal"
@@ -56,7 +57,7 @@
                     Command="{Binding NavigateTasksPannelPageCommand}" CommandParameter="TasksPannel"
                     Visibility="{Binding IsManagement, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel>
-                    <Image  Source="/View/Images/Icon1.png"
+                    <Image  Source="/View/Images/tasks.png"
                             Stretch="None"/>
                     <TextBlock  x:Name="TasksPannel_textblock"
                                 TextWrapping="WrapWithOverflow"
@@ -76,7 +77,7 @@
                     BorderThickness="0"
                     Command="{Binding NavigateWarehousePannelPageCommand}" CommandParameter="WarehousePannel">
                 <StackPanel>
-                    <Image  Source="/View/Images/Icon1.png"
+                    <Image  Source="/View/Images/warehouse.png"
                             Stretch="None"/>
                     <TextBlock  x:Name="WarehousePannel_textblock"
                                 TextWrapping="WrapWithOverflow"
@@ -97,7 +98,7 @@
                     BorderThickness="0"
                     Command="{Binding NavigateOrdersPannelPageCommand}" CommandParameter="OrdersPannel">
                 <StackPanel>
-                    <Image  Source="/View/Images/Icon1.png"
+                    <Image  Source="/View/Images/order.png"
                             Stretch="None"/>
                     <TextBlock  x:Name="OrdersPannel_textblock"
                                 TextWrapping="WrapWithOverflow"
@@ -119,7 +120,7 @@
                     Command="{Binding NavigateSuppliesPannelPageCommand}" CommandParameter="SuppliesPannel"
                     Visibility="{Binding IsManagement, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel>
-                    <Image  Source="/View/Images/Icon1.png"
+                    <Image  Source="/View/Images/supply.png"
                             Stretch="None"/>
                     <TextBlock  x:Name="SuppliesPannel_textblock"
                                 TextWrapping="WrapWithOverflow"
@@ -140,7 +141,7 @@
                     Command="{Binding NavigateAdminPannelPageCommand}" CommandParameter="AdminPannel"
                     Visibility="{Binding IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel>
-                    <Image  Source="/View/Images/Icon1.png"
+                    <Image  Source="/View/Images/admin.png"
                             Stretch="None"/>
                     <TextBlock  x:Name="AdminPannel_textblock"
                                 TextWrapping="WrapWithOverflow"
@@ -165,7 +166,7 @@
                 Command="{Binding Logout}" CommandParameter="Logout"
                 Visibility="{Binding LoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel>
-                <Image  Source="/View/Images/Icon1.png"
+                <Image  Source="/View/Images/logout.png"
                             Stretch="None"/>
                 <TextBlock  x:Name="Logout_textblock"
                                 Text="Wyloguj"

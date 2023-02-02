@@ -18,36 +18,46 @@
                     Orientation="Horizontal">
             <!--  Orders Button -->
             <Button x:Name="Orders_button"
-                    Background="Transparent"
+                    Background="#4A26FD"
                     Margin="15,0,15,0"
                     Width="150"
                     Height="150"
                     Command="{Binding NavigateOrdersCommand}" CommandParameter="Orders">
                 <StackPanel>
-                    <Image  Source="/View/Images/Icon1.png"
+                    <Image  Source="/View/Images/order.png"
                                 Stretch="None"/>
                     <TextBlock  x:Name="Orders_textblock"
                                     Text="Zamówienia"
                                     HorizontalAlignment="Center"
                                     FontSize="20"/>
                 </StackPanel>
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
             </Button>
 
             <!--  Klienci Button -->
             <Button x:Name="Clients_button"
-                    Background="Transparent"
+                    Background="#4A26FD"
                     Margin="15,0,15,0"
                     Width="150"
                     Height="150"
                     Command="{Binding NavigateClientsCommand}" CommandParameter="Clients">
                 <StackPanel>
-                    <Image  Source="/View/Images/Icon1.png"
+                    <Image  Source="/View/Images/customers.png"
                                 Stretch="None"/>
                     <TextBlock  x:Name="Clients_textblock"
                                     Text="Klienci"
                                     HorizontalAlignment="Center"
                                     FontSize="20"/>
                 </StackPanel>
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
             </Button>
         </StackPanel>
     </Grid>

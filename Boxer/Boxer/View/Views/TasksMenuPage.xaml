@@ -18,13 +18,13 @@
                     Orientation="Horizontal">
             <!--  Tasks Orders Button -->
             <Button x:Name="TasksOrders_button"
-                    Background="Transparent"
+                    Background="#4A26FD"
                     Margin="15,0,15,0"
                     Width="150"
                     Height="150"
                     Command="{Binding NavigateTasksOrdersCommand}" CommandParameter="AddTask">
                 <StackPanel>
-                    <Image  Source="/View/Images/Icon1.png"
+                    <Image  Source="/View/Images/order.png"
                                 Stretch="None"/>
                     <TextBlock  x:Name="TasksOrders_textblock"
                                 TextWrapping="WrapWithOverflow"
@@ -33,17 +33,23 @@
                                     HorizontalAlignment="Center"
                                     FontSize="20"/>
                 </StackPanel>
+
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
             </Button>
 
             <!--  Tasks Supplies Button -->
             <Button x:Name="TasksSupplies_button"
-                    Background="Transparent"
+                    Background="#4A26FD"
                     Margin="15,0,15,0"
                     Width="150"
                     Height="150"
                     Command="{Binding NavigateTasksSuppliesCommand}" CommandParameter="Tasks">
                 <StackPanel>
-                    <Image  Source="/View/Images/Icon1.png"
+                    <Image  Source="/View/Images/supply.png"
                                 Stretch="None"/>
                     <TextBlock  x:Name="TasksSupplies_textblock"
                                 TextWrapping="WrapWithOverflow"
@@ -52,6 +58,12 @@
                                     HorizontalAlignment="Center"
                                     FontSize="20"/>
                 </StackPanel>
+
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
             </Button>
 
             <!--  Tasks Relocations Button Hidden -->
@@ -70,6 +82,12 @@
                                     HorizontalAlignment="Center"
                                     FontSize="20"/>
                 </StackPanel>
+
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
             </Button>
             
         </StackPanel>

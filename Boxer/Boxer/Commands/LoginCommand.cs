@@ -62,7 +62,7 @@ namespace Boxer.Commands
                 }
                 else
                 {
-                    MessageBox.Show("Dane logowania nieprawidłowe");
+                    MessageBox.Show("Błędne dane logowania");
                 }
 
             }

@@ -25,7 +25,7 @@
                 Height="100"
                 Command="{Binding NavigateBackCommand}" CommandParameter="Back">
             <StackPanel>
-                <Image  Source="/View/Images/Icon1.png"
+                <Image  Source="/View/Images/arrow_back.png"
                                 Stretch="None"/>
                 <TextBlock  x:Name="Back_textblock"
                                     Text="Wróć"
@@ -76,19 +76,35 @@
         <StackPanel Grid.Row="1" 
                     Grid.Column="1">
             <Button Margin="0,30,0,0" 
-                    Height="30" 
-                    Width="100"
                     FontSize="20" 
                     VerticalAlignment="Top" 
                     Content="Dodaj" 
-                    Command="{Binding NewOrder}"/>
+                    Command="{Binding NewOrder}"
+                    Width="200"
+                    Height="40"
+                    Background="#0000e4"
+                    Foreground="White">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
             <Button Margin="0,30,0,0" 
-                    Height="30" 
-                    Width="100"
                     FontSize="20" 
                     VerticalAlignment="Top" 
                     Content="Edytuj" 
-                    Command="{Binding EditOrder}"/>
+                    Command="{Binding EditOrder}"
+                    Width="200"
+                    Height="40"
+                    Background="#0000e4"
+                    Foreground="White">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
 
             <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="560" Height="300" Margin="0,30,0,0"  
                       ItemsSource="{Binding order_items}"
