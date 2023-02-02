@@ -179,6 +179,27 @@ namespace ApiLibrary.Repo
             }
         }
 
+        public static async Task<string> updateCustomerAddress(CustomerAddress customerAddress)
+        {
+            string url = "http://localhost:3000/customer_address/edit/" + customerAddress.id;
+            string result;
+            string serializedCustomer = JsonConvert.SerializeObject(customerAddress);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PutAsync(url, new StringContent(serializedCustomer, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    result = await response.Content.ReadAsStringAsync();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
         public static async Task<string> deleteCustomerAddress(CustomerAddress customerAddress)
         {
             string url = "http://localhost:3000/customer_address/delete/" + customerAddress.id;

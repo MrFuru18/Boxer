@@ -15,8 +15,6 @@
 
     <Window.Resources>
         <Style TargetType="Button">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Cursor" Value="Hand"/>
         </Style>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -54,6 +52,7 @@
                     Margin="15,0,15,0"
                     Width="150"
                     Height="100"
+                    BorderThickness="0"
                     Command="{Binding NavigateTasksPannelPageCommand}" CommandParameter="TasksPannel"
                     Visibility="{Binding IsManagement, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel>
@@ -74,6 +73,7 @@
                     Margin="15,0,15,0"
                     Width="150"
                     Height="100"
+                    BorderThickness="0"
                     Command="{Binding NavigateWarehousePannelPageCommand}" CommandParameter="WarehousePannel">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
@@ -94,6 +94,7 @@
                     Margin="15,0,15,0"
                     Width="150"
                     Height="100"
+                    BorderThickness="0"
                     Command="{Binding NavigateOrdersPannelPageCommand}" CommandParameter="OrdersPannel">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
@@ -114,6 +115,7 @@
                     Margin="15,0,15,0"
                     Width="150"
                     Height="100"
+                    BorderThickness="0"
                     Command="{Binding NavigateSuppliesPannelPageCommand}" CommandParameter="SuppliesPannel"
                     Visibility="{Binding IsManagement, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel>
@@ -134,6 +136,7 @@
                     Margin="15,0,15,0"
                     Width="150"
                     Height="100"
+                    BorderThickness="0"
                     Command="{Binding NavigateAdminPannelPageCommand}" CommandParameter="AdminPannel"
                     Visibility="{Binding IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <StackPanel>
@@ -158,6 +161,7 @@
                 Background="Transparent"
                 Width="100"
                 Height="100"
+                BorderThickness="0"
                 Command="{Binding Logout}" CommandParameter="Logout"
                 Visibility="{Binding LoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel>

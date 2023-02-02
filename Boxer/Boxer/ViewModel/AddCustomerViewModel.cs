@@ -61,12 +61,27 @@ namespace Boxer.ViewModel
                 {
                     if (_customerAddress != null)
                     {
-                        _customer_addresses.Add(_customerAddress);
-                        refreshCustomerAdresses();
+                        if (isNotEdit)
+                        {
+                            _customer_addresses.Add(_customerAddress);
+                            refreshCustomerAdresses();
 
-                        _customerAddress = new CustomerAddress();
-                        _customerAddress.customer_id = _customer.id;
+                            _customerAddress = new CustomerAddress();
+                            _customerAddress.customer_id = _customer.id;
+                        }
+                        else
+                        {
+                            _customerAddress.customer_id = _customer.id;
 
+                            AddCustomerAddressCommand addCustAddCommand = new AddCustomerAddressCommand(_customerAddress);
+                            addCustAddCommand.Execute(true);
+
+                            _customerAddress = new CustomerAddress();
+                            _customerAddress.customer_id = _customer.id;
+
+                            _customer_addresses = new List<CustomerAddress>(CustomerProcessor.getCustomerAdresses(_customerAddress).Result);
+                            refreshCustomerAdresses();
+                        }
                         AddressLine1 = null;
                         AddressLine2 = null;
                         City = null;
@@ -79,17 +94,65 @@ namespace Boxer.ViewModel
 
             }
         }
-        private ICommand _deleteAddress;
-        public ICommand DeleteAddress
+        private ICommand _editAddress;
+        public ICommand EditAddress
         {
             get
             {
-                return _deleteAddress ?? (_deleteAddress = new RelayCommand((p) =>
+                return _editAddress ?? (_editAddress = new RelayCommand((p) =>
                 {
                     if (SelectedCustomerAddress != null)
                     {
-                        _customer_addresses.Remove(SelectedCustomerAddress);
-                        refreshCustomerAdresses();
+                        if (isNotEdit)
+                        {
+                            if (SelectedCustomerAddress != null)
+                            {
+                                SelectedCustomerAddress.address_line_1 = AddressLine1;
+                                SelectedCustomerAddress.address_line_2 = AddressLine2;
+                                SelectedCustomerAddress.city = City;
+                                SelectedCustomerAddress.country = Country;
+                                SelectedCustomerAddress.postal_code = PostalCode;
+                                SelectedCustomerAddress.region = Region;
+
+                                refreshCustomerAdresses();
+
+                                _customerAddress = new CustomerAddress();
+                                _customerAddress.customer_id = _customer.id;
+
+                                
+                            }
+                        }
+                        else
+                        {
+                            if (SelectedCustomerAddress != null)
+                            {
+                                SelectedCustomerAddress.address_line_1 = AddressLine1;
+                                SelectedCustomerAddress.address_line_2 = AddressLine2;
+                                SelectedCustomerAddress.city = City;
+                                SelectedCustomerAddress.country = Country;
+                                SelectedCustomerAddress.postal_code = PostalCode;
+                                SelectedCustomerAddress.region = Region;
+                                SelectedCustomerAddress.customer_id = _customer.id;
+
+
+                                EditCustomerAddressCommand editCustAddCommand = new EditCustomerAddressCommand(SelectedCustomerAddress);
+                                editCustAddCommand.Execute(true);
+
+                                _customerAddress = new CustomerAddress();
+                                _customerAddress.customer_id = _customer.id;
+
+                                _customer_addresses = new List<CustomerAddress>(CustomerProcessor.getCustomerAdresses(_customerAddress).Result);
+                                refreshCustomerAdresses();
+
+                                
+                            }
+                        }
+                        AddressLine1 = null;
+                        AddressLine2 = null;
+                        City = null;
+                        Country = null;
+                        Region = null;
+                        PostalCode = null;
                     }
                 }, p => true));
 

@@ -168,22 +168,22 @@
                                              Text="{Binding PostalCode}"
                                              MaxLength="16"/>
                                 </StackPanel>
-                                <Button Content="+"
+                                <Button Content="Dodaj"
                                         VerticalAlignment="Bottom"
                                         Padding="5"
                                         FontSize="20"
-                                        Width="40"
+                                        Width="100"
                                         Height="40"
                                         Margin="10,0,0,0"
                                         Command="{Binding AddAddress}"/>
-                                <Button Content="-"
+                                <Button Content="Edytuj"
                                         VerticalAlignment="Bottom"
                                         Padding="5"
                                         FontSize="20"
-                                        Width="40"
+                                        Width="100"
                                         Height="40"
                                         Margin="10,0,0,0"
-                                        Command="{Binding DeleteAddress}"/>
+                                        Command="{Binding EditAddress}"/>
                             </StackPanel>
 
                             <ListView Grid.Row="1" Grid.Column="0" Height="100" Margin="0,10,0,0"  
@@ -200,7 +200,7 @@
                                                 <GridViewColumnHeader Content="id" CommandParameter="id"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="250" DisplayMemberBinding="{Binding address_line_1}"
+                                        <GridViewColumn Width="180" DisplayMemberBinding="{Binding address_line_1}"
                                                         utils:GridViewSort.PropertyName="address_line_1">
                                             <GridViewColumn.Header>
                                                 <GridViewColumnHeader Content="Linia Adresowa 1" CommandParameter="address_line_1"/>
@@ -212,10 +212,16 @@
                                                 <GridViewColumnHeader Content="Miasto" CommandParameter="city"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding postal_code}"
+                                        <GridViewColumn Width="90" DisplayMemberBinding="{Binding postal_code}"
                                                         utils:GridViewSort.PropertyName="postal_code">
                                             <GridViewColumn.Header>
                                                 <GridViewColumnHeader Content="Kod Pocztowy" CommandParameter="postal_code"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="80" DisplayMemberBinding="{Binding country}"
+                                                        utils:GridViewSort.PropertyName="country">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="Kraj" CommandParameter="country"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
                                     </GridView>

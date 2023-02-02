@@ -75,6 +75,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\AddCustomerAddressCommand.cs" />
     <Compile Include="Commands\AddCustomerCommand.cs" />
     <Compile Include="Commands\AddEmployeeCommand.cs" />
     <Compile Include="Commands\AddInventoryCommand.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Commands\AddSupplyItemCommand.cs" />
     <Compile Include="Commands\AddTaskCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\EditCustomerAddressCommand.cs" />
     <Compile Include="Commands\EditCustomerCommand.cs" />
     <Compile Include="Commands\EditEmployeeCommand.cs" />
     <Compile Include="Commands\EditInventoryCommand.cs" />
