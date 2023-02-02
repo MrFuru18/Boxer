@@ -36,6 +36,13 @@
             </StackPanel>
         </Button>
 
+        <TextBlock Text="Zadania Zamówienia"
+                   Grid.Row="0"
+                   Grid.ColumnSpan="2"
+                       VerticalAlignment="Center"
+                       FontSize="30"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,0"/>
 
         <ListView Grid.Row="1" Grid.Column="0" Width="1110" Height="500" Margin="0,30,0,0"  
                   ItemsSource="{Binding tasks}"

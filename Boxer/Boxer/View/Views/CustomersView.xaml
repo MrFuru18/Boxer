@@ -36,6 +36,14 @@
             </StackPanel>
         </Button>
 
+        <TextBlock Text="Klienci"
+                   Grid.Row="0"
+                   Grid.ColumnSpan="2"
+                       VerticalAlignment="Center"
+                       FontSize="30"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,0"/>
+
         <!-- Add Edit Buttons-->
         <StackPanel Grid.Row="1" 
                     Grid.Column="1">
