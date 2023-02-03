@@ -14,7 +14,6 @@ namespace Boxer.Commands
     {
         private readonly INavigationService _navigationService;
         private Tasks _task;
-        private List<RelocationItem> _relocationItems;
 
         public AddTaskCommand(INavigationService navigationService, Tasks task)
         {
@@ -37,6 +36,7 @@ namespace Boxer.Commands
                 MessageBox.Show(result);
         }
 
+        /*
         private void addItems()
         {
             Tasks ta = TaskProcessor.getAllTasks(new Tasks()).Result.Last();
@@ -48,5 +48,6 @@ namespace Boxer.Commands
                     MessageBox.Show(result);
             }
         }
+        */
     }
 }

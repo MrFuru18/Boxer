@@ -1,10 +1,12 @@
 ﻿using ApiLibrary.Model;
+using ApiLibrary.Model.Views;
 using ApiLibrary.Repo;
 using Boxer.Commands;
 using Boxer.Navigation;
 using Boxer.ViewModel.BaseClass;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -18,12 +20,12 @@ namespace Boxer.ViewModel
         INavigationService _navigationService;
         ModalNavigationStore _modalNavigationStore;
 
-        public BindingList<Supply> supplies { get; set; }
+        public ObservableCollection<Supply> supplies { get; set; }
         private List<Supply> _supplies { get; set; }
         private Supply supply = null;
 
-        public BindingList<SupplyItem> supply_items { get; set; }
-        public List<SupplyItem> _supply_items { get; set; }
+        public ObservableCollection<SupplyItemDetailed> supply_items { get; set; }
+        public List<SupplyItemDetailed> _supply_items { get; set; }
         private SupplyItem supplyItem = new SupplyItem();
 
         public ICommand NavigateBackCommand { get; }
@@ -59,7 +61,7 @@ namespace Boxer.ViewModel
         private void loadSupplyItems()
         {
             supplyItem.supply_id = SelectedSupply.id;
-            _supply_items = new List<SupplyItem>(SupplyProcessor.getSupplyItems(supplyItem).Result);
+            _supply_items = new List<SupplyItemDetailed>(SupplyProcessor.getSupplyItemsDetailed(supplyItem).Result);
 
             supply_items.Clear();
             foreach (var item in _supply_items)
@@ -77,11 +79,11 @@ namespace Boxer.ViewModel
             NewSupply = new NavigateCommand(addSupplyNavigationService);
 
             supply = new Supply();
-            supplies = new BindingList<Supply>(SupplyProcessor.getAllSupplies(supply).Result);
+            supplies = new ObservableCollection<Supply>(SupplyProcessor.getAllSupplies(supply).Result);
             _supplies = new List<Supply>(supplies);
 
             supplyItem = new SupplyItem();
-            supply_items = new BindingList<SupplyItem>();
+            supply_items = new ObservableCollection<SupplyItemDetailed>();
 
             if (_supplies.Count > 0)
             {

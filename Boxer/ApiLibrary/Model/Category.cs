@@ -6,7 +6,7 @@ namespace ApiLibrary.Model
 {
     public class Category
     {
-        public int id { get; set; }
+        public int? id { get; set; }
         public string category { get; set; }
     }
 }

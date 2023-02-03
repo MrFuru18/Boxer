@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Boxer.View.Views"
              xmlns:model="clr-namespace:Boxer.Model"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:utils="clr-namespace:Boxer.Utils"
              mc:Ignorable="d" >
 
     <UserControl.Resources>
@@ -25,12 +26,13 @@
             <Button x:Name="Cancel_button"
                     HorizontalAlignment="Right"
                     Background="Transparent"
+                    BorderThickness="0"
                     Width="40"
                     Height="40"
                     Command="{Binding CancelCommand}" CommandParameter="Cancel">
                 <StackPanel>
-                    <Image Source="/View/Images/Icon1.png" 
-                       Stretch="None"/>
+                    <Image Source="/View/Images/close.png" 
+                       Stretch="Fill"/>
                 </StackPanel>
             </Button>
 
@@ -45,29 +47,35 @@
                 <StackPanel Margin="0,0,40,0">
                     <!-- SKU TextBox -->
                     <TextBlock Text="SKU"
-                       VerticalAlignment="Center"
-                       FontSize="20"
-                       Margin="0,0,0,5"/>
+                                VerticalAlignment="Center"
+                                FontSize="20"
+                                Margin="0,0,0,5"/>
 
                     <TextBox x:Name="SKU_textbox"
-                     Padding="5"
-                     FontSize="20"
-                     Width="300"
-                     VerticalAlignment="Center"
-                     Text="{Binding Sku}"/>
+                            Padding="5"
+                            FontSize="20"
+                            Width="300"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left"
+                             PreviewTextInput="textbox_PreviewTextInput"
+                             DataObject.Pasting="textbox_Pasting"
+                            Text="{Binding Sku}"
+                             MaxLength="16"/>
 
                     <!-- Name TextBox -->
                     <TextBlock Text="Nazwa"
-                       VerticalAlignment="Center"
-                       FontSize="20"
-                       Margin="0,30,0,5"/>
+                                VerticalAlignment="Center"
+                                FontSize="20"
+                                Margin="0,30,0,5"/>
 
                     <TextBox x:Name="Name_textbox"
-                     Padding="5"
-                     FontSize="20"
-                     Width="300"
-                     VerticalAlignment="Center"
-                     Text="{Binding Name}"/>
+                             Padding="5"
+                             FontSize="20"
+                             Width="300"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Left"
+                             Text="{Binding Name}"
+                             MaxLength="128"/>
 
                     <!-- Category ComboBox -->
                     <TextBlock Text="Kategoria"
@@ -80,13 +88,15 @@
                       FontSize="20"
                       Width="300"
                       VerticalAlignment="Center"
-                      SelectedItem="{Binding Category}">
-
-                        <ComboBoxItem Tag="books" IsSelected="True">książki</ComboBoxItem>
-                        <ComboBoxItem Tag="movies">filmy</ComboBoxItem>
-                        <ComboBoxItem Tag="electronics">elektronika</ComboBoxItem>
-                        <ComboBoxItem Tag="collectibles">kolekcjonerskie</ComboBoxItem>
-                        <ComboBoxItem Tag="other">inne</ComboBoxItem>
+                      HorizontalAlignment="Left"
+                      ItemsSource="{Binding categories}"
+                      SelectedItem="{Binding SelectedCategory}"
+                      IsSynchronizedWithCurrentItem="True">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding category}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
                     </ComboBox>
 
                     <GroupBox Margin="0,20,0,5">
@@ -104,7 +114,10 @@
                                                 FontSize="20"
                                                 Width="120"
                                                 VerticalAlignment="Center"
-                                                Text="{Binding ManufacturerId}"/>
+                                                PreviewTextInput="textbox_PreviewTextInput"
+                                                DataObject.Pasting="textbox_Pasting"
+                                                Text="{Binding ManufacturerId}"
+                                             MaxLength="8"/>
                                 </StackPanel>
                                 <StackPanel>
                                     <!-- Manufacturer TextBox -->
@@ -116,25 +129,50 @@
                                     <TextBox x:Name="ManufacturerName_textbox"
                                              Padding="5"
                                              FontSize="20"
-                                             Width="150"
+                                             Width="300"
                                              VerticalAlignment="Center"
                                              Margin="30,0,0,0"
-                                             Text="{Binding ManufacturerName}"/>
+                                             Text="{Binding ManufacturerName, UpdateSourceTrigger=PropertyChanged}"
+                                             MaxLength="64"/>
                                 </StackPanel>
                             </StackPanel>
 
-                            <ListView Grid.Row="1" Grid.Column="0" Width="300" Height="80" Margin="0,10,0,0"  
-                              ItemsSource="{Binding manufacturers}">
+                            <ListView Grid.Row="1" Grid.Column="0" Height="120" Margin="0,10,0,0"  
+                                      ItemsSource="{Binding manufacturers}"
+                                      SelectedItem="{Binding SelectedManufacturer}"
+                                      IsSynchronizedWithCurrentItem="True"
+                                      utils:GridViewSort.AutoSort="True"
+                                      utils:GridViewSort.ShowSortGlyph="True">
                                 <ListView.View>
                                     <GridView>
-                                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding id}">
+                                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding id}"
+                                                        utils:GridViewSort.PropertyName="id">
                                             <GridViewColumn.Header>
                                                 <GridViewColumnHeader Content="id" CommandParameter="id"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="250" DisplayMemberBinding="{Binding name}">
+                                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding name}"
+                                                        utils:GridViewSort.PropertyName="name">
                                             <GridViewColumn.Header>
-                                                <GridViewColumnHeader Content="Nazwa Producenta" CommandParameter="Producent"/>
+                                                <GridViewColumnHeader Content="Producent" CommandParameter="name"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding country}"
+                                                        utils:GridViewSort.PropertyName="country">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="Kraj" CommandParameter="country"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding phone}"
+                                                        utils:GridViewSort.PropertyName="phone">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="Nr Telefonu" CommandParameter="phone"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding email}"
+                                                        utils:GridViewSort.PropertyName="email">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="Email" CommandParameter="email"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
                                     </GridView>
@@ -155,11 +193,14 @@
                        Margin="0,0,0,5"/>
 
                     <TextBox x:Name="Weight_textbox"
-                     Padding="5"
-                     FontSize="20"
-                     Width="300"
-                     VerticalAlignment="Center"
-                     Text="{Binding Weight}"/>
+                            Padding="5"
+                            FontSize="20"
+                            Width="300"
+                            VerticalAlignment="Center"
+                             PreviewTextInput="floatValue_textbox_PreviewTextInput"
+                             DataObject.Pasting="floatValue_textbox_Pasting"
+                             Text="{Binding Weight}"
+                             MaxLength="10"/>
 
                     <!-- Category ComboBox -->
                     <TextBlock Text="Rozmiar"
@@ -183,11 +224,14 @@
                        Margin="0,30,0,5"/>
 
                     <TextBox x:Name="Value_textbox"
-                     Padding="5"
-                     FontSize="20"
-                     Width="300"
-                     VerticalAlignment="Center"
-                     Text="{Binding Value}"/>
+                            Padding="5"
+                            FontSize="20"
+                            Width="300"
+                            VerticalAlignment="Center"
+                            PreviewTextInput="floatValue_textbox_PreviewTextInput"
+                            DataObject.Pasting="floatValue_textbox_Pasting"
+                            Text="{Binding Value}"
+                             MaxLength="10"/>
 
                     <!-- Description TextBox -->
                     <TextBlock Text="Opis"
@@ -211,7 +255,17 @@
                     Content="Potwerdź"
                     FontSize="20"
                     Margin="0,30,0,0"
-                    Command="{Binding AddProduct}"/>
+                    Command="{Binding AddProduct}"
+                    Width="200"
+                    Height="40"
+                    Background="#0000e4"
+                    Foreground="White">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
 
         </StackPanel>
     </Grid>

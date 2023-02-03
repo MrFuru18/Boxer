@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,6 +24,31 @@ namespace Boxer.View.Views
         public AddManufacturerView()
         {
             InitializeComponent();
+        }
+
+        private static readonly Regex _phoneRegex = new Regex("[^0-9+]+");
+        private void Phone_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsPhoneTextAllowed(e.Text);
+        }
+        private void Phone_textbox_Pasting(object sender, DataObjectPastingEventArgs e)
+        {
+            if (e.DataObject.GetDataPresent(typeof(String)))
+            {
+                String text = (String)e.DataObject.GetData(typeof(String));
+                if (!IsPhoneTextAllowed(text))
+                {
+                    e.CancelCommand();
+                }
+            }
+            else
+            {
+                e.CancelCommand();
+            }
+        }
+        private static bool IsPhoneTextAllowed(string text)
+        {
+            return !_phoneRegex.IsMatch(text);
         }
     }
 }

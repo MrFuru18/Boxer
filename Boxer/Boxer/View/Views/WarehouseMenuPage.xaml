@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Boxer.View.Views"
+             xmlns:utils="clr-namespace:Boxer.Utils"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -11,24 +12,6 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
-        <!-- Back Button -->
-        <Button x:Name="Back_button"
-                Grid.Row="0"
-                HorizontalAlignment="Left"
-                Background="Transparent"
-                Width="100"
-                Height="100"
-                Command="{Binding NavigateBackCommand}" CommandParameter="Back">
-            <StackPanel>
-                <Image  Source="/View/Images/Icon1.png"
-                                Stretch="None"/>
-                <TextBlock  x:Name="Back_textblock"
-                                    Text="Wróć"
-                                    HorizontalAlignment="Center"
-                                    FontSize="20"/>
-            </StackPanel>
-        </Button>
 
 
         <StackPanel Grid.Row="1" 
@@ -36,70 +19,96 @@
                     Orientation="Horizontal">
             <!--  Inventory Button -->
             <Button x:Name="Inventory_button"
-                    Background="Transparent"
+                    Background="#4169E1"
                     Margin="15,0,15,0"
                     Width="150"
                     Height="150"
                     Command="{Binding NavigateInventoryCommand}" CommandParameter="Inventory">
                 <StackPanel>
-                    <Image  Source="/View/Images/Icon1.png"
+                    <Image  Source="/View/Images/pallet.png"
                             Stretch="None"/>
                     <TextBlock  x:Name="Inventory_textblock"
-                                Text="Przeglądaj Inwentarz"
+                                Text="Inwentarz"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>
+
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
             </Button>
 
             <!--  Palletes Button -->
             <Button x:Name="Palletes_button"
-                    Background="Transparent"
+                    Background="#4A26FD"
                     Margin="15,0,15,0"
                     Width="150"
                     Height="150"
+                    Visibility="Collapsed"
                     Command="{Binding NavigatePalletesCommand}" CommandParameter="Palletes">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
                             Stretch="None"/>
                     <TextBlock  x:Name="Palletes_textblock"
-                                Text="Przeglądaj Palety"
+                                Text="Palety"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>
+
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
             </Button>
 
             <!--  Shortages Button -->
             <Button x:Name="Shortages_button"
-                    Background="Transparent"
+                    Background="#4169E1"
                     Margin="15,0,15,0"
                     Width="150"
                     Height="150"
+                    Visibility="Collapsed"
                     Command="{Binding NavigateShortagesCommand}" CommandParameter="Shortages">
                 <StackPanel>
                     <Image  Source="/View/Images/Icon1.png"
                             Stretch="None"/>
                     <TextBlock  x:Name="Shortages_textblock"
-                                Text="Przeglądaj Braki"
+                                Text="Braki"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>
+
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
             </Button>
             
             <!--  Locations Button -->
             <Button x:Name="Locations_button"
-                    Background="Transparent"
+                    Background="#4169E1"
                     Margin="15,0,15,0"
                     Width="150"
                     Height="150"
                     Command="{Binding NavigateLocationsCommand}" CommandParameter="Locations">
                 <StackPanel>
-                    <Image  Source="/View/Images/Icon1.png"
+                    <Image  Source="/View/Images/locations.png"
                             Stretch="None"/>
                     <TextBlock  x:Name="Locations_textblock"
-                                Text="Przeglądaj Lokalizacje"
+                                Text="Lokalizacje"
                                 HorizontalAlignment="Center"
                                 FontSize="20"/>
                 </StackPanel>
+
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
             </Button>
 
         </StackPanel>

@@ -39,7 +39,9 @@ namespace Boxer
 
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel(_navigationStore, _modalNavigationStore)
+                DataContext = new MainViewModel(_navigationStore, _modalNavigationStore, _accountStore, CreateTasksMenuNavigationService(), CreateWarehouseMenuNavigationService(),
+                CreateOrdersMenuNavigationService(), CreateSuppliesMenuNavigationService(), CreateAdminMenuNavigationService(),
+                CreateLoginNavigationService())
             };
 
             MainWindow.Show();
@@ -54,11 +56,12 @@ namespace Boxer
         }
         private LoginViewModel CreateLoginViewModel()
         {
-            return new LoginViewModel(_accountStore, CreateMainMenuNavigationService());
+            return new LoginViewModel(_accountStore, CreateWarehouseMenuNavigationService());
         }
 
 
         //                                                                                                                          MenuPages
+        /*
         private INavigationService CreateMainMenuNavigationService()
         {
             return new NavigationService<MainMenuViewModel>(_navigationStore, CreateMainMenuViewModel);
@@ -69,6 +72,7 @@ namespace Boxer
                 CreateOrdersMenuNavigationService(), CreateSuppliesMenuNavigationService(), CreateAdminMenuNavigationService(),
                 CreateLoginNavigationService());
         }
+        */
 
         private INavigationService CreateTasksMenuNavigationService()
         {
@@ -76,7 +80,7 @@ namespace Boxer
         }
         private TasksMenuViewModel CreateTasksMenuViewModel()
         {
-            return new TasksMenuViewModel(CreateMainMenuNavigationService(), CreateTasksOrdersNavigationService(), CreateTasksSuppliesNavigationService());
+            return new TasksMenuViewModel(CreateTasksOrdersNavigationService(), CreateTasksSuppliesNavigationService());
         }
 
         private INavigationService CreateWarehouseMenuNavigationService()
@@ -85,7 +89,7 @@ namespace Boxer
         }
         private WarehouseMenuViewModel CreateWarehouseMenuViewModel()
         {
-            return new WarehouseMenuViewModel(CreateMainMenuNavigationService(), CreateInventoryNavigationService(), CreateLocationsNavigationService());
+            return new WarehouseMenuViewModel(CreateInventoryNavigationService(), CreateLocationsNavigationService());
         }
 
         private INavigationService CreateOrdersMenuNavigationService()
@@ -94,7 +98,7 @@ namespace Boxer
         }
         private OrdersMenuViewModel CreateOrdersMenuViewModel()
         {
-            return new OrdersMenuViewModel(CreateMainMenuNavigationService(), CreateOrdersNavigationService(), CreateCustomersNavigationService());
+            return new OrdersMenuViewModel(CreateOrdersNavigationService(), CreateCustomersNavigationService());
         }
         private INavigationService CreateSuppliesMenuNavigationService()
         {
@@ -102,7 +106,7 @@ namespace Boxer
         }
         private SuppliesMenuViewModel CreateSuppliesMenuViewModel()
         {
-            return new SuppliesMenuViewModel(CreateMainMenuNavigationService(), CreateSuppliesNavigationService(), CreateProductsNavigationService(), 
+            return new SuppliesMenuViewModel(CreateSuppliesNavigationService(), CreateProductsNavigationService(), 
                 CreateManufacturersNavigationService());
         }
 
@@ -112,7 +116,7 @@ namespace Boxer
         }
         private AdminMenuViewModel CreateAdminMenuViewModel()
         {
-            return new AdminMenuViewModel(CreateMainMenuNavigationService(), CreateEmployeesNavigationService());
+            return new AdminMenuViewModel(CreateEmployeesNavigationService());
         }
 
 
@@ -141,7 +145,7 @@ namespace Boxer
         }
         private InventoryViewModel CreateInventoryViewModel()
         {
-            return new InventoryViewModel(CreateWarehouseMenuNavigationService(), CreateAddInventoryNavigationService(), _modalNavigationStore);
+            return new InventoryViewModel(CreateWarehouseMenuNavigationService(), CreateAddInventoryNavigationService(), _modalNavigationStore, _accountStore);
         }
 
         private INavigationService CreateLocationsNavigationService()
@@ -231,7 +235,7 @@ namespace Boxer
         }
         private AddInventoryViewModel CreateAddInventoryViewModel()
         {
-            return new AddInventoryViewModel(new CloseModalNavigationService(_modalNavigationStore), null);
+            return new AddInventoryViewModel(new CloseModalNavigationService(_modalNavigationStore), _accountStore, null);
         }
 
         private INavigationService CreateAddLocationNavigationService()

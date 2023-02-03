@@ -46,6 +46,13 @@ namespace Boxer.Commands
                 if (access.success == "yes")
                 {
                     account.accessToken = access.accessToken;
+                    account.uid = loginModel.uid;
+                    Employee emp = new Employee();
+                    emp.uid = loginModel.uid;
+                    emp = EmployeeProcessor.getEmployee(emp).Result;
+                    account.id = emp.id;
+                    account.permissions = emp.permissions;
+
                     _accountStore.CurrentAccount = account;
 
                     if (_accountStore.IsLoggedIn)
@@ -55,7 +62,7 @@ namespace Boxer.Commands
                 }
                 else
                 {
-                    MessageBox.Show("Dane logowania nieprawidłowe");
+                    MessageBox.Show("Błędne dane logowania");
                 }
 
             }

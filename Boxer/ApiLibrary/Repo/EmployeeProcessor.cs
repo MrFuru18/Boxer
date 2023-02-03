@@ -36,13 +36,18 @@ namespace ApiLibrary.Repo
         {
             string url = "http://localhost:4000/employee/" + employee.uid;
 
+            List<Employee> employeesList = new List<Employee>();
+
+
             using (HttpResponseMessage response = await ClientHttp.ApiClient.GetAsync(url).ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                 {
                     string jsonResult = await response.Content.ReadAsStringAsync();
-                    employee = JsonConvert.DeserializeObject<Employee>(jsonResult);
-                    return employee;
+                    employeesList = JsonConvert.DeserializeObject<List<Employee>>(jsonResult);
+                    if (employeesList.Count > 0)
+                        return employeesList[0];
+                    return null;
                 }
                 else
                 {

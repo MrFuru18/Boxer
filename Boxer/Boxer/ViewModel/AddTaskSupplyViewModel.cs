@@ -1,10 +1,12 @@
 ﻿using ApiLibrary.Model;
+using ApiLibrary.Repo;
 using Boxer.Commands;
 using Boxer.Model;
 using Boxer.Navigation;
 using Boxer.ViewModel.BaseClass;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -20,8 +22,12 @@ namespace Boxer.ViewModel
         public string HeaderText { get; set; }
 
         private Tasks _task = new Tasks();
-        public BindingList<Employee> employees { get; set; }
-        public BindingList<Supply> supplies { get; set; }
+        public ObservableCollection<Employee> employees { get; set; }
+        private List<Employee> _employees { get; set; }
+        private Employee _employee = new Employee();
+        public ObservableCollection<Supply> supplies { get; set; }
+        private List<Supply> _supplies { get; set; }
+        private Supply _supply = new Supply();
 
         public ICommand CancelCommand { get; }
         private ICommand _addTask;
@@ -61,6 +67,48 @@ namespace Boxer.ViewModel
             }
         }
 
+        private string _uid;
+        public string Uid
+        {
+            get { return _uid; }
+            set
+            {
+                _uid = value;
+                onPropertyChanged(nameof(Uid));
+
+                filterUid();
+            }
+        }
+
+        private void filterUid()
+        {
+            employees.Clear();
+            foreach (var pr in _employees)
+                employees.Add(pr);
+
+            for (int i = employees.Count - 1; i >= 0; i--)
+            {
+                if (Uid == null)
+                    Uid = "";
+                if (!employees[i].uid.Contains(Uid))
+                    employees.RemoveAt(i);
+            }
+        }
+
+        private Employee _selectedEmployee;
+        public Employee SelectedEmployee
+        {
+            get { return _selectedEmployee; }
+            set
+            {
+                _selectedEmployee = value;
+                onPropertyChanged(nameof(SelectedEmployee));
+
+                if (SelectedEmployee != null)
+                    EmployeeId = SelectedEmployee.id.ToString();
+            }
+        }
+
         private string _supplyId;
         public string SupplyId
         {
@@ -71,6 +119,20 @@ namespace Boxer.ViewModel
                 onPropertyChanged(nameof(SupplyId));
 
                 _task.supply_id = Int32.TryParse(SupplyId, out var tempVal) ? tempVal : (int?)null;
+            }
+        }
+
+        private Supply _selectedSupply;
+        public Supply SelectedSupply
+        {
+            get { return _selectedSupply; }
+            set
+            {
+                _selectedSupply = value;
+                onPropertyChanged(nameof(SelectedSupply));
+
+                if (SelectedSupply != null)
+                    SupplyId = SelectedSupply.id.ToString();
             }
         }
 
@@ -94,10 +156,13 @@ namespace Boxer.ViewModel
             _task = new Tasks();
             _task.type = TaskTypes.supply.ToString();
 
-            employees = new BindingList<Employee>();
+            employees = new ObservableCollection<Employee>(EmployeeProcessor.getAllEmployees().Result);
+            _employees = new List<Employee>();
+            _employees.AddRange(employees);
 
-            supplies = new BindingList<Supply>();
+            supplies = new ObservableCollection<Supply>(SupplyProcessor.getSuppliesNotConnected(_supply).Result);
 
+            Uid = "";
             HeaderText = "Dodaj Zadanie";
             if (task != null)
             {

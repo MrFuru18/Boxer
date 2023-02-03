@@ -5,6 +5,7 @@ using Boxer.Navigation;
 using Boxer.ViewModel.BaseClass;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace Boxer.ViewModel
         INavigationService _navigationService;
         ModalNavigationStore _modalNavigationStore;
 
-        public BindingList<Location> locations { get; set; }
+        public ObservableCollection<Location> locations { get; set; }
         private List<Location> _locations { get; set; }
         private Location location = null;
 
@@ -61,7 +62,7 @@ namespace Boxer.ViewModel
             NewLocation = new NavigateCommand(addLocationNavigationService);
 
             location = new Location();
-            locations = new BindingList<Location>(LocationProcessor.getAllLocations(location).Result);
+            locations = new ObservableCollection<Location>(LocationProcessor.getAllLocations(location).Result);
             _locations = new List<Location>();
             _locations.AddRange(locations);
 

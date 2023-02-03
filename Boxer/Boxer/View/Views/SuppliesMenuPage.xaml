@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Boxer.View.Views"
+             xmlns:utils="clr-namespace:Boxer.Utils"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -11,78 +12,75 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <!-- Back Button -->
-        <Button x:Name="Back_button"
-                Grid.Row="0"
-                HorizontalAlignment="Left"
-                Background="Transparent"
-                Width="100"
-                Height="100"
-                Command="{Binding NavigateBackCommand}" CommandParameter="Back">
-            <StackPanel>
-                <Image  Source="/View/Images/Icon1.png"
-                                Stretch="None"/>
-                <TextBlock  x:Name="Back_textblock"
-                                    Text="Wróć"
-                                    HorizontalAlignment="Center"
-                                    FontSize="20"/>
-            </StackPanel>
-        </Button>
-
-
         <StackPanel Grid.Row="1" 
                     HorizontalAlignment="Center"
                     Orientation="Horizontal">
 
             <!--  Supplies Button -->
             <Button x:Name="Supplies_button"
-                    Background="Transparent"
+                    Background="#4169E1"
                     Margin="15,0,15,0"
                     Width="150"
                     Height="150"
                     Command="{Binding NavigateSuppliesCommand}" CommandParameter="Supplies">
                 <StackPanel>
-                    <Image  Source="/View/Images/Icon1.png"
+                    <Image  Source="/View/Images/supply.png"
                                 Stretch="None"/>
                     <TextBlock  x:Name="Supplies_textblock"
-                                    Text="Przeglądaj Dostawy"
+                                    Text="Dostawy"
                                     HorizontalAlignment="Center"
                                     FontSize="20"/>
                 </StackPanel>
+
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
             </Button>
             
             <!--  Products Button -->
             <Button x:Name="Products_button"
-                    Background="Transparent"
+                    Background="#4169E1"
                     Margin="15,0,15,0"
                     Width="150"
                     Height="150"
                     Command="{Binding NavigateProductsCommand}" CommandParameter="Products">
                 <StackPanel>
-                    <Image  Source="/View/Images/Icon1.png"
+                    <Image  Source="/View/Images/product.png"
                                 Stretch="None"/>
                     <TextBlock  x:Name="Products_textblock"
-                                    Text="Przegldaj Produkty"
+                                    Text="Produkty"
                                     HorizontalAlignment="Center"
                                     FontSize="20"/>
                 </StackPanel>
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
             </Button>
 
             <!--  Manufacturers Button -->
             <Button x:Name="Manufacturers_button"
-                    Background="Transparent"
+                    Background="#4169E1"
                     Margin="15,0,15,0"
                     Width="150"
                     Height="150"
                     Command="{Binding NavigateManufacturersCommand}" CommandParameter="Manufacturers">
                 <StackPanel>
-                    <Image  Source="/View/Images/Icon1.png"
+                    <Image  Source="/View/Images/manufacturer.png"
                                 Stretch="None"/>
                     <TextBlock  x:Name="Manufacturers_textblock"
-                                    Text="Przeglądaj Producentów"
+                                    Text="Producenci"
                                     HorizontalAlignment="Center"
                                     FontSize="20"/>
                 </StackPanel>
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
             </Button>
 
            

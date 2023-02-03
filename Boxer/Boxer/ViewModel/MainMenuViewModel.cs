@@ -30,7 +30,7 @@ namespace Boxer.ViewModel
             NavigateOrdersPannelPageCommand = new NavigateCommand(ordersMenuNavigationService);
             NavigateSuppliesPannelPageCommand = new NavigateCommand(suppliesMenuNavigationService);
             NavigateAdminPannelPageCommand = new NavigateCommand(adminMenuNavigationService);
-            Logout = new LogoutCommand(this, accountStore, loginNavigationService);
+            Logout = new LogoutCommand(accountStore, loginNavigationService);
         }
     }
 }

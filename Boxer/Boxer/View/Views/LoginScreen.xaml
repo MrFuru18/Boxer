@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Boxer.View.Views"
+             xmlns:utils="clr-namespace:Boxer.Utils"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="300">
     <Grid>
@@ -27,6 +28,9 @@
                      FontSize="20"
                      Width="300"
                      VerticalAlignment="Center"
+                     PreviewTextInput="Uid_textbox_PreviewTextInput"
+                     DataObject.Pasting="Uid_textbox_Pasting"
+                     MaxLength="8"
                      Text="{Binding Uid}"/>
 
             <!-- Password PasswordBox -->
@@ -46,8 +50,18 @@
             <Button HorizontalAlignment="Center"
                     Content="Zaloguj się"
                     FontSize="20"
+                    Width="200"
+                    Height="40"
                     Margin="0,50,0,0"
-                    Command="{Binding Login}"/>
+                    Command="{Binding Login}"
+                    Background="#0000e4"
+                    Foreground="White">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
 
         </StackPanel>
 

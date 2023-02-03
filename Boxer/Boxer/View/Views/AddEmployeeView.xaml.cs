@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,6 +29,58 @@ namespace Boxer.View.Views
         {
             if (this.DataContext != null)
             { ((dynamic)this.DataContext).Password = ((PasswordBox)sender).Password; }
+        }
+
+        private void Uid_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsUidTextAllowed(e.Text);
+        }
+
+        private static readonly Regex _uidRegex = new Regex("[^0-9]+");
+        private static bool IsUidTextAllowed(string text)
+        {
+            return !_uidRegex.IsMatch(text);
+        }
+
+        private void Uid_textbox_Pasting(object sender, DataObjectPastingEventArgs e)
+        {
+            if (e.DataObject.GetDataPresent(typeof(String)))
+            {
+                String text = (String)e.DataObject.GetData(typeof(String));
+                if (!IsUidTextAllowed(text))
+                {
+                    e.CancelCommand();
+                }
+            }
+            else
+            {
+                e.CancelCommand();
+            }
+        }
+
+        private static readonly Regex _phoneRegex = new Regex("[^0-9+]+");
+        private void Phone_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsPhoneTextAllowed(e.Text);
+        }
+        private void Phone_textbox_Pasting(object sender, DataObjectPastingEventArgs e)
+        {
+            if (e.DataObject.GetDataPresent(typeof(String)))
+            {
+                String text = (String)e.DataObject.GetData(typeof(String));
+                if (!IsPhoneTextAllowed(text))
+                {
+                    e.CancelCommand();
+                }
+            }
+            else
+            {
+                e.CancelCommand();
+            }
+        }
+        private static bool IsPhoneTextAllowed(string text)
+        {
+            return !_phoneRegex.IsMatch(text);
         }
     }
 }

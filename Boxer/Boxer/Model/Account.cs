@@ -8,6 +8,9 @@ namespace Boxer.Model
 {
     class Account
     {
+        public int id { get; set; }
+        public string uid { get; set; }
+        public string permissions { get; set; }
         public string accessToken { get; set; }
     }
 }

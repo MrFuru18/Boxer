@@ -5,6 +5,7 @@ using Boxer.Navigation;
 using Boxer.ViewModel.BaseClass;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace Boxer.ViewModel
     {
         INavigationService _navigationService;
         ModalNavigationStore _modalNavigationStore;
-        public BindingList<Employee> employees { get; set; }
+        public ObservableCollection<Employee> employees { get; set; }
         private List<Employee> _employees { get; set; }
 
         public ICommand NavigateBackCommand { get; }
@@ -60,8 +61,8 @@ namespace Boxer.ViewModel
             NavigateBackCommand = new NavigateCommand(adminMenuNavigationService);
             NewEmployee = new NavigateCommand(addEmployeeNavigationService);
 
-            employees = new BindingList<Employee>(EmployeeProcessor.getAllEmployees().Result);
-            _employees = new List<Employee>();
+            employees = new ObservableCollection<Employee>(EmployeeProcessor.getAllEmployees().Result);
+            _employees = new List<Employee>(employees);
             
             if (_employees.Count > 0)
             {

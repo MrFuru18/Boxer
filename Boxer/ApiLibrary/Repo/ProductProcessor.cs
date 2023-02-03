@@ -1,4 +1,5 @@
 ﻿using ApiLibrary.Model;
+using ApiLibrary.Model.Views;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,28 @@ namespace ApiLibrary.Repo
                 {
                     string jsonResult = await response.Content.ReadAsStringAsync();
                     productsList = JsonConvert.DeserializeObject<List<Product>>(jsonResult);
+                    return productsList;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<List<ProductDetailed>> getAllProductsDetailed(Product product)
+        {
+            string url = "http://localhost:3000/products";
+            List<ProductDetailed> productsList = new List<ProductDetailed>();
+            string serializedProduct = JsonConvert.SerializeObject(product);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedProduct, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonResult = await response.Content.ReadAsStringAsync();
+                    productsList = JsonConvert.DeserializeObject<List<ProductDetailed>>(jsonResult);
                     return productsList;
                 }
                 else
@@ -113,6 +136,30 @@ namespace ApiLibrary.Repo
                 }
             }
         }
+        public static async Task<Category> getCategory(Category category)
+        {
+            string url = "http://localhost:3000/category/get/" + category.id;
+            List<Category> categoriesList = new List<Category>();
+            string serializedCategory = JsonConvert.SerializeObject(category);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedCategory, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonResult = await response.Content.ReadAsStringAsync();
+                    categoriesList = JsonConvert.DeserializeObject<List<Category>>(jsonResult);
+                    if (categoriesList.Count > 0)
+                        category = categoriesList[0];
+                    return category;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
 
         public static async Task<List<Category>> getCategories(Category category)
         {

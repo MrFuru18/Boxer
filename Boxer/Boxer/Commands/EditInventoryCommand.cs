@@ -1,5 +1,7 @@
 ﻿using ApiLibrary.Model;
+using ApiLibrary.Model.ToCreate;
 using ApiLibrary.Repo;
+using Boxer.Model;
 using Boxer.Navigation;
 using System;
 using System.Collections.Generic;
@@ -24,11 +26,13 @@ namespace Boxer.Commands
 
         public override void Execute(object p)
         {
-            string result = InventoryProcessor.updateInventory(_inventory).Result;
+            ToCreateInventory inv = ObjectComparerUtility.Convert<Inventory, ToCreateInventory>(_inventory);
+            string result = InventoryProcessor.updateInventory(inv).Result;
             if (result == "OK")
                 _navigationService.Navigate();
             else
                 MessageBox.Show(result);
+
         }
     }
 }

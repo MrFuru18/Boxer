@@ -1,5 +1,6 @@
 ﻿using ApiLibrary.Model;
 using ApiLibrary.Model.ToCreate;
+using ApiLibrary.Model.Views;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,28 @@ namespace ApiLibrary.Repo
         public static async Task<List<Order>> getAllOrders(Order order)
         {
             string url = "http://localhost:3000/orders";
+            List<Order> ordersList = new List<Order>();
+            string serializedOrder = JsonConvert.SerializeObject(order);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedOrder, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonResult = await response.Content.ReadAsStringAsync();
+                    ordersList = JsonConvert.DeserializeObject<List<Order>>(jsonResult);
+                    return ordersList;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<List<Order>> getOrdersNotConnected(Order order)
+        {
+            string url = "http://localhost:3000/orders/not_connected";
             List<Order> ordersList = new List<Order>();
             string serializedOrder = JsonConvert.SerializeObject(order);
 
@@ -138,6 +161,27 @@ namespace ApiLibrary.Repo
                 }
             }
         }
+        public static async Task<List<OrderItemDetailed>> getOrderItemsDetailed(OrderItem orderItem)
+        {
+            string url = "http://localhost:3000/order_items/get_from_order/" + orderItem.order_id;
+            List<OrderItemDetailed> orderItemsList = new List<OrderItemDetailed>();
+            string serializedOrderItem = JsonConvert.SerializeObject(orderItem);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedOrderItem, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonResult = await response.Content.ReadAsStringAsync();
+                    orderItemsList = JsonConvert.DeserializeObject<List<OrderItemDetailed>>(jsonResult);
+                    return orderItemsList;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
 
         public static async Task<string> addOrderItem(OrderItem orderItem)
         {
@@ -159,6 +203,28 @@ namespace ApiLibrary.Repo
                 }
             }
         }
+
+        public static async Task<string> editOrderItem(OrderItem orderItem)
+        {
+            string url = "http://localhost:3000/order_item/edit/" + orderItem.id;
+            string result;
+            string serializedOrderItem = JsonConvert.SerializeObject(orderItem);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PutAsync(url, new StringContent(serializedOrderItem, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    result = await response.Content.ReadAsStringAsync();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
 
         public static async Task<string> deleteOrderItem(OrderItem orderItem)
         {

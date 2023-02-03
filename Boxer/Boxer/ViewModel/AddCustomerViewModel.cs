@@ -5,6 +5,7 @@ using Boxer.Navigation;
 using Boxer.ViewModel.BaseClass;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace Boxer.ViewModel
 
         private Customer _customer = new Customer();
 
-        public BindingList<CustomerAddress> customer_addresses { get; set; }
+        public ObservableCollection<CustomerAddress> customer_addresses { get; set; }
         private List<CustomerAddress> _customer_addresses { get; set; }
         private CustomerAddress _customerAddress = new CustomerAddress();
 
@@ -60,12 +61,27 @@ namespace Boxer.ViewModel
                 {
                     if (_customerAddress != null)
                     {
-                        _customer_addresses.Add(_customerAddress);
-                        refreshCustomerAdresses();
+                        if (isNotEdit)
+                        {
+                            _customer_addresses.Add(_customerAddress);
+                            refreshCustomerAdresses();
 
-                        _customerAddress = new CustomerAddress();
-                        _customerAddress.customer_id = _customer.id;
+                            _customerAddress = new CustomerAddress();
+                            _customerAddress.customer_id = _customer.id;
+                        }
+                        else
+                        {
+                            _customerAddress.customer_id = _customer.id;
 
+                            AddCustomerAddressCommand addCustAddCommand = new AddCustomerAddressCommand(_customerAddress);
+                            addCustAddCommand.Execute(true);
+
+                            _customerAddress = new CustomerAddress();
+                            _customerAddress.customer_id = _customer.id;
+
+                            _customer_addresses = new List<CustomerAddress>(CustomerProcessor.getCustomerAdresses(_customerAddress).Result);
+                            refreshCustomerAdresses();
+                        }
                         AddressLine1 = null;
                         AddressLine2 = null;
                         City = null;
@@ -78,17 +94,65 @@ namespace Boxer.ViewModel
 
             }
         }
-        private ICommand _deleteAddress;
-        public ICommand DeleteAddress
+        private ICommand _editAddress;
+        public ICommand EditAddress
         {
             get
             {
-                return _deleteAddress ?? (_deleteAddress = new RelayCommand((p) =>
+                return _editAddress ?? (_editAddress = new RelayCommand((p) =>
                 {
                     if (SelectedCustomerAddress != null)
                     {
-                        _customer_addresses.Remove(SelectedCustomerAddress);
-                        refreshCustomerAdresses();
+                        if (isNotEdit)
+                        {
+                            if (SelectedCustomerAddress != null)
+                            {
+                                SelectedCustomerAddress.address_line_1 = AddressLine1;
+                                SelectedCustomerAddress.address_line_2 = AddressLine2;
+                                SelectedCustomerAddress.city = City;
+                                SelectedCustomerAddress.country = Country;
+                                SelectedCustomerAddress.postal_code = PostalCode;
+                                SelectedCustomerAddress.region = Region;
+
+                                refreshCustomerAdresses();
+
+                                _customerAddress = new CustomerAddress();
+                                _customerAddress.customer_id = _customer.id;
+
+                                
+                            }
+                        }
+                        else
+                        {
+                            if (SelectedCustomerAddress != null)
+                            {
+                                SelectedCustomerAddress.address_line_1 = AddressLine1;
+                                SelectedCustomerAddress.address_line_2 = AddressLine2;
+                                SelectedCustomerAddress.city = City;
+                                SelectedCustomerAddress.country = Country;
+                                SelectedCustomerAddress.postal_code = PostalCode;
+                                SelectedCustomerAddress.region = Region;
+                                SelectedCustomerAddress.customer_id = _customer.id;
+
+
+                                EditCustomerAddressCommand editCustAddCommand = new EditCustomerAddressCommand(SelectedCustomerAddress);
+                                editCustAddCommand.Execute(true);
+
+                                _customerAddress = new CustomerAddress();
+                                _customerAddress.customer_id = _customer.id;
+
+                                _customer_addresses = new List<CustomerAddress>(CustomerProcessor.getCustomerAdresses(_customerAddress).Result);
+                                refreshCustomerAdresses();
+
+                                
+                            }
+                        }
+                        AddressLine1 = null;
+                        AddressLine2 = null;
+                        City = null;
+                        Country = null;
+                        Region = null;
+                        PostalCode = null;
                     }
                 }, p => true));
 
@@ -267,7 +331,7 @@ namespace Boxer.ViewModel
             _customer = new Customer();
 
             _customerAddress = new CustomerAddress();
-            customer_addresses = new BindingList<CustomerAddress>();
+            customer_addresses = new ObservableCollection<CustomerAddress>();
             _customer_addresses = new List<CustomerAddress>();
 
             HeaderText = "Dodaj Klienta";
@@ -284,7 +348,7 @@ namespace Boxer.ViewModel
 
                 _customerAddress.customer_id = _customer.id;
 
-                customer_addresses = new BindingList<CustomerAddress>(CustomerProcessor.getCustomerAdresses(_customerAddress).Result);
+                customer_addresses = new ObservableCollection<CustomerAddress>(CustomerProcessor.getCustomerAdresses(_customerAddress).Result);
                 _customer_addresses.AddRange(customer_addresses);
             }
         }

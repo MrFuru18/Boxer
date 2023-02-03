@@ -75,22 +75,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\AddCustomerAddressCommand.cs" />
     <Compile Include="Commands\AddCustomerCommand.cs" />
     <Compile Include="Commands\AddEmployeeCommand.cs" />
     <Compile Include="Commands\AddInventoryCommand.cs" />
     <Compile Include="Commands\AddLocationCommand.cs" />
     <Compile Include="Commands\AddManufacturerCommand.cs" />
     <Compile Include="Commands\AddOrderCommand.cs" />
+    <Compile Include="Commands\AddOrderItemCommand.cs" />
     <Compile Include="Commands\AddProductCommand.cs" />
     <Compile Include="Commands\AddSupplyCommand.cs" />
+    <Compile Include="Commands\AddSupplyItemCommand.cs" />
     <Compile Include="Commands\AddTaskCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\EditCustomerAddressCommand.cs" />
     <Compile Include="Commands\EditCustomerCommand.cs" />
     <Compile Include="Commands\EditEmployeeCommand.cs" />
     <Compile Include="Commands\EditInventoryCommand.cs" />
     <Compile Include="Commands\EditLocationCommand.cs" />
     <Compile Include="Commands\EditManufacturerCommand.cs" />
     <Compile Include="Commands\EditOrderCommand.cs" />
+    <Compile Include="Commands\EditOrderItemCommand.cs" />
     <Compile Include="Commands\EditProductCommand.cs" />
     <Compile Include="Commands\EditSupplyCommand.cs" />
     <Compile Include="Commands\EditTaskCommand.cs" />
@@ -118,6 +123,7 @@
     <Compile Include="Navigation\INavigationStore.cs" />
     <Compile Include="Navigation\NavigationService.cs" />
     <Compile Include="Navigation\NavigationStore.cs" />
+    <Compile Include="Utils\GridViewSort.cs" />
     <Compile Include="ViewModel\AddCustomerViewModel.cs" />
     <Compile Include="ViewModel\AddEmployeeViewModel.cs" />
     <Compile Include="ViewModel\AddInventoryViewModel.cs" />
@@ -400,6 +406,51 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Images\Icon1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\arrow_back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\admin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\employee.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\locations.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\manufacturer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\tasks.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\warehouse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\supply.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\order.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\pallet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\customers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\product.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

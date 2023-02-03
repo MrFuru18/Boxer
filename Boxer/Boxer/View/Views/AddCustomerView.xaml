@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Boxer.View.Views"
+             xmlns:utils="clr-namespace:Boxer.Utils"
              mc:Ignorable="d">
 
     <Grid Background="White">
@@ -16,10 +17,11 @@
                     Background="Transparent"
                     Width="40"
                     Height="40"
+                    BorderThickness="0"
                     Command="{Binding CancelCommand}" CommandParameter="Cancel">
                 <StackPanel>
-                    <Image Source="/View/Images/Icon1.png" 
-                       Stretch="None"/>
+                    <Image Source="/View/Images/close.png" 
+                       Stretch="Fill"/>
                 </StackPanel>
             </Button>
 
@@ -30,7 +32,7 @@
                        Margin="0,0,0,40"/>
 
             <StackPanel Orientation="Horizontal">
-                <StackPanel Margin="0,0,40,0">
+                <StackPanel Margin="0,0,40,0" Width="300">
                     <!-- Name TextBox -->
                     <TextBlock Text="Imię"
                        VerticalAlignment="Center"
@@ -40,9 +42,9 @@
                     <TextBox x:Name="Name_textbox"
                      Padding="5"
                      FontSize="20"
-                     Width="300"
                      VerticalAlignment="Center"
-                     Text="{Binding Name}"/>
+                     Text="{Binding Name}"
+                             MaxLength="64"/>
 
                     <!-- Surname TextBox -->
                     <TextBlock Text="Nazwisko"
@@ -53,9 +55,9 @@
                     <TextBox x:Name="Surname_textbox"
                      Padding="5"
                      FontSize="20"
-                     Width="300"
                      VerticalAlignment="Center"
-                     Text="{Binding Surname}"/>
+                     Text="{Binding Surname}"
+                             MaxLength="64"/>
 
                     <!-- Email TextBox -->
                     <TextBlock Text="Email"
@@ -66,25 +68,27 @@
                     <TextBox x:Name="Email_textbox"
                      Padding="5"
                      FontSize="20"
-                     Width="300"
                      VerticalAlignment="Center"
-                     Text="{Binding Email}"/>
+                     Text="{Binding Email}"
+                             MaxLength="64"/>
 
                     <!-- Phone TextBox -->
                     <TextBlock Text="Numer Telefonu"
-                       VerticalAlignment="Center"
-                       FontSize="20"
-                       Margin="0,30,0,5"/>
+                               VerticalAlignment="Center"
+                               FontSize="20"
+                               Margin="0,30,0,5"/>
 
                     <TextBox x:Name="Phone_textbox"
-                     Padding="5"
-                     FontSize="20"
-                     Width="300"
-                     VerticalAlignment="Center"
-                     Text="{Binding Phone}"/>
+                             Padding="5"
+                             FontSize="20"
+                             VerticalAlignment="Center"
+                             PreviewTextInput="Phone_textbox_PreviewTextInput"
+                             DataObject.Pasting="Phone_textbox_Pasting"
+                             Text="{Binding Phone}"
+                             MaxLength="16"/>
 
                 </StackPanel>
-                <StackPanel>
+                <StackPanel >
                     <GroupBox Margin="0,0,0,0">
                         <StackPanel>
                             <!-- AddressLine TextBox -->
@@ -95,7 +99,6 @@
                             <TextBox x:Name="AddressLine1_textbox"
                              Padding="5"
                              FontSize="20"
-                             Width="300"
                              VerticalAlignment="Center"
                              Text="{Binding AddressLine1}"/>
 
@@ -108,7 +111,6 @@
                             <TextBox x:Name="AddressLine2_textbox"
                              Padding="5"
                              FontSize="20"
-                             Width="300"
                              VerticalAlignment="Center"
                              Text="{Binding AddressLine2}"/>
 
@@ -121,9 +123,9 @@
                             <TextBox x:Name="City_textbox"
                              Padding="5"
                              FontSize="20"
-                             Width="300"
                              VerticalAlignment="Center"
-                             Text="{Binding City}"/>
+                             Text="{Binding City}"
+                                     MaxLength="64"/>
 
                             <!-- Country TextBox -->
                             <TextBlock Text="Kraj"
@@ -134,9 +136,9 @@
                             <TextBox x:Name="Country_textbox"
                              Padding="5"
                              FontSize="20"
-                             Width="300"
                              VerticalAlignment="Center"
-                             Text="{Binding Country}"/>
+                             Text="{Binding Country}"
+                                     MaxLength="64"/>
 
                             <!-- Region TextBox -->
                             <TextBlock Text="Region"
@@ -147,9 +149,9 @@
                             <TextBox x:Name="Region_textbox"
                              Padding="5"
                              FontSize="20"
-                             Width="300"
                              VerticalAlignment="Center"
-                             Text="{Binding Region}"/>
+                             Text="{Binding Region}"
+                                     MaxLength="64"/>
 
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel>
@@ -162,46 +164,81 @@
                                     <TextBox x:Name="PostalCode_textbox"
                                              Padding="5"
                                              FontSize="20"
-                                             Width="200"
                                              VerticalAlignment="Center"
-                                             Text="{Binding PostalCode}"/>
+                                             Width="200"
+                                             Text="{Binding PostalCode}"
+                                             MaxLength="16"/>
                                 </StackPanel>
-                                <Button Content="+"
+                                <Button Content="Dodaj"
                                         VerticalAlignment="Bottom"
                                         Padding="5"
                                         FontSize="20"
-                                        Width="40"
+                                        Width="120"
                                         Height="40"
                                         Margin="10,0,0,0"
-                                        Command="{Binding AddAddress}"/>
-                                <Button Content="-"
+                                        Command="{Binding AddAddress}"
+                                        Background="#0000e4"
+                                        Foreground="White">
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="10"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                                <Button Content="Edytuj"
                                         VerticalAlignment="Bottom"
                                         Padding="5"
                                         FontSize="20"
-                                        Width="40"
+                                        Width="120"
                                         Height="40"
                                         Margin="10,0,0,0"
-                                        Command="{Binding DeleteAddress}"/>
+                                        Command="{Binding EditAddress}"
+                                        Background="#0000e4"
+                                        Foreground="White">
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="10"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
                             </StackPanel>
 
-                            <ListView Grid.Row="1" Grid.Column="0" Width="300" Height="80" Margin="0,10,0,0"  
+                            <ListView Grid.Row="1" Grid.Column="0" Height="100" Margin="0,10,0,0"  
                                       ItemsSource="{Binding customer_addresses}"
-                                      SelectedItem="{Binding SelectedCustomerAddress}">
+                                      SelectedItem="{Binding SelectedCustomerAddress}"
+                                      IsSynchronizedWithCurrentItem="True"
+                                      utils:GridViewSort.AutoSort="True"
+                                      utils:GridViewSort.ShowSortGlyph="True">
                                 <ListView.View>
                                     <GridView>
-                                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding id}">
+                                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding id}"
+                                                        utils:GridViewSort.PropertyName="id">
                                             <GridViewColumn.Header>
-                                                <GridViewColumnHeader Content="id" CommandParameter="+id"/>
+                                                <GridViewColumnHeader Content="id" CommandParameter="id"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="170" DisplayMemberBinding="{Binding address_line_1}">
+                                        <GridViewColumn Width="180" DisplayMemberBinding="{Binding address_line_1}"
+                                                        utils:GridViewSort.PropertyName="address_line_1">
                                             <GridViewColumn.Header>
                                                 <GridViewColumnHeader Content="Linia Adresowa 1" CommandParameter="address_line_1"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="80" DisplayMemberBinding="{Binding postal_code}">
+                                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding city}"
+                                                        utils:GridViewSort.PropertyName="city">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="Miasto" CommandParameter="city"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="90" DisplayMemberBinding="{Binding postal_code}"
+                                                        utils:GridViewSort.PropertyName="postal_code">
                                             <GridViewColumn.Header>
                                                 <GridViewColumnHeader Content="Kod Pocztowy" CommandParameter="postal_code"/>
+                                            </GridViewColumn.Header>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="80" DisplayMemberBinding="{Binding country}"
+                                                        utils:GridViewSort.PropertyName="country">
+                                            <GridViewColumn.Header>
+                                                <GridViewColumnHeader Content="Kraj" CommandParameter="country"/>
                                             </GridViewColumn.Header>
                                         </GridViewColumn>
                                     </GridView>
@@ -220,7 +257,17 @@
                     Content="Potwerdź"
                     FontSize="20"
                     Margin="0,30,0,0"
-                    Command="{Binding AddCustomer}"/>
+                    Height="40"
+                    Width="200"
+                    Command="{Binding AddCustomer}"
+                    Background="#0000e4"
+                    Foreground="White">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
             
             
 

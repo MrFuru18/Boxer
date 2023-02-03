@@ -13,6 +13,6 @@ namespace ApiLibrary.Model
         public int? quantity { get; set; }
         public string remarks { get; set; }
         public DateTime time { get; set; }
-        public int employee_id { get; set; }
+        public int? employee_id { get; set; }
     }
 }
