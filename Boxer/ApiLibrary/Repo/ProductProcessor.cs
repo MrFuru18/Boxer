@@ -55,6 +55,28 @@ namespace ApiLibrary.Repo
             }
         }
 
+        public static async Task<List<Product>> getProductsWithFilters(Product product)
+        {
+            string url = "http://localhost:3000/products";
+            List<Product> productsList = new List<Product>();
+            string serializedProduct = JsonConvert.SerializeObject(product);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedProduct, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonResult = await response.Content.ReadAsStringAsync();
+                    productsList = JsonConvert.DeserializeObject<List<Product>>(jsonResult);
+                    return productsList;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
         public static async Task<Product> getProduct(Product product)
         {
             string url = "http://localhost:3000/product/get/" + product.id;

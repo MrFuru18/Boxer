@@ -23,11 +23,62 @@ namespace Boxer.Commands
 
         public override void Execute(object p)
         {
-            string result = ProductProcessor.updateProduct(_product).Result;
-            if (result == "OK")
-                _navigationService.Navigate();
-            else
-                MessageBox.Show(result);
+            if (checkIfCorrect())
+            {
+                string result = ProductProcessor.updateProduct(_product).Result;
+                if (result == "OK")
+                    _navigationService.Navigate();
+                else
+                    MessageBox.Show(result);
+            }
+        }
+
+        private bool checkIfCorrect()
+        {
+
+            if (_product.sku == null)
+            {
+                MessageBox.Show("SKU nie może być puste");
+                return false;
+            }
+            if (_product.name == null)
+            {
+                MessageBox.Show("Nazwa nie może być pusta");
+                return false;
+            }
+            if (_product.manufacturer_id == null)
+            {
+                MessageBox.Show("Id producenta nie może być puste");
+                return false;
+            }
+
+            List<Product> prods = new List<Product>(ProductProcessor.getAllProducts(new Product()).Result);
+            foreach (var pr in prods)
+                if (pr.sku == _product.sku)
+                {
+                    if (pr.id != _product.id)
+                    {
+                        MessageBox.Show("SKU już istnieje");
+                        return false;
+                    }
+                }
+
+
+            List<Manufacturer> manList = ManufacturerProcessor.getAllManufacturers(new Manufacturer()).Result;
+            bool manExist = false;
+            foreach (var man in manList)
+                if (man.id == _product.manufacturer_id)
+                    manExist = true;
+
+            if (!manExist)
+            {
+                MessageBox.Show("Id producenta nie istnieje");
+                return false;
+            }
+
+            return true;
+
+
         }
     }
 }

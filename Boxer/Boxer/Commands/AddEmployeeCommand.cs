@@ -26,11 +26,47 @@ namespace Boxer.Commands
 
         public override void Execute(object p)
         {
-            string result = EmployeeProcessor.addEmployee(_employee).Result;
-            if (result == "Created")
-                _navigationService.Navigate();
-            else
-                MessageBox.Show(result);
+            if (checkIfCorrect())
+            {
+                string result = EmployeeProcessor.addEmployee(_employee).Result;
+                if (result == "Created")
+                    _navigationService.Navigate();
+                else
+                    MessageBox.Show(result);
+            } 
+            
+        }
+
+        private bool checkIfCorrect()
+        {
+            List<Employee> emps = EmployeeProcessor.getAllEmployees().Result;
+            foreach (var e in emps)
+                if (e.uid == _employee.uid){
+                    MessageBox.Show("Pracownik o tym Uid już istnieje");
+                    return false;
+                }
+
+            if (_employee.uid == null)
+            {
+                MessageBox.Show("Uid nie może być puste");
+                return false;
+            }
+            if (_employee.password == null)
+            {
+                MessageBox.Show("Hasło nie może być puste");
+                return false;
+            }
+            if (_employee.name == null)
+            {
+                MessageBox.Show("Imię pracownika nie może być puste");
+                return false;
+            }
+            if (_employee.surname == null)
+            {
+                MessageBox.Show("Nazwisko pracownika nie może być puste");
+                return false;
+            }
+            return true;
         }
     }
 }

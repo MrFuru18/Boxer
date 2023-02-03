@@ -36,6 +36,7 @@ namespace ApiLibrary.Repo
         {
             string url = "http://localhost:3000/manufacturer/get/" + manufacturer.id;
             string serializedManufacturer = JsonConvert.SerializeObject(manufacturer);
+            List<Manufacturer> manufacturersList = new List<Manufacturer>();
 
             using (HttpResponseMessage response = await ClientHttp.ApiClient
                 .PostAsync(url, new StringContent(serializedManufacturer, Encoding.UTF8, "application/json")).ConfigureAwait(false))
@@ -43,8 +44,10 @@ namespace ApiLibrary.Repo
                 if (response.IsSuccessStatusCode)
                 {
                     string jsonResult = await response.Content.ReadAsStringAsync();
-                    manufacturer = JsonConvert.DeserializeObject<Manufacturer>(jsonResult);
-                    return manufacturer;
+                    manufacturersList = JsonConvert.DeserializeObject<List<Manufacturer>>(jsonResult);
+                    if (manufacturersList.Count > 0)
+                        return manufacturersList[0];
+                    return null;
                 }
                 else
                 {

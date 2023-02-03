@@ -36,6 +36,7 @@ namespace ApiLibrary.Repo
         {
             string url = "http://localhost:3000/customer/get/" + customer.id;
             string serializedCustomer = JsonConvert.SerializeObject(customer);
+            List<Customer> customersList = new List<Customer>();
 
             using (HttpResponseMessage response = await ClientHttp.ApiClient
                 .PostAsync(url, new StringContent(serializedCustomer, Encoding.UTF8, "application/json")).ConfigureAwait(false))
@@ -43,8 +44,10 @@ namespace ApiLibrary.Repo
                 if (response.IsSuccessStatusCode)
                 {
                     string jsonResult = await response.Content.ReadAsStringAsync();
-                    customer = JsonConvert.DeserializeObject<Customer>(jsonResult);
-                    return customer;
+                    customersList = JsonConvert.DeserializeObject<List<Customer>>(jsonResult);
+                    if (customersList.Count > 0)
+                        return customersList[0];
+                    return null;
                 }
                 else
                 {
@@ -157,6 +160,31 @@ namespace ApiLibrary.Repo
                 }
             }
         }
+
+        public static async Task<CustomerAddress> getCustomerAdress(CustomerAddress customerAddress)
+        {
+            string url = "http://localhost:3000/customer_address/get/" + customerAddress.id;
+            List<CustomerAddress> customerAddressesList = new List<CustomerAddress>();
+            string serializedCustomerAddress = JsonConvert.SerializeObject(customerAddress);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedCustomerAddress, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonResult = await response.Content.ReadAsStringAsync();
+                    customerAddressesList = JsonConvert.DeserializeObject<List<CustomerAddress>>(jsonResult);
+                    if (customerAddressesList.Count > 0)
+                        return customerAddressesList[0];
+                    return null;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+        
 
         public static async Task<string> addCustomerAddress(CustomerAddress customerAddress)
         {

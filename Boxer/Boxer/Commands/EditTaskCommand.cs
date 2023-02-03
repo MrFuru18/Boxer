@@ -30,13 +30,38 @@ namespace Boxer.Commands
 
         public override void Execute(object p)
         {
-            string result = TaskProcessor.updateTask(_task).Result;
-            if (result == "OK")
+            if (checkIfCorrect())
             {
-                _navigationService.Navigate();
+                string result = TaskProcessor.updateTask(_task).Result;
+                if (result == "OK")
+                {
+                    _navigationService.Navigate();
+                }
+                else
+                    MessageBox.Show(result);
             }
-            else
-                MessageBox.Show(result);
+        }
+
+        private bool checkIfCorrect()
+        {
+
+            if ((_task.employee_id == null) || (_task.employee_id == 0))
+            {
+                MessageBox.Show("Id pracownika nie może być puste");
+                return false;
+            }
+            List<Employee> employees = EmployeeProcessor.getAllEmployees().Result;
+            bool employeeExist = false;
+            foreach (var emp in employees)
+                if (emp.id == _task.employee_id)
+                    employeeExist = true;
+
+            if (!employeeExist)
+            {
+                MessageBox.Show("Pracownik o tym id nie istnieje");
+                return false;
+            }
+            return true;
         }
 
         /*

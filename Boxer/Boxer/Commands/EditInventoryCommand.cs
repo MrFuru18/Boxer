@@ -26,13 +26,57 @@ namespace Boxer.Commands
 
         public override void Execute(object p)
         {
-            ToCreateInventory inv = ObjectComparerUtility.Convert<Inventory, ToCreateInventory>(_inventory);
-            string result = InventoryProcessor.updateInventory(inv).Result;
-            if (result == "OK")
-                _navigationService.Navigate();
-            else
-                MessageBox.Show(result);
+            if (checkIfCorrect())
+            {
 
+                ToCreateInventory inv = ObjectComparerUtility.Convert<Inventory, ToCreateInventory>(_inventory);
+                string result = InventoryProcessor.updateInventory(inv).Result;
+                if (result == "OK")
+                    _navigationService.Navigate();
+                else
+                    MessageBox.Show(result);
+            }
+
+        }
+
+        private bool checkIfCorrect()
+        {
+            if ((_inventory.location_id == null) || (_inventory.location_id == 0))
+            {
+                MessageBox.Show("Id lokalizacji nie może być puste");
+                return false;
+            }
+            if ((_inventory.product_id == null) || (_inventory.product_id == 0))
+            {
+                MessageBox.Show("Id produktu nie może być puste");
+                return false;
+            }
+
+            List<Location> locList = LocationProcessor.getAllLocations(new Location()).Result;
+            bool locExist = false;
+            foreach (var loc in locList)
+                if (loc.id == _inventory.location_id)
+                    locExist = true;
+
+            if (!locExist)
+            {
+                MessageBox.Show("Lokalizacja nie istnieje");
+                return false;
+            }
+
+            List<Product> prodList = ProductProcessor.getAllProducts(new Product()).Result;
+            bool prodExist = false;
+            foreach (var prod in prodList)
+                if (prod.id == _inventory.product_id)
+                    prodExist = true;
+
+            if (!prodExist)
+            {
+                MessageBox.Show("Id produktu nie istnieje");
+                return false;
+            }
+
+            return true;
         }
     }
 }

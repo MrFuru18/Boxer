@@ -24,11 +24,25 @@ namespace Boxer.Commands
 
         public override void Execute(object p)
         {
-            string result = ManufacturerProcessor.updateManufacturer(_manufacturer).Result;
-            if (result == "OK")
-                _navigationService.Navigate();
-            else
-                MessageBox.Show(result);
+            if (checkIfCorrect())
+            {
+                string result = ManufacturerProcessor.updateManufacturer(_manufacturer).Result;
+                if (result == "OK")
+                    _navigationService.Navigate();
+                else
+                    MessageBox.Show(result);
+            }
+        }
+
+        private bool checkIfCorrect()
+        {
+
+            if (_manufacturer.name == null)
+            {
+                MessageBox.Show("Nazwa producenta nie może być pusta");
+                return false;
+            }
+            return true;
         }
     }
 }

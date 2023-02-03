@@ -19,9 +19,23 @@ namespace Boxer.Commands
 
         public override void Execute(object p)
         {
-            string result = CustomerProcessor.addCustomerAddress(_customerAddress).Result;
-            if (result != "Created")
-                MessageBox.Show(result);
+            if (checkIfCorrect())
+            {
+                string result = CustomerProcessor.addCustomerAddress(_customerAddress).Result;
+                if (result != "Created")
+                    MessageBox.Show(result);
+            }
+        }
+
+        private bool checkIfCorrect()
+        {
+
+            if (_customerAddress.customer_id == null)
+            {
+                MessageBox.Show("Adres nie odnosił się do żadnego klienta");
+                return false;
+            }
+            return true;
         }
 
     }
