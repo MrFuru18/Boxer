@@ -46,12 +46,12 @@ namespace Boxer.Commands
                     return false;
                 }
 
-            if (_employee.uid == null)
+            if (string.IsNullOrWhiteSpace(_employee.uid))
             {
                 MessageBox.Show("Uid nie może być puste");
                 return false;
             }
-            if (_employee.password == null)
+            if (string.IsNullOrWhiteSpace(_employee.password))
             {
                 MessageBox.Show("Hasło nie może być puste");
                 return false;
