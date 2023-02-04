@@ -27,7 +27,7 @@ namespace ApiLibrary.Repo
                 }
                 else
                 {
-                    throw new Exception(response.ReasonPhrase);
+                    return null;
                 }
             }
         }
@@ -51,7 +51,7 @@ namespace ApiLibrary.Repo
                 }
                 else
                 {
-                    throw new Exception(response.ReasonPhrase);
+                    return null;
                 }
             }
         }
@@ -72,7 +72,7 @@ namespace ApiLibrary.Repo
                 }
                 else
                 {
-                    throw new Exception(response.ReasonPhrase);
+                    return null;
                 }
             }
         }
@@ -93,7 +93,7 @@ namespace ApiLibrary.Repo
                 }
                 else
                 {
-                    throw new Exception(response.ReasonPhrase);
+                    return null;
                 }
             }
         }
@@ -112,7 +112,7 @@ namespace ApiLibrary.Repo
                 }
                 else
                 {
-                    throw new Exception(response.ReasonPhrase);
+                    return null;
                 }
             }
         }
@@ -143,7 +143,7 @@ namespace ApiLibrary.Repo
                 }
                 else
                 {
-                    throw new Exception(response.ReasonPhrase);
+                    return null;
 
                 }
             }
@@ -161,11 +161,6 @@ namespace ApiLibrary.Repo
                 if (response.IsSuccessStatusCode)
                 {
                     Console.WriteLine("success");
-                }
-                else
-                {
-                    throw new Exception(response.ReasonPhrase);
-
                 }
             }
 

@@ -28,7 +28,7 @@ namespace ApiLibrary.Repo
                 }
                 else
                 {
-                    throw new Exception(response.ReasonPhrase);
+                    return null;
                 }
             }
         }
@@ -50,7 +50,29 @@ namespace ApiLibrary.Repo
                 }
                 else
                 {
-                    throw new Exception(response.ReasonPhrase);
+                    return null;
+                }
+            }
+        }
+
+        public static async Task<List<Product>> getProductsWithFilters(Product product)
+        {
+            string url = "http://localhost:3000/products";
+            List<Product> productsList = new List<Product>();
+            string serializedProduct = JsonConvert.SerializeObject(product);
+
+            using (HttpResponseMessage response = await ClientHttp.ApiClient
+                .PostAsync(url, new StringContent(serializedProduct, Encoding.UTF8, "application/json")).ConfigureAwait(false))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonResult = await response.Content.ReadAsStringAsync();
+                    productsList = JsonConvert.DeserializeObject<List<Product>>(jsonResult);
+                    return productsList;
+                }
+                else
+                {
+                    return null;
                 }
             }
         }
@@ -71,7 +93,7 @@ namespace ApiLibrary.Repo
                 }
                 else
                 {
-                    throw new Exception(response.ReasonPhrase);
+                    return null;
                 }
             }
         }
@@ -92,7 +114,7 @@ namespace ApiLibrary.Repo
                 }
                 else
                 {
-                    throw new Exception(response.ReasonPhrase);
+                    return null;
                 }
             }
         }
@@ -113,7 +135,7 @@ namespace ApiLibrary.Repo
                 }
                 else
                 {
-                    throw new Exception(response.ReasonPhrase);
+                    return null;
                 }
             }
         }
@@ -132,7 +154,7 @@ namespace ApiLibrary.Repo
                 }
                 else
                 {
-                    throw new Exception(response.ReasonPhrase);
+                    return null;
                 }
             }
         }
@@ -155,7 +177,7 @@ namespace ApiLibrary.Repo
                 }
                 else
                 {
-                    throw new Exception(response.ReasonPhrase);
+                    return null;
                 }
             }
         }
@@ -178,7 +200,7 @@ namespace ApiLibrary.Repo
                 }
                 else
                 {
-                    throw new Exception(response.ReasonPhrase);
+                    return null;
                 }
             }
         }

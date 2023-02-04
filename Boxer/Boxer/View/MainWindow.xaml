@@ -11,6 +11,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="Boxer" Height="900" Width="1200"
+        ResizeMode="CanMinimize"
         WindowState="Maximized">
     <Window.Resources>
         <Style TargetType="Button">

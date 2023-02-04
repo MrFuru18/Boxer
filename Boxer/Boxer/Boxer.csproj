@@ -113,11 +113,9 @@
     <Compile Include="Model\Sizes.cs" />
     <Compile Include="Model\TaskTypes.cs" />
     <Compile Include="Navigation\CloseModalNavigatonService.cs" />
-    <Compile Include="Navigation\CompositeNavigationService.cs" />
     <Compile Include="Navigation\CreateViewModel.cs" />
     <Compile Include="Navigation\ModalNavigationService.cs" />
     <Compile Include="Navigation\ModalNavigationStore.cs" />
-    <Compile Include="Navigation\ParameterNavigationService.cs" />
     <Compile Include="Navigation\INavigationService.cs" />
     <Compile Include="Navigation\INavigationStore.cs" />
     <Compile Include="Navigation\NavigationService.cs" />

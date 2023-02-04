@@ -206,6 +206,10 @@ namespace Boxer.ViewModel
             CancelCommand = new NavigateCommand(navigationService);
 
             categories = new ObservableCollection<Category>(ProductProcessor.getCategories(new Category()).Result);
+            if (categories.Count > 0)
+            {
+                SelectedCategory = categories[0];
+            }
 
             _manufacturers = new List<Manufacturer>();
             manufacturers = new ObservableCollection<Manufacturer>(ManufacturerProcessor.getAllManufacturers(_manufacturer).Result);

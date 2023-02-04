@@ -28,16 +28,19 @@ namespace Boxer.Commands
 
         public override void Execute(object p)
         {
-            ToCreateOrder ord = ObjectComparerUtility.Convert<Order, ToCreateOrder>(_order);
-            string result = OrderProcessor.addOrder(ord).Result;
-            if (result == "Created")
+            if (checkIfCorrect())
             {
-                addItems();
+                ToCreateOrder ord = ObjectComparerUtility.Convert<Order, ToCreateOrder>(_order);
+                string result = OrderProcessor.addOrder(ord).Result;
+                if (result == "Created")
+                {
+                    addItems();
 
-                _navigationService.Navigate();
+                    _navigationService.Navigate();
+                }
+                else
+                    MessageBox.Show(result);
             }
-            else
-                MessageBox.Show(result);
         }
 
         private void addItems()
@@ -45,11 +48,62 @@ namespace Boxer.Commands
             Order ord = OrderProcessor.getAllOrders(new Order()).Result.Last();
             foreach (var item in _orderItems)
             {
-                item.order_id = ord.id;
-                string result = OrderProcessor.addOrderItem(item).Result;
-                if (result != "Created")
-                    MessageBox.Show(result);
+                if (checkIfCorrectItem(item))
+                {
+                    item.order_id = ord.id;
+                    string result = OrderProcessor.addOrderItem(item).Result;
+                    if (result != "Created")
+                        MessageBox.Show(result);
+                }
             }
+        }
+
+        private bool checkIfCorrect()
+        {
+
+            if (_order.customer_address_id == null)
+            {
+                MessageBox.Show("Id adresu klienta nie może być puste");
+                return false;
+            }
+            CustomerAddress c = new CustomerAddress();
+            c.id = _order.customer_address_id;
+            c = CustomerProcessor.getCustomerAdress(c).Result;
+            if (c == null)
+            {
+                MessageBox.Show("Adresu o tym id nie znaleziono");
+                return false;
+            }
+            return true;
+        }
+        private bool checkIfCorrectItem(OrderItem _orderItem)
+        {
+            if (_orderItem.quantity == null)
+            {
+                MessageBox.Show("Ilość produktów nie może być pusta");
+                return false;
+            }
+
+
+            if (_orderItem.product_id == null)
+            {
+                MessageBox.Show("Id produktu nie może być puste");
+                return false;
+            }
+
+            List<Product> prodList = ProductProcessor.getAllProducts(new Product()).Result;
+            bool prodExist = false;
+            foreach (var prod in prodList)
+                if (prod.id == _orderItem.product_id)
+                    prodExist = true;
+
+            if (!prodExist)
+            {
+                MessageBox.Show("Id produktu nie istnieje");
+                return false;
+            }
+
+            return true;
         }
     }
 }

@@ -24,11 +24,29 @@ namespace Boxer.Commands
 
         public override void Execute(object p)
         {
-            string result = EmployeeProcessor.updateEmployee(_employee).Result;
-            if (result == "OK")
-                _navigationService.Navigate();
-            else
-                MessageBox.Show(result);
+            if (checkIfCorrect())
+            {
+                string result = EmployeeProcessor.updateEmployee(_employee).Result;
+                if (result == "OK")
+                    _navigationService.Navigate();
+                else
+                    MessageBox.Show(result);
+            }
+        }
+
+        private bool checkIfCorrect()
+        {
+            if (string.IsNullOrWhiteSpace(_employee.name))
+            {
+                MessageBox.Show("Imię pracownika nie może być puste");
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(_employee.surname))
+            {
+                MessageBox.Show("Nazwisko pracownika nie może być puste");
+                return false;
+            }
+            return true;
         }
     }
 }

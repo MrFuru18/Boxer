@@ -27,7 +27,7 @@ namespace ApiLibrary.Repo
                 }
                 else
                 {
-                    throw new Exception(response.ReasonPhrase);
+                    return null;
                 }
             }
         }
@@ -48,7 +48,7 @@ namespace ApiLibrary.Repo
                 }
                 else
                 {
-                    throw new Exception(response.ReasonPhrase);
+                    return null;
                 }
             }
         }
@@ -69,7 +69,7 @@ namespace ApiLibrary.Repo
                 }
                 else
                 {
-                    throw new Exception(response.ReasonPhrase);
+                    return null;
                 }
             }
         }
@@ -90,7 +90,7 @@ namespace ApiLibrary.Repo
                 }
                 else
                 {
-                    throw new Exception(response.ReasonPhrase);
+                    return null;
                 }
             }
         }
@@ -109,7 +109,7 @@ namespace ApiLibrary.Repo
                 }
                 else
                 {
-                    throw new Exception(response.ReasonPhrase);
+                    return null;
                 }
             }
         }

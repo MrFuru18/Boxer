@@ -27,16 +27,37 @@ namespace Boxer.Commands
 
         public override void Execute(object p)
         {
-            ToCreateOrder ord = ObjectComparerUtility.Convert<Order, ToCreateOrder>(_order);
-            string result = OrderProcessor.updateOrder(ord).Result;
-            if (result == "OK")
+            if (checkIfCorrect())
             {
+                ToCreateOrder ord = ObjectComparerUtility.Convert<Order, ToCreateOrder>(_order);
+                string result = OrderProcessor.updateOrder(ord).Result;
+                if (result == "OK")
+                {
 
-                _navigationService.Navigate();
+                    _navigationService.Navigate();
+                }
+                else
+                    MessageBox.Show(result);
             }
-            else
-                MessageBox.Show(result);
         }
 
+        private bool checkIfCorrect()
+        {
+
+            if (_order.customer_address_id == null)
+            {
+                MessageBox.Show("Id adresu klienta nie może być puste");
+                return false;
+            }
+            CustomerAddress c = new CustomerAddress();
+            c.id = _order.customer_address_id;
+            c = CustomerProcessor.getCustomerAdress(c).Result;
+            if (c == null)
+            {
+                MessageBox.Show("Klienta o tym id nie znaleziono");
+                return false;
+            }
+            return true;
+        }
     }
 }

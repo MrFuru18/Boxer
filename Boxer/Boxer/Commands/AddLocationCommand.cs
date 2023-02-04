@@ -25,11 +25,44 @@ namespace Boxer.Commands
 
         public override void Execute(object p)
         {
-            string result = LocationProcessor.addLocation(_location).Result;
-            if (result == "Created")
-                _navigationService.Navigate();
-            else
-                MessageBox.Show(result);
+            if (checkIfCorrect())
+            {
+                string result = LocationProcessor.addLocation(_location).Result;
+                if (result == "Created")
+                    _navigationService.Navigate();
+                else
+                    MessageBox.Show(result);
+            }
+        }
+
+        private bool checkIfCorrect()
+        {
+            if (string.IsNullOrWhiteSpace(_location.sector))
+            {
+                MessageBox.Show("Sektor nie może być pusty");
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(_location.aisle))
+            {
+                MessageBox.Show("Alejka nie może być pusta");
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(_location.unit))
+            {
+                MessageBox.Show("Oznaczenie regału nie może być puste");
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(_location.level))
+            {
+                MessageBox.Show("Poziom nie może być pusty");
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(_location.position))
+            {
+                MessageBox.Show("Pozycja nie może być pusta");
+                return false;
+            }
+            return true;
         }
     }
 }
