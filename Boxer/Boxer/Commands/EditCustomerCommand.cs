@@ -40,7 +40,7 @@ namespace Boxer.Commands
                 _navigationService.Navigate();
             }
             else
-                MessageBox.Show(result);
+                MessageBox.Show("Nie udalo się edytować klienta");
         }
 
         private void checkAddresses()

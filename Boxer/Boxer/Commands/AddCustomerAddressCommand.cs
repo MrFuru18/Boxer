@@ -23,7 +23,7 @@ namespace Boxer.Commands
             {
                 string result = CustomerProcessor.addCustomerAddress(_customerAddress).Result;
                 if (result != "Created")
-                    MessageBox.Show(result);
+                    MessageBox.Show("Nie udało się dodać adresu klienta");
             }
         }
 

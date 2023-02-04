@@ -102,7 +102,6 @@
     <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Commands\LogoutCommand.cs" />
     <Compile Include="Commands\NavigateCommand.cs" />
-    <Compile Include="Commands\SupplyItemNoId.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\AccountStore.cs" />
     <Compile Include="Model\Availabilities.cs" />

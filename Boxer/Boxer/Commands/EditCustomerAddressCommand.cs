@@ -24,7 +24,7 @@ namespace Boxer.Commands
 
                 string result = CustomerProcessor.updateCustomerAddress(_customerAddress).Result;
                 if (result != "OK")
-                    MessageBox.Show(result);
+                    MessageBox.Show("Nie udało się edytować adresu klienta");
             }
         }
 

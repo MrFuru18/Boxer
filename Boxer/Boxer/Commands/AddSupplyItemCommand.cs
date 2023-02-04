@@ -26,7 +26,7 @@ namespace Boxer.Commands
                 string result = SupplyProcessor.addSupplyItem(_supplyItem).Result;
                 if (result != "Created")
                 {
-                    MessageBox.Show(result);
+                    MessageBox.Show("Nie udało się dodać artykułu do dostawy");
                 }
                 else
                 {
@@ -52,7 +52,7 @@ namespace Boxer.Commands
                         ts.state = "modified";
                         string r = TaskProcessor.addTaskState(ts).Result;
                         if (r != "Created")
-                            MessageBox.Show(r);
+                            MessageBox.Show("Nie udało się uaktualnić statusu zadania");
                     }
 
                     Inventory inv = new Inventory();
@@ -73,7 +73,7 @@ namespace Boxer.Commands
                         invent.remarks = "Auto Generated";
                         string r = InventoryProcessor.addInventory(invent).Result;
                         if (result != "Created")
-                            MessageBox.Show(r);
+                            MessageBox.Show("Nie udało się dodać powiązania z lokalizacją");
                     }
 
                 }

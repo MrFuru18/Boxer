@@ -37,7 +37,7 @@ namespace Boxer.Commands
                 _navigationService.Navigate();
             }
             else
-                MessageBox.Show(result);
+                MessageBox.Show("Nie udało się dodać dostawy");
         }
 
         private void addItems()
@@ -52,7 +52,7 @@ namespace Boxer.Commands
                     string result = SupplyProcessor.addSupplyItem(item).Result;
                     if (result != "Created")
                     {
-                        MessageBox.Show(result);
+                        MessageBox.Show("Nie udało się dodać artykułu do dostawy");
                     }
                     else
                     {
@@ -74,7 +74,7 @@ namespace Boxer.Commands
                             invent.remarks = "Auto Generated";
                             string r = InventoryProcessor.addInventory(invent).Result;
                             if (result != "Created")
-                                MessageBox.Show(r);
+                                MessageBox.Show("Nie udało się dodać powiązania z lokalizacją");
                         }
 
                     }

@@ -34,7 +34,7 @@ namespace Boxer.Commands
                 if (result == "OK")
                     _navigationService.Navigate();
                 else
-                    MessageBox.Show(result);
+                    MessageBox.Show("Nie udało się edytować stanu magazynowego");
             }
 
         }

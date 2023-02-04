@@ -32,7 +32,7 @@ namespace Boxer.Commands
                 if (result == "Created")
                     _navigationService.Navigate();
                 else
-                    MessageBox.Show(result);
+                    MessageBox.Show("Nie udało się dodać pracownika");
             } 
             
         }

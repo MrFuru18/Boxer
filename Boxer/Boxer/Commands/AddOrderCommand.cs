@@ -39,7 +39,7 @@ namespace Boxer.Commands
                     _navigationService.Navigate();
                 }
                 else
-                    MessageBox.Show(result);
+                    MessageBox.Show("Nie udało się dodać zamówienia");
             }
         }
 
@@ -53,7 +53,7 @@ namespace Boxer.Commands
                     item.order_id = ord.id;
                     string result = OrderProcessor.addOrderItem(item).Result;
                     if (result != "Created")
-                        MessageBox.Show(result);
+                        MessageBox.Show("Nie udało się dodać produktu do zamówienia");
                 }
             }
         }

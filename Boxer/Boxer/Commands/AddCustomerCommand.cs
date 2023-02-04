@@ -34,7 +34,7 @@ namespace Boxer.Commands
                 _navigationService.Navigate();
             }
             else
-                MessageBox.Show(result);
+                MessageBox.Show("Nie udało się dodać klienta");
         }
 
         private void addAddresses()
@@ -45,7 +45,7 @@ namespace Boxer.Commands
                 address.customer_id = cust.id;
                 string result = CustomerProcessor.addCustomerAddress(address).Result;
                 if (result != "Created")
-                    MessageBox.Show(result);
+                    MessageBox.Show("Nie udało się dodać adresu klienta");
             }
         }
     }

@@ -48,11 +48,11 @@ namespace Boxer.Commands
                         ts.state = "modified";
                         string r = TaskProcessor.addTaskState(ts).Result;
                         if (r != "Created")
-                            MessageBox.Show(r);
+                            MessageBox.Show("Nie udało się uaktualnić statusu zadania");
                     }
                 }
                 else
-                    MessageBox.Show(result);
+                    MessageBox.Show("Nie udało się edytować artykułu w zamówieniu");
             }
         }
 
