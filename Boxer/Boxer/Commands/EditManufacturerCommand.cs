@@ -37,7 +37,7 @@ namespace Boxer.Commands
         private bool checkIfCorrect()
         {
 
-            if (_manufacturer.name == null)
+            if (string.IsNullOrWhiteSpace(_manufacturer.name))
             {
                 MessageBox.Show("Nazwa producenta nie może być pusta");
                 return false;

@@ -36,12 +36,12 @@ namespace Boxer.Commands
 
         private bool checkIfCorrect()
         {
-            if (_employee.name == null)
+            if (string.IsNullOrWhiteSpace(_employee.name))
             {
                 MessageBox.Show("Imię pracownika nie może być puste");
                 return false;
             }
-            if (_employee.surname == null)
+            if (string.IsNullOrWhiteSpace(_employee.surname))
             {
                 MessageBox.Show("Nazwisko pracownika nie może być puste");
                 return false;

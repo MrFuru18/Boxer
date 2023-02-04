@@ -35,27 +35,27 @@ namespace Boxer.Commands
 
         private bool checkIfCorrect()
         {
-            if (_location.sector == null)
+            if (string.IsNullOrWhiteSpace(_location.sector))
             {
                 MessageBox.Show("Sektor nie może być pusty");
                 return false;
             }
-            if (_location.aisle == null)
+            if (string.IsNullOrWhiteSpace(_location.aisle))
             {
                 MessageBox.Show("Alejka nie może być pusta");
                 return false;
             }
-            if (_location.unit == null)
+            if (string.IsNullOrWhiteSpace(_location.unit))
             {
                 MessageBox.Show("Oznaczenie regału nie może być puste");
                 return false;
             }
-            if (_location.level == null)
+            if (string.IsNullOrWhiteSpace(_location.level))
             {
                 MessageBox.Show("Poziom nie może być pusty");
                 return false;
             }
-            if (_location.level == null)
+            if (string.IsNullOrWhiteSpace(_location.level))
             {
                 MessageBox.Show("Pozycja nie może być pusta");
                 return false;

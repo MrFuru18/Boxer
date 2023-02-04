@@ -36,12 +36,12 @@ namespace Boxer.Commands
         private bool checkIfCorrect()
         {
 
-            if (_product.sku == null)
+            if (string.IsNullOrWhiteSpace(_product.sku))
             {
                 MessageBox.Show("SKU nie może być puste");
                 return false;
             }
-            if (_product.name == null)
+            if (string.IsNullOrWhiteSpace(_product.name))
             {
                 MessageBox.Show("Nazwa nie może być pusta");
                 return false;
