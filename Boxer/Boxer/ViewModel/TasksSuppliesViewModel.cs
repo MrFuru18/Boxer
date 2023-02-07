@@ -109,9 +109,9 @@ namespace Boxer.ViewModel
 
             supply_items = new ObservableCollection<SupplyItemDetailed>();
 
-            if (_tasks.Count > 0)
+            if (tasks.Count > 0)
             {
-                SelectedTask = _tasks[0];
+                SelectedTask = tasks[0];
             }
         }
 
@@ -125,9 +125,9 @@ namespace Boxer.ViewModel
                 if (t.type == "supply")
                     tasks.Add(t);
 
-            if (_tasks.Count > 0)
+            if (tasks.Count > 0)
             {
-                SelectedTask = _tasks[0];
+                SelectedTask = tasks[0];
             }
         }
     }
