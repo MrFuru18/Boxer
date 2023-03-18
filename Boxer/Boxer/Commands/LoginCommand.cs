@@ -41,28 +41,35 @@ namespace Boxer.Commands
                 Account account = new Account();
                 Access access = new Access();
 
-                access = EmployeeProcessor.loginEmployee(loginModel).Result;
-                
-                if (access.success == "yes")
+                try
                 {
-                    account.accessToken = access.accessToken;
-                    account.uid = loginModel.uid;
-                    Employee emp = new Employee();
-                    emp.uid = loginModel.uid;
-                    emp = EmployeeProcessor.getEmployee(emp).Result;
-                    account.id = emp.id;
-                    account.permissions = emp.permissions;
+                    access = EmployeeProcessor.loginEmployee(loginModel).Result;
 
-                    _accountStore.CurrentAccount = account;
+                    if (access.success == "yes")
+                    {
+                        account.accessToken = access.accessToken;
+                        account.uid = loginModel.uid;
+                        Employee emp = new Employee();
+                        emp.uid = loginModel.uid;
+                        emp = EmployeeProcessor.getEmployee(emp).Result;
+                        account.id = emp.id;
+                        account.permissions = emp.permissions;
 
-                    if (_accountStore.IsLoggedIn)
-                        _navigationService.Navigate();
+                        _accountStore.CurrentAccount = account;
+
+                        if (_accountStore.IsLoggedIn)
+                            _navigationService.Navigate();
+                        else
+                            MessageBox.Show("Coś poszło nie tak");
+                    }
                     else
-                        MessageBox.Show("Coś poszło nie tak");
+                    {
+                        MessageBox.Show("Błędne dane logowania");
+                    }
                 }
-                else
+                catch
                 {
-                    MessageBox.Show("Błędne dane logowania");
+                    MessageBox.Show("Coś poszło nie tak");
                 }
 
             }
