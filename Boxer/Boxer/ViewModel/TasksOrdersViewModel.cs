@@ -110,9 +110,9 @@ namespace Boxer.ViewModel
 
             order_items = new ObservableCollection<OrderItemDetailed>();
 
-            if (_tasks.Count > 0)
+            if (tasks.Count > 0)
             {
-                SelectedTask = _tasks[0];
+                SelectedTask = tasks[0];
             }
         }
 
@@ -127,9 +127,9 @@ namespace Boxer.ViewModel
                     tasks.Add(t);
 
 
-            if (_tasks.Count > 0)
+            if (tasks.Count > 0)
             {
-                SelectedTask = _tasks[0];
+                SelectedTask = tasks[0];
             }
         }
     }

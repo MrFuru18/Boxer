@@ -22,7 +22,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="110"/>
             <RowDefinition Height="*" />
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
@@ -52,7 +52,7 @@
                     Background="Transparent"
                     Margin="15,0,15,0"
                     Width="150"
-                    Height="100"
+                    Height="104"
                     BorderThickness="0"
                     Command="{Binding NavigateTasksPannelPageCommand}" CommandParameter="TasksPannel"
                     Visibility="{Binding IsManagement, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -73,7 +73,7 @@
                     Background="Transparent"
                     Margin="15,0,15,0"
                     Width="150"
-                    Height="100"
+                    Height="104"
                     BorderThickness="0"
                     Command="{Binding NavigateWarehousePannelPageCommand}" CommandParameter="WarehousePannel">
                 <StackPanel>
@@ -94,7 +94,7 @@
                     Background="Transparent"
                     Margin="15,0,15,0"
                     Width="150"
-                    Height="100"
+                    Height="104"
                     BorderThickness="0"
                     Command="{Binding NavigateOrdersPannelPageCommand}" CommandParameter="OrdersPannel">
                 <StackPanel>
@@ -115,7 +115,7 @@
                     Background="Transparent"
                     Margin="15,0,15,0"
                     Width="150"
-                    Height="100"
+                    Height="104"
                     BorderThickness="0"
                     Command="{Binding NavigateSuppliesPannelPageCommand}" CommandParameter="SuppliesPannel"
                     Visibility="{Binding IsManagement, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -136,7 +136,7 @@
                     Background="Transparent"
                     Margin="15,0,15,0"
                     Width="150"
-                    Height="100"
+                    Height="104"
                     BorderThickness="0"
                     Command="{Binding NavigateAdminPannelPageCommand}" CommandParameter="AdminPannel"
                     Visibility="{Binding IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -161,7 +161,7 @@
                 HorizontalAlignment="Right"
                 Background="Transparent"
                 Width="100"
-                Height="100"
+                Height="104"
                 BorderThickness="0"
                 Command="{Binding Logout}" CommandParameter="Logout"
                 Visibility="{Binding LoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}">
